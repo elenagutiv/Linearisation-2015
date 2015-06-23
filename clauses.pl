@@ -1,8 +1,8 @@
-:- module(clauses,[cleanup/0,setOptions/2,load_file/1,clauseIds/1,writeClauses/2]).
+:- module(clauses,[cleanup/0,setOptions/3,load_file/1,clauseIds/1,writeClauses/2,my_clause/3]).
 
 :- dynamic my_clause/3.
 
-%% Functions provided by John Gallagher.
+%% Clause manipulation functions provided by John Gallagher.
 
 %% Removing data from database
 
@@ -11,10 +11,12 @@ cleanup :-
 
 %% Setting options from input 
 
-setOptions(ArgV,File) :-
+setOptions(ArgV,File,OutS) :-
 	get_options(ArgV,Options,_),
 	(member(programO(File),Options) -> true; 
-			write(user_output,'No input file given.'),nl(user_output),fail).
+			write(user_output,'No input file given.'),nl(user_output),fail),
+	(member(outputFile(OutFile),Options) -> open(OutFile,write,OutS); 
+				OutS=user_output).
 
 % get_options/3 provided by Michael Leuschel
 
