@@ -15,7 +15,8 @@ main(ArgV) :-
 	writeClauses(MNLCls,OutS),
 	close(OutS).
 
-%Selects minimally non linear clauses stored in 2nd argument list.
+%Selects minimally non linear clauses and stores them in the list of
+%the 2nd argument.
 
 all_minimally_non_linear([Id|Ids],[(H:-B)|MNLCls]):-
 	my_clause(H,B,Id),
@@ -23,7 +24,8 @@ all_minimally_non_linear([Id|Ids],[(H:-B)|MNLCls]):-
 	L>1,
 	is_minimally_non_linear(H,B),
 	!,
-	all_minimally_non_linear(Ids,MNLCls).
+	all_minimally_non_linear(Ids,MNLCls),
+	numbervars((H:-B)).
 all_minimally_non_linear([Id|Ids],MNLCls):-
 	my_clause(_,_,Id),
 	!,
@@ -32,14 +34,17 @@ all_minimally_non_linear([],[]):-
 	!.
 
 is_minimally_non_linear(H,[B|Bs]):-
-	H=B,
+	functor(H,P,_),
+	functor(B,Q,_),
+	P=Q,
 	!,
 	is_minimally_non_linear(H,Bs).
 is_minimally_non_linear(H,[B|Bs]):-
-	H\=B,
+	functor(H,P,_),
+	functor(B,Q,_),
+	P\=Q,
 	!,
-	functor(B,P,_),
-	indexOfAtom(P,K),
+	indexOfAtom(Q,K),
 	K=48,	%%48 is ascii code for '0'.
 	is_minimally_non_linear(H,Bs).
 is_minimally_non_linear(_,[]):-
