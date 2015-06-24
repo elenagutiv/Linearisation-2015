@@ -1,6 +1,8 @@
 :- module(unfolding,[main/1,go/1]).
 :- use_module(clauses).
 
+%% In order to prove this program, module clauses has to contain
+%% a compatible version of setOptions definition.
 
 go(F):-
 	main(['-prg',F]).
