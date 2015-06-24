@@ -13,8 +13,9 @@ main(ArgV) :-
 	load_file(File),
 	clauseIds(Ids),
 
-	%% Folding
-	unfold_frst_wrt_scnd(Ids,Clauses),
+	%% test_unfold takes first clause in file and unfolds it
+	%% at the only atom in its body wrt to the set of clauses in file.
+	test_unfold(Ids,Clauses),
 
 	writeClauses(Clauses,OutS),
 	close(OutS).
@@ -29,9 +30,9 @@ unfoldClause((H:-Body),A,(H:-Body1)) :-
         my_clause(A,Body2,_),
         append(Body2,Post,Body3),
         append(Pre,Body3,Body1),
-        numbervars((H:-Body1),0,_).
+        numbervars((H:-Body1)).
 
-unfold_frst_wrt_scnd([Id1|_],Clauses) :-
+test_unfold([Id1|_],Clauses) :-
 		my_clause(H1,B1,Id1),
 		member(A,B1),
 		unfold((H1:-B1),A,Clauses).
