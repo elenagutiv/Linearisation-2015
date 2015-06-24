@@ -1,4 +1,4 @@
-:- module(clauses,[cleanup/0,setOptions/3,load_file/1,clauseIds/1,writeClauses/2,my_clause/3]).
+:- module(clauses,[cleanup/0,setOptions/3,load_file/1,clauseIds/1,writeClauses/2,my_clause/3, indexOfAtom/2]).
 
 :- dynamic my_clause/3.
 
@@ -108,7 +108,18 @@ writeBodyAtoms(S,[B1,B2|Bs]) :-
 	%nl(S),
 	writeBodyAtoms(S,[B2|Bs]).
 
-%---
-
 clauseIds(Ids) :-
 	findall(C,my_clause(_,_,C),Ids).
+
+%% Computes dimension of a given atom.
+indexOfAtom(A,I) :-
+	atom_to_chars(A,Ls),
+	append(_,[40,I,41|_],Ls),
+	!.
+indexOfAtom(A,I) :-
+	atom_to_chars(A,Ls),
+	append(_,[91,I,93|_],Ls),
+	!.
+
+
+	
