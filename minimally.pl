@@ -10,26 +10,26 @@ main(ArgV) :-
 	load_file(File),
 	clauseIds(Ids),
 
-	all_minimally_non_linear(Ids,MNLCls),
+	all_minimally_non_linear(Ids,MNLIds),
 
-	writeClauses(MNLCls,OutS),
+	writeClausesIds(MNLIds,OutS),
 	close(OutS).
 
-%Selects minimally non linear clauses and stores them in the list of
+%Selects minimally non linear clauses and store their ids in a list in
 %the 2nd argument.
 
-all_minimally_non_linear([Id|Ids],[(H:-B)|MNLCls]):-
+all_minimally_non_linear([Id|Ids],[MNLId|MNLIds]):-
 	my_clause(H,B,Id),
 	length(B,L),
 	L>1,
 	is_minimally_non_linear(H,B),
 	!,
-	all_minimally_non_linear(Ids,MNLCls),
-	numbervars((H:-B)).
-all_minimally_non_linear([Id|Ids],MNLCls):-
+	my_clause(H,B,MNLId),
+	all_minimally_non_linear(Ids,MNLIds).
+all_minimally_non_linear([Id|Ids],MNLIds):-
 	my_clause(_,_,Id),
 	!,
-	all_minimally_non_linear(Ids,MNLCls).
+	all_minimally_non_linear(Ids,MNLIds).
 all_minimally_non_linear([],[]):-
 	!.
 
