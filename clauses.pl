@@ -1,4 +1,4 @@
-:- module(clauses,[cleanup/0,setOptions/3,load_file/1,clauseIds/1,writeClauses/2,my_clause/3, indexOfAtom/2]).
+:- module(clauses,[cleanup/0,setOptions/3,load_file/1,clauseIds/1,writeClauses/2,writeClausesIds/2,my_clause/3, indexOfAtom/2]).
 
 :- dynamic my_clause/3.
 
@@ -88,6 +88,15 @@ writeClauses([(H:-B)|Rs],S) :-
 	nl(S),
 	writeClauses(Rs,S).
 writeClauses([],_).
+
+%% Write clauses Ids
+
+writeClausesIds([Id|Ids],S):-
+	writeq(S,Id),
+	write(S,'.'),
+	nl(S),
+	writeClausesIds(Ids,S).
+writeClausesIds([],_).
 	
 writeBodyAtoms(S,[]) :-
 	!,
