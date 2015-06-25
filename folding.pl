@@ -20,7 +20,7 @@ main(ArgV) :-
 	writeClauses([Clause],OutS),
 	close(OutS).
 
-foldClause((H1:-Body1),(H2:-Body2),(H1:-Body3)) :-
+fold_clause((H1:-Body1),(H2:-Body2),(H1:-Body3)) :-
 		append([Pre,Body2,Post],Body1),
         append([Pre,[H2],Post],Body3),
         numbervars((H1:-Body3)).
@@ -29,5 +29,5 @@ test_fold([Id1|Ids],Clause):-
 		my_clause(H1,B1,Id1),
 		member(Id2,Ids),
 		my_clause(H2,B2,Id2),
-		foldClause((H1:-B1),(H2:-B2),Clause).
+		fold_clause((H1:-B1),(H2:-B2),Clause).
 

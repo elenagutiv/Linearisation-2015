@@ -23,9 +23,9 @@ main(ArgV) :-
 % unfold a clause (H:-Body) on a given body atom A, returning Clauses
 
 unfold((H:-B),A,Clauses) :-
-        findall((H:-B1), unfoldClause((H:-B),A,(H:-B1)),Clauses).
+        findall((H:-B1), unfold_clause((H:-B),A,(H:-B1)),Clauses).
 
-unfoldClause((H:-Body),A,(H:-Body1)) :-
+unfold_clause((H:-Body),A,(H:-Body1)) :-
         append(Pre,[A|Post],Body),
         my_clause(A,Body2,_),
         append(Body2,Post,Body3),
