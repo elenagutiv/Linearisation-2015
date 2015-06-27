@@ -54,13 +54,5 @@ is_minimally_non_linear(_,[]):-
 %% CLP (Clause Linearisation Procedure)
 
 clp([Id|Ids],LCls,EDefs):-
-	%etree_construction(Id,LCls1,EurCls)
-	%ed_introduction(EurCls,EDefs1),
-	%etree_folding(EurCls,EDefs1,LCls2),
-	%ftree_construction(EDefs1,LCls3),
-
-	%clp(Ids,)
 .
-
-
 clp([],[],[]).
