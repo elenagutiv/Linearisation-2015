@@ -49,7 +49,7 @@ construct_subtree(RId,LCls,ECls):-
 
 construct_all_subtrees([(H:-B)|FCls],LCls,ECls):-
 	recorded(_,my_node(H,B,Id)),
-	
+
 	construct_subtree(Id,LCls1,ECls1),
 	construct_all_subtrees(FCls,LCls2,ECls2),
 
@@ -59,7 +59,7 @@ construct_all_subtrees([],[],[]).
 
 all_eurekable(FId,[(H:-B)|Cls],ECls):-
 	remember_node(FId,H,B,Id),
-	is_eurekable(Id),
+	is_eurekable(Id,Id),
 	!,
 	all_eurekable(FId,Cls,ECls1),
 	append([(H:-B)],ECls1,ECls2).
@@ -68,11 +68,53 @@ all_eurekable(FId,[(H:-B)|Cls],ECls):-
 	all_eurekable(FId,Cls,ECls).
 all_eurekable(_,[],[]).
 
+is_eurekable(_,1):-
+	!,
+	fail.
+%% is_eurekable(Id0,Id1) is true iff clause of node Id0 is eurekable wrt its father node Id1.
+is_eurekable(Id0,Id1):-
+	recorded(K1,my_node(_,_,Id1)),
+	recorded(_,my_node(_,B1,K1)),
+
+	recorded(_,my_node(_,B0,Id0)),
+	is_instance_of(B1,B0),
+	!.
+is_eurekable(Id0,Id1):-
+	recorded(K1,my_node(_,_,Id1)),
+	is_eurekable(Id0,K1),
+	!.
+
+%% is_instance_of(B1,B2) is true iff the conjunction of atoms in the body B1 are an instance 
+%% of the conjunction of atoms in the body B2.
+is_instance_of(B1,B2):-
+	unifiable(B1,B2,_).
+
 remember_node(FId,H,B,X):-
 	next_node_id(X),
 	recorda(FId,my_node(H,B,X)),
 	X1 is X+1,
 	assert(next_node_id(X1)).
+
+%% selection_rule(B,A) defines a linear lowest-index-first selection rule.
+%% It selects from body B an atom whose predicate has the lowest index of those appearing in B and whose transitive closure is linear.
+%% By definition of linear transitive closure these are 0-index predicates.
+%% In case of more than one 0-index predicate in B, it selects the first from the left.
+selection_rule(B,A):-
+	K=48,	%%48 is ascii code for '0'.
+	findall(C,(member(C,B),functor(C,P,_),indexOfAtom(P,K)),As),
+	[A|As].
+
+all_linear([(H1:-B1)|Cls],[(H2:-B2)|LCls]):-
+	length(B1,L),
+	L<=1,
+	!,
+	all_linear(Cls,LCls).
+all_linear([(H1:-B1)|Cls],[(H2:-B2)|LCls]):-
+	all_linear(Cls,LCls).
+all_linear([],[]).
+
+
+
 
 
 
