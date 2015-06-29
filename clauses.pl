@@ -1,4 +1,4 @@
-:- module(clauses,[cleanup/0,setOptions/3,load_file/1,clauseIds/1,writeClauses/2,writeClausesIds/2,my_clause/3, indexOfAtom/2]).
+:- module(clauses,[cleanup/0,setOptions/3,load_file/1,clauseIds/1,writeClauses/2,writeClausesIds/2,my_clause/3, indexOfAtom/2, all_intensional/1]).
 
 :- dynamic my_clause/3.
 
@@ -130,5 +130,33 @@ indexOfAtom(A,I) :-
 	append(_,[91,I,93|_],Ls),
 	!.
 
+%% Collects intensional atoms from a given set of clauses
+all_intensional([Id|Ids]):-
+	my_clause(_,B,Id),
+	member(true,B),
+	!,
+	all_intensional(Ids).
+all_intensional([Id|Ids]):-
+	my_clause(H,_,Id),
+	functor(H,P,_),
+	intensional(P),
+	!,
+	all_intensional(Ids).
+all_intensional([Id|Ids]):-
+	my_clause(H,_,Id),
+	functor(H,P,_),
+	assert(intensional(P)),
+	all_intensional(Ids).
+all_intensional([]).
+
+%% Writes set of intensional atoms from a given program
+writeIntensional(S):-
+	findall(X,intensional(X),Is),
+	writePred(S,Is).
+
+writePred(S,[I|Is]):-
+	writeq(S,I),
+	writePred(S,Is).
+writePred(_,[]).
 
 	
