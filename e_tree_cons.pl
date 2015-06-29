@@ -96,20 +96,21 @@ remember_node(FId,H,B,X):-
 	assert(next_node_id(X1)).
 
 %% selection_rule(B,A) defines a linear lowest-index-first selection rule.
-%% It selects from body B an atom whose predicate has the lowest index of those appearing in B and whose transitive closure is linear.
+%% It selects from body B an intensional atom whose predicate has the lowest index of those appearing in B and whose transitive closure is linear.
 %% By definition of linear transitive closure these are 0-index predicates.
 %% In case of more than one 0-index predicate in B, it selects the first from the left.
 selection_rule(B,A):-
 	K=48,	%%48 is ascii code for '0'.
-	findall(C,(member(C,B),functor(C,P,_),indexOfAtom(P,K)),As),
+	findall(C,(member(C,B),functor(C,P,_),intensional(P),indexOfAtom(P,K)),As),
 	[A|As].
 
-all_linear([(H1:-B1)|Cls],[(H2:-B2)|LCls]):-
-	length(B1,L),
+all_linear([(H1:-B1)|Cls],[(H1:-B1)|LCls]):-
+	findall(C,(member(C,B1),functor(C,P,_),intensional(P),Cs)),
+	length(Cs,L),
 	L<=1,
 	!,
 	all_linear(Cls,LCls).
-all_linear([(H1:-B1)|Cls],[(H2:-B2)|LCls]):-
+all_linear([_|Cls],[_|LCls]):-
 	all_linear(Cls,LCls).
 all_linear([],[]).
 

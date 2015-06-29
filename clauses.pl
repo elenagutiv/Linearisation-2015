@@ -1,6 +1,7 @@
-:- module(clauses,[cleanup/0,setOptions/3,load_file/1,clauseIds/1,writeClauses/2,writeClausesIds/2,my_clause/3, indexOfAtom/2, all_intensional/1]).
+:- module(clauses,[cleanup/0,setOptions/3,load_file/1,clauseIds/1,writeClauses/2,writeClausesIds/2,my_clause/3,indexOfAtom/2,intensional/1,all_intensional/1]).
 
 :- dynamic my_clause/3.
+:- dynamic intensional/1.
 
 %% Clause manipulation functions provided by John Gallagher.
 
