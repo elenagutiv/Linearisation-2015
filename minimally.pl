@@ -1,4 +1,4 @@
-:- module(minimally,[main/1,go/1]).
+:- module(minimally,[all_minimally_non_linear/2]).
 :- use_module(clauses).
 
 go(F):-
@@ -9,6 +9,7 @@ main(ArgV) :-
 	setOptions(ArgV,File,OutS),
 	load_file(File),
 	clauseIds(Ids),
+	all_intensional(Ids),
 
 	all_minimally_non_linear(Ids,MNLIds),
 
@@ -18,20 +19,17 @@ main(ArgV) :-
 %Selects minimally non linear clauses and store their ids in a list in
 %the 2nd argument.
 
-all_minimally_non_linear([Id|Ids],[MNLId|MNLIds]):-
+all_minimally_non_linear([Id|Ids],[Id|MNLIds]):-
 	my_clause(H,B,Id),
-	length(B,L),
+	findall(C,(member(C,B),functor(C,P,_),intensional(P)),Is),
+	length(Is,L),
 	L>1,
-	is_minimally_non_linear(H,B),
-	!,
-	my_clause(H,B,MNLId),
-	all_minimally_non_linear(Ids,MNLIds).
-all_minimally_non_linear([Id|Ids],MNLIds):-
-	my_clause(_,_,Id),
+	is_minimally_non_linear(H,Is),
 	!,
 	all_minimally_non_linear(Ids,MNLIds).
-all_minimally_non_linear([],[]):-
-	!.
+all_minimally_non_linear([_|Ids],MNLIds):-
+	all_minimally_non_linear(Ids,MNLIds).
+all_minimally_non_linear([],[]).
 
 is_minimally_non_linear(H,[B|Bs]):-
 	functor(H,P,_),

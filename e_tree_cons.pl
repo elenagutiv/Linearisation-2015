@@ -2,6 +2,7 @@
 :- use_module(clauses).
 :- use_module(unfolding).
 :- use_module(ls).
+:- use_module(minimally).
 
 :-dynamic my_node/3.
 :-dynamic next_node_id/1.
@@ -16,12 +17,15 @@ main(ArgV) :-
 	cleanup,
 	setOptions(ArgV,File,OutS),
 	load_file(File),
-	clauseIds(Ids).
+	clauseIds(Ids),
+	all_minimally_non_linear(Ids,MNLIds),
+
+	[RId|_]=MNLIds,
 
 	test_e_tree_cons(RId,LCls,EurCls),
 
  	writeClauses(LCls,OutS),
-	writeClauses(EurCls,Outs),
+	writeClauses(EurCls,OutS),
 	close(OutS).
 
 test_e_tree_cons(RId,LCls,ECls):-
@@ -57,14 +61,13 @@ construct_all_subtrees([(H:-B)|FCls],LCls,ECls):-
 	append([ECls1,ECls2],ECls).
 construct_all_subtrees([],[],[]).
 
-all_eurekable(FId,[(H:-B)|Cls],ECls):-
+all_eurekable(FId,[(H:-B)|Cls],[(H:-B)|ECls1]):-
 	remember_node(FId,H,B,Id),
 	is_eurekable(Id,Id),
 	!,
-	all_eurekable(FId,Cls,ECls1),
-	append([(H:-B)],ECls1,ECls2).
+	all_eurekable(FId,Cls,ECls1).
 all_eurekable(FId,[(H:-B)|Cls],ECls):-
-	remember_node(FId,H,B,Id),
+	remember_node(FId,H,B,_),
 	all_eurekable(FId,Cls,ECls).
 all_eurekable(_,[],[]).
 
@@ -107,7 +110,7 @@ selection_rule(B,A):-
 all_linear([(H1:-B1)|Cls],[(H1:-B1)|LCls]):-
 	findall(C,(member(C,B1),functor(C,P,_),intensional(P),Cs)),
 	length(Cs,L),
-	L<=1,
+	L=<1,
 	!,
 	all_linear(Cls,LCls).
 all_linear([_|Cls],[_|LCls]):-

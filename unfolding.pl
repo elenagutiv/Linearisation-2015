@@ -1,4 +1,4 @@
-:- module(unfolding,[main/1,go/1]).
+:- module(unfolding,[unfold/3]).
 :- use_module(clauses).
 
 %% In order to prove this program, module clauses has to contain

@@ -1,4 +1,4 @@
-:- module(folding,[main/1,go/1]).
+:- module(folding,[fold_clause/3]).
 :- use_module(clauses).
 
 %% In order to prove this program, module clauses has to contain
