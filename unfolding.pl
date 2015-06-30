@@ -26,7 +26,7 @@ unfold((H:-B),A,Clauses) :-
         findall((H:-B1), unfold_clause((H:-B),A,(H:-B1)),Clauses).
 
 unfold_clause((H:-Body),A,(H:-Body1)) :-
-        append(Pre,[A|Post],Body),
+		split(Pre,A,Post,Body),
         my_clause(A,Body2,_),
         append(Body2,Post,Body3),
         append(Pre,Body3,Body1),
@@ -37,3 +37,7 @@ test_unfold([Id1|_],Clauses) :-
 		member(A,B1),
 		unfold((H1:-B1),A,Clauses).
 
+%%If there is more than one atom A appearing in B, body to be be unfolded, we chose first occurence of A.
+split(Pre,A,Post,Body):-
+	append(Pre,[A|Post],Body),
+	!.
