@@ -23,10 +23,24 @@ main(ArgV) :-
 
 	[RId|_]=MNLIds,
 
+	write(OutS,'E-tree Root:'),
+	nl(OutS),
+	my_clause(RH,RB,RId),
+	numbervars((RH:-RB)),
+ 	writeClauses([(RH:-RB)],OutS),
+
 	test_e_tree_cons(RId,LCls,EurCls),
 
+	nl(OutS),
+	write(OutS,'Linear Clauses:'),
+	nl(OutS),
  	writeClauses(LCls,OutS),
+
+ 	nl(OutS),
+ 	write(OutS,'Eurekable Clauses:'),
+	nl(OutS),
 	writeClauses(EurCls,OutS),
+
 	close(OutS).
 
 test_e_tree_cons(RId,LCls,ECls):-
@@ -42,14 +56,8 @@ construct_subtree(RId,LCls,ECls):-
 	recorded(_,my_node(H,B,RId)),
 
 	selection_rule(B,A),
-
-	%writeq(user_output,A),
-
 	unfold((H:-B),A,Cls),
 	all_linear(Cls,LCls1),
-
-	%write(user_output,LCls1),
-
 	select_list(LCls1,Cls,RCls),
 	all_eurekable(RId,RCls,ECls1),
 	select_list(ECls1,RCls,FCls),
@@ -116,9 +124,6 @@ selection_rule(B,A):-
 all_linear([(H1:-B1)|Cls],[(H1:-B1)|LCls]):-
 	findall(C,(member(C,B1),functor(C,P,_),intensional(P)),Cs),
 	length(Cs,L),
-
-	%write(user_output,L),
-
 	L=<1,
 	!,
 	all_linear(Cls,LCls).
