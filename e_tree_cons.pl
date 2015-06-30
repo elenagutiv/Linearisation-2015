@@ -18,26 +18,27 @@ main(ArgV) :-
 	setOptions(ArgV,File,OutS),
 	load_file(File),
 	clauseIds(Ids),
+	all_intensional(Ids),
 	all_minimally_non_linear(Ids,MNLIds),
 
-	[RId|_]=MNLIds,
+	[_,RId]=MNLIds,
 
-	test_e_tree_cons(RId,LCls,EurCls),
+	test_e_tree_cons(RId,LCls,EurCls,OutS),
 
  	writeClauses(LCls,OutS),
 	writeClauses(EurCls,OutS),
 	close(OutS).
 
-test_e_tree_cons(RId,LCls,ECls):-
-	e_tree_cons(RId,LCls,ECls).
+test_e_tree_cons(RId,LCls,ECls,OutS):-
+	e_tree_cons(RId,LCls,ECls,OutS).
 
-e_tree_cons(RId,LCls,ECls):-
+e_tree_cons(RId,LCls,ECls,OutS):-
 	my_clause(H,B,RId),
 	recorda(0,my_node(H,B,1)),
 	assert(next_node_id(2)),
-	construct_subtree(1,LCls,ECls).
+	construct_subtree(1,LCls,ECls,OutS).
 
-construct_subtree(RId,LCls,ECls):-
+construct_subtree(RId,LCls,ECls,OutS):-
 	recorded(_,my_node(H,B,RId)),
 
 	selection_rule(B,A),
@@ -103,12 +104,11 @@ remember_node(FId,H,B,X):-
 %% By definition of linear transitive closure these are 0-index predicates.
 %% In case of more than one 0-index predicate in B, it selects the first from the left.
 selection_rule(B,A):-
-	K=48,	%%48 is ascii code for '0'.
-	findall(C,(member(C,B),functor(C,P,_),intensional(P),indexOfAtom(P,K)),As),
-	[A|As].
+	findall(C,(member(C,B),functor(C,P,_),intensional(P),indexOfAtom(P,48)),As),
+	As=[A|_].
 
 all_linear([(H1:-B1)|Cls],[(H1:-B1)|LCls]):-
-	findall(C,(member(C,B1),functor(C,P,_),intensional(P),Cs)),
+	findall(C,(member(C,B1),functor(C,P,_),intensional(P)),Cs),
 	length(Cs,L),
 	L=<1,
 	!,
