@@ -21,29 +21,35 @@ main(ArgV) :-
 	all_intensional(Ids),
 	all_minimally_non_linear(Ids,MNLIds),
 
-	[_,RId]=MNLIds,
+	[RId|_]=MNLIds,
 
-	test_e_tree_cons(RId,LCls,EurCls,OutS),
+	test_e_tree_cons(RId,LCls,EurCls),
 
  	writeClauses(LCls,OutS),
 	writeClauses(EurCls,OutS),
 	close(OutS).
 
-test_e_tree_cons(RId,LCls,ECls,OutS):-
-	e_tree_cons(RId,LCls,ECls,OutS).
+test_e_tree_cons(RId,LCls,ECls):-
+	e_tree_cons(RId,LCls,ECls).
 
-e_tree_cons(RId,LCls,ECls,OutS):-
+e_tree_cons(RId,LCls,ECls):-
 	my_clause(H,B,RId),
 	recorda(0,my_node(H,B,1)),
 	assert(next_node_id(2)),
-	construct_subtree(1,LCls,ECls,OutS).
+	construct_subtree(1,LCls,ECls).
 
-construct_subtree(RId,LCls,ECls,OutS):-
+construct_subtree(RId,LCls,ECls):-
 	recorded(_,my_node(H,B,RId)),
 
 	selection_rule(B,A),
+
+	%writeq(user_output,A),
+
 	unfold((H:-B),A,Cls),
 	all_linear(Cls,LCls1),
+
+	%write(user_output,LCls1),
+
 	select_list(LCls1,Cls,RCls),
 	all_eurekable(RId,RCls,ECls1),
 	select_list(ECls1,RCls,FCls),
@@ -110,10 +116,13 @@ selection_rule(B,A):-
 all_linear([(H1:-B1)|Cls],[(H1:-B1)|LCls]):-
 	findall(C,(member(C,B1),functor(C,P,_),intensional(P)),Cs),
 	length(Cs,L),
+
+	%write(user_output,L),
+
 	L=<1,
 	!,
 	all_linear(Cls,LCls).
-all_linear([_|Cls],[_|LCls]):-
+all_linear([_|Cls],LCls):-
 	all_linear(Cls,LCls).
 all_linear([],[]).
 
