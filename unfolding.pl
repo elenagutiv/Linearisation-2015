@@ -37,7 +37,8 @@ test_unfold([Id1|_],Clauses) :-
 		member(A,B1),
 		unfold((H1:-B1),A,Clauses).
 
-%%If there is more than one atom A appearing in B, body to be be unfolded, we chose first occurence of A.
+%% Unfolding clause C wrt to atom A,
+%% unfolds C wrt to the FIRST occurence of A if A appears more than once in the body of C.
 split(Pre,A,Post,Body):-
 	append(Pre,[A|Post],Body),
 	!.
