@@ -1,4 +1,7 @@
-:- module(clauses,[cleanup/0,setOptions/3,load_file/1,clauseIds/1,writeClauses/2,writeClausesIds/2,my_clause/3,indexOfAtom/2,intensional/1,all_intensional/1]).
+:- module(clauses,[cleanup/0,setOptions/3,load_file/1,clauseIds/1,writeClauses/2,writeClausesIds/2,my_clause/3,indexOfAtom/2,intensional/1,all_intensional/1,create_dependence_graph/2,depends/3]).
+
+:- use_module(ls).
+:- use_module(library(ugraphs)).
 
 :- dynamic my_clause/3.
 :- dynamic intensional/1.
@@ -160,4 +163,28 @@ writePred(S,[I|Is]):-
 	writePred(S,Is).
 writePred(_,[]).
 
-	
+%% Dependence graph manipulation methods
+
+create_dependence_graph([Id|Ids],DG2):-
+	create_nodes_clause([],Id,DG1),
+	create_nodes_rest_clauses(DG1,Ids,DG2).
+
+create_nodes_clause(GD1,Id,GD2):-
+	my_clause(H,Bs,Id),
+	functor(H,P,_),
+	findall(Q,(member(B,Bs),functor(B,Q,_)),Qs),
+	create_nodes(GD1,P,Qs,GD2).
+
+create_nodes(GD1,P,Qs,GD2):-
+	create_node_list(P,Qs,Res),
+	add_edges(GD1,Res,GD2).
+
+create_nodes_rest_clauses(DG1,[Id|Ids],DG3):-
+	create_nodes_clause(DG1,Id,DG2),
+	create_nodes_rest_clauses(DG2,Ids,DG3).
+create_nodes_rest_clauses(DG,[],DG).
+
+depends(DG,S,H):-
+	reachable(S,DG,Vrs),
+	findnsols(1,Vr,(member(Vr,Vrs),Vr=H),Vs),
+	Vs=[_].

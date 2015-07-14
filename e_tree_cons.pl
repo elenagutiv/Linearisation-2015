@@ -21,7 +21,7 @@ main(ArgV) :-
 	all_intensional(Ids),
 	all_minimally_non_linear(Ids,MNLIds),
 
-	[RId|_]=MNLIds,
+	[_,_,RId|_]=MNLIds,
 
 	write(OutS,'E-tree Root:'),
 	nl(OutS),
