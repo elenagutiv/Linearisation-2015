@@ -27,10 +27,10 @@ elp(NLIds):-
 	all_minimally_non_linear(DG,M,NLIds,MNLIds),
 	MNLIds=[SId|RIds],
 
-	clp(SId,LCls,EDCls),
+	clp(SId,LCls,EDs),
 
 	remember_all_linear(LCls),
-	remember_all_EDs(EDCls),
+	remember_all_EDs(EDs),
 
 	update_mindex(MNLIds),
 	elp(RIds).
@@ -40,9 +40,7 @@ all_minimally_non_linear(DG,M,[Id|Ids],[Id|MNLIds]):-
 	my_clause(He,B,Id),
 	functor(He,H,_),
 	indexOfAtom(H,K),
-
 	findall(P,(member(C,B),functor(C,P,_),intensional(P)),Is),
-	
 	M=K,
 	is_minimally_non_linear(DG,M,H,Is),
 	!,
@@ -76,7 +74,16 @@ all_non_linear([Id|Ids],NLIds):-
 all_non_linear([],[]).
 
 %% CLP (Clause Linearisation Procedure)
-%% TODO
+clp(SId,LCls,EDs):-
+	e_tree_cons(SId,LCls1,ECls),
+	intro_eureka_defs(ECls,EDs),
+	f_tree_cons(ECls,EDs,FCls),
+
+	append([LCls1,FCls],LCls2),
+
+	f_tree_cons(EDs,FEDs),
+
+	append([LCls2,FEDs],LCls).
 
 update_mindex(MNLIds):-
 	length(MNLIds,L),
@@ -101,3 +108,11 @@ remember_all_EDs([EDCl|EDCls]):-
 	NId is Id+1,
 	assert(edsId(NId)),
 	remember_all_EDs(EDCLs).
+
+intro_eureka_defs([ECls|ECls],[ED|EDs]):-
+	intro_eureka_def(ECl,ED),
+	intro_eureka_defs(ECls,EDs).
+intro_eureka_defs([],[]).
+
+intro_eureka_def(ECl,ED):-
+	
