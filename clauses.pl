@@ -1,10 +1,13 @@
-:- module(clauses,[cleanup/0,setOptions/3,load_file/1,clauseIds/1,writeClauses/2,writeClausesIds/2,my_clause/3,indexOfAtom/2,intensional/1,all_intensional/1,create_dependence_graph/2,depends/3]).
+:- module(clauses,[cleanup/0,setOptions/3,load_file/1,clauseIds/1,writeClauses/2,writeClausesIds/2,my_clause/3,indexOfAtom/2,intensional/1,clsId/1,edsId/1,all_intensional/1,create_dependence_graph/2,depends/3,remember_clause/2,remember_ED/2]).
 
 :- use_module(ls).
 :- use_module(library(ugraphs)).
 
 :- dynamic my_clause/3.
+:- dynamic my_ed/3.
 :- dynamic intensional/1.
+:- dynamic clsId/1.
+:- dynamic edsId/1.
 
 %% Clause manipulation functions provided by John Gallagher.
 
@@ -52,7 +55,9 @@ load_file(F) :-
 remember_all(S,N) :-
 	read(S,C),
 	(
-	    C == end_of_file -> true
+	    C == end_of_file ->
+	    assert(clsId(N)),
+	    true
 	;
 	    remember_clause(C,N),
 	    N1 is N+1,
@@ -71,10 +76,21 @@ remember_clause(H,N) :-
 	!.
 remember_clause((:- _),_).
 
+%% Stores Eureka Definitions in database
+remember_ED((H:-B),N):-
+	tuple2list(B,LB),
+	makeEDId(N,EN),
+	assert(my_ed(H,LB,EN)).
+
 makeClauseId(N,CN) :-
 	name(N,NN),
 	append([99],NN,CNN),
 	name(CN,CNN).
+
+makeEDId(N,EN) :-
+	name(N,NN),
+	append([101],NN,ENN),
+	name(EN,ENN).
 
 tuple2list((A,As),[A|LAs]) :-
 	!,
