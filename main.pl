@@ -11,7 +11,7 @@ main(ArgV) :-
 	clauseIds(Ids),
 	all_intensional(Ids),
 	create_dependence_graph(Ids,DG),
-	assert(mindex(49)), %mindex is index of clauses which may be minimally non-linear. It changes after a number of iterations.
+	assert(mindex(49)), %mindex is index of clauses which may be minimally non-linear. It changes after a number of iterations of ELP.
 	assert(edsId(1)),
 
 	all_non_linear(Ids,NLIds),
@@ -31,7 +31,6 @@ elp(NLIds,DG):-
 
 	remember_all_linear(LCls),
 	
-
 	update_mindex(MNLIds),
 	elp(RIds).
 
@@ -93,6 +92,8 @@ all_non_linear([],[]).
 %% CLP (Clause Linearisation Procedure)
 clp(SId,LCls):-
 	e_tree_cons(SId,LCls1,ECls),
+	e_tree_del,
+
 	intro_eureka_defs(ECls,EDIds),
 	f_tree_cons(ECls,FCls),
 
@@ -129,6 +130,13 @@ remember_all_EDs([EDCl|EDCls]):-
 %% e-tree construction methods
 e_tree_cons(RId,LCls,ECls):-
 	my_clause(H,B,RId),
+	!,
+	recorda(0,my_node(H,B,1)),
+	assert(next_node_id(2)),
+	construct_subtree(1,LCls,ECls).
+
+e_tree_cons(RId,LCls,ECls):-
+	my_ed(H,B,RId),
 	recorda(0,my_node(H,B,1)),
 	assert(next_node_id(2)),
 	construct_subtree(1,LCls,ECls).
@@ -156,14 +164,6 @@ construct_all_subtrees([(H:-B)|FCls],LCls,ECls):-
 	append([LCls1,LCls2],LCls),
 	append([ECls1,ECls2],ECls).
 construct_all_subtrees([],[],[]).
-
-%% f-tree construction methods
-f_tree_cons([(H1:-B1)|ECls],[(H3:-B3)|FCls]):-
-	findnsols(1,(H2:-B2),(my_ed(EH,EB,_),fold_clause((H1:-B1),(EH:-EB),(H2:-B2))),FCls),
-	FCls=[(H3:-B3)],
-	!,
-	f_tree_cons(ECls,FCls).
-f_tree_cons([],[]).
 
 all_eurekable(FId,[(H:-B)|Cls],[(H:-B)|ECls1]):-
 	remember_node(FId,H,B,Id),
@@ -202,6 +202,10 @@ remember_node(FId,H,B,X):-
 	X1 is X+1,
 	assert(next_node_id(X1)).
 
+e_tree_del:-
+	retract_all(my_node(_,_,_)),
+	retract_all(next_node_id(_)).
+
 %% selection_rule(B,A) defines a linear lowest-index-first selection rule.
 %% It selects from body B an intensional atom whose predicate has the lowest index of those appearing in B and whose transitive closure is linear.
 %% By definition of linear transitive closure these are 0-index predicates.
@@ -219,6 +223,29 @@ all_linear([(H1:-B1)|Cls],[(H1:-B1)|LCls]):-
 all_linear([_|Cls],LCls):-
 	all_linear(Cls,LCls).
 all_linear([],[]).
+
+%% f-tree construction methods
+f_tree_cons([(H1:-B1)|ECls],[(H3:-B3)|FCls]):-
+	findnsols(1,(H2:-B2),(my_ed(EH,EB,_),fold_clause((H1:-B1),(EH:-EB),(H2:-B2))),FCls),
+	FCls=[(H3:-B3)],
+	!,
+	f_tree_cons(ECls,FCls).
+f_tree_cons([],[]).
+
+linearise_EDs([Id|EDIds],LCls):-
+	linearise_ED(Id,LCls1),
+	linearise_EDs(EDIds,LCls2),
+
+	append([LCls1,LCls2],LCls).
+linearise_EDs([],[]).
+
+linearise_ED(Id,LCls):-
+	e_tree_cons(Id,LCls1,ECls),
+	e_tree_del,
+
+	f_tree_cons(ECls,LCls2),
+
+	append([LCls1,LCls2],LCls).
 
 %% ED Introduction methods
 intro_eureka_defs([ECl|ECls],[I|EDIds]):-
