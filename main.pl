@@ -93,14 +93,14 @@ all_non_linear([],[]).
 %% CLP (Clause Linearisation Procedure)
 clp(SId,LCls):-
 	e_tree_cons(SId,LCls1,ECls),
-	intro_eureka_defs(ECls),
+	intro_eureka_defs(ECls,EDIds),
 	f_tree_cons(ECls,FCls),
 
 	append([LCls1,FCls],LCls2),
 
-	f_tree_cons(FEDs),
+	linearise_EDs(EDIds,LCls3),
 
-	append([LCls2,FEDs],LCls).
+	append([LCls2,LCls3],LCls).
 
 update_mindex(MNLIds):-
 	length(MNLIds,L),
@@ -127,7 +127,6 @@ remember_all_EDs([EDCl|EDCls]):-
 	remember_all_EDs(EDCls).
 
 %% e-tree construction methods
-
 e_tree_cons(RId,LCls,ECls):-
 	my_clause(H,B,RId),
 	recorda(0,my_node(H,B,1)),
@@ -157,6 +156,14 @@ construct_all_subtrees([(H:-B)|FCls],LCls,ECls):-
 	append([LCls1,LCls2],LCls),
 	append([ECls1,ECls2],ECls).
 construct_all_subtrees([],[],[]).
+
+%% f-tree construction methods
+f_tree_cons([(H1:-B1)|ECls],[(H3:-B3)|FCls]):-
+	findnsols(1,(H2:-B2),(my_ed(EH,EB,_),fold_clause((H1:-B1),(EH:-EB),(H2:-B2))),FCls),
+	FCls=[(H3:-B3)],
+	!,
+	f_tree_cons(ECls,FCls).
+f_tree_cons([],[]).
 
 all_eurekable(FId,[(H:-B)|Cls],[(H:-B)|ECls1]):-
 	remember_node(FId,H,B,Id),
@@ -214,12 +221,12 @@ all_linear([_|Cls],LCls):-
 all_linear([],[]).
 
 %% ED Introduction methods
-intro_eureka_defs([ECl|ECls]):-
-	intro_eureka_def(ECl),
-	intro_eureka_defs(ECls).
-intro_eureka_defs([]).
+intro_eureka_defs([ECl|ECls],[I|EDIds]):-
+	intro_eureka_def(ECl,I),
+	intro_eureka_defs(ECls,EDIds).
+intro_eureka_defs([],[]).
 
-intro_eureka_def((H:-Bd)):-
+intro_eureka_def((H:-Bd),I):-
 	findall(B,(member(B,Bd),functor(B,Q,_),intensional(Q)),Bs),
 	findall(EDId,(my_ed(_,Bs,EDId)),EDIds),
 	EDIds=[],
@@ -233,17 +240,8 @@ intro_eureka_def((H:-Bd)):-
 	functor(ED,EP,M),
 
 	numbervars((ED:-Bs)),
-
-	writeClauses([(ED:-Bs)],user_output),
 	assert(my_ed(ED,Bs,I)),
 
 	I1 is I+1,
 	assert(edsId(I1)).
 intro_eureka_def(_).
-
-	
-
-
-
-	
-	
