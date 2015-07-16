@@ -1,6 +1,5 @@
-:- module(clauses,[cleanup/0,setOptions/3,load_file/1,clauseIds/1,writeClauses/2,writeClausesIds/2,my_clause/3,indexOfAtom/2,intensional/1,clsId/1,edsId/1,all_intensional/1,create_dependence_graph/2,depends/3,remember_clause/2,remember_ED/2]).
+:- module(clauses,[cleanup/0,setOptions/3,load_file/1,clauseIds/1,writeClauses/2,writeClausesIds/2,my_clause/3,my_ed/3,indexOfAtom/2,intensional/1,clsId/1,edsId/1,all_intensional/1,create_dependence_graph/2,depends/3,remember_clause/2,remember_ED/2,tuple2list/2]).
 
-:- use_module(ls).
 :- use_module(library(ugraphs)).
 
 :- dynamic my_clause/3.
@@ -204,3 +203,13 @@ depends(DG,S,H):-
 	reachable(S,DG,Vrs),
 	findnsols(1,Vr,(member(Vr,Vrs),Vr=H),Vs),
 	Vs=[_].
+
+%% List methods
+
+select_list([L|Ls],Ls2,Ls3):-
+	select(L,Ls2,Rs),
+	select_list(Ls,Rs,Ls3).
+select_list([],Ls,Ls).
+
+create_node_list(E,L1s,Res):-
+	findall(E-L,(member(L,L1s)),Res).

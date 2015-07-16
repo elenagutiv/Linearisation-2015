@@ -1,6 +1,7 @@
 :- module(e_tree_cons,[main/1,go/1]).
 :- use_module(clauses).
 :- use_module(unfolding).
+:- use_module(folding).
 :- use_module(ls).
 :- use_module(minimally).
 
@@ -19,9 +20,16 @@ main(ArgV) :-
 	load_file(File),
 	clauseIds(Ids),
 	all_intensional(Ids),
-	all_minimally_non_linear(Ids,MNLIds),
+	
+	%assert(my_ed('w(1)'(X,Y),['b(1)'(X,Z),'a(0)'(Z,Y)],1)),
 
-	[_,_,RId|_]=MNLIds,
+	%create_dependence_graph(Ids,DG),
+
+	%assert(mindex(49)),
+	%mindex(M),
+	%all_minimally_non_linear(DG,M,Ids,MNLIds),
+
+	[_,_,RId|_]=Ids,
 
 	write(OutS,'E-tree Root:'),
 	nl(OutS),
@@ -59,16 +67,11 @@ construct_subtree(RId,LCls,ECls):-
 	unfold((H:-B),A,Cls),
 	all_linear(Cls,LCls1),
 	select_list(LCls1,Cls,RCls),
-	all_folded(RCls,LCls2),
-
-	append([LCls1,LCls2],LCls3),
-
-	select_list(RCls,LCls2,ZCls),
-	all_eurekable(RId,ZCls,ECls1),
+	all_eurekable(RId,RCls,ECls1),
 	select_list(ECls1,RCls,FCls),
-	construct_all_subtrees(FCls,LCls4,ECls2),
+	construct_all_subtrees(FCls,LCls2,ECls2),
 
-	append([LCls3,LCls4],LCls),
+	append([LCls1,LCls2],LCls),
 	append([ECls1,ECls2],ECls).
 
 construct_all_subtrees([(H:-B)|FCls],LCls,ECls):-
@@ -107,18 +110,6 @@ is_eurekable(Id0,Id1):-
 	is_eurekable(Id0,K1),
 	!.
 
-%% all_folded(RCls,LCls) searches among the set of EDs, those that can fold a node of E-tree and
-%% give as a result a linear clause.
-all_folded([(H1:-B1)|RCls],[(H3:-B3)|LCls]):-
-	tuple2list(B1,LB),
-	findnsols(1,(H2:-B2),(my_ed(EH:-EB),fold_clause((H1:-B1),(EH:-EB),(H2:-B2))),FCls),
-	FCls=[(H3:-B3)],
-	!,
-	all_folded(RCls,LCls).
-all_folded([_|RCls],LCls):-
-	all_folded(RCls,LCls).
-all_folded([],[]).
-
 %% is_instance_of(B1,B2) is true iff the conjunction of atoms in the body B1 are an instance 
 %% of the conjunction of atoms in the body B2.
 is_instance_of(B1,B2):-
@@ -148,7 +139,16 @@ all_linear([_|Cls],LCls):-
 	all_linear(Cls,LCls).
 all_linear([],[]).
 
-
+%% all_folded(RCls,LCls) searches among the set of EDs, those that can fold a node of E-tree and
+%% give as a result a linear clause.
+%% all_folded([(H1:-B1)|RCls],[(H3:-B3)|LCls]):-
+%% 	findnsols(1,(H2:-B2),(my_ed(EH,EB,_),fold_clause((H1:-B1),(EH:-EB),(H2:-B2))),FCls),
+%% 	FCls=[(H3:-B3)],
+%% 	!,
+%% 	all_folded(RCls,LCls).
+%% all_folded([_|RCls],LCls):-
+%% 	all_folded(RCls,LCls).
+%% all_folded([],[]).
 
 
 
