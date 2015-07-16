@@ -1,4 +1,4 @@
-:- module(clauses,[cleanup/0,setOptions/3,load_file/1,clauseIds/1,writeClauses/2,writeClausesIds/2,my_clause/3,my_ed/3,indexOfAtom/2,intensional/1,clsId/1,edsId/1,all_intensional/1,create_dependence_graph/2,depends/3,remember_clause/2,remember_ED/2,tuple2list/2,dim_ed/3]).
+:- module(clauses,[cleanup/0,setOptions/3,load_file/1,clauseIds/1,writeClauses/2,writeClausesIds/2,my_clause/3,my_ed/3,indexOfAtom/2,intensional/1,clsId/1,edsId/1,all_intensional/1,create_dependence_graph/2,depends/3,remember_clause/2,remember_ED/2,select_list/3,tuple2list/2,dim_ed/3]).
 
 :- use_module(library(ugraphs)).
 

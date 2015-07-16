@@ -6,7 +6,7 @@ go(F):-
 
 main(ArgV) :-
 	cleanup,
-	setOptions(ArgV,File),
+	setOptions(ArgV,File,OutS),
 	load_file(File),
 	clauseIds(Ids),
 	all_intensional(Ids),
@@ -18,7 +18,7 @@ main(ArgV) :-
 	%% ELP
 	elp(NLIds,DG),
 	
-	show_output(Outs),
+	show_output(OutS),
 	close(OutS).
 
 %% ELP
@@ -51,6 +51,12 @@ unfold_clause((H:-Body),A,(H:-Body1)) :-
         append(Body2,Post,Body3),
         append(Pre,Body3,Body1),
         numbervars((H:-Body1)).
+
+%% Unfolding clause C wrt to atom A,
+%% unfolds C wrt to the FIRST occurence of A if A appears more than once in the body of C.
+split(Pre,A,Post,Body):-
+	append(Pre,[A|Post],Body),
+	!.
 
 %% Minimally non linear clauses Manipulation
 all_minimally_non_linear(DG,M,[Id|Ids],[Id|MNLIds]):-
@@ -204,8 +210,8 @@ remember_node(FId,H,B,X):-
 	assert(next_node_id(X1)).
 
 e_tree_del:-
-	retract_all(my_node(_,_,_)),
-	retract_all(next_node_id(_)).
+	retractall(my_node(_,_,_)),
+	retractall(next_node_id(_)).
 
 %% selection_rule(B,A) defines a linear lowest-index-first selection rule.
 %% It selects from body B an intensional atom whose predicate has the lowest index of those appearing in B and whose transitive closure is linear.
