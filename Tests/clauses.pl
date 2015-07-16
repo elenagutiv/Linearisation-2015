@@ -1,4 +1,4 @@
-:- module(clauses,[cleanup/0,setOptions/3,load_file/1,clauseIds/1,writeClauses/2,writeClausesIds/2,my_clause/3,my_ed/3,indexOfAtom/2,intensional/1,clsId/1,edsId/1,all_intensional/1,create_dependence_graph/2,depends/3,remember_clause/2,remember_ED/2,tuple2list/2,dim_ed/3]).
+:- module(clauses,[cleanup/0,setOptions/3,load_file/1,clauseIds/1,writeClauses/2,writeClausesIds/2,my_clause/3,my_ed/3,indexOfAtom/2,intensional/1,clsId/1,edsId/1,all_intensional/1,create_dependence_graph/2,depends/3,remember_clause/2,remember_ED/2,tuple2list/2]).
 
 :- use_module(library(ugraphs)).
 
@@ -213,11 +213,3 @@ select_list([],Ls,Ls).
 
 create_node_list(E,L1s,Res):-
 	findall(E-L,(member(L,L1s)),Res).
-
-dim_ed(ED,K,ED1) :-
-	ED =.. [P|Xs],
-	char_code(CK,K),
-	atom_concat(CK,')',EDK1),
-	atom_concat('(',EDK1,Suff),
-	atom_concat(P,Suff,P1),
-	ED1 =.. [P1|Xs].

@@ -11,26 +11,26 @@ main(ArgV) :-
 	clauseIds(Ids),
 	all_intensional(Ids),
 	create_dependence_graph(Ids,DG),
-	assert(mindex(49)),
+	assert(mindex(49)), %mindex is index of clauses which may be minimally non-linear. It changes after a number of iterations.
 	assert(edsId(1)),
 
 	all_non_linear(Ids,NLIds),
 	%% ELP
-	elp(NLIds),
+	elp(NLIds,DG).
 	
-	writeClauses(Cls,OutS),
-	close(OutS).
+	%writeClauses(Cls,OutS),
+	%close(OutS).
 
 %% ELP
-elp(NLIds):-
+elp(NLIds,DG):-
 	mindex(M),
 	all_minimally_non_linear(DG,M,NLIds,MNLIds),
 	MNLIds=[SId|RIds],
 
-	clp(SId,LCls,EDs),
+	clp(SId,LCls),
 
 	remember_all_linear(LCls),
-	remember_all_EDs(EDs),
+	
 
 	update_mindex(MNLIds),
 	elp(RIds).
@@ -86,19 +86,19 @@ all_non_linear([Id|Ids],[Id|NLIds]):-
 	L>1,
 	!,
 	all_non_linear(Ids,NLIds).
-all_non_linear([Id|Ids],NLIds):-
+all_non_linear([_|Ids],NLIds):-
 	all_non_linear(Ids,NLIds).
 all_non_linear([],[]).
 
 %% CLP (Clause Linearisation Procedure)
-clp(SId,LCls,EDs):-
+clp(SId,LCls):-
 	e_tree_cons(SId,LCls1,ECls),
-	intro_eureka_defs(ECls,EDs),
-	f_tree_cons(ECls,EDs,FCls),
+	intro_eureka_defs(ECls),
+	f_tree_cons(ECls,FCls),
 
 	append([LCls1,FCls],LCls2),
 
-	f_tree_cons(EDs,FEDs),
+	f_tree_cons(FEDs),
 
 	append([LCls2,FEDs],LCls).
 
@@ -124,7 +124,7 @@ remember_all_EDs([EDCl|EDCls]):-
 	remember_ED(EDCl,Id),
 	NId is Id+1,
 	assert(edsId(NId)),
-	remember_all_EDs(EDCLs).
+	remember_all_EDs(EDCls).
 
 %% e-tree construction methods
 
@@ -214,10 +214,36 @@ all_linear([_|Cls],LCls):-
 all_linear([],[]).
 
 %% ED Introduction methods
-intro_eureka_defs([ECls|ECls],[ED|EDs]):-
-	intro_eureka_def(ECl,ED),
-	intro_eureka_defs(ECls,EDs).
-intro_eureka_defs([],[]).
+intro_eureka_defs([ECl|ECls]):-
+	intro_eureka_def(ECl),
+	intro_eureka_defs(ECls).
+intro_eureka_defs([]).
 
-intro_eureka_def(ECl,ED):-
+intro_eureka_def((H:-Bd)):-
+	findall(B,(member(B,Bd),functor(B,Q,_),intensional(Q)),Bs),
+	findall(EDId,(my_ed(_,Bs,EDId)),EDIds),
+	EDIds=[],
+	!,
+
+	functor(H,P,M),
+	indexOfAtom(P,K),
+	edsId(I),
+	atom_concat('new',I,EN),
+	dim_ed(EN,K,EP),
+	functor(ED,EP,M),
+
+	numbervars((ED:-Bs)),
+
+	writeClauses([(ED:-Bs)],user_output),
+	assert(my_ed(ED,Bs,I)),
+
+	I1 is I+1,
+	assert(edsId(I1)).
+intro_eureka_def(_).
+
+	
+
+
+
+	
 	
