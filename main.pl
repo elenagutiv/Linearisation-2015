@@ -16,10 +16,10 @@ main(ArgV) :-
 
 	all_non_linear(Ids,NLIds),
 	%% ELP
-	elp(NLIds,DG).
+	elp(NLIds,DG),
 	
-	%writeClauses(Cls,OutS),
-	%close(OutS).
+	show_output(Outs),
+	close(OutS).
 
 %% ELP
 elp(NLIds,DG):-
@@ -30,10 +30,11 @@ elp(NLIds,DG):-
 	clp(SId,LCls),
 
 	remember_all_linear(LCls),
-	
-	update_mindex(MNLIds),
-	elp(RIds).
+	retractall(my_clause(_,_,SId)),
 
+	update_mindex(MNLIds),
+	elp(RIds,DG).
+elp([],_).
 %% Folding and Unfolding operations
 
 fold_clause((H1:-Body1),(H2:-Body2),(H1:-Body3)) :-
@@ -272,3 +273,17 @@ intro_eureka_def((H:-Bd),I):-
 	I1 is I+1,
 	assert(edsId(I1)).
 intro_eureka_def(_).
+
+show_output(OutS):-
+	findall((EH:-EB),my_ed(EH,EB,_),EDs),
+
+	write(OutS,'Eureka Definitions:'),
+	nl(OutS),
+	writeClauses(EDs,OutS),
+
+	findall((H:-B),my_clause(H,B,_),LCls),
+	write(OutS,'Linearised Program:'),
+	nl(OutS),
+	writeClauses(LCls,OutS).
+
+	
