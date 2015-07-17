@@ -11,8 +11,8 @@ main(ArgV) :-
 	clauseIds(Ids),
 	all_intensional(Ids),
 	create_dependence_graph(Ids,DG),
-	assert(mindex(49)), %mindex is index of clauses which may be minimally non-linear. It changes after a number of iterations of ELP.
-	assert(edsId(1)),
+	asserta(mindex(49)), %mindex is index of clauses which may be minimally non-linear. It changes after a number of iterations of ELP.
+	asserta(edsId(1)),
 
 	all_non_linear(Ids,NLIds),
 	%% ELP
@@ -26,17 +26,20 @@ elp(NLIds,DG):-
 	mindex(M),
 
 	length(NLIds,T),
+	write('user_output','Numero de NL:'),
 	write('user_output',T),
 	nl('user_output'),
 
 	all_minimally_non_linear(DG,M,NLIds,MNLIds),
-	MNLIds=[SId|RIds],
+	MNLIds=[SId|_],
+
 
 	write('user_output','Minimally non-linear selected:'),
 	nl('user_output'),
 	my_clause(H,B,SId),
 	writeClauses([(H:-B)],'user_output'),
 	length(MNLIds,L),
+	write('user_output','Numero de MNL:'),
 	write('user_output',L),
 	nl('user_output'),
 	clp(SId,LCls),
@@ -44,8 +47,9 @@ elp(NLIds,DG):-
 	remember_all_linear(LCls),
 	retractall(my_clause(_,_,SId)),
 
+	select_list([SId],NLIds,RNLIds),
 	update_mindex(MNLIds),
-	elp(RIds,DG).
+	elp(RNLIds,DG).
 elp([],_).
 
 %% Folding and Unfolding operations
@@ -129,11 +133,11 @@ clp(SId,LCls):-
 
 update_mindex(MNLIds):-
 	length(MNLIds,L),
-	L-1=0,
+	L=1,
 	!,
 	mindex(M),
 	N is M+1,
-	assert(mindex(N)).
+	asserta(mindex(N)).
 update_mindex(_).
 
 %% Remember linear clauses and eureka definition methods
@@ -141,7 +145,7 @@ remember_all_linear([LCl|LCls]):-
 	clsId(Id),
 	remember_clause(LCl,Id),
 	NId is Id+1,
-	assert(clsId(NId)),
+	asserta(clsId(NId)),
 	remember_all_linear(LCls).
 remember_all_linear([]).
 
@@ -149,7 +153,7 @@ remember_all_EDs([EDCl|EDCls]):-
 	edsId(Id),
 	remember_ED(EDCl,Id),
 	NId is Id+1,
-	assert(edsId(NId)),
+	asserta(edsId(NId)),
 	remember_all_EDs(EDCls).
 remember_all_EDs([]).
 
@@ -158,13 +162,13 @@ e_tree_cons(RId,LCls,ECls):-
 	my_clause(H,B,RId),
 	!,
 	recorda(0,my_node(H,B,1)),
-	assert(next_node_id(2)),
+	asserta(next_node_id(2)),
 	construct_subtree(1,LCls,ECls).
 
 e_tree_cons(RId,LCls,ECls):-
 	my_ed(H,B,RId),
 	recorda(0,my_node(H,B,1)),
-	assert(next_node_id(2)),
+	asserta(next_node_id(2)),
 	construct_subtree(1,LCls,ECls).
 
 construct_subtree(RId,LCls,ECls):-
@@ -196,8 +200,7 @@ all_eurekable(FId,[(H:-B)|Cls],[(H:-B)|ECls1]):-
 	is_eurekable(Id,Id),
 	!,
 	all_eurekable(FId,Cls,ECls1).
-all_eurekable(FId,[(H:-B)|Cls],ECls):-
-	remember_node(FId,H,B,_),
+all_eurekable(FId,[_|Cls],ECls):-
 	all_eurekable(FId,Cls,ECls).
 all_eurekable(_,[],[]).
 
@@ -226,7 +229,7 @@ remember_node(FId,H,B,X):-
 	next_node_id(X),
 	recorda(FId,my_node(H,B,X)),
 	X1 is X+1,
-	assert(next_node_id(X1)).
+	asserta(next_node_id(X1)).
 
 e_tree_del:-
 	retractall(my_node(_,_,_)),
@@ -237,7 +240,9 @@ e_tree_del:-
 %% By definition of linear transitive closure these are 0-index predicates.
 %% In case of more than one 0-index predicate in B, it selects the first from the left.
 selection_rule(B,A):-
-	findall(C,(member(C,B),functor(C,P,_),intensional(P),indexOfAtom(P,48)),As),
+	mindex(M),
+	K is M-1,
+	findall(C,(member(C,B),functor(C,P,_),intensional(P),indexOfAtom(P,K)),As),
 	As=[A|_].
 
 all_linear([(H1:-B1)|Cls],[(H1:-B1)|LCls]):-
@@ -293,10 +298,10 @@ intro_eureka_def((H:-Bd),I):-
 	functor(ED,EP,M),
 
 	numbervars((ED:-Bs)),
-	assert(my_ed(ED,Bs,I)),
+	asserta(my_ed(ED,Bs,I)),
 
 	I1 is I+1,
-	assert(edsId(I1)).
+	asserta(edsId(I1)).
 intro_eureka_def(_).
 
 show_output(OutS):-
