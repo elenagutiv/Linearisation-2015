@@ -24,9 +24,21 @@ main(ArgV) :-
 %% ELP
 elp(NLIds,DG):-
 	mindex(M),
+
+	length(NLIds,T),
+	write('user_output',T),
+	nl('user_output'),
+
 	all_minimally_non_linear(DG,M,NLIds,MNLIds),
 	MNLIds=[SId|RIds],
 
+	write('user_output','Minimally non-linear selected:'),
+	nl('user_output'),
+	my_clause(H,B,SId),
+	writeClauses([(H:-B)],'user_output'),
+	length(MNLIds,L),
+	write('user_output',L),
+	nl('user_output'),
 	clp(SId,LCls),
 
 	remember_all_linear(LCls),
@@ -35,8 +47,8 @@ elp(NLIds,DG):-
 	update_mindex(MNLIds),
 	elp(RIds,DG).
 elp([],_).
-%% Folding and Unfolding operations
 
+%% Folding and Unfolding operations
 fold_clause((H1:-Body1),(H2:-Body2),(H1:-Body3)) :-
 		append([Pre,Body2,Post],Body1),
         append([Pre,[H2],Post],Body3),
@@ -80,6 +92,11 @@ is_minimally_non_linear(DG,M,H,Bs):-
 	findnsols(1,B,(member(B,Bs),indexOfAtom(B,M)),Rs),
 	Rs=[R],
 	depends(DG,R,H),
+	!.
+is_minimally_non_linear(DG,M,_,Bs):-
+	findnsols(1,B,(member(B,Bs),indexOfAtom(B,M)),Rs),
+	Rs=[R],
+	tc_is_linear(DG,R),
 	!.
 is_minimally_non_linear(_,_,_,[]):-
 	!.
@@ -126,6 +143,7 @@ remember_all_linear([LCl|LCls]):-
 	NId is Id+1,
 	assert(clsId(NId)),
 	remember_all_linear(LCls).
+remember_all_linear([]).
 
 remember_all_EDs([EDCl|EDCls]):-
 	edsId(Id),
@@ -133,6 +151,7 @@ remember_all_EDs([EDCl|EDCls]):-
 	NId is Id+1,
 	assert(edsId(NId)),
 	remember_all_EDs(EDCls).
+remember_all_EDs([]).
 
 %% e-tree construction methods
 e_tree_cons(RId,LCls,ECls):-
@@ -288,8 +307,13 @@ show_output(OutS):-
 	writeClauses(EDs,OutS),
 
 	findall((H:-B),my_clause(H,B,_),LCls),
+	clauseVars(LCls),
 	write(OutS,'Linearised Program:'),
 	nl(OutS),
 	writeClauses(LCls,OutS).
 
+clauseVars([(H:-B)|LCls]):-
+	numbervars((H:-B)),
+	clauseVars(LCls).
+clauseVars([]).
 	

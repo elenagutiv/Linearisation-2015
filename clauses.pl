@@ -1,4 +1,4 @@
-:- module(clauses,[cleanup/0,setOptions/3,load_file/1,clauseIds/1,writeClauses/2,writeClausesIds/2,my_clause/3,my_ed/3,indexOfAtom/2,intensional/1,clsId/1,edsId/1,all_intensional/1,create_dependence_graph/2,depends/3,remember_clause/2,remember_ED/2,select_list/3,tuple2list/2,dim_ed/3]).
+:- module(clauses,[cleanup/0,setOptions/3,load_file/1,clauseIds/1,writeClauses/2,writeClausesIds/2,my_clause/3,my_ed/3,indexOfAtom/2,intensional/1,clsId/1,edsId/1,all_intensional/1,create_dependence_graph/2,depends/3,remember_clause/2,remember_ED/2,select_list/3,dim_ed/3,tc_is_linear/2]).
 
 :- use_module(library(ugraphs)).
 
@@ -62,13 +62,15 @@ remember_all(S,N) :-
 	    N1 is N+1,
 	    remember_all(S,N1)
 	).
-
+remember_clause((H :- [B]),N) :-
+	!,
+	makeClauseId(N,CN),
+	assert(my_clause(H,B,CN)).
 remember_clause((H :- B),N) :-
 	!,
 	tuple2list(B,LB),
 	makeClauseId(N,CN),
 	assert(my_clause(H,LB,CN)).
-
 remember_clause(H,N) :-
 	makeClauseId(N,CN),
 	assert(my_clause(H,[],CN)),
@@ -94,7 +96,11 @@ makeEDId(N,EN) :-
 tuple2list((A,As),[A|LAs]) :-
 	!,
 	tuple2list(As,LAs).
+tuple2list(A,A):-	
+	is_list(A),
+	!.
 tuple2list(A,[A]).
+
 
 %% Showing output
 
@@ -204,8 +210,23 @@ depends(DG,S,H):-
 	findnsols(1,Vr,(member(Vr,Vrs),Vr=H),Vs),
 	Vs=[_].
 
-%% List methods
+tc_is_linear(DG,G):-
+	reachable(G,DG,Vrs),
+	findall((H:-B),(member(H,Vrs),my_clause(H,B,_)),Cls),
+	all_are_linear(Cls).
 
+all_are_linear([Cl|Cls]):-
+	is_linear(Cl),
+	!,
+	all_are_linear(Cls).
+all_are_linear([]).
+
+is_linear((_:-Bd)):-
+	findall(B,(member(B,Bd),functor(B,P,_),intensional(P)),Bs),
+	length(Bs,L),
+	L=<1.
+
+%% List methods
 select_list([L|Ls],Ls2,Ls3):-
 	select(L,Ls2,Rs),
 	select_list(Ls,Rs,Ls3).
