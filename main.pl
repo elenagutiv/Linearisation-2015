@@ -25,23 +25,9 @@ main(ArgV) :-
 elp(NLIds,DG):-
 	mindex(M),
 
-	length(NLIds,T),
-	write('user_output','Numero de NL:'),
-	write('user_output',T),
-	nl('user_output'),
-
 	all_minimally_non_linear(DG,M,NLIds,MNLIds),
 	MNLIds=[SId|_],
 
-
-	write('user_output','Minimally non-linear selected:'),
-	nl('user_output'),
-	my_clause(H,B,SId),
-	writeClauses([(H:-B)],'user_output'),
-	length(MNLIds,L),
-	write('user_output','Numero de MNL:'),
-	write('user_output',L),
-	nl('user_output'),
 	clp(SId,LCls),
 
 	remember_all_linear(LCls),
@@ -180,20 +166,21 @@ construct_subtree(RId,LCls,ECls):-
 	select_list(LCls1,Cls,RCls),
 	all_eurekable(RId,RCls,ECls1),
 	select_list(ECls1,RCls,FCls),
-	construct_all_subtrees(FCls,LCls2,ECls2),
+	construct_all_subtrees(RId,FCls,LCls2,ECls2),
 
 	append([LCls1,LCls2],LCls),
 	append([ECls1,ECls2],ECls).
 
-construct_all_subtrees([(H:-B)|FCls],LCls,ECls):-
-	recorded(_,my_node(H,B,Id)),
+construct_all_subtrees(RId,[(H:-Bd)|FCls],LCls,ECls):-
+	findall(B,(member(B,Bd),functor(B,P,_),intensional(P)),Bs),
+	recorded(RId,my_node(H,Bs,Id)),
 
 	construct_subtree(Id,LCls1,ECls1),
-	construct_all_subtrees(FCls,LCls2,ECls2),
+	construct_all_subtrees(Id,FCls,LCls2,ECls2),
 
 	append([LCls1,LCls2],LCls),
 	append([ECls1,ECls2],ECls).
-construct_all_subtrees([],[],[]).
+construct_all_subtrees(_,[],[],[]).
 
 all_eurekable(FId,[(H:-B)|Cls],[(H:-B)|ECls1]):-
 	remember_node(FId,H,B,Id),
@@ -211,7 +198,6 @@ is_eurekable(_,1):-
 is_eurekable(Id0,Id1):-
 	recorded(K1,my_node(_,_,Id1)),
 	recorded(_,my_node(_,B1,K1)),
-
 	recorded(_,my_node(_,B0,Id0)),
 	is_instance_of(B1,B0),
 	!.
@@ -225,25 +211,38 @@ is_eurekable(Id0,Id1):-
 is_instance_of(B1,B2):-
 	unifiable(B1,B2,_).
 
-remember_node(FId,H,B,X):-
+remember_node(FId,H,Bd,X):-
 	next_node_id(X),
-	recorda(FId,my_node(H,B,X)),
+	findall(B,(member(B,Bd),functor(B,P,_),intensional(P)),Bs),
+	recorda(FId,my_node(H,Bs,X)),
 	X1 is X+1,
-	asserta(next_node_id(X1)).
+	asserta(next_node_id(X1)),
+	!.
 
 e_tree_del:-
-	retractall(my_node(_,_,_)),
-	retractall(next_node_id(_)).
+	findall(Ref,recorded(_,my_node(_,_,_),Ref),Refs),
+	erase_all(Refs),
+	retractall(next_node_id).
 
-%% selection_rule(B,A) defines a linear lowest-index-first selection rule.
-%% It selects from body B an intensional atom whose predicate has the lowest index of those appearing in B and whose transitive closure is linear.
-%% By definition of linear transitive closure these are 0-index predicates.
-%% In case of more than one 0-index predicate in B, it selects the first from the left.
+erase_all([Ref|Refs]):-
+	erase(Ref),
+	erase_all(Refs).
+erase_all([]).
+
 selection_rule(B,A):-
 	mindex(M),
 	K is M-1,
-	findall(C,(member(C,B),functor(C,P,_),intensional(P),indexOfAtom(P,K)),As),
-	As=[A|_].
+	findall(C,(member(C,B),functor(C,P,_),intensional(P),indexOfAtom(P,J),J=<K),[R|Rs]),
+	foldl(lowest_index, Rs, R, A).
+
+lowest_index(A,B,A):-
+	functor(A,P,_),
+	functor(B,Q,_),
+	indexOfAtom(P,K1),
+	indexOfAtom(Q,K2),
+	K1<K2,
+	!.
+lowest_index(_,B,B).
 
 all_linear([(H1:-B1)|Cls],[(H1:-B1)|LCls]):-
 	findall(C,(member(C,B1),functor(C,P,_),intensional(P)),Cs),
@@ -256,11 +255,11 @@ all_linear([_|Cls],LCls):-
 all_linear([],[]).
 
 %% f-tree construction methods
-f_tree_cons([(H1:-B1)|ECls],[(H3:-B3)|FCls]):-
+f_tree_cons([(H1:-B1)|ECls],[(H3:-B3)|RCls]):-
 	findnsols(1,(H2:-B2),(my_ed(EH,EB,_),fold_clause((H1:-B1),(EH:-EB),(H2:-B2))),FCls),
 	FCls=[(H3:-B3)],
 	!,
-	f_tree_cons(ECls,FCls).
+	f_tree_cons(ECls,RCls).
 f_tree_cons([],[]).
 
 linearise_EDs([Id|EDIds],LCls):-
@@ -299,10 +298,12 @@ intro_eureka_def((H:-Bd),I):-
 
 	numbervars((ED:-Bs)),
 	asserta(my_ed(ED,Bs,I)),
+	asserta(intensional(EP)),
+
 
 	I1 is I+1,
 	asserta(edsId(I1)).
-intro_eureka_def(_).
+intro_eureka_def(_,_).
 
 show_output(OutS):-
 	findall((EH:-EB),my_ed(EH,EB,_),EDs),

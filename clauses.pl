@@ -55,25 +55,25 @@ remember_all(S,N) :-
 	read(S,C),
 	(
 	    C == end_of_file ->
-	    assert(clsId(N)),
+	    asserta(clsId(N)),
 	    true
 	;
 	    remember_clause(C,N),
 	    N1 is N+1,
 	    remember_all(S,N1)
 	).
-remember_clause((H :- [B]),N) :-
-	!,
-	makeClauseId(N,CN),
-	assert(my_clause(H,B,CN)).
+%% remember_clause((H :- [B]),N) :-
+%% 	!,
+%% 	makeClauseId(N,CN),
+%% 	asserta(my_clause(H,B,CN)).
 remember_clause((H :- B),N) :-
 	!,
 	tuple2list(B,LB),
 	makeClauseId(N,CN),
-	assert(my_clause(H,LB,CN)).
+	asserta(my_clause(H,LB,CN)).
 remember_clause(H,N) :-
 	makeClauseId(N,CN),
-	assert(my_clause(H,[],CN)),
+	asserta(my_clause(H,[],CN)),
 	!.
 remember_clause((:- _),_).
 
@@ -81,7 +81,7 @@ remember_clause((:- _),_).
 remember_ED((H:-B),N):-
 	tuple2list(B,LB),
 	makeEDId(N,EN),
-	assert(my_ed(H,LB,EN)).
+	asserta(my_ed(H,LB,EN)).
 
 makeClauseId(N,CN) :-
 	name(N,NN),
@@ -170,7 +170,7 @@ all_intensional([Id|Ids]):-
 all_intensional([Id|Ids]):-
 	my_clause(H,_,Id),
 	functor(H,P,_),
-	assert(intensional(P)),
+	asserta(intensional(P)),
 	all_intensional(Ids).
 all_intensional([]).
 
