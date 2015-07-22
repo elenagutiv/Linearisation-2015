@@ -6,13 +6,13 @@ go(F):-
 
 main(ArgV) :-
 	cleanup,
-	setOptions(ArgV,File,OutS),
+	set_options(ArgV,File,OutS),
 	load_file(File),
-	clauseIds(Ids),
+	clause_ids(Ids),
 	all_intensional(Ids),
 	create_dependence_graph(Ids,DG),
 	asserta(mindex(49)), %mindex is index of clauses which may be minimally non-linear. It changes after a number of iterations of ELP.
-	asserta(edsId(1)),
+	asserta(eds_id(1)),
 
 	all_non_linear(Ids,NLIds),
 	%% ELP
@@ -41,8 +41,8 @@ elp([],_).
 %% Folding and Unfolding operations
 fold_clause((H1:-Body1),(H2:-Body2),(H1:-Body3)) :-
 		append([Pre,Body2,Post],Body1),
-        append([Pre,[H2],Post],Body3),
-        numbervars((H1:-Body3)).
+        append([Pre,[H2],Post],Body3).
+        %numbervars((H1:-Body3),23,_).
 
 unfold((H:-B),A,Clauses) :-
         findall((H:-B1), unfold_clause((H:-B),A,(H:-B1)),Clauses).
@@ -51,8 +51,7 @@ unfold_clause((H:-Body),A,(H:-Body1)) :-
 		split(Pre,A,Post,Body),
         my_clause(A,Body2,_),
         append(Body2,Post,Body3),
-        append(Pre,Body3,Body1),
-        numbervars((H:-Body1)).
+        append(Pre,Body3,Body1).
 
 %% Unfolding clause C wrt to atom A,
 %% unfolds C wrt to the FIRST occurence of A if A appears more than once in the body of C.
@@ -64,7 +63,7 @@ split(Pre,A,Post,Body):-
 all_minimally_non_linear(DG,M,[Id|Ids],[Id|MNLIds]):-
 	my_clause(He,B,Id),
 	functor(He,H,_),
-	indexOfAtom(H,K),
+	index_of_atom(H,K),
 	findall(P,(member(C,B),functor(C,P,_),intensional(P)),Is),
 	M=K,
 	is_minimally_non_linear(DG,M,H,Is),
@@ -75,16 +74,16 @@ all_minimally_non_linear(DG,M,[_|Ids],MNLIds):-
 all_minimally_non_linear(_,_,[],[]).
 
 is_minimally_non_linear(_,M,_,Bs):-
-	findall(B,(member(B,Bs),indexOfAtom(B,M)),Rs),
+	findall(B,(member(B,Bs),index_of_atom(B,M)),Rs),
 	Rs=[],
 	!.
 is_minimally_non_linear(DG,M,H,Bs):-
-	findnsols(1,B,(member(B,Bs),indexOfAtom(B,M)),Rs),
+	findnsols(1,B,(member(B,Bs),index_of_atom(B,M)),Rs),
 	Rs=[R],
 	depends(DG,R,H),
 	!.
 is_minimally_non_linear(DG,M,_,Bs):-
-	findnsols(1,B,(member(B,Bs),indexOfAtom(B,M)),Rs),
+	findnsols(1,B,(member(B,Bs),index_of_atom(B,M)),Rs),
 	Rs=[R],
 	tc_is_linear(DG,R),
 	!.
@@ -113,7 +112,7 @@ clp(SId,LCls):-
 
 	append([LCls1,FCls],LCls2),
 
-	linearise_EDs(EDIds,LCls3),
+	linearise_eds(EDIds,LCls3),
 
 	append([LCls2,LCls3],LCls).
 
@@ -128,18 +127,18 @@ update_mindex(_).
 
 %% Remember linear clauses and eureka definition methods
 remember_all_linear([LCl|LCls]):-
-	clsId(Id),
+	cls_id(Id),
 	remember_clause(LCl,Id),
 	NId is Id+1,
-	asserta(clsId(NId)),
+	asserta(cls_id(NId)),
 	remember_all_linear(LCls).
 remember_all_linear([]).
 
 remember_all_EDs([EDCl|EDCls]):-
-	edsId(Id),
-	remember_ED(EDCl,Id),
+	eds_id(Id),
+	remember_ed(EDCl,Id),
 	NId is Id+1,
-	asserta(edsId(NId)),
+	asserta(eds_id(NId)),
 	remember_all_EDs(EDCls).
 remember_all_EDs([]).
 
@@ -232,14 +231,14 @@ erase_all([]).
 selection_rule(B,A):-
 	mindex(M),
 	K is M-1,
-	findall(C,(member(C,B),functor(C,P,_),intensional(P),indexOfAtom(P,J),J=<K),[R|Rs]),
+	findall(C,(member(C,B),functor(C,P,_),intensional(P),index_of_atom(P,J),J=<K),[R|Rs]),
 	foldl(lowest_index, Rs, R, A).
 
 lowest_index(A,B,A):-
 	functor(A,P,_),
 	functor(B,Q,_),
-	indexOfAtom(P,K1),
-	indexOfAtom(Q,K2),
+	index_of_atom(P,K1),
+	index_of_atom(Q,K2),
 	K1<K2,
 	!.
 lowest_index(_,B,B).
@@ -262,14 +261,14 @@ f_tree_cons([(H1:-B1)|ECls],[(H3:-B3)|RCls]):-
 	f_tree_cons(ECls,RCls).
 f_tree_cons([],[]).
 
-linearise_EDs([Id|EDIds],LCls):-
-	linearise_ED(Id,LCls1),
-	linearise_EDs(EDIds,LCls2),
+linearise_eds([Id|EDIds],LCls):-
+	linearise_ed(Id,LCls1),
+	linearise_eds(EDIds,LCls2),
 
 	append([LCls1,LCls2],LCls).
-linearise_EDs([],[]).
+linearise_eds([],[]).
 
-linearise_ED(Id,LCls):-
+linearise_ed(Id,LCls):-
 	e_tree_cons(Id,LCls1,ECls),
 	e_tree_del,
 
@@ -289,37 +288,42 @@ intro_eureka_def((H:-Bd),I):-
 	EDIds=[],
 	!,
 
-	functor(H,P,M),
-	indexOfAtom(P,K),
-	edsId(I),
+	functor(H,P,_),
+	index_of_atom(P,K),
+	eds_id(I),
 	atom_concat('new',I,EN),
 	dim_ed(EN,K,EP),
-	functor(ED,EP,M),
 
-	numbervars((ED:-Bs)),
-	asserta(my_ed(ED,Bs,I)),
+	H=..HLs,
+	select_list([P],HLs,Rs),
+	append([EP],Rs,NHs),
+	ED=..NHs,
+
+	%numbervars((ED:-Bs),23,_),
+	asserta(my_ed(ED,Bd,I)),
 	asserta(intensional(EP)),
 
 
 	I1 is I+1,
-	asserta(edsId(I1)).
+	asserta(eds_id(I1)).
 intro_eureka_def(_,_).
 
 show_output(OutS):-
 	findall((EH:-EB),my_ed(EH,EB,_),EDs),
 
+	clauseVars(EDs),
 	write(OutS,'Eureka Definitions:'),
 	nl(OutS),
-	writeClauses(EDs,OutS),
+	write_clauses(EDs,OutS),
 
 	findall((H:-B),my_clause(H,B,_),LCls),
 	clauseVars(LCls),
 	write(OutS,'Linearised Program:'),
 	nl(OutS),
-	writeClauses(LCls,OutS).
+	write_clauses(LCls,OutS).
 
 clauseVars([(H:-B)|LCls]):-
-	numbervars((H:-B)),
+	numbervars((H:-B),23,_),
 	clauseVars(LCls).
 clauseVars([]).
 	

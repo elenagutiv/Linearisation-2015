@@ -1,23 +1,24 @@
-:- module(clauses,[cleanup/0,setOptions/3,load_file/1,clauseIds/1,writeClauses/2,writeClausesIds/2,my_clause/3,my_ed/3,indexOfAtom/2,intensional/1,clsId/1,edsId/1,all_intensional/1,create_dependence_graph/2,depends/3,remember_clause/2,remember_ED/2,select_list/3,dim_ed/3,tc_is_linear/2]).
+:- module(clauses,[cleanup/0,set_options/3,load_file/1,clause_ids/1,write_clauses/2,write_clauses_ids/2,my_clause/3,my_ed/3,index_of_atom/2,intensional/1,cls_id/1,eds_id/1,all_intensional/1,create_dependence_graph/2,depends/3,remember_clause/2,remember_ed/2,select_list/3,dim_ed/3,tc_is_linear/2,separate_constraints/3]).
 
 :- use_module(library(ugraphs)).
 
 :- dynamic my_clause/3.
 :- dynamic my_ed/3.
 :- dynamic intensional/1.
-:- dynamic clsId/1.
-:- dynamic edsId/1.
+:- dynamic cls_id/1.
+:- dynamic eds_id/1.
 
 %% Clause manipulation functions provided by John Gallagher.
 
 %% Removing data from database
 
 cleanup :-
-	retractall(my_clause(_,_,_)).
+	retractall(my_clause(_,_,_)),
+	retractall(my_ed(_,_,_)).
 
 %% Setting options from input 
 
-setOptions(ArgV,File,OutS) :-
+set_options(ArgV,File,OutS) :-
 	get_options(ArgV,Options,_),
 	(member(programO(File),Options) -> true; 
 			write(user_output,'No input file given.'),nl(user_output),fail),
@@ -55,7 +56,7 @@ remember_all(S,N) :-
 	read(S,C),
 	(
 	    C == end_of_file ->
-	    asserta(clsId(N)),
+	    asserta(cls_id(N)),
 	    true
 	;
 	    remember_clause(C,N),
@@ -64,93 +65,93 @@ remember_all(S,N) :-
 	).
 %% remember_clause((H :- [B]),N) :-
 %% 	!,
-%% 	makeClauseId(N,CN),
+%% 	make_clause_id(N,CN),
 %% 	asserta(my_clause(H,B,CN)).
 remember_clause((H :- B),N) :-
 	!,
-	tuple2list(B,LB),
-	makeClauseId(N,CN),
+	tuple_to_list(B,LB),
+	make_clause_id(N,CN),
 	asserta(my_clause(H,LB,CN)).
 remember_clause(H,N) :-
-	makeClauseId(N,CN),
+	make_clause_id(N,CN),
 	asserta(my_clause(H,[],CN)),
 	!.
 remember_clause((:- _),_).
 
 %% Stores Eureka Definitions in database
-remember_ED((H:-B),N):-
-	tuple2list(B,LB),
-	makeEDId(N,EN),
+remember_ed((H:-B),N):-
+	tuple_to_list(B,LB),
+	make_ed_id(N,EN),
 	asserta(my_ed(H,LB,EN)).
 
-makeClauseId(N,CN) :-
+make_clause_id(N,CN) :-
 	name(N,NN),
 	append([99],NN,CNN),
 	name(CN,CNN).
 
-makeEDId(N,EN) :-
+make_ed_id(N,EN) :-
 	name(N,NN),
 	append([101],NN,ENN),
 	name(EN,ENN).
 
-tuple2list((A,As),[A|LAs]) :-
+tuple_to_list((A,As),[A|LAs]) :-
 	!,
-	tuple2list(As,LAs).
-tuple2list(A,A):-	
+	tuple_to_list(As,LAs).
+tuple_to_list(A,A):-	
 	is_list(A),
 	!.
-tuple2list(A,[A]).
+tuple_to_list(A,[A]).
 
 
 %% Showing output
 
-writeClauses([(H:-B)|Rs],S) :-
+write_clauses([(H:-B)|Rs],S) :-
 	writeq(S,H),
 	write(S,' :-'),
 	%nl(S),
-	writeBodyAtoms(S,B),
+	write_body_atoms(S,B),
 	write(S,'.'),
 	nl(S),
-	writeClauses(Rs,S).
-writeClauses([],_).
+	write_clauses(Rs,S).
+write_clauses([],_).
 
 %% Write clauses Ids
 
-writeClausesIds([Id|Ids],S):-
+write_clauses_ids([Id|Ids],S):-
 	writeq(S,Id),
 	write(S,'.'),
 	nl(S),
-	writeClausesIds(Ids,S).
-writeClausesIds([],_).
+	write_clauses_ids(Ids,S).
+write_clauses_ids([],_).
 	
-writeBodyAtoms(S,[]) :-
+write_body_atoms(S,[]) :-
 	!,
 	%write(S,'   '),
 	write(S,' '),
 	write(S,true).
-writeBodyAtoms(S,[B]) :-
+write_body_atoms(S,[B]) :-
 	!,
 	%write(S,'   '),
 	write(S,' '),
 
 	writeq(S,B).
-writeBodyAtoms(S,[B1,B2|Bs]) :-
+write_body_atoms(S,[B1,B2|Bs]) :-
 	%write(S,'   '),
 	write(S,' '),
 	writeq(S,B1),
 	write(S,','),
 	%nl(S),
-	writeBodyAtoms(S,[B2|Bs]).
+	write_body_atoms(S,[B2|Bs]).
 
-clauseIds(Ids) :-
+clause_ids(Ids) :-
 	findall(C,my_clause(_,_,C),Ids).
 
 %% Computes dimension of a given atom.
-indexOfAtom(A,I) :-
+index_of_atom(A,I) :-
 	atom_to_chars(A,Ls),
 	append(_,[40,I,41|_],Ls),
 	!.
-indexOfAtom(A,I) :-
+index_of_atom(A,I) :-
 	atom_to_chars(A,Ls),
 	append(_,[91,I,93|_],Ls),
 	!.
@@ -175,14 +176,14 @@ all_intensional([Id|Ids]):-
 all_intensional([]).
 
 %% Writes set of intensional atoms from a given program
-writeIntensional(S):-
+write_intensional(S):-
 	findall(X,intensional(X),Is),
-	writePred(S,Is).
+	write_pred(S,Is).
 
-writePred(S,[I|Is]):-
+write_pred(S,[I|Is]):-
 	writeq(S,I),
-	writePred(S,Is).
-writePred(_,[]).
+	write_pred(S,Is).
+write_pred(_,[]).
 
 %% Dependence graph manipulation methods
 
@@ -229,7 +230,8 @@ is_linear((_:-Bd)):-
 %% List methods
 select_list([L|Ls],Ls2,Ls3):-
 	select(L,Ls2,Rs),
-	select_list(Ls,Rs,Ls3).
+	select_list(Ls,Rs,Ls3),
+	!.
 select_list([],Ls,Ls).
 
 create_node_list(E,L1s,Res):-
@@ -242,3 +244,11 @@ dim_ed(ED,K,ED1) :-
 	atom_concat('(',EDK1,Suff),
 	atom_concat(P,Suff,P1),
 	ED1 =.. [P1|Xs].
+
+separate_constraints([],[],[]).
+separate_constraints([B|Bs],[C|Cs],Ds) :-
+	constraint(B,C),
+	!,
+	separate_constraints(Bs,Cs,Ds).
+separate_constraints([B|Bs],Cs,[B|Ds]) :-
+	separate_constraints(Bs,Cs,Ds).
