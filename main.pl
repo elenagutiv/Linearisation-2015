@@ -198,7 +198,10 @@ is_eurekable(Id0,Id1):-
 	recorded(K1,my_node(_,_,Id1)),
 	recorded(_,my_node(_,B1,K1)),
 	recorded(_,my_node(_,B0,Id0)),
-	is_instance_of(B1,B0),
+	
+	separate_constraints(B1,_,B1s),
+	separate_constraints(B0,_,B0s),
+	is_instance_of(B1s,B0s),
 	!.
 is_eurekable(Id0,Id1):-
 	recorded(K1,my_node(_,_,Id1)),
@@ -212,8 +215,8 @@ is_instance_of(B1,B2):-
 
 remember_node(FId,H,B,X):-
 	next_node_id(X),
-	separate_constraints(B,_,Bs),
-	recorda(FId,my_node(H,Bs,X)),
+	%separate_constraints(B,_,Bs),
+	recorda(FId,my_node(H,B,X)),
 	X1 is X+1,
 	asserta(next_node_id(X1)),
 	!.
