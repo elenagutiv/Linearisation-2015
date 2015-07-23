@@ -10,13 +10,11 @@
 %% Clause manipulation functions provided by John Gallagher.
 
 %% Removing data from database
-
 cleanup :-
 	retractall(my_clause(_,_,_)),
 	retractall(my_ed(_,_,_)).
 
 %% Setting options from input 
-
 set_options(ArgV,File,OutS) :-
 	get_options(ArgV,Options,_),
 	(member(programO(File),Options) -> true; 
@@ -25,7 +23,6 @@ set_options(ArgV,File,OutS) :-
 				OutS=user_output).
 
 % get_options/3 provided by Michael Leuschel
-
 get_options([],[],[]).
 get_options([X|T],Options,Args) :-
    (recognised_option(X,Opt,Values) ->
@@ -44,7 +41,6 @@ get_options([X|T],Options,Args) :-
 recognised_option('-prg',  programO(R),[R]).
 
 %% Storing clauses in database
-
 load_file(F) :-
     %retractall(my_clause(_,_,_)),
 	open(F,read,S),
@@ -62,10 +58,7 @@ remember_all(S,N) :-
 	    N1 is N+1,
 	    remember_all(S,N1)
 	).
-%% remember_clause((H :- [B]),N) :-
-%% 	!,
-%% 	make_clause_id(N,CN),
-%% 	asserta(my_clause(H,B,CN)).
+
 remember_clause((H :- B),N) :-
 	!,
 	tuple_to_list(B,LB),
@@ -101,9 +94,7 @@ tuple_to_list(A,A):-
 	!.
 tuple_to_list(A,[A]).
 
-
 %% Showing output
-
 write_clauses([(H:-B)|Rs],S) :-
 	writeq(S,H),
 	write(S,' :-'),
@@ -220,7 +211,6 @@ dim_ed(ED,K,ED1) :-
 	atom_concat('(',EDK1,Suff),
 	atom_concat(P,Suff,P1),
 	ED1 =.. [P1|Xs].
-%---
 
 constraint(X=Y, X=Y).
 constraint(X=:=Y, X=Y).
@@ -229,7 +219,6 @@ constraint(X>Y, X>Y).
 constraint(X>=Y, X>=Y).
 constraint(X=<Y, X=<Y).
 constraint(X<Y, X<Y).
-
 constraint(_\==_,0=0).
 constraint(_=\=_,0=0).
 constraint(true,0=0).

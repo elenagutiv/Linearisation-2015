@@ -12,9 +12,8 @@ main(ArgV) :-
 	create_dependence_graph(Ids,DG),
 	asserta(mindex(49)), %mindex is index of clauses which may be minimally non-linear. It changes after a number of iterations of ELP.
 	asserta(eds_id(1)),
-
 	all_non_linear(Ids,NLIds),
-	%% ELP
+
 	elp(NLIds,DG),
 	
 	show_output(OutS),
@@ -23,7 +22,6 @@ main(ArgV) :-
 %% ELP
 elp(NLIds,DG):-
 	mindex(M),
-
 	all_minimally_non_linear(DG,M,NLIds,MNLIds),
 	MNLIds=[SId|_],
 
@@ -31,7 +29,6 @@ elp(NLIds,DG):-
 
 	remember_all_linear(LCls),
 	retractall(my_clause(_,_,SId)),
-
 	select_list([SId],NLIds,RNLIds),
 	update_mindex(MNLIds),
 	elp(RNLIds,DG).
@@ -41,7 +38,6 @@ elp([],_).
 fold_clause((H1:-Body1),(H2:-Body2),(H1:-Body3)) :-
 		append([Pre,Body2,Post],Body1),
         append([Pre,[H2],Post],Body3).
-        %numbervars((H1:-Body3),23,_).
 
 unfold((H:-B),A,Clauses) :-
         findall((H:-B1), unfold_clause((H:-B),A,(H:-B1)),Clauses).
@@ -106,14 +102,10 @@ all_non_linear([],[]).
 clp(SId,LCls):-
 	e_tree_cons(SId,LCls1,ECls),
 	e_tree_del,
-
 	intro_eureka_defs(ECls,EDIds),
 	f_tree_cons(ECls,FCls),
-
 	append([LCls1,FCls],LCls2),
-
 	linearise_eds(EDIds,LCls3),
-
 	append([LCls2,LCls3],LCls).
 
 update_mindex(MNLIds):-
@@ -127,12 +119,19 @@ update_mindex(_).
 
 %% Remember linear clauses and eureka definition methods
 remember_all_linear([LCl|LCls]):-
+	is_duplicated(LCl),
+	!,
+	remember_all_linear(LCls).
+remember_all_linear([LCl|LCls]):-
 	cls_id(Id),
 	remember_clause(LCl,Id),
 	NId is Id+1,
 	asserta(cls_id(NId)),
 	remember_all_linear(LCls).
 remember_all_linear([]).
+
+is_duplicated((H:-B)):-
+	my_clause(H,B,_).
 
 remember_all_EDs([EDCl|EDCls]):-
 	eds_id(Id),
@@ -158,7 +157,6 @@ e_tree_cons(RId,LCls,ECls):-
 
 construct_subtree(RId,LCls,ECls):-
 	recorded(_,my_node(H,B,RId)),
-
 	selection_rule(B,A),
 	unfold((H:-B),A,Cls),
 	all_linear(Cls,LCls1),
@@ -166,16 +164,13 @@ construct_subtree(RId,LCls,ECls):-
 	all_eurekable(RId,RCls,ECls1),
 	select_list(ECls1,RCls,FCls),
 	construct_all_subtrees(RId,FCls,LCls2,ECls2),
-
 	append([LCls1,LCls2],LCls),
 	append([ECls1,ECls2],ECls).
 
 construct_all_subtrees(RId,[(H:-B)|FCls],LCls,ECls):-
 	recorded(RId,my_node(H,B,Id)),
-
 	construct_subtree(Id,LCls1,ECls1),
 	construct_all_subtrees(Id,FCls,LCls2,ECls2),
-
 	append([LCls1,LCls2],LCls),
 	append([ECls1,ECls2],ECls).
 construct_all_subtrees(_,[],[],[]).
@@ -197,7 +192,6 @@ is_eurekable(Id0,Id1):-
 	recorded(K1,my_node(_,_,Id1)),
 	recorded(_,my_node(_,B1,K1)),
 	recorded(_,my_node(_,B0,Id0)),
-
 	separate_constraints(B1,_,B1s),
 	separate_constraints(B0,_,B0s),
 	is_instance_of(B1s,B0s),
@@ -273,9 +267,7 @@ linearise_eds([],[]).
 linearise_ed(Id,LCls):-
 	e_tree_cons(Id,LCls1,ECls),
 	e_tree_del,
-
 	f_tree_cons(ECls,LCls2),
-
 	append([LCls1,LCls2],LCls).
 
 %% ED Introduction methods
@@ -289,32 +281,26 @@ intro_eureka_def((H:-B),I):-
 	findall(EDId,(my_ed(_,Bs,EDId)),EDIds),
 	EDIds=[],
 	!,
-
 	functor(H,P,_),
 	index_of_atom(P,K),
 	eds_id(I),
 	atom_concat('new',I,EN),
 	dim_ed(EN,K,EP),
-
 	H=..HLs,
 	select_list([P],HLs,Rs),
 	append([EP],Rs,NHs),
 	ED=..NHs,
-
 	asserta(my_ed(ED,Bs,I)),
-	
 	I1 is I+1,
 	asserta(eds_id(I1)).
 intro_eureka_def(_,_).
 
 show_output(OutS):-
 	findall((EH:-EB),my_ed(EH,EB,_),EDs),
-
 	clauseVars(EDs),
 	write(OutS,'Eureka Definitions:'),
 	nl(OutS),
 	write_clauses(EDs,OutS),
-
 	findall((H:-B),my_clause(H,B,_),LCls),
 	clauseVars(LCls),
 	write(OutS,'Linearised Program:'),
