@@ -171,8 +171,7 @@ construct_subtree(RId,LCls,ECls):-
 	append([ECls1,ECls2],ECls).
 
 construct_all_subtrees(RId,[(H:-B)|FCls],LCls,ECls):-
-	separate_constraints(B,_,Bs),
-	recorded(RId,my_node(H,Bs,Id)),
+	recorded(RId,my_node(H,B,Id)),
 
 	construct_subtree(Id,LCls1,ECls1),
 	construct_all_subtrees(Id,FCls,LCls2,ECls2),
@@ -198,7 +197,7 @@ is_eurekable(Id0,Id1):-
 	recorded(K1,my_node(_,_,Id1)),
 	recorded(_,my_node(_,B1,K1)),
 	recorded(_,my_node(_,B0,Id0)),
-	
+
 	separate_constraints(B1,_,B1s),
 	separate_constraints(B0,_,B0s),
 	is_instance_of(B1s,B0s),
@@ -215,7 +214,6 @@ is_instance_of(B1,B2):-
 
 remember_node(FId,H,B,X):-
 	next_node_id(X),
-	%separate_constraints(B,_,Bs),
 	recorda(FId,my_node(H,B,X)),
 	X1 is X+1,
 	asserta(next_node_id(X1)),
@@ -303,7 +301,7 @@ intro_eureka_def((H:-B),I):-
 	append([EP],Rs,NHs),
 	ED=..NHs,
 
-	asserta(my_ed(ED,B,I)),
+	asserta(my_ed(ED,Bs,I)),
 	
 	I1 is I+1,
 	asserta(eds_id(I1)).
