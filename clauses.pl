@@ -1,10 +1,9 @@
-:- module(clauses,[cleanup/0,set_options/3,load_file/1,clause_ids/1,write_clauses/2,write_clauses_ids/2,my_clause/3,my_ed/3,index_of_atom/2,intensional/1,cls_id/1,eds_id/1,all_intensional/1,create_dependence_graph/2,depends/3,remember_clause/2,remember_ed/2,select_list/3,dim_ed/3,tc_is_linear/2,separate_constraints/3]).
+:- module(clauses,[cleanup/0,set_options/3,load_file/1,clause_ids/1,write_clauses/2,write_clauses_ids/2,my_clause/3,my_ed/3,index_of_atom/2,cls_id/1,eds_id/1,create_dependence_graph/2,depends/3,remember_clause/2,remember_ed/2,select_list/3,dim_ed/3,tc_is_linear/2,separate_constraints/3]).
 
 :- use_module(library(ugraphs)).
 
 :- dynamic my_clause/3.
 :- dynamic my_ed/3.
-:- dynamic intensional/1.
 :- dynamic cls_id/1.
 :- dynamic eds_id/1.
 
@@ -156,30 +155,6 @@ index_of_atom(A,I) :-
 	append(_,[91,I,93|_],Ls),
 	!.
 
-%% Collects intensional atoms from a given set of clauses
-all_intensional([Id|Ids]):-
-	my_clause(_,B,Id),
-	member(true,B),
-	!,
-	all_intensional(Ids).
-all_intensional([Id|Ids]):-
-	my_clause(H,_,Id),
-	functor(H,P,_),
-	intensional(P),
-	!,
-	all_intensional(Ids).
-all_intensional([Id|Ids]):-
-	my_clause(H,_,Id),
-	functor(H,P,_),
-	asserta(intensional(P)),
-	all_intensional(Ids).
-all_intensional([]).
-
-%% Writes set of intensional atoms from a given program
-write_intensional(S):-
-	findall(X,intensional(X),Is),
-	write_pred(S,Is).
-
 write_pred(S,[I|Is]):-
 	writeq(S,I),
 	write_pred(S,Is).
@@ -192,9 +167,10 @@ create_dependence_graph([Id|Ids],DG2):-
 	create_nodes_rest_clauses(DG1,Ids,DG2).
 
 create_nodes_clause(GD1,Id,GD2):-
-	my_clause(H,Bs,Id),
+	my_clause(H,B,Id),
 	functor(H,P,_),
-	findall(Q,(member(B,Bs),functor(B,Q,_)),Qs),
+	separate_constraints(B,_,Bs),
+	findall(Q,(member(C,Bs),functor(C,Q,_)),Qs),
 	create_nodes(GD1,P,Qs,GD2).
 
 create_nodes(GD1,P,Qs,GD2):-
@@ -222,8 +198,8 @@ all_are_linear([Cl|Cls]):-
 	all_are_linear(Cls).
 all_are_linear([]).
 
-is_linear((_:-Bd)):-
-	findall(B,(member(B,Bd),functor(B,P,_),intensional(P)),Bs),
+is_linear((_:-B)):-
+	separate_constraints(B,_,Bs),
 	length(Bs,L),
 	L=<1.
 
@@ -244,6 +220,20 @@ dim_ed(ED,K,ED1) :-
 	atom_concat('(',EDK1,Suff),
 	atom_concat(P,Suff,P1),
 	ED1 =.. [P1|Xs].
+%---
+
+constraint(X=Y, X=Y).
+constraint(X=:=Y, X=Y).
+constraint(X is Y, X = Y).
+constraint(X>Y, X>Y).
+constraint(X>=Y, X>=Y).
+constraint(X=<Y, X=<Y).
+constraint(X<Y, X<Y).
+
+constraint(_\==_,0=0).
+constraint(_=\=_,0=0).
+constraint(true,0=0).
+constraint(fail,1=0).
 
 separate_constraints([],[],[]).
 separate_constraints([B|Bs],[C|Cs],Ds) :-

@@ -9,7 +9,6 @@ main(ArgV) :-
 	set_options(ArgV,File,OutS),
 	load_file(File),
 	clause_ids(Ids),
-	all_intensional(Ids),
 	create_dependence_graph(Ids,DG),
 	asserta(mindex(49)), %mindex is index of clauses which may be minimally non-linear. It changes after a number of iterations of ELP.
 	asserta(eds_id(1)),
@@ -64,9 +63,10 @@ all_minimally_non_linear(DG,M,[Id|Ids],[Id|MNLIds]):-
 	my_clause(He,B,Id),
 	functor(He,H,_),
 	index_of_atom(H,K),
-	findall(P,(member(C,B),functor(C,P,_),intensional(P)),Is),
+	separate_constraints(B,_,Bs),
+	findall(P,(member(C,Bs),functor(C,P,_)),Ps),
 	M=K,
-	is_minimally_non_linear(DG,M,H,Is),
+	is_minimally_non_linear(DG,M,H,Ps),
 	!,
 	all_minimally_non_linear(DG,M,Ids,MNLIds).
 all_minimally_non_linear(DG,M,[_|Ids],MNLIds):-
@@ -92,8 +92,8 @@ is_minimally_non_linear(_,_,_,[]):-
 
 %% Non-linear clause Manipulation
 all_non_linear([Id|Ids],[Id|NLIds]):-
-	my_clause(_,Bds,Id),
-	findall(B,(member(B,Bds),functor(B,P,_),intensional(P)),Bs),
+	my_clause(_,B,Id),
+	separate_constraints(B,_,Bs),
 	length(Bs,L),
 	L>1,
 	!,
@@ -170,8 +170,8 @@ construct_subtree(RId,LCls,ECls):-
 	append([LCls1,LCls2],LCls),
 	append([ECls1,ECls2],ECls).
 
-construct_all_subtrees(RId,[(H:-Bd)|FCls],LCls,ECls):-
-	findall(B,(member(B,Bd),functor(B,P,_),intensional(P)),Bs),
+construct_all_subtrees(RId,[(H:-B)|FCls],LCls,ECls):-
+	separate_constraints(B,_,Bs),
 	recorded(RId,my_node(H,Bs,Id)),
 
 	construct_subtree(Id,LCls1,ECls1),
@@ -210,9 +210,9 @@ is_eurekable(Id0,Id1):-
 is_instance_of(B1,B2):-
 	unifiable(B1,B2,_).
 
-remember_node(FId,H,Bd,X):-
+remember_node(FId,H,B,X):-
 	next_node_id(X),
-	findall(B,(member(B,Bd),functor(B,P,_),intensional(P)),Bs),
+	separate_constraints(B,_,Bs),
 	recorda(FId,my_node(H,Bs,X)),
 	X1 is X+1,
 	asserta(next_node_id(X1)),
@@ -231,7 +231,8 @@ erase_all([]).
 selection_rule(B,A):-
 	mindex(M),
 	K is M-1,
-	findall(C,(member(C,B),functor(C,P,_),intensional(P),index_of_atom(P,J),J=<K),[R|Rs]),
+	separate_constraints(B,_,Bs),
+	findall(C,(member(C,Bs),functor(C,P,_),index_of_atom(P,J),J=<K),[R|Rs]),
 	foldl(lowest_index, Rs, R, A).
 
 lowest_index(A,B,A):-
@@ -243,9 +244,9 @@ lowest_index(A,B,A):-
 	!.
 lowest_index(_,B,B).
 
-all_linear([(H1:-B1)|Cls],[(H1:-B1)|LCls]):-
-	findall(C,(member(C,B1),functor(C,P,_),intensional(P)),Cs),
-	length(Cs,L),
+all_linear([(H:-B)|Cls],[(H:-B)|LCls]):-
+	separate_constraints(B,_,Bs),
+	length(Bs,L),
 	L=<1,
 	!,
 	all_linear(Cls,LCls).
@@ -282,8 +283,8 @@ intro_eureka_defs([ECl|ECls],[I|EDIds]):-
 	intro_eureka_defs(ECls,EDIds).
 intro_eureka_defs([],[]).
 
-intro_eureka_def((H:-Bd),I):-
-	findall(B,(member(B,Bd),functor(B,Q,_),intensional(Q)),Bs),
+intro_eureka_def((H:-B),I):-
+	separate_constraints(B,_,Bs),
 	findall(EDId,(my_ed(_,Bs,EDId)),EDIds),
 	EDIds=[],
 	!,
@@ -299,11 +300,8 @@ intro_eureka_def((H:-Bd),I):-
 	append([EP],Rs,NHs),
 	ED=..NHs,
 
-	%numbervars((ED:-Bs),23,_),
-	asserta(my_ed(ED,Bd,I)),
-	asserta(intensional(EP)),
-
-
+	asserta(my_ed(ED,B,I)),
+	
 	I1 is I+1,
 	asserta(eds_id(I1)).
 intro_eureka_def(_,_).
