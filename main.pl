@@ -170,7 +170,7 @@ construct_subtree(RId,LCls,ECls):-
 construct_all_subtrees(RId,[(H:-B)|FCls],LCls,ECls):-
 	recorded(RId,my_node(H,B,Id)),
 	construct_subtree(Id,LCls1,ECls1),
-	construct_all_subtrees(Id,FCls,LCls2,ECls2),
+	construct_all_subtrees(RId,FCls,LCls2,ECls2),
 	append([LCls1,LCls2],LCls),
 	append([ECls1,ECls2],ECls).
 construct_all_subtrees(_,[],[],[]).
