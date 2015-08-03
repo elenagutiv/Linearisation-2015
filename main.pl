@@ -277,7 +277,7 @@ intro_eureka_defs([ECl|ECls],[I|EDIds]):-
 intro_eureka_defs([],[]).
 
 intro_eureka_def((H:-B),I):-
-	separate_constraints(B,_,Bs),
+	separate_constraints(B,Cs,Bs),
 	findall(EDId,(my_ed(_,Bs,EDId)),EDIds),
 	EDIds=[],
 	!,
@@ -286,14 +286,30 @@ intro_eureka_def((H:-B),I):-
 	eds_id(I),
 	atom_concat('new',I,EN),
 	dim_ed(EN,K,EP),
-	H=..HLs,
-	select_list([P],HLs,Rs),
-	append([EP],Rs,NHs),
+
+	set_of_vars([H],VHs),
+	set_of_vars(Cs,VCs),
+	set_of_vars(Bs,VBs),
+	minimal_subset_vars(VHs,VCs,VBs,Is),
+
+	append([EP],Is,NHs),
 	ED=..NHs,
 	asserta(my_ed(ED,Bs,I)),
 	I1 is I+1,
 	asserta(eds_id(I1)).
 intro_eureka_def(_,_).
+
+minimal_subset_vars(VHs,VCs,VBs,I):-
+	append(VHs,VCs,L),
+	intersect_lists(L,VBs,Is),
+	Is=[],
+	!,
+	VBs=[V|_],
+	I=[V].
+minimal_subset_vars(VHs,VCs,VBs,I):-
+	append(VHs,VCs,L),
+	intersect_lists(L,VBs,Is),
+	list_to_set(Is,I).
 
 show_output(OutS):-
 	findall((EH:-EB),my_ed(EH,EB,_),EDs),
@@ -308,7 +324,6 @@ show_output(OutS):-
 	write_clauses(LCls,OutS).
 
 clauseVars([(H:-B)|LCls]):-
-	numbervars((H:-B),23,_),
+	numbervars((H:-B),0,_),
 	clauseVars(LCls).
 clauseVars([]).
-	

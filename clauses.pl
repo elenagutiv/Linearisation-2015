@@ -1,4 +1,4 @@
-:- module(clauses,[cleanup/0,set_options/3,load_file/1,clause_ids/1,write_clauses/2,write_clauses_ids/2,my_clause/3,my_ed/3,index_of_atom/2,cls_id/1,eds_id/1,create_dependence_graph/2,depends/3,remember_clause/2,remember_ed/2,select_list/3,dim_ed/3,tc_is_linear/2,separate_constraints/3]).
+:- module(clauses,[cleanup/0,set_options/3,load_file/1,clause_ids/1,write_clauses/2,write_clauses_ids/2,my_clause/3,my_ed/3,index_of_atom/2,cls_id/1,eds_id/1,create_dependence_graph/2,depends/3,remember_clause/2,remember_ed/2,select_list/3,dim_ed/3,tc_is_linear/2,separate_constraints/3,set_of_vars/2,intersect_lists/3]).
 
 :- use_module(library(ugraphs)).
 
@@ -201,6 +201,25 @@ select_list([L|Ls],Ls2,Ls3):-
 	!.
 select_list([],Ls,Ls).
 
+%% 3rd argument contains the intersection of 1st and 2nd argument lists.
+%% Lists can contain either variables or ground terms. In case of variable lists, it avoids unifications.
+intersect_lists([L|Ls1],Ls2,[L|Is]):-
+	in_list(L,Ls2),
+	!,
+	intersect_lists(Ls1,Ls2,Is).
+intersect_lists([_|Ls1],Ls2,Is):-
+	intersect_lists(Ls1,Ls2,Is).
+intersect_lists([],_,[]).
+
+in_list(L1,[L2|_]):-
+	L1==L2,
+	!.
+in_list(L1,[_|Ls]):-
+	in_list(L1,Ls),
+	!.
+in_list(_,[]):-
+	fail.
+
 create_node_list(E,L1s,Res):-
 	findall(E-L,(member(L,L1s)),Res).
 
@@ -212,22 +231,40 @@ dim_ed(ED,K,ED1) :-
 	atom_concat(P,Suff,P1),
 	ED1 =.. [P1|Xs].
 
-constraint(X=Y, X=Y).
-constraint(X=:=Y, X=Y).
-constraint(X is Y, X = Y).
-constraint(X>Y, X>Y).
-constraint(X>=Y, X>=Y).
-constraint(X=<Y, X=<Y).
-constraint(X<Y, X<Y).
-constraint(_\==_,0=0).
-constraint(_=\=_,0=0).
-constraint(true,0=0).
-constraint(fail,1=0).
+constraint(_=_).
+constraint(_ = _).
+constraint(_>_).
+constraint(_>=_).
+constraint(_=<_).
+constraint(_<_).
+constraint(0=0).
+constraint(1=0).
 
 separate_constraints([],[],[]).
-separate_constraints([B|Bs],[C|Cs],Ds) :-
-	constraint(B,C),
+separate_constraints([B|Bs],[B|Cs],Ds) :-
+	constraint(B),
 	!,
 	separate_constraints(Bs,Cs,Ds).
 separate_constraints([B|Bs],Cs,[B|Ds]) :-
 	separate_constraints(Bs,Cs,Ds).
+
+set_of_vars(Ls,S):-
+	extract_vars(Ls,VLs),
+	list_to_set(VLs,S).
+
+extract_vars([L|Ls],Res):-
+	L=..FTs,
+	FTs=[_|Ts],
+	all_vars(Ts,Vs),
+
+	extract_vars(Ls,RVs),
+	append(Vs,RVs,Res).
+extract_vars([],[]).
+
+all_vars([T|Ts],[T|Vs]):-
+	var(T),
+	!,
+	all_vars(Ts,Vs).
+all_vars([_|Ts],Vs):-
+	all_vars(Ts,Vs).
+all_vars([],[]).
