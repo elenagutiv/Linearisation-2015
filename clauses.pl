@@ -63,10 +63,10 @@ remember_clause((H :- B),N) :-
 	!,
 	tuple_to_list(B,LB),
 	make_clause_id(N,CN),
-	asserta(my_clause(H,LB,CN)).
+	assertz(my_clause(H,LB,CN)).
 remember_clause(H,N) :-
 	make_clause_id(N,CN),
-	asserta(my_clause(H,[],CN)),
+	assertz(my_clause(H,[],CN)),
 	!.
 remember_clause((:- _),_).
 
@@ -204,21 +204,21 @@ select_list([],Ls,Ls).
 %% 3rd argument contains the intersection of 1st and 2nd argument lists.
 %% Lists can contain either variables or ground terms. In case of variable lists, it avoids unifications.
 intersect_lists([L|Ls1],Ls2,[L|Is]):-
-	in_list(L,Ls2),
+	nu_member(L,Ls2),
 	!,
 	intersect_lists(Ls1,Ls2,Is).
 intersect_lists([_|Ls1],Ls2,Is):-
 	intersect_lists(Ls1,Ls2,Is).
 intersect_lists([],_,[]).
 
-in_list(L1,[L2|_]):-
-	L1==L2,
+nu_member(El,[H|T]):-
+	nu_member_(T,El,H).
+
+nu_member_(_,El,H):-
+	El==H,
 	!.
-in_list(L1,[_|Ls]):-
-	in_list(L1,Ls),
-	!.
-in_list(_,[]):-
-	fail.
+nu_member_([H|T],El,_):-
+	nu_member_(T,El,H).
 
 create_node_list(E,L1s,Res):-
 	findall(E-L,(member(L,L1s)),Res).

@@ -36,8 +36,8 @@ elp([],_).
 
 %% Folding and Unfolding operations
 fold_clause((H1:-Body1),(H2:-Body2),(H1:-Body3)) :-
-		append([Pre,Body2,Post],Body1),
-        append([Pre,[H2],Post],Body3).
+		select_list(Body2,Body1,Rs),
+        append([Rs,[H2]],Body3).
 
 unfold((H:-B),A,Clauses) :-
         findall((H:-B1), unfold_clause((H:-B),A,(H:-B1)),Clauses).
@@ -273,6 +273,9 @@ linearise_ed(Id,LCls):-
 %% ED Introduction methods
 intro_eureka_defs([ECl|ECls],[I|EDIds]):-
 	intro_eureka_def(ECl,I),
+	!,
+	intro_eureka_defs(ECls,EDIds).
+intro_eureka_defs([_|ECls],EDIds):-
 	intro_eureka_defs(ECls,EDIds).
 intro_eureka_defs([],[]).
 
@@ -297,7 +300,8 @@ intro_eureka_def((H:-B),I):-
 	asserta(my_ed(ED,Bs,I)),
 	I1 is I+1,
 	asserta(eds_id(I1)).
-intro_eureka_def(_,_).
+intro_eureka_def(_,_):-
+	fail.
 
 minimal_subset_vars(VHs,VCs,VBs,I):-
 	append(VHs,VCs,L),
