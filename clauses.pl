@@ -1,4 +1,4 @@
-:- module(clauses,[cleanup/0,set_options/3,load_file/1,clause_ids/1,write_clauses/2,write_clauses_ids/2,my_clause/3,my_ed/3,index_of_atom/2,cls_id/1,eds_id/1,create_dependence_graph/2,depends/3,remember_clause/2,remember_ed/2,select_list/3,dim_ed/3,tc_is_linear/2,separate_constraints/3,set_of_vars/2,intersect_lists/3]).
+:- module(clauses,[cleanup/0,set_options/3,load_file/1,clause_ids/1,write_clauses/2,write_clauses_ids/2,my_clause/3,my_ed/3,index_of_atom/2,cls_id/1,eds_id/1,process_grammar/0,create_dependence_graph/2,depends/3,delete_useless_clauses/2,remember_clause/2,remember_ed/2,select_list/3,dim_ed/3,tc_is_linear/2,separate_constraints/3,set_of_vars/2,intersect_lists/3]).
 
 :- use_module(library(ugraphs)).
 
@@ -63,10 +63,10 @@ remember_clause((H :- B),N) :-
 	!,
 	tuple_to_list(B,LB),
 	make_clause_id(N,CN),
-	asserta(my_clause(H,LB,CN)).
+	assertz(my_clause(H,LB,CN)).
 remember_clause(H,N) :-
 	make_clause_id(N,CN),
-	asserta(my_clause(H,[],CN)),
+	assertz(my_clause(H,[],CN)),
 	!.
 remember_clause((:- _),_).
 
@@ -134,22 +134,38 @@ write_body_atoms(S,[B1,B2|Bs]) :-
 	write_body_atoms(S,[B2|Bs]).
 
 clause_ids(Ids) :-
-	findall(C,my_clause(_,_,C),Ids).
+	findall(Id,my_clause(_,_,Id),Ids).
+
+clause_ids([H|Hs],Ids3):-
+	findall(Id,(my_clause(He,_,Id),functor(He,H,_)),Ids1),
+	clause_ids(Hs,Ids2),
+	append([Ids1,Ids2],Ids3).
+clause_ids([],[]).
 
 %% Computes dimension of a given atom.
 index_of_atom(A,I) :-
-	atom_to_chars(A,Ls),
-	append(_,[40,I,41|_],Ls),
+	index_exactly_k(A,I),
 	!.
 index_of_atom(A,I) :-
+	index_atmost_k(A,I).
+
+index_exactly_k(A,I):-
 	atom_to_chars(A,Ls),
-	append(_,[91,I,93|_],Ls),
-	!.
+	append(_,[40,I,41|_],Ls).
+
+index_atmost_k(A,I):-
+	atom_to_chars(A,Ls),
+	append(_,[91,I,93|_],Ls).
 
 write_pred(S,[I|Is]):-
 	writeq(S,I),
 	write_pred(S,Is).
 write_pred(_,[]).
+
+process_grammar:-
+	clause_ids(Ids),
+	create_dependence_graph(Ids,DG),
+	delete_useless_clauses(Ids,DG).
 
 %% Dependence graph manipulation methods
 
@@ -166,17 +182,124 @@ create_nodes_clause(GD1,Id,GD2):-
 
 create_nodes(GD1,P,Qs,GD2):-
 	create_node_list(P,Qs,Res),
-	add_edges(GD1,Res,GD2).
+	add_edges_(GD1,Res,GD2).
+
+create_node_list(E,L1s,Res):-
+	findall(E-L,(member(L,L1s)),Res).
 
 create_nodes_rest_clauses(DG1,[Id|Ids],DG3):-
 	create_nodes_clause(DG1,Id,DG2),
 	create_nodes_rest_clauses(DG2,Ids,DG3).
 create_nodes_rest_clauses(DG,[],DG).
 
-depends(DG,S,H):-
-	reachable(S,DG,Vrs),
-	findnsols(1,Vr,(member(Vr,Vrs),Vr=H),Vs),
+add_edges_(Graph, Edges, NewGraph) :-
+ 	p_to_s_graph_(Edges, G1),
+ 	ugraph_union(Graph, G1, NewGraph).
+
+p_to_s_graph_(P_Graph, S_Graph) :-
+	%sort(P_Graph, EdgeSet),
+	p_to_s_vertices(P_Graph, VertexBag),
+	%sort(VertexBag, VertexSet),
+	p_to_s_group(VertexBag, P_Graph, S_Graph).
+
+p_to_s_vertices([], []).
+p_to_s_vertices([A-Z|Edges], [A,Z|Vertices]) :-
+p_to_s_vertices(Edges, Vertices).
+p_to_s_group([], _, []).
+p_to_s_group([Vertex|Vertices], EdgeSet, [Vertex-Neibs|G]) :-
+p_to_s_group(EdgeSet, Vertex, Neibs, RestEdges),
+p_to_s_group(Vertices, RestEdges, G).
+
+p_to_s_group([V1-X|Edges], V2, [X|Neibs], RestEdges) :- V1 == V2, !,
+p_to_s_group(Edges, V2, Neibs, RestEdges).
+p_to_s_group(Edges, _, [], Edges).
+
+depends(DG,Vo,Vf):-
+	reachable_(Vo,DG,Vfs),
+	findnsols(1,Vf,(member(Vf,Vfs)),Vs),
 	Vs=[_].
+
+reachable_(N, G, Rs) :-
+	reachable([N], G, [], Rs).
+
+reachable([], _, Rs, Rs).
+reachable([N|Ns], G, Rs0, RsF) :-
+	neighbours(N, G, Nei),
+	ord_union(Rs0, Nei, Rs1, D),
+	append(Ns, D, Nsi),
+	reachable(Nsi, G, Rs1, RsF).
+
+delete_useless_clauses(Ids,DG):-
+	delete_illegal(Ids,DG).
+	%clause_ids(NIds),
+	%create_dependence_graph(NIds,NDG),
+	%delete_unreachable(NIds,NDG).
+
+delete_unreachable(Ids,DG):-
+	all_unreachable_clauses(Ids,DG,UIds),
+	delete_clauses(UIds).
+
+all_unreachable_clauses(Ids,DG,UIds):-
+	findall(Vf,(vertices(DG,Vs),member(Vo,Vs),reachable_(Vo,DG,Vf)),Vfs),
+	lss_to_ls(Vfs,Ls),
+	list_to_set(Ls,Hs),
+	clause_ids(Hs,RIds),
+	select_list(RIds,Ids,UIds).
+
+delete_illegal(Ids,DG):-
+	all_legal_clauses(Ids,DG,LIds),
+	select_list(LIds,Ids,IIds),
+	delete_clauses(IIds).
+
+all_legal_clauses([Id|Ids],DG,[Id|LIds]):-
+	is_legal(Id,DG),
+	!,
+	all_legal_clauses(Ids,DG,LIds).
+all_legal_clauses([_|Ids],DG,LIds):-
+	all_legal_clauses(Ids,DG,LIds).
+all_legal_clauses([],_,[]).
+
+is_legal(Id,DG):-
+	my_clause(_,CBs,Id),
+	separate_constraints(CBs,_,Bs),
+	are_legal_nodes(Bs,DG).
+
+are_legal_nodes([Bd|Bs],DG):-
+	functor(Bd,B,_),
+	is_legal_node(B,DG),
+	!,
+	are_legal_nodes(Bs,DG).
+are_legal_nodes([],_).
+
+is_legal_node(N,_):-
+	index_of_atom(N,48),
+	!.
+is_legal_node(N,DG):-
+	index_exactly_k(N,K),
+	K1 is K-1,
+	neighbours(N,DG,Ns),
+	findall(Vo,(member(Vo,Ns),index_exactly_k(Vo,K1),is_legal_node(Vo,DG)),Vos),
+	length(Vos,M),
+	M>1,
+	!.
+is_legal_node(N,DG):-
+	index_exactly_k(N,K),
+	K1 is K-1,
+	reachable_(N,DG,Rs),
+	findall(Vo,(member(V,Rs),index_of_atom(V,K),neighbours(V,DG,Neis),member(Vo,Neis),index_exactly_k(Vo,K1),is_legal_node(Vo,DG)),Vos),
+	length(Vos,M),
+	M>1,
+	!.
+is_legal_node(N,DG):-
+	index_atmost_k(N,_),
+	neighbours(N,DG,Ns),
+	findall(Vo,(member(Vo,Ns),is_legal_node(Vo,DG)),Vos),
+	Vos=[_].
+
+delete_clauses([Id|Ids]):-
+	retractall(my_clause(_,_,Id)),
+	delete_clauses(Ids).
+delete_clauses([]).
 
 tc_is_linear(DG,G):-
 	reachable(G,DG,Vrs),
@@ -204,24 +327,31 @@ select_list([],Ls,Ls).
 %% 3rd argument contains the intersection of 1st and 2nd argument lists.
 %% Lists can contain either variables or ground terms. In case of variable lists, it avoids unifications.
 intersect_lists([L|Ls1],Ls2,[L|Is]):-
-	in_list(L,Ls2),
+	nu_member(L,Ls2),
 	!,
 	intersect_lists(Ls1,Ls2,Is).
 intersect_lists([_|Ls1],Ls2,Is):-
 	intersect_lists(Ls1,Ls2,Is).
 intersect_lists([],_,[]).
 
-in_list(L1,[L2|_]):-
-	L1==L2,
-	!.
-in_list(L1,[_|Ls]):-
-	in_list(L1,Ls),
-	!.
-in_list(_,[]):-
-	fail.
+nu_member(El,[H|T]):-
+	nu_member_(T,El,H).
 
-create_node_list(E,L1s,Res):-
-	findall(E-L,(member(L,L1s)),Res).
+nu_member_(_,El,H):-
+	El==H,
+	!.
+nu_member_([H|T],El,_):-
+	nu_member_(T,El,H).
+
+lss_to_ls([H|T],L):-
+	is_list(H),
+	!,
+	lss_to_ls(H,L1),
+	lss_to_ls(T,L2),
+	append(L1,L2,L).
+lss_to_ls([H|T],[H|R]):- 
+	lss_to_ls(T,R). 
+lss_to_ls([],[]).
 
 dim_ed(ED,K,ED1) :-
 	ED =.. [P|Xs],

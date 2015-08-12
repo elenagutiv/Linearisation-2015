@@ -8,15 +8,17 @@ main(ArgV) :-
 	cleanup,
 	set_options(ArgV,File,OutS),
 	load_file(File),
-	clause_ids(Ids),
-	create_dependence_graph(Ids,DG),
-	asserta(mindex(49)), %mindex is index of clauses which may be minimally non-linear. It changes after a number of iterations of ELP.
-	asserta(eds_id(1)),
-	all_non_linear(Ids,NLIds),
+	process_grammar,
+	clause_ids(NIds),
+	create_dependence_graph(NIds,DG),
+	%asserta(mindex(49)), %mindex is index of clauses which may be minimally non-linear. It changes after a number of iterations of ELP.
+	%asserta(eds_id(1)),
+	%all_non_linear(Ids,NLIds),
 
-	elp(NLIds,DG),
+	%elp(NLIds,DG),
 	
-	show_output(OutS),
+	%show_output(OutS),
+	show_aux(OutS),
 	close(OutS).
 
 %% ELP
@@ -36,8 +38,8 @@ elp([],_).
 
 %% Folding and Unfolding operations
 fold_clause((H1:-Body1),(H2:-Body2),(H1:-Body3)) :-
-		append([Pre,Body2,Post],Body1),
-        append([Pre,[H2],Post],Body3).
+		select_list(Body2,Body1,Rs),
+        append([Rs,[H2]],Body3).
 
 unfold((H:-B),A,Clauses) :-
         findall((H:-B1), unfold_clause((H:-B),A,(H:-B1)),Clauses).
@@ -273,6 +275,9 @@ linearise_ed(Id,LCls):-
 %% ED Introduction methods
 intro_eureka_defs([ECl|ECls],[I|EDIds]):-
 	intro_eureka_def(ECl,I),
+	!,
+	intro_eureka_defs(ECls,EDIds).
+intro_eureka_defs([_|ECls],EDIds):-
 	intro_eureka_defs(ECls,EDIds).
 intro_eureka_defs([],[]).
 
@@ -297,7 +302,8 @@ intro_eureka_def((H:-B),I):-
 	asserta(my_ed(ED,Bs,I)),
 	I1 is I+1,
 	asserta(eds_id(I1)).
-intro_eureka_def(_,_).
+intro_eureka_def(_,_):-
+	fail.
 
 minimal_subset_vars(VHs,VCs,VBs,I):-
 	append(VHs,VCs,L),
@@ -322,6 +328,11 @@ show_output(OutS):-
 	write(OutS,'Linearised Program:'),
 	nl(OutS),
 	write_clauses(LCls,OutS).
+
+show_aux(OutS):-
+	findall((H:-B),my_clause(H,B,_),Cls),
+	clauseVars(Cls),
+	write_clauses(Cls,OutS).
 
 clauseVars([(H:-B)|LCls]):-
 	numbervars((H:-B),0,_),
