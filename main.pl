@@ -42,11 +42,12 @@ fold_clause((H1:-Body1),(H2:-Body2),(H1:-Body3)) :-
 unfold((H:-B),A,Clauses) :-
         findall((H:-B1), unfold_clause((H:-B),A,(H:-B1)),Clauses).
 
-unfold_clause((H:-Body),A,(H:-Body1)) :-
+unfold_clause((H:-Body),A,(H:-Body4)) :-
 		split(Pre,A,Post,Body),
         my_clause(A,Body2,_),
         append(Body2,Post,Body3),
-        append(Pre,Body3,Body1).
+        append(Pre,Body3,Body1),
+        list_to_set(Body1,Body4).
 
 %% Unfolding clause C wrt to atom A,
 %% unfolds C wrt to the FIRST occurence of A if A appears more than once in the body of C.

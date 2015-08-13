@@ -239,6 +239,8 @@ constraint(_=<_).
 constraint(_<_).
 constraint(0=0).
 constraint(1=0).
+constraint(true).
+constraint(fail).
 
 separate_constraints([],[],[]).
 separate_constraints([B|Bs],[B|Cs],Ds) :-
