@@ -139,11 +139,13 @@ clause_ids(Ids) :-
 %% Computes dimension of a given atom.
 index_of_atom(A,I) :-
 	atom_to_chars(A,Ls),
-	append(_,[40,I,41|_],Ls),
+	select_list(40,41,Ls,Is),
+	number_to_chars(I,Is),
 	!.
 index_of_atom(A,I) :-
 	atom_to_chars(A,Ls),
-	append(_,[91,I,93|_],Ls),
+	select_list(91,93,Ls,Is),
+	number_to_chars(I,Is),
 	!.
 
 write_pred(S,[I|Is]):-
@@ -201,6 +203,12 @@ select_list([L|Ls],Ls2,Ls3):-
 	!.
 select_list([],Ls,Ls).
 
+select_list(E1,E2,Ls,Res):-
+	append([_,[E1],Ls1],Ls),
+	append([Ls2,[E2],_],Ls),
+	intersect_lists(Ls1,Ls2,Res),
+	!.
+
 %% 3rd argument contains the intersection of 1st and 2nd argument lists.
 %% Lists can contain either variables or ground terms. In case of variable lists, it avoids unifications.
 intersect_lists([L|Ls1],Ls2,[L|Is]):-
@@ -223,9 +231,8 @@ nu_member_([H|T],El,_):-
 create_node_list(E,L1s,Res):-
 	findall(E-L,(member(L,L1s)),Res).
 
-dim_ed(ED,K,ED1) :-
+dim_ed(ED,CK,ED1) :-
 	ED =.. [P|Xs],
-	char_code(CK,K),
 	atom_concat(CK,')',EDK1),
 	atom_concat('(',EDK1,Suff),
 	atom_concat(P,Suff,P1),

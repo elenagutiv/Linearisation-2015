@@ -10,7 +10,7 @@ main(ArgV) :-
 	load_file(File),
 	clause_ids(Ids),
 	create_dependence_graph(Ids,DG),
-	asserta(mindex(49)), %mindex is index of clauses which may be minimally non-linear. It changes after a number of iterations of ELP.
+	asserta(mindex(1)), %mindex is index of clauses which may be minimally non-linear. It changes after a number of iterations of ELP.
 	asserta(eds_id(1)),
 	all_non_linear(Ids,NLIds),
 
@@ -42,12 +42,14 @@ fold_clause((H1:-Body1),(H2:-Body2),(H1:-Body3)) :-
 unfold((H:-B),A,Clauses) :-
         findall((H:-B1), unfold_clause((H:-B),A,(H:-B1)),Clauses).
 
-unfold_clause((H:-Body),A,(H:-Body4)) :-
+unfold_clause((H:-Body),A,(H:-Body5)) :-
 		split(Pre,A,Post,Body),
         my_clause(A,Body2,_),
         append(Body2,Post,Body3),
         append(Pre,Body3,Body1),
-        list_to_set(Body1,Body4).
+        separate_constraints(Body1,Cs,Body4),
+        list_to_set(Cs,Cs1),
+        append(Cs1,Body4,Body5).
 
 %% Unfolding clause C wrt to atom A,
 %% unfolds C wrt to the FIRST occurence of A if A appears more than once in the body of C.
