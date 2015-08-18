@@ -34,10 +34,13 @@ elp(NLIds,DG):-
 	elp(RNLIds,DG).
 elp([],_).
 
-%% Folding and Unfolding operations
+%% Folding and Unfolding operations. 
+
+%% After a folding operation (H1:-Body3) is a linear clause.
 fold_clause((H1:-Body1),(H2:-Body2),(H1:-Body3)) :-
-		select_list(Body2,Body1,Rs),
-        append([Rs,[H2]],Body3).
+		select_list(Body2,Body1,Cs),
+        append([Cs,[H2]],Body3),
+        is_linear((_:-Body3)).
 
 unfold((H:-B),A,Clauses) :-
         findall((H:-B1), unfold_clause((H:-B),A,(H:-B1)),Clauses).
