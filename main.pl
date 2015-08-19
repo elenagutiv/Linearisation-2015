@@ -106,9 +106,9 @@ all_non_linear([],[]).
 
 %% CLP (Clause Linearisation Procedure)
 clp(SId,LCls):-
-	e_tree_cons(SId,LCls1,ECls),
+	e_tree_cons(SId,LCls1,ECls,EDIds),
 	e_tree_del,
-	intro_eureka_defs(ECls,EDIds),
+	%intro_eureka_defs(ECls,EDIds),
 	f_tree_cons(ECls,FCls),
 	append([LCls1,FCls],LCls2),
 	linearise_eds(EDIds,LCls3),
@@ -148,47 +148,60 @@ remember_all_EDs([EDCl|EDCls]):-
 remember_all_EDs([]).
 
 %% e-tree construction methods
-e_tree_cons(RId,LCls,ECls):-
+e_tree_cons(RId,LCls,ECls,EDIds):-
 	my_clause(H,B,RId),
 	!,
 	recorda(0,my_node(H,B,1)),
 	asserta(next_node_id(2)),
-	construct_subtree(1,LCls,ECls).
+	construct_subtree(1,LCls,ECls,EDIds).
 
-e_tree_cons(RId,LCls,ECls):-
-	my_ed(H,B,RId),
+e_tree_cons(Id,LCls,ECls):-
+	my_ed(H,B,Id),
 	recorda(0,my_node(H,B,1)),
 	asserta(next_node_id(2)),
-	construct_subtree(1,LCls,ECls).
+	construct_subtree(1,LCls,ECls,_).
 
-construct_subtree(RId,LCls,ECls):-
+construct_subtree(RId,LCls,ECls,EDIds):-
 	recorded(_,my_node(H,B,RId)),
 	selection_rule(B,A),
 	unfold((H:-B),A,Cls),
 	all_linear(Cls,LCls1),
 	select_list(LCls1,Cls,RCls),
-	all_eurekable(RId,RCls,ECls1),
+	all_eurekable(RId,RCls,ECls1,EDIds1),
 	select_list(ECls1,RCls,FCls),
-	construct_all_subtrees(RId,FCls,LCls2,ECls2),
+	construct_all_subtrees(RId,FCls,LCls2,ECls2,EDIds2),
 	append([LCls1,LCls2],LCls),
-	append([ECls1,ECls2],ECls).
+	append([ECls1,ECls2],ECls),
+	append([EDIds1,EDIds2],EDIds).
 
-construct_all_subtrees(RId,[(H:-B)|FCls],LCls,ECls):-
+construct_all_subtrees(RId,[(H:-B)|FCls],LCls,ECls,EDIds):-
 	recorded(RId,my_node(H,B,Id)),
-	construct_subtree(Id,LCls1,ECls1),
-	construct_all_subtrees(RId,FCls,LCls2,ECls2),
+	construct_subtree(Id,LCls1,ECls1,EDIds1),
+	construct_all_subtrees(RId,FCls,LCls2,ECls2,EDIds2),
 	append([LCls1,LCls2],LCls),
-	append([ECls1,ECls2],ECls).
-construct_all_subtrees(_,[],[],[]).
+	append([ECls1,ECls2],ECls),
+	append([EDIds1,EDIds2],EDIds).
+construct_all_subtrees(_,[],[],[],[]).
 
-all_eurekable(FId,[(H:-B)|Cls],[(H:-B)|ECls1]):-
+all_eurekable(FId,[(H:-B)|Cls],[(H:-B)|ECls1],[EDId|EDIds]):-
 	remember_node(FId,H,B,Id),
 	is_eurekable(Id,Id),
+	intro_eureka_def((H:-B),EDId),
 	!,
-	all_eurekable(FId,Cls,ECls1).
-all_eurekable(FId,[_|Cls],ECls):-
-	all_eurekable(FId,Cls,ECls).
-all_eurekable(_,[],[]).
+	all_eurekable(FId,Cls,ECls1,EDIds).
+all_eurekable(FId,[(H:-B)|Cls],[(H:-B)|ECls1],EDIds):-
+	is_eurekable(Id,Id),
+	!,
+	all_eurekable(FId,Cls,ECls1,EDIds).
+all_eurekable(FId,[(H:-B)|Cls],[(H:-B)|ECls],EDIds):-
+	separate_constraints(B,_,Bs),
+	findall(Id,(my_ed(_,Bs,Id)),Ids),
+	Ids=[_],
+	!,
+	all_eurekable(FId,Cls,ECls,EDIds).
+all_eurekable(FId,[_|Cls],ECls,EDIds):-
+	all_eurekable(FId,Cls,ECls,EDIds).
+all_eurekable(_,[],[],[]).
 
 is_eurekable(_,1):-
 	!,
@@ -263,28 +276,19 @@ f_tree_cons([(H1:-B1)|ECls],[(H3:-B3)|RCls]):-
 	f_tree_cons(ECls,RCls).
 f_tree_cons([],[]).
 
-linearise_eds([Id|EDIds],LCls):-
-	linearise_ed(Id,LCls1),
+linearise_eds([EDId|EDIds],LCls):-
+	linearise_ed(EDId,LCls1),
 	linearise_eds(EDIds,LCls2),
-
 	append([LCls1,LCls2],LCls).
 linearise_eds([],[]).
 
-linearise_ed(Id,LCls):-
-	e_tree_cons(Id,LCls1,ECls),
+linearise_ed(EDId,LCls):-
+	e_tree_cons(EDId,LCls1,ECls),
 	e_tree_del,
 	f_tree_cons(ECls,LCls2),
 	append([LCls1,LCls2],LCls).
 
 %% ED Introduction methods
-intro_eureka_defs([ECl|ECls],[I|EDIds]):-
-	intro_eureka_def(ECl,I),
-	!,
-	intro_eureka_defs(ECls,EDIds).
-intro_eureka_defs([_|ECls],EDIds):-
-	intro_eureka_defs(ECls,EDIds).
-intro_eureka_defs([],[]).
-
 intro_eureka_def((H:-B),I):-
 	separate_constraints(B,Cs,Bs),
 	findall(EDId,(my_ed(_,Bs,EDId)),EDIds),
@@ -308,7 +312,7 @@ intro_eureka_def((H:-B),I):-
 	asserta(eds_id(I1)).
 intro_eureka_def(_,_):-
 	fail.
-
+	
 minimal_subset_vars(VHs,VCs,VBs,I):-
 	append(VHs,VCs,L),
 	intersect_lists(L,VBs,Is),
