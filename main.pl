@@ -190,6 +190,7 @@ all_eurekable(FId,[(H:-B)|Cls],[(H:-B)|ECls1],[EDId|EDIds]):-
 	!,
 	all_eurekable(FId,Cls,ECls1,EDIds).
 all_eurekable(FId,[(H:-B)|Cls],[(H:-B)|ECls1],EDIds):-
+	recorded(FId,my_node(H,B,Id)),
 	is_eurekable(Id,Id),
 	!,
 	all_eurekable(FId,Cls,ECls1,EDIds).
