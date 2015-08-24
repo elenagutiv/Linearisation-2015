@@ -203,6 +203,7 @@ select_list([L|Ls],Ls2,Ls3):-
 	!.
 select_list([],Ls,Ls).
 
+%% Selects from list Ls those elements between E1 and E2 and returns the result in Res.
 select_list(E1,E2,Ls,Res):-
 	append([_,[E1],Ls1],Ls),
 	append([Ls2,[E2],_],Ls),

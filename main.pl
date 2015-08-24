@@ -196,7 +196,7 @@ all_eurekable(FId,[(H:-B)|Cls],[(H:-B)|ECls1],EDIds):-
 	all_eurekable(FId,Cls,ECls1,EDIds).
 all_eurekable(FId,[(H:-B)|Cls],[(H:-B)|ECls],EDIds):-
 	separate_constraints(B,_,Bs),
-	findall(Id,(my_ed(_,Bs,Id)),Ids),
+	findall(Id,(my_ed(_,EB,Id),EB=@=Bs),Ids),
 	Ids=[_],
 	!,
 	all_eurekable(FId,Cls,ECls,EDIds).
@@ -271,7 +271,8 @@ all_linear([],[]).
 
 %% f-tree construction methods
 f_tree_cons([(H1:-B1)|ECls],[(H3:-B3)|RCls]):-
-	findnsols(1,(H2:-B2),(my_ed(EH,EB,_),fold_clause((H1:-B1),(EH:-EB),(H2:-B2))),FCls),
+	separate_constraints(B1,_,B1s),
+	findall((H2:-B2),(my_ed(EH,EB,_),EB=@=B1s,fold_clause((H1:-B1),(EH:-EB),(H2:-B2))),FCls),
 	FCls=[(H3:-B3)],
 	!,
 	f_tree_cons(ECls,RCls).
@@ -292,7 +293,7 @@ linearise_ed(EDId,LCls):-
 %% ED Introduction methods
 intro_eureka_def((H:-B),I):-
 	separate_constraints(B,Cs,Bs),
-	findall(EDId,(my_ed(_,Bs,EDId)),EDIds),
+	findall(EDId,(my_ed(_,EB,EDId),EB=@=Bs),EDIds),
 	EDIds=[],
 	!,
 	functor(H,P,_),
