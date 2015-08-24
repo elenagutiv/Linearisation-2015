@@ -191,15 +191,17 @@
 %% 'new2(1)'(A,B,C) :- 'new2(1)'(A,B,C).
 
 %% TEST 3
-%% 'x(2)'(A,B):-'x(2)'(A,B),'x[1]'(A,B).
-%% 'x(2)'(A,B):-'x(1)'(A,B),'x(1)'(A,B).
-%% 'x(1)'(A,B):-'x(0)'(A,C),'x(0)'(C,B).
-%% 'x(1)'(A,B):-'x(1)'(A,C),'x[0]'(C,B),A>0.
-%% 'x(0)'(A,B):-A>B.
-%% 'x(0)'(A,B):-A>C,'x(0)'(C,B).
-%% 'x[1]'(A,B):-'x(1)'(A,B).
-%% 'x[1]'(A,B):-'x(0)'(A,B).
-%% 'x[0]'(A,B):-'x(0)'(A,B).
+'x(2)'(A,B):-'x(2)'(A,B),'x[1]'(A,B).
+'x(2)'(A,B):-'x(1)'(A,B),'x(1)'(A,B).
+'x(1)'(A,B):-'x(0)'(A,C),'x(0)'(C,B).
+'x(1)'(A,B):-'d(1)'(A,C),'x[0]'(C,B),A>0.
+'d(1)'(A,B):-'f(1)'(A,B).
+'f(1)'(A,B):-'f(1)'(A,B).
+'x(0)'(A,B):-A>B.
+'x(0)'(A,B):-A>C,'x(0)'(C,B).
+'x[1]'(A,B):-'x(1)'(A,B).
+'x[1]'(A,B):-'x(0)'(A,B).
+'x[0]'(A,B):-'x(0)'(A,B).
 
 %% SOLUTION
 %% Eureka Definitions:
@@ -379,6 +381,22 @@
 %% 'y(1)'(A,B) :- A>0, 'new1(1)'(A,B).
 %% 'new1(1)'(A,B) :- A>0, 'new1(1)'(A,B).
 
+
+%%TEST 10 
+
+%% If the set of variables appearing in the predicates of the eurekable body do not
+%% occur in the rest of the clause, the eureka predicate is defined on all those variables.
+%% Other wise the ones we do not include would depend on those we include.
+
+%% 'p(1)'(A):-A>0,'d(0)'(B,C),'d(0)'(C,B).
+%% 'd(0)'(A,B):-'d(0)'(A,B).
+
+%% Eureka Definitions:
+%% 'new1(1)'(A,B) :- 'd(0)'(A,B), 'd(0)'(B,A).
+%% Linearised Program:
+%% 'd(0)'(A,B) :- 'd(0)'(A,B).
+%% 'p(1)'(A) :- A>0, 'new1(1)'(B,C).
+%% 'new1(1)'(A,B) :- 'new1(1)'(A,B).
 
 
 

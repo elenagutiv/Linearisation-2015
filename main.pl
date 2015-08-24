@@ -108,7 +108,6 @@ all_non_linear([],[]).
 clp(SId,LCls):-
 	e_tree_cons(SId,LCls1,ECls,EDIds),
 	e_tree_del,
-	%intro_eureka_defs(ECls,EDIds),
 	f_tree_cons(ECls,FCls),
 	append([LCls1,FCls],LCls2),
 	linearise_eds(EDIds,LCls3),
@@ -197,7 +196,7 @@ all_eurekable(FId,[(H:-B)|Cls],[(H:-B)|ECls1],EDIds):-
 all_eurekable(FId,[(H:-B)|Cls],[(H:-B)|ECls],EDIds):-
 	separate_constraints(B,_,Bs),
 	findall(Id,(my_ed(_,EB,Id),EB=@=Bs),Ids),
-	Ids=[_],
+	Ids=[_|_],
 	!,
 	all_eurekable(FId,Cls,ECls,EDIds).
 all_eurekable(FId,[_|Cls],ECls,EDIds):-
@@ -320,8 +319,7 @@ minimal_subset_vars(VHs,VCs,VBs,I):-
 	intersect_lists(L,VBs,Is),
 	Is=[],
 	!,
-	VBs=[V|_],
-	I=[V].
+	I=VBs.
 minimal_subset_vars(VHs,VCs,VBs,I):-
 	append(VHs,VCs,L),
 	intersect_lists(L,VBs,Is),
