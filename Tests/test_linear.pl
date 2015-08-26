@@ -203,25 +203,21 @@
 %% 'x[1]'(A,B):-'x(0)'(A,B).
 %% 'x[0]'(A,B):-'x(0)'(A,B).
 
-%% SOLUTION
+%% %% SOLUTION
 %% Eureka Definitions:
-%% 'new16(2)'(A,B,C,D,E) :- 'new2(1)'(A,C,D,E), 'x(1)'(A,B).
-%% 'new15(2)'(A,B,C,D) :- 'new1(1)'(C,D), 'x(1)'(A,B).
-%% 'new14(2)'(A,B,C,D) :- 'x(0)'(D,C), 'x(1)'(A,B).
-%% 'new13(2)'(A,B,C,D) :- 'new2(1)'(A,B,C,D), 'x(1)'(A,B).
-%% 'new12(2)'(A,B,C) :- 'new1(1)'(B,C), 'x(1)'(A,B).
-%% 'new11(2)'(A,B,C) :- 'x(0)'(C,B), 'x(1)'(A,B).
-%% 'new10(2)'(A,B,C) :- 'x(1)'(A,C), 'x(1)'(A,B).
-%% 'new9(2)'(A,B,C,D,E) :- 'x(2)'(A,B), 'new2(1)'(A,C,D,E).
-%% 'new8(2)'(A,B,C,D) :- 'x(2)'(A,B), 'new1(1)'(C,D).
-%% 'new7(2)'(A,B,C,D) :- 'x(2)'(A,B), 'x(0)'(D,C).
+%% 'new10(2)'(A,B,C,D) :- 'new2(1)'(A,B,C,D), 'x(1)'(A,B).
+%% 'new9(2)'(A,B,C) :- 'f(1)'(A,C), 'x(1)'(A,B).
+%% 'new8(2)'(A,B,C) :- 'new1(1)'(B,C), 'x(1)'(A,B).
+%% 'new7(2)'(A,B,C) :- 'x(0)'(C,B), 'x(1)'(A,B).
 %% 'new6(2)'(A,B,C,D) :- 'x(2)'(A,B), 'new2(1)'(A,B,C,D).
-%% 'new5(2)'(A,B,C) :- 'x(2)'(A,B), 'new1(1)'(B,C).
-%% 'new4(2)'(A,B,C) :- 'x(2)'(A,B), 'x(0)'(C,B).
-%% 'new3(2)'(A,B,C) :- 'x(2)'(A,B), 'x(1)'(A,C).
-%% 'new2(1)'(A,B,C,D) :- 'x(1)'(A,C), 'x(0)'(D,B).
+%% 'new5(2)'(A,B,C) :- 'x(2)'(A,B), 'f(1)'(A,C).
+%% 'new4(2)'(A,B,C) :- 'x(2)'(A,B), 'new1(1)'(B,C).
+%% 'new3(2)'(A,B,C) :- 'x(2)'(A,B), 'x(0)'(C,B).
+%% 'new2(1)'(A,B,C,D) :- 'd(1)'(A,C), 'x(0)'(D,B).
 %% 'new1(1)'(A,B) :- 'x(0)'(B,C), 'x(0)'(C,A).
 %% Linearised Program:
+%% 'd(1)'(A,B) :- 'f(1)'(A,B).
+%% 'f(1)'(A,B) :- 'f(1)'(A,B).
 %% 'x(0)'(A,B) :- A>B.
 %% 'x(0)'(A,B) :- A>C, 'x(0)'(C,B).
 %% 'x[1]'(A,B) :- 'x(1)'(A,B).
@@ -231,48 +227,41 @@
 %% 'x(1)'(A,B) :- A>C, 'new1(1)'(B,C).
 %% 'new1(1)'(A,B) :- B>C, 'x(0)'(C,A).
 %% 'new1(1)'(A,B) :- B>C, 'new1(1)'(A,C).
-%% 'x(1)'(A,B) :- A>0, C>B, 'x(1)'(A,C).
-%% 'x(1)'(A,B) :- A>0, C>D, 'new2(1)'(A,B,C,D).
-%% 'new2(1)'(A,B,C,D) :- D>B, 'x(1)'(A,C).
+%% 'x(1)'(A,B) :- A>0, C>B, 'd(1)'(A,C).
+%% 'x(1)'(A,B) :- A>0, C>D, D>B, 'd(1)'(A,C).
+%% 'x(1)'(A,B) :- A>0, C>D, D>E, 'new2(1)'(A,B,C,E).
+%% 'new2(1)'(A,B,C,D) :- D>B, 'd(1)'(A,C).
 %% 'new2(1)'(A,B,C,D) :- D>E, 'new2(1)'(A,B,C,E).
 %% 'x(2)'(A,B) :- A>C, C>B, 'x(2)'(A,B).
 %% 'x(2)'(A,B) :- A>B, 'x(2)'(A,B).
-%% 'x(2)'(A,B) :- A>0, C>B, 'new3(2)'(A,B,C).
+%% 'x(2)'(A,B) :- A>C, C>D, 'new3(2)'(A,B,D).
 %% 'x(2)'(A,B) :- A>C, C>D, 'new4(2)'(A,B,D).
-%% 'x(2)'(A,B) :- A>C, C>D, 'new5(2)'(A,B,D).
-%% 'x(2)'(A,B) :- A>0, C>D, D>B, 'new3(2)'(A,B,C).
-%% 'x(2)'(A,B) :- A>0, C>D, D>E, 'new6(2)'(A,B,C,E).
-%% 'x(2)'(A,B) :- A>C, 'new4(2)'(A,B,C).
-%% 'new3(2)'(A,B,C) :- A>D, D>C, 'x(2)'(A,B).
-%% 'new3(2)'(A,B,C) :- A>0, D>C, 'new3(2)'(A,B,D).
-%% 'new3(2)'(A,B,C) :- A>D, D>E, 'new7(2)'(A,B,C,E).
-%% 'new3(2)'(A,B,C) :- A>D, D>E, 'new8(2)'(A,B,C,E).
-%% 'new3(2)'(A,B,C) :- A>0, D>E, E>C, 'new3(2)'(A,B,D).
-%% 'new3(2)'(A,B,C) :- A>0, D>E, E>F, 'new9(2)'(A,B,C,D,F).
-%% 'new4(2)'(A,B,C) :- C>B, 'x(2)'(A,B).
+%% 'x(2)'(A,B) :- A>0, C>B, 'new5(2)'(A,B,C).
+%% 'x(2)'(A,B) :- A>0, C>D, D>B, 'new5(2)'(A,B,C).
+%% 'x(2)'(A,B) :- A>0, C>D, D>E, E>F, 'new6(2)'(A,B,C,F).
+%% 'x(2)'(A,B) :- A>0, C>D, D>E, E>B, 'new5(2)'(A,B,C).
+%% 'x(2)'(A,B) :- A>C, 'new3(2)'(A,B,C).
+%% 'new3(2)'(A,B,C) :- C>B, 'x(2)'(A,B).
+%% 'new3(2)'(A,B,C) :- C>D, 'new3(2)'(A,B,D).
+%% 'new4(2)'(A,B,C) :- C>D, 'new3(2)'(A,B,D).
 %% 'new4(2)'(A,B,C) :- C>D, 'new4(2)'(A,B,D).
-%% 'new5(2)'(A,B,C) :- C>D, 'new4(2)'(A,B,D).
-%% 'new5(2)'(A,B,C) :- C>D, 'new5(2)'(A,B,D).
-%% 'new6(2)'(A,B,C,D) :- D>B, 'new3(2)'(A,B,C).
+%% 'new5(2)'(A,B,C) :- 'new5(2)'(A,B,C).
 %% 'new6(2)'(A,B,C,D) :- D>E, 'new6(2)'(A,B,C,E).
+%% 'new6(2)'(A,B,C,D) :- D>B, 'new5(2)'(A,B,C).
 %% 'x(2)'(A,B) :- A>C, C>B, 'x(1)'(A,B).
-%% 'x(2)'(A,B) :- A>0, C>B, 'new10(2)'(A,B,C).
-%% 'x(2)'(A,B) :- A>C, C>D, 'new11(2)'(A,B,D).
-%% 'x(2)'(A,B) :- A>C, C>D, 'new12(2)'(A,B,D).
-%% 'x(2)'(A,B) :- A>0, C>D, D>B, 'new10(2)'(A,B,C).
-%% 'x(2)'(A,B) :- A>0, C>D, D>E, 'new13(2)'(A,B,C,E).
-%% 'new10(2)'(A,B,C) :- A>D, D>C, 'x(1)'(A,B).
-%% 'new10(2)'(A,B,C) :- A>0, D>C, 'new10(2)'(A,B,D).
-%% 'new10(2)'(A,B,C) :- A>D, D>E, 'new14(2)'(A,B,C,E).
-%% 'new10(2)'(A,B,C) :- A>D, D>E, 'new15(2)'(A,B,C,E).
-%% 'new10(2)'(A,B,C) :- A>0, D>E, E>C, 'new10(2)'(A,B,D).
-%% 'new10(2)'(A,B,C) :- A>0, D>E, E>F, 'new16(2)'(A,B,C,D,F).
-%% 'new11(2)'(A,B,C) :- C>B, 'x(1)'(A,B).
-%% 'new11(2)'(A,B,C) :- C>D, 'new11(2)'(A,B,D).
-%% 'new12(2)'(A,B,C) :- C>D, 'new11(2)'(A,B,D).
-%% 'new12(2)'(A,B,C) :- C>D, 'new12(2)'(A,B,D).
-%% 'new13(2)'(A,B,C,D) :- D>B, 'new10(2)'(A,B,C).
-%% 'new13(2)'(A,B,C,D) :- D>E, 'new13(2)'(A,B,C,E).
+%% 'x(2)'(A,B) :- A>C, C>D, 'new7(2)'(A,B,D).
+%% 'x(2)'(A,B) :- A>C, C>D, 'new8(2)'(A,B,D).
+%% 'x(2)'(A,B) :- A>0, C>B, 'new9(2)'(A,B,C).
+%% 'x(2)'(A,B) :- A>0, C>D, D>B, 'new9(2)'(A,B,C).
+%% 'x(2)'(A,B) :- A>0, C>D, D>E, E>F, 'new10(2)'(A,B,C,F).
+%% 'x(2)'(A,B) :- A>0, C>D, D>E, E>B, 'new9(2)'(A,B,C).
+%% 'new7(2)'(A,B,C) :- C>B, 'x(1)'(A,B).
+%% 'new7(2)'(A,B,C) :- C>D, 'new7(2)'(A,B,D).
+%% 'new8(2)'(A,B,C) :- C>D, 'new7(2)'(A,B,D).
+%% 'new8(2)'(A,B,C) :- C>D, 'new8(2)'(A,B,D).
+%% 'new9(2)'(A,B,C) :- 'new9(2)'(A,B,C).
+%% 'new10(2)'(A,B,C,D) :- D>E, 'new10(2)'(A,B,C,E).
+%% 'new10(2)'(A,B,C,D) :- D>B, 'new9(2)'(A,B,C).
 
 %% TEST 4
 %% 'w(1)'(A,B):-'x[0]'(A,C),'x(0)'(C,B).
@@ -389,8 +378,8 @@
 %% occur in the rest of the clause, the eureka predicate is defined on all those variables.
 %% Other wise the ones we do not include would depend on those we include.
 
-'p(1)'(A):-A>0,'d(0)'(B,C),'d(0)'(C,B).
-'d(0)'(A,B):-'d(0)'(A,B).
+%% 'p(1)'(A):-A>0,'d(0)'(B,C),'d(0)'(C,B).
+%% 'd(0)'(A,B):-'d(0)'(A,B).
 
 %% Eureka Definitions:
 %% 'new1(1)'(A,B) :- 'd(0)'(A,B), 'd(0)'(B,A).

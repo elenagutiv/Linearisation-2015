@@ -6,12 +6,16 @@ go(F):-
 
 main(ArgV) :-
 	cleanup,
+
+	set_cls_id,
+	set_eds_id,
+	set_mindex, %mindex is index of clauses which may be minimally non-linear. It changes after a number of iterations of ELP.
+
 	set_options(ArgV,File,OutS),
 	load_file(File),
 	clause_ids(Ids),
 	create_dependence_graph(Ids,DG),
-	asserta(mindex(1)), %mindex is index of clauses which may be minimally non-linear. It changes after a number of iterations of ELP.
-	asserta(eds_id(1)),
+
 	all_non_linear(Ids,NLIds),
 
 	elp(NLIds,DG),
@@ -34,7 +38,7 @@ elp(NLIds,DG):-
 	clause_ids(Ids),
 	update_dependence_graph(Ids,NDG),
 
-	update_mindex(M,RNLIds),
+	set_mindex(M,RNLIds),
 	elp(RNLIds,NDG).
 elp([],_).
 
@@ -117,13 +121,16 @@ clp(SId,LCls):-
 	linearise_eds(EDIds,LCls3),
 	append([LCls2,LCls3],LCls).
 
-update_mindex(M,NLIds):-
+set_mindex(M,NLIds):-
 	all_clauses_of_index_k(NLIds,M,Ids),
 	Ids=[],
 	!,
 	N is M+1,
+	retract(mindex(M)),
 	asserta(mindex(N)).
-update_mindex(_,_).
+set_mindex(_,_).
+set_mindex:-
+	asserta(mindex(1)).
 
 %% Remember linear clauses and eureka definition methods
 remember_all_linear([LCl|LCls]):-
@@ -131,10 +138,8 @@ remember_all_linear([LCl|LCls]):-
 	!,
 	remember_all_linear(LCls).
 remember_all_linear([LCl|LCls]):-
-	cls_id(Id),
-	remember_clause(LCl,Id),
-	NId is Id+1,
-	asserta(cls_id(NId)),
+	remember_clause(LCl),
+	set_cls_id,
 	remember_all_linear(LCls).
 remember_all_linear([]).
 
@@ -142,10 +147,8 @@ is_duplicated((H:-B)):-
 	my_clause(H,B,_).
 
 remember_all_EDs([EDCl|EDCls]):-
-	eds_id(Id),
-	remember_ed(EDCl,Id),
-	NId is Id+1,
-	asserta(eds_id(NId)),
+	remember_ed(EDCl),
+	set_eds_id,
 	remember_all_EDs(EDCls).
 remember_all_EDs([]).
 
@@ -154,13 +157,12 @@ e_tree_cons(RId,LCls,ECls,EDIds):-
 	my_clause(H,B,RId),
 	!,
 	recorda(0,my_node(H,B,1)),
-	asserta(next_node_id(2)),
+	set_next_node_id,
 	construct_subtree(1,LCls,ECls,EDIds).
-
 e_tree_cons(Id,LCls,ECls):-
 	my_ed(H,B,Id),
 	recorda(0,my_node(H,B,1)),
-	asserta(next_node_id(2)),
+	set_next_node_id,
 	construct_subtree(1,LCls,ECls,_).
 
 construct_subtree(RId,LCls,ECls,EDIds):-
@@ -223,17 +225,24 @@ is_eurekable(Id0,Id1):-
 	is_eurekable(Id0,K1),
 	!.
 
-remember_node(FId,H,B,X):-
-	next_node_id(X),
-	recorda(FId,my_node(H,B,X)),
-	X1 is X+1,
-	asserta(next_node_id(X1)),
+set_next_node_id:-
+	retract(next_node_id(Id)),
+	!,
+	NId is Id+1,
+	asserta(next_node_id(NId)).
+set_next_node_id:-
+	asserta(next_node_id(2)).
+
+remember_node(FId,H,B,Id):-
+	next_node_id(Id),
+	recorda(FId,my_node(H,B,Id)),
+	set_next_node_id,
 	!.
 
 e_tree_del:-
 	findall(Ref,recorded(_,my_node(_,_,_),Ref),Refs),
 	erase_all(Refs),
-	retractall(next_node_id).
+	retractall(next_node_id(_)).
 
 erase_all([Ref|Refs]):-
 	erase(Ref),
@@ -307,8 +316,7 @@ intro_eureka_def((H:-B),I):-
 	append([EP],Is,NHs),
 	ED=..NHs,
 	asserta(my_ed(ED,Bs,I)),
-	I1 is I+1,
-	asserta(eds_id(I1)).
+	set_eds_id.
 intro_eureka_def(_,_):-
 	fail.
 	

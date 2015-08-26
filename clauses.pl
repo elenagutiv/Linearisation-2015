@@ -1,4 +1,4 @@
-:- module(clauses,[cleanup/0,set_options/3,load_file/1,clause_ids/1,write_clauses/2,write_clauses_ids/2,my_clause/3,my_ed/3,index_of_atom/2,cls_id/1,eds_id/1,update_dependence_graph/2,create_dependence_graph/2,depends/3,remember_clause/2,remember_ed/2,select_list/3,dim_ed/3,tc_is_linear/2,is_linear/1,all_clauses_of_index_k/3,separate_constraints/3,set_of_vars/2,intersect_lists/3]).
+:- module(clauses,[cleanup/0,set_options/3,load_file/1,clause_ids/1,write_clauses/2,write_clauses_ids/2,my_clause/3,my_ed/3,index_of_atom/2,cls_id/1,eds_id/1,mindex/1,next_node_id/1, update_dependence_graph/2,create_dependence_graph/2,depends/3,remember_clause/1,remember_ed/1,set_cls_id/0,set_eds_id/0,select_list/3,dim_ed/3,tc_is_linear/2,is_linear/1,all_clauses_of_index_k/3,separate_constraints/3,set_of_vars/2,intersect_lists/3]).
 
 :- use_module(library(ugraphs)).
 
@@ -6,13 +6,18 @@
 :- dynamic my_ed/3.
 :- dynamic cls_id/1.
 :- dynamic eds_id/1.
+:- dynamic mindex/1.
+:- dynamic next_node_id/1.
 
 %% Clause manipulation functions provided by John Gallagher.
 
 %% Removing data from database
 cleanup :-
 	retractall(my_clause(_,_,_)),
-	retractall(my_ed(_,_,_)).
+	retractall(my_ed(_,_,_)),
+	retractall(cls_id(_)),
+	retractall(eds_id(_)),
+	retractall(mindex(_)).
 
 %% Setting options from input 
 set_options(ArgV,File,OutS) :-
@@ -42,39 +47,56 @@ recognised_option('-prg',  programO(R),[R]).
 
 %% Storing clauses in database
 load_file(F) :-
-    %retractall(my_clause(_,_,_)),
 	open(F,read,S),
-	remember_all(S,1),
+	remember_all(S),
 	close(S).
 
-remember_all(S,N) :-
+remember_all(S) :-
 	read(S,C),
 	(
 	    C == end_of_file ->
-	    asserta(cls_id(N)),
 	    true
 	;
-	    remember_clause(C,N),
-	    N1 is N+1,
-	    remember_all(S,N1)
+	    remember_clause(C),
+	    set_cls_id,
+	    remember_all(S)
 	).
 
-remember_clause((H :- B),N) :-
+remember_clause((H :- B)) :-
 	!,
+	cls_id(N),
 	tuple_to_list(B,LB),
 	make_clause_id(N,CN),
-	assertz(my_clause(H,LB,CN)).
-remember_clause(H,N) :-
+	asserta(my_clause(H,LB,CN)).
+remember_clause(H) :-
+	cls_id(N),
 	make_clause_id(N,CN),
-	assertz(my_clause(H,[],CN)),
+	asserta(my_clause(H,[],CN)),
 	!.
-remember_clause((:- _),_).
+remember_clause((:- _)).
 
 %% Stores Eureka Definitions in database
-remember_ed((H:-B),N):-
+remember_ed((H:-B)):-
+	eds_id(N),
 	tuple_to_list(B,LB),
 	make_ed_id(N,EN),
 	asserta(my_ed(H,LB,EN)).
+
+set_cls_id:-
+	retract(cls_id(Id)),
+	!,
+	NId is Id+1,
+	asserta(cls_id(NId)).
+set_cls_id:-
+	asserta(cls_id(1)).
+
+set_eds_id:-
+	retract(eds_id(Id)),
+	!,
+	NId is Id+1,
+	asserta(eds_id(NId)).
+set_eds_id:-
+	asserta(eds_id(1)).
 
 make_clause_id(N,CN) :-
 	name(N,NN),
