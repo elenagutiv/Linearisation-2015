@@ -6,11 +6,7 @@ go(F):-
 
 main(ArgV) :-
 	cleanup,
-
-	set_cls_id,
-	set_eds_id,
-	set_mindex, %mindex is index of clauses which may be minimally non-linear. It changes after a number of iterations of ELP.
-
+	set_indexes,
 	set_options(ArgV,File,OutS),
 	load_file(File),
 	clause_ids(Ids),
@@ -121,17 +117,6 @@ clp(SId,LCls):-
 	linearise_eds(EDIds,LCls3),
 	append([LCls2,LCls3],LCls).
 
-set_mindex(M,NLIds):-
-	all_clauses_of_index_k(NLIds,M,Ids),
-	Ids=[],
-	!,
-	N is M+1,
-	retract(mindex(M)),
-	asserta(mindex(N)).
-set_mindex(_,_).
-set_mindex:-
-	asserta(mindex(1)).
-
 %% Remember linear clauses and eureka definition methods
 remember_all_linear([LCl|LCls]):-
 	is_duplicated(LCl),
@@ -145,12 +130,6 @@ remember_all_linear([]).
 
 is_duplicated((H:-B)):-
 	my_clause(H,B,_).
-
-remember_all_EDs([EDCl|EDCls]):-
-	remember_ed(EDCl),
-	set_eds_id,
-	remember_all_EDs(EDCls).
-remember_all_EDs([]).
 
 %% e-tree construction methods
 e_tree_cons(RId,LCls,ECls,EDIds):-
@@ -229,9 +208,9 @@ set_next_node_id:-
 	retract(next_node_id(Id)),
 	!,
 	NId is Id+1,
-	asserta(next_node_id(NId)).
+	assert(next_node_id(NId)).
 set_next_node_id:-
-	asserta(next_node_id(2)).
+	assert(next_node_id(2)).
 
 remember_node(FId,H,B,Id):-
 	next_node_id(Id),
@@ -315,7 +294,7 @@ intro_eureka_def((H:-B),I):-
 
 	append([EP],Is,NHs),
 	ED=..NHs,
-	asserta(my_ed(ED,Bs,I)),
+	assert(my_ed(ED,Bs,I)),
 	set_eds_id.
 intro_eureka_def(_,_):-
 	fail.

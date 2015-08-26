@@ -1,4 +1,4 @@
-:- module(clauses,[cleanup/0,set_options/3,load_file/1,clause_ids/1,write_clauses/2,write_clauses_ids/2,my_clause/3,my_ed/3,index_of_atom/2,cls_id/1,eds_id/1,mindex/1,next_node_id/1, update_dependence_graph/2,create_dependence_graph/2,depends/3,remember_clause/1,remember_ed/1,set_cls_id/0,set_eds_id/0,select_list/3,dim_ed/3,tc_is_linear/2,is_linear/1,all_clauses_of_index_k/3,separate_constraints/3,set_of_vars/2,intersect_lists/3]).
+:- module(clauses,[cleanup/0,set_options/3,load_file/1,clause_ids/1,write_clauses/2,write_clauses_ids/2,my_clause/3,my_ed/3,index_of_atom/2,cls_id/1,eds_id/1,mindex/1,next_node_id/1, update_dependence_graph/2,create_dependence_graph/2,depends/3,remember_clause/1,set_indexes/0,set_cls_id/0,set_eds_id/0,set_mindex/0,set_mindex/2,select_list/3,dim_ed/3,tc_is_linear/2,is_linear/1,all_clauses_of_index_k/3,separate_constraints/3,set_of_vars/2,intersect_lists/3]).
 
 :- use_module(library(ugraphs)).
 
@@ -10,6 +10,11 @@
 :- dynamic next_node_id/1.
 
 %% Clause manipulation functions provided by John Gallagher.
+
+set_indexes:-
+	set_cls_id,
+	set_eds_id,
+	set_mindex. %mindex is index of clauses which may be minimally non-linear. It changes after a number of iterations of ELP.
 
 %% Removing data from database
 cleanup :-
@@ -67,36 +72,29 @@ remember_clause((H :- B)) :-
 	cls_id(N),
 	tuple_to_list(B,LB),
 	make_clause_id(N,CN),
-	asserta(my_clause(H,LB,CN)).
+	assert(my_clause(H,LB,CN)).
 remember_clause(H) :-
 	cls_id(N),
 	make_clause_id(N,CN),
-	asserta(my_clause(H,[],CN)),
+	assert(my_clause(H,[],CN)),
 	!.
 remember_clause((:- _)).
-
-%% Stores Eureka Definitions in database
-remember_ed((H:-B)):-
-	eds_id(N),
-	tuple_to_list(B,LB),
-	make_ed_id(N,EN),
-	asserta(my_ed(H,LB,EN)).
 
 set_cls_id:-
 	retract(cls_id(Id)),
 	!,
 	NId is Id+1,
-	asserta(cls_id(NId)).
+	assert(cls_id(NId)).
 set_cls_id:-
-	asserta(cls_id(1)).
+	assert(cls_id(1)).
 
 set_eds_id:-
 	retract(eds_id(Id)),
 	!,
 	NId is Id+1,
-	asserta(eds_id(NId)).
+	assert(eds_id(NId)).
 set_eds_id:-
-	asserta(eds_id(1)).
+	assert(eds_id(1)).
 
 make_clause_id(N,CN) :-
 	name(N,NN),
@@ -107,6 +105,17 @@ make_ed_id(N,EN) :-
 	name(N,NN),
 	append([101],NN,ENN),
 	name(EN,ENN).
+
+set_mindex(M,NLIds):-
+	all_clauses_of_index_k(NLIds,M,Ids),
+	Ids=[],
+	!,
+	N is M+1,
+	retract(mindex(M)),
+	assert(mindex(N)).
+set_mindex(_,_).
+set_mindex:-
+	assert(mindex(1)).
 
 tuple_to_list((A,As),[A|LAs]) :-
 	!,
