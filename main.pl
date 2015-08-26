@@ -30,8 +30,12 @@ elp(NLIds,DG):-
 	remember_all_linear(LCls),
 	retractall(my_clause(_,_,SId)),
 	select_list([SId],NLIds,RNLIds),
-	update_mindex(MNLIds),
-	elp(RNLIds,DG).
+
+	clause_ids(Ids),
+	update_dependence_graph(Ids,NDG),
+
+	update_mindex(M,RNLIds),
+	elp(RNLIds,NDG).
 elp([],_).
 
 %% Folding and Unfolding operations. 
@@ -66,7 +70,7 @@ all_minimally_non_linear(DG,M,[Id|Ids],[Id|MNLIds]):-
 	functor(He,H,_),
 	index_of_atom(H,K),
 	separate_constraints(B,_,Bs),
-	findall(P,(member(C,Bs),functor(C,P,_)),Ps),
+	findall((P,N),(member(C,Bs),functor(C,P,N)),Ps),
 	M=K,
 	is_minimally_non_linear(DG,M,H,Ps),
 	!,
@@ -76,16 +80,16 @@ all_minimally_non_linear(DG,M,[_|Ids],MNLIds):-
 all_minimally_non_linear(_,_,[],[]).
 
 is_minimally_non_linear(_,M,_,Bs):-
-	findall(B,(member(B,Bs),index_of_atom(B,M)),Rs),
+	findall((B,N),(member((B,N),Bs),index_of_atom(B,M)),Rs),
 	Rs=[],
 	!.
 is_minimally_non_linear(DG,M,H,Bs):-
-	findnsols(1,B,(member(B,Bs),index_of_atom(B,M)),Rs),
+	findnsols(1,(B,N),(member((B,N),Bs),index_of_atom(B,M)),Rs),
 	Rs=[R],
 	depends(DG,R,H),
 	!.
 is_minimally_non_linear(DG,M,_,Bs):-
-	findnsols(1,B,(member(B,Bs),index_of_atom(B,M)),Rs),
+	findnsols(1,(B,N),(member((B,N),Bs),index_of_atom(B,M)),Rs),
 	Rs=[R],
 	tc_is_linear(DG,R),
 	!.
@@ -113,14 +117,13 @@ clp(SId,LCls):-
 	linearise_eds(EDIds,LCls3),
 	append([LCls2,LCls3],LCls).
 
-update_mindex(MNLIds):-
-	length(MNLIds,L),
-	L=1,
+update_mindex(M,NLIds):-
+	all_clauses_of_index_k(NLIds,M,Ids),
+	Ids=[],
 	!,
-	mindex(M),
 	N is M+1,
 	asserta(mindex(N)).
-update_mindex(_).
+update_mindex(_,_).
 
 %% Remember linear clauses and eureka definition methods
 remember_all_linear([LCl|LCls]):-
@@ -213,17 +216,12 @@ is_eurekable(Id0,Id1):-
 	recorded(_,my_node(_,B0,Id0)),
 	separate_constraints(B1,_,B1s),
 	separate_constraints(B0,_,B0s),
-	is_instance_of(B1s,B0s),
+	B1s=@=B0s,
 	!.
 is_eurekable(Id0,Id1):-
 	recorded(K1,my_node(_,_,Id1)),
 	is_eurekable(Id0,K1),
 	!.
-
-%% is_instance_of(B1,B2) is true iff the conjunction of atoms in the body B1 are an instance 
-%% of the conjunction of atoms in the body B2.
-is_instance_of(B1,B2):-
-	unifiable(B1,B2,_).
 
 remember_node(FId,H,B,X):-
 	next_node_id(X),

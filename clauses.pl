@@ -1,4 +1,4 @@
-:- module(clauses,[cleanup/0,set_options/3,load_file/1,clause_ids/1,write_clauses/2,write_clauses_ids/2,my_clause/3,my_ed/3,index_of_atom/2,cls_id/1,eds_id/1,create_dependence_graph/2,depends/3,remember_clause/2,remember_ed/2,select_list/3,dim_ed/3,tc_is_linear/2,is_linear/1,separate_constraints/3,set_of_vars/2,intersect_lists/3]).
+:- module(clauses,[cleanup/0,set_options/3,load_file/1,clause_ids/1,write_clauses/2,write_clauses_ids/2,my_clause/3,my_ed/3,index_of_atom/2,cls_id/1,eds_id/1,update_dependence_graph/2,create_dependence_graph/2,depends/3,remember_clause/2,remember_ed/2,select_list/3,dim_ed/3,tc_is_linear/2,is_linear/1,all_clauses_of_index_k/3,separate_constraints/3,set_of_vars/2,intersect_lists/3]).
 
 :- use_module(library(ugraphs)).
 
@@ -154,6 +154,8 @@ write_pred(S,[I|Is]):-
 write_pred(_,[]).
 
 %% Dependence graph manipulation methods
+update_dependence_graph(Ids,NDG):-
+	create_dependence_graph(Ids,NDG).
 
 create_dependence_graph([Id|Ids],DG2):-
 	create_nodes_clause([],Id,DG1),
@@ -161,13 +163,13 @@ create_dependence_graph([Id|Ids],DG2):-
 
 create_nodes_clause(GD1,Id,GD2):-
 	my_clause(H,B,Id),
-	functor(H,P,_),
+	functor(H,P,N),
 	separate_constraints(B,_,Bs),
-	findall(Q,(member(C,Bs),functor(C,Q,_)),Qs),
-	create_nodes(GD1,P,Qs,GD2).
+	findall((Q,M),(member(C,Bs),functor(C,Q,M)),Qs),
+	create_nodes(GD1,(P,N),Qs,GD2).
 
-create_nodes(GD1,P,Qs,GD2):-
-	create_node_list(P,Qs,Res),
+create_nodes(GD1,T,Qs,GD2):-
+	create_node_list(T,Qs,Res),
 	add_edges(GD1,Res,GD2).
 
 create_nodes_rest_clauses(DG1,[Id|Ids],DG3):-
@@ -177,12 +179,12 @@ create_nodes_rest_clauses(DG,[],DG).
 
 depends(DG,S,H):-
 	reachable(S,DG,Vrs),
-	findnsols(1,Vr,(member(Vr,Vrs),Vr=H),Vs),
+	findnsols(1,Vr,(member(Vr,Vrs),Vr=(H,_)),Vs),
 	Vs=[_].
 
 tc_is_linear(DG,G):-
 	reachable(G,DG,Vrs),
-	findall((H:-B),(member(H,Vrs),my_clause(H,B,_)),Cls),
+	findall((He:-B),(member((H,N),Vrs),functor(He,H,N),my_clause(He,B,_)),Cls),
 	all_are_linear(Cls).
 
 all_are_linear([Cl|Cls]):-
@@ -195,6 +197,19 @@ is_linear((_:-B)):-
 	separate_constraints(B,_,Bs),
 	length(Bs,L),
 	L=<1.
+
+all_clauses_of_index_k([Id1|Ids1],K,[Id1|Ids2]):-
+	index_of_clause(Id1,K),
+	!,
+	all_clauses_of_index_k(Ids1,K,Ids2).
+all_clauses_of_index_k([_|Ids1],K,Ids2):-
+	all_clauses_of_index_k(Ids1,K,Ids2).
+all_clauses_of_index_k([],_,[]).
+
+index_of_clause(Id,K):-
+	my_clause(He,_,Id),
+	functor(He,H,_),
+	index_of_atom(H,K).
 
 %% List methods
 select_list([L|Ls],Ls2,Ls3):-

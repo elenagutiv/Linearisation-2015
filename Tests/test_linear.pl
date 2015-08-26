@@ -191,17 +191,17 @@
 %% 'new2(1)'(A,B,C) :- 'new2(1)'(A,B,C).
 
 %% TEST 3
-'x(2)'(A,B):-'x(2)'(A,B),'x[1]'(A,B).
-'x(2)'(A,B):-'x(1)'(A,B),'x(1)'(A,B).
-'x(1)'(A,B):-'x(0)'(A,C),'x(0)'(C,B).
-'x(1)'(A,B):-'d(1)'(A,C),'x[0]'(C,B),A>0.
-'d(1)'(A,B):-'f(1)'(A,B).
-'f(1)'(A,B):-'f(1)'(A,B).
-'x(0)'(A,B):-A>B.
-'x(0)'(A,B):-A>C,'x(0)'(C,B).
-'x[1]'(A,B):-'x(1)'(A,B).
-'x[1]'(A,B):-'x(0)'(A,B).
-'x[0]'(A,B):-'x(0)'(A,B).
+%% 'x(2)'(A,B):-'x(2)'(A,B),'x[1]'(A,B).
+%% 'x(2)'(A,B):-'x(1)'(A,B),'x(1)'(A,B).
+%% 'x(1)'(A,B):-'x(0)'(A,C),'x(0)'(C,B).
+%% 'x(1)'(A,B):-'d(1)'(A,C),'x[0]'(C,B),A>0.
+%% 'd(1)'(A,B):-'f(1)'(A,B).
+%% 'f(1)'(A,B):-'f(1)'(A,B).
+%% 'x(0)'(A,B):-A>B.
+%% 'x(0)'(A,B):-A>C,'x(0)'(C,B).
+%% 'x[1]'(A,B):-'x(1)'(A,B).
+%% 'x[1]'(A,B):-'x(0)'(A,B).
+%% 'x[0]'(A,B):-'x(0)'(A,B).
 
 %% SOLUTION
 %% Eureka Definitions:
@@ -336,6 +336,7 @@
 %% 'new1(1)'(A,B,C,D) :- D>0, 'new1(1)'(A,B,C,D).
 %% 'x(1)'(A,B,C) :- D>0, 'new2(1)'(A,B,C,D).
 %% 'new2(1)'(A,B,C,D) :- D>0, 'new2(1)'(A,B,C,D).
+%% 'x(1)'(A,B,C) :- 'new1(1)'(A,B,C,D).
 
 %% TEST 9 [Useless clauses do not affect to linearisation procedure. 
 %% Considering y(1) as the axiom of the program, x(1) and x(2) are useless predicates]
@@ -388,8 +389,8 @@
 %% occur in the rest of the clause, the eureka predicate is defined on all those variables.
 %% Other wise the ones we do not include would depend on those we include.
 
-%% 'p(1)'(A):-A>0,'d(0)'(B,C),'d(0)'(C,B).
-%% 'd(0)'(A,B):-'d(0)'(A,B).
+'p(1)'(A):-A>0,'d(0)'(B,C),'d(0)'(C,B).
+'d(0)'(A,B):-'d(0)'(A,B).
 
 %% Eureka Definitions:
 %% 'new1(1)'(A,B) :- 'd(0)'(A,B), 'd(0)'(B,A).
@@ -398,5 +399,73 @@
 %% 'p(1)'(A) :- A>0, 'new1(1)'(B,C).
 %% 'new1(1)'(A,B) :- 'new1(1)'(A,B).
 
+%%TEST 11 
 
+%% ELP selects in turns minimally non-linar clauses, starting with those of index k and
+%% once every non-linear clause  of index k is linearised, continuing with those of index k+1.
+
+%% 'p(1)'(A,B):-'y(1)'(A,B),'y[0]'(A,B).
+%% 'd(1)'(A,B):-'p(1)'(A,B),'y[0]'(A,B).
+%% 'z(2)'(A,B):- 'y(1)'(A,C),'y(1)'(C,B).
+%% 'y(1)'(A,B):- 'x(1)'(A,C),'x(0)'(C,B).
+%% 'x(1)'(A,B):- 'y(1)'(A,B),'x(0)'(A,B).
+%% 'x(1)'(A,B):- 'x(0)'(A,C),'x(0)'(C,B).
+%% 'x(0)'(A,B):-A>0,'x(0)'(A,B).
+%% 'x(0)'(A,B):-A>0,B>0.
+%% 'y[0]'(A,B):-'y(0)'(A,B).
+%% 'd(1)'(A,B):-'d(1)'(A,B).
+%% 'p(1)'(A,B):-'p(1)'(A,B).
+
+%% Eureka Definitions:
+%% 'new9(2)'(A,B,C) :- 'new1(1)'(A,D,C), 'y(1)'(D,B).
+%% 'new8(2)'(A,B,C,D) :- 'new3(1)'(A,C), 'y(1)'(D,B).
+%% 'new7(2)'(A,B,C,D) :- 'x(0)'(D,B), 'y(1)'(C,A).
+%% 'new6(2)'(A,B,C,D) :- 'new2(1)'(A,C), 'y(1)'(D,B).
+%% 'new5(2)'(A,B,C,D,E) :- 'new1(1)'(A,C,E), 'y(1)'(D,B).
+%% 'new4(2)'(A,B,C,D) :- 'x(1)'(A,D), 'y(1)'(C,B).
+%% 'new3(1)'(A,B) :- 'x(0)'(A,C), 'x(0)'(C,B).
+%% 'new2(1)'(A,B) :- 'y(1)'(A,B), 'x(0)'(A,B).
+%% 'new1(1)'(A,B,C) :- 'x(1)'(A,C), 'x(0)'(C,B).
+%% Linearised Program:
+%% 'x(0)'(A,B) :- A>0, 'x(0)'(A,B).
+%% 'x(0)'(A,B) :- A>0, B>0.
+%% 'y[0]'(A,B) :- 'y(0)'(A,B).
+%% 'd(1)'(A,B) :- 'd(1)'(A,B).
+%% 'p(1)'(A,B) :- 'p(1)'(A,B).
+%% 'y(1)'(A,B) :- C>0, B>0, 'x(1)'(A,C).
+%% 'y(1)'(A,B) :- C>0, 'new1(1)'(A,B,C).
+%% 'new1(1)'(A,B,C) :- C>0, B>0, 'x(1)'(A,C).
+%% 'new1(1)'(A,B,C) :- C>0, 'new1(1)'(A,B,C).
+%% 'x(1)'(A,B) :- A>0, B>0, 'y(1)'(A,B).
+%% 'x(1)'(A,B) :- A>0, 'new2(1)'(A,B).
+%% 'new2(1)'(A,B) :- A>0, B>0, 'y(1)'(A,B).
+%% 'new2(1)'(A,B) :- A>0, 'new2(1)'(A,B).
+%% 'x(1)'(A,B) :- A>0, C>0, 'x(0)'(C,B).
+%% 'x(1)'(A,B) :- A>0, 'new3(1)'(A,B).
+%% 'new3(1)'(A,B) :- A>0, C>0, 'x(0)'(C,B).
+%% 'new3(1)'(A,B) :- A>0, 'new3(1)'(A,B).
+%% 'z(2)'(A,B) :- C>0, D>0, A>0, E>0, 'y(1)'(D,B).
+%% 'z(2)'(A,B) :- C>0, D>0, A>0, E>0, 'new4(2)'(A,B,D,E).
+%% 'z(2)'(A,B) :- C>0, D>0, A>0, E>0, 'new5(2)'(A,B,C,D,E).
+%% 'z(2)'(A,B) :- C>0, D>0, A>0, 'new6(2)'(A,B,C,D).
+%% 'z(2)'(A,B) :- C>0, D>0, A>0, E>0, 'new7(2)'(B,C,D,E).
+%% 'z(2)'(A,B) :- C>0, D>0, A>0, 'new8(2)'(A,B,C,D).
+%% 'z(2)'(A,B) :- C>0, D>0, 'new4(2)'(A,B,D,C).
+%% 'z(2)'(A,B) :- C>0, 'new9(2)'(A,B,C).
+%% 'new4(2)'(A,B,C,D) :- A>0, 'new6(2)'(A,B,D,C).
+%% 'new4(2)'(A,B,C,D) :- A>0, E>0, 'new7(2)'(B,D,C,E).
+%% 'new4(2)'(A,B,C,D) :- A>0, 'new8(2)'(A,B,D,C).
+%% 'new4(2)'(A,B,C,D) :- A>0, D>0, E>0, 'new4(2)'(A,B,C,E).
+%% 'new4(2)'(A,B,C,D) :- A>0, D>0, E>0, 'new5(2)'(A,B,D,C,E).
+%% 'new5(2)'(A,B,C,D,E) :- E>0, C>0, 'new4(2)'(A,B,D,E).
+%% 'new5(2)'(A,B,C,D,E) :- E>0, 'new5(2)'(A,B,C,D,E).
+%% 'new6(2)'(A,B,C,D) :- A>0, 'new6(2)'(A,B,C,D).
+%% 'new6(2)'(A,B,C,D) :- A>0, C>0, E>0, 'new4(2)'(A,B,D,E).
+%% 'new6(2)'(A,B,C,D) :- A>0, C>0, E>0, 'new5(2)'(A,B,C,D,E).
+%% 'new7(2)'(A,B,C,D) :- D>0, B>0, 'y(1)'(C,A).
+%% 'new7(2)'(A,B,C,D) :- D>0, 'new7(2)'(A,B,C,D).
+%% 'new8(2)'(A,B,C,D) :- A>0, E>0, 'new7(2)'(B,C,D,E).
+%% 'new8(2)'(A,B,C,D) :- A>0, 'new8(2)'(A,B,C,D).
+%% 'new9(2)'(A,B,C) :- C>0, D>0, 'new4(2)'(A,B,D,C).
+%% 'new9(2)'(A,B,C) :- C>0, 'new9(2)'(A,B,C).
 
