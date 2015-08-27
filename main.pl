@@ -1,6 +1,31 @@
 :- module(main,[main/1,go/1]).
 :- use_module(clauses).
 
+% Gutierrez Viedma, Elena
+% Adapted from pocedure described in:
+% Gutierrez Viedma, Elena.
+% Complexity of linearisation procedure ELP
+% applied to a k-index bounded set of Horn clauses.
+
+% Input: (for details see below)
+% A file containing a set of Horn clauses generating the at-most-k-dimensional
+% derivations of a given  program (default ouput of kdim procedure written by J.P. Gallagher)
+
+% Output:
+% A linear set of Horn clauses which is the result of applying ELP to the input program.
+
+% Program files:
+% main.pl	Contains procedures ELP and CLP and other methods directly related with the procedure.
+% clauses.pl 	Contains clause manipulation and other auxiliar methods.
+
+% Usage:
+% go('Tests/test_linear.pl').	(write to standard output)
+
+% tested in SWI Prolog
+
+%command line usage (if compiled with SWI Prolog command):
+% swipl main.pl
+
 go(F):-
 	main(['-prg',F]).
 
@@ -11,60 +36,56 @@ main(ArgV) :-
 	load_file(File),
 	clause_ids(Ids),
 	create_dependence_graph(Ids,DG),
-
 	all_non_linear(Ids,NLIds),
-
 	elp(NLIds,DG),
-	
 	show_output(OutS),
 	close(OutS).
 
-%% ELP
+% Program linearisation procedure
+% Tranforms the set of non-linear clauses into a set of linear clauses.
+%	NLIds is the set of non-linear clauses in the input program.
+%	DG is the dependence graph associated to the program at each iteration.
 elp(NLIds,DG):-
 	mindex(M),
 	all_minimally_non_linear(DG,M,NLIds,MNLIds),
 	MNLIds=[SId|_],
-
 	clp(SId,LCls),
-
 	remember_all_linear(LCls),
 	retractall(my_clause(_,_,SId)),
 	select_list([SId],NLIds,RNLIds),
-
 	clause_ids(Ids),
 	update_dependence_graph(Ids,NDG),
-
 	set_mindex(M,RNLIds),
 	elp(RNLIds,NDG).
 elp([],_).
 
-%% Folding and Unfolding operations. 
+% Folding and unfolding operations. 
 
-%% After a folding operation (H1:-Body3) is a linear clause.
 fold_clause((H1:-Body1),(H2:-Body2),(H1:-Body3)) :-
-		select_list(Body2,Body1,Cs),
-        append([Cs,[H2]],Body3),
-        is_linear((_:-Body3)).
+	select_list(Body2,Body1,Cs),
+    append([Cs,[H2]],Body3),
+    is_linear((_:-Body3)). % the result of folding operation is a linear clause.
 
+% Provided by J.P. Gallagher.
 unfold((H:-B),A,Clauses) :-
-        findall((H:-B1), unfold_clause((H:-B),A,(H:-B1)),Clauses).
+	findall((H:-B1), unfold_clause((H:-B),A,(H:-B1)),Clauses).
 
+% Provided by J.P. Gallagher.
 unfold_clause((H:-Body),A,(H:-Body5)) :-
-		split(Pre,A,Post,Body),
-        my_clause(A,Body2,_),
-        append(Body2,Post,Body3),
-        append(Pre,Body3,Body1),
-        separate_constraints(Body1,Cs,Body4),
-        list_to_set(Cs,Cs1),
-        append(Cs1,Body4,Body5).
+	split(Pre,A,Post,Body),
+    my_clause(A,Body2,_),
+    append(Body2,Post,Body3),
+    append(Pre,Body3,Body1),
+    separate_constraints(Body1,Cs,Body4),
+    list_to_set(Cs,Cs1),
+    append(Cs1,Body4,Body5).
 
-%% Unfolding clause C wrt to atom A,
-%% unfolds C wrt to the FIRST occurence of A if A appears more than once in the body of C.
 split(Pre,A,Post,Body):-
-	append(Pre,[A|Post],Body),
+	append(Pre,[A|Post],Body), % unfolding operation works on the first occurence of atom A (if there is more than one) in the given clause.
 	!.
 
-%% Minimally non linear clauses Manipulation
+% Minimally non linear clause manipulation.
+
 all_minimally_non_linear(DG,M,[Id|Ids],[Id|MNLIds]):-
 	my_clause(He,B,Id),
 	functor(He,H,_),
@@ -96,7 +117,8 @@ is_minimally_non_linear(DG,M,_,Bs):-
 is_minimally_non_linear(_,_,_,[]):-
 	!.
 
-%% Non-linear clause Manipulation
+% Non-linear clause manipulation.
+
 all_non_linear([Id|Ids],[Id|NLIds]):-
 	my_clause(_,B,Id),
 	separate_constraints(B,_,Bs),
@@ -108,7 +130,10 @@ all_non_linear([_|Ids],NLIds):-
 	all_non_linear(Ids,NLIds).
 all_non_linear([],[]).
 
-%% CLP (Clause Linearisation Procedure)
+% Clause linearisation Procedure.
+% Transforms a non-linear clause into a set of linear clauses.
+%	SId is the id of the non-linear clause.
+%	LCls is the resultant set of linear clauses.
 clp(SId,LCls):-
 	e_tree_cons(SId,LCls1,ECls,EDIds),
 	e_tree_del,
@@ -117,7 +142,8 @@ clp(SId,LCls):-
 	linearise_eds(EDIds,LCls3),
 	append([LCls2,LCls3],LCls).
 
-%% Remember linear clauses and eureka definition methods
+% Storing linear clauses methods.
+
 remember_all_linear([LCl|LCls]):-
 	is_duplicated(LCl),
 	!,
@@ -131,7 +157,8 @@ remember_all_linear([]).
 is_duplicated((H:-B)):-
 	my_clause(H,B,_).
 
-%% e-tree construction methods
+% E-tree construction methods.
+
 e_tree_cons(RId,LCls,ECls,EDIds):-
 	my_clause(H,B,RId),
 	!,
@@ -187,10 +214,10 @@ all_eurekable(FId,[_|Cls],ECls,EDIds):-
 	all_eurekable(FId,Cls,ECls,EDIds).
 all_eurekable(_,[],[],[]).
 
-is_eurekable(_,1):-
-	!,
-	fail.
-%% is_eurekable(Id0,Id1) is true iff clause of node Id0 is eurekable wrt its father node Id1.
+% Succeeds if first argument references to an eurekable node in e-tree with respect to
+% an ancestor node, computed form the second argument.
+
+% Succeeds if Id0 references to an eurekable node wrt the Id1 node's father.
 is_eurekable(Id0,Id1):-
 	recorded(K1,my_node(_,_,Id1)),
 	recorded(_,my_node(_,B1,K1)),
@@ -199,10 +226,16 @@ is_eurekable(Id0,Id1):-
 	separate_constraints(B0,_,B0s),
 	B1s=@=B0s,
 	!.
+% Succeeds if Id0 references to an eurekable node wrt an ancestor of Id1 node's father.	
 is_eurekable(Id0,Id1):-
 	recorded(K1,my_node(_,_,Id1)),
 	is_eurekable(Id0,K1),
 	!.
+% If Id1 node is the root (1) then no ancestor has been found and Id0 is not eurekable.
+is_eurekable(_,1):-
+	fail.
+
+% E-tree node labeling methods.
 
 set_next_node_id:-
 	retract(next_node_id(Id)),
@@ -218,6 +251,8 @@ remember_node(FId,H,B,Id):-
 	set_next_node_id,
 	!.
 
+% E-tree deletion methods.
+
 e_tree_del:-
 	findall(Ref,recorded(_,my_node(_,_,_),Ref),Refs),
 	erase_all(Refs),
@@ -227,6 +262,8 @@ erase_all([Ref|Refs]):-
 	erase(Ref),
 	erase_all(Refs).
 erase_all([]).
+
+%
 
 selection_rule(B,A):-
 	mindex(M),
@@ -254,7 +291,8 @@ all_linear([_|Cls],LCls):-
 	all_linear(Cls,LCls).
 all_linear([],[]).
 
-%% f-tree construction methods
+% F-tree construction methods.
+
 f_tree_cons([(H1:-B1)|ECls],[(H3:-B3)|RCls]):-
 	separate_constraints(B1,_,B1s),
 	findall((H2:-B2),(my_ed(EH,EB,_),EB=@=B1s,fold_clause((H1:-B1),(EH:-EB),(H2:-B2))),FCls),
@@ -262,6 +300,8 @@ f_tree_cons([(H1:-B1)|ECls],[(H3:-B3)|RCls]):-
 	!,
 	f_tree_cons(ECls,RCls).
 f_tree_cons([],[]).
+
+% Eureka Definition methods.
 
 linearise_eds([EDId|EDIds],LCls):-
 	linearise_ed(EDId,LCls1),
@@ -275,7 +315,6 @@ linearise_ed(EDId,LCls):-
 	f_tree_cons(ECls,LCls2),
 	append([LCls1,LCls2],LCls).
 
-%% ED Introduction methods
 intro_eureka_def((H:-B),I):-
 	separate_constraints(B,Cs,Bs),
 	findall(EDId,(my_ed(_,EB,EDId),EB=@=Bs),EDIds),
@@ -286,12 +325,10 @@ intro_eureka_def((H:-B),I):-
 	eds_id(I),
 	atom_concat('new',I,EN),
 	dim_ed(EN,K,EP),
-
 	set_of_vars([H],VHs),
 	set_of_vars(Cs,VCs),
 	set_of_vars(Bs,VBs),
 	minimal_subset_vars(VHs,VCs,VBs,Is),
-
 	append([EP],Is,NHs),
 	ED=..NHs,
 	assert(my_ed(ED,Bs,I)),
@@ -310,16 +347,16 @@ minimal_subset_vars(VHs,VCs,VBs,I):-
 	intersect_lists(L,VBs,Is),
 	list_to_set(Is,I).
 
+% Output methods.
+
 show_output(OutS):-
 	findall((EH:-EB),my_ed(EH,EB,_),EDs),
 	clauseVars(EDs),
-	write(OutS,'Eureka Definitions:'),
-	nl(OutS),
+	write(OutS,'Eureka Definitions:'),nl(OutS),
 	write_clauses(EDs,OutS),
 	findall((H:-B),my_clause(H,B,_),LCls),
 	clauseVars(LCls),
-	write(OutS,'Linearised Program:'),
-	nl(OutS),
+	write(OutS,'Linearised Program:'),nl(OutS),
 	write_clauses(LCls,OutS).
 
 clauseVars([(H:-B)|LCls]):-
