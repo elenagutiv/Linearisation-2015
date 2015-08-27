@@ -1,4 +1,4 @@
-:- module(clauses,[cleanup/0,set_options/3,load_file/1,clause_ids/1,write_clauses/2,write_clauses_ids/2,my_clause/3,my_ed/3,index_of_atom/2,cls_id/1,eds_id/1,mindex/1,next_node_id/1, update_dependence_graph/2,create_dependence_graph/2,depends/3,remember_clause/1,set_indexes/0,set_cls_id/0,set_eds_id/0,set_mindex/0,set_mindex/2,select_list/3,dim_ed/3,tc_is_linear/2,is_linear/1,all_clauses_of_index_k/3,separate_constraints/3,set_of_vars/2,intersect_lists/3]).
+:- module(clauses,[cleanup/0,set_options/3,load_file/1,clause_ids/1,write_clauses/2,write_clauses_ids/2,my_clause/3,my_ed/3,index_of_atom/2,cls_id/1,eds_id/1,mindex/1,next_node_id/1, update_dependence_graph/1,create_dependence_graph/1,depends/3,remember_clause/1,set_indexes/0,set_cls_id/0,set_eds_id/0,set_mindex/0,set_mindex/2,select_list/3,dim_ed/3,tc_is_linear/2,is_linear/1,all_clauses_of_index_k/3,separate_constraints/3,set_of_vars/2,intersect_lists/3]).
 
 :- use_module(library(ugraphs)).
 
@@ -106,12 +106,12 @@ set_eds_id:-
 set_eds_id:-
 	assert(eds_id(1)).
 
-set_mindex(M,NLIds):-
-	all_clauses_of_index_k(NLIds,M,Ids),
+set_mindex(K,NLIds):-
+	all_clauses_of_index_k(NLIds,K,Ids),
 	Ids=[],
 	!,
-	N is M+1,
-	retract(mindex(M)),
+	N is K+1,
+	retract(mindex(K)),
 	assert(mindex(N)).
 set_mindex(_,_).
 set_mindex:-
@@ -170,10 +170,11 @@ write_pred(_,[]).
 
 % Dependence graph manipulation methods.
 
-update_dependence_graph(Ids,NDG):-
-	create_dependence_graph(Ids,NDG).
+update_dependence_graph(NDG):-
+	create_dependence_graph(NDG).
 
-create_dependence_graph([Id|Ids],DG2):-
+create_dependence_graph(DG2):-
+	clause_ids([Id|Ids]),
 	create_nodes_clause([],Id,DG1),
 	create_nodes_rest_clauses(DG1,Ids,DG2).
 

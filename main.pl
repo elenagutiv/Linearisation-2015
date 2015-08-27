@@ -35,7 +35,7 @@ main(ArgV) :-
 	set_options(ArgV,File,OutS),
 	load_file(File),
 	clause_ids(Ids),
-	create_dependence_graph(Ids,DG),
+	create_dependence_graph(DG),
 	all_non_linear(Ids,NLIds),
 	elp(NLIds,DG),
 	show_output(OutS),
@@ -53,8 +53,7 @@ elp(NLIds,DG):-
 	remember_all_linear(LCls),
 	retractall(my_clause(_,_,SId)),
 	select_list([SId],NLIds,RNLIds),
-	clause_ids(Ids),
-	update_dependence_graph(Ids,NDG),
+	update_dependence_graph(NDG),
 	set_mindex(M,RNLIds),
 	elp(RNLIds,NDG).
 elp([],_).
@@ -90,9 +89,9 @@ all_minimally_non_linear(DG,M,[Id|Ids],[Id|MNLIds]):-
 	my_clause(He,B,Id),
 	functor(He,H,_),
 	index_of_atom(H,K),
+	M=K,
 	separate_constraints(B,_,Bs),
 	findall((P,N),(member(C,Bs),functor(C,P,N)),Ps),
-	M=K,
 	is_minimally_non_linear(DG,M,H,Ps),
 	!,
 	all_minimally_non_linear(DG,M,Ids,MNLIds).
@@ -105,12 +104,12 @@ is_minimally_non_linear(_,M,_,Bs):-
 	Rs=[],
 	!.
 is_minimally_non_linear(DG,M,H,Bs):-
-	findnsols(1,(B,N),(member((B,N),Bs),index_of_atom(B,M)),Rs),
+	findall((B,N),(member((B,N),Bs),index_of_atom(B,M)),Rs),
 	Rs=[R],
 	depends(DG,R,H),
 	!.
 is_minimally_non_linear(DG,M,_,Bs):-
-	findnsols(1,(B,N),(member((B,N),Bs),index_of_atom(B,M)),Rs),
+	findall((B,N),(member((B,N),Bs),index_of_atom(B,M)),Rs),
 	Rs=[R],
 	tc_is_linear(DG,R),
 	!.
@@ -154,8 +153,9 @@ remember_all_linear([LCl|LCls]):-
 	remember_all_linear(LCls).
 remember_all_linear([]).
 
-is_duplicated((H:-B)):-
-	my_clause(H,B,_).
+is_duplicated((H1:-B1)):-
+	my_clause(H2,B2,_),
+	(H1:-B1)=@=(H2:-B2).
 
 % E-tree construction methods.
 
@@ -199,12 +199,12 @@ all_eurekable(FId,[(H:-B)|Cls],[(H:-B)|ECls1],[EDId|EDIds]):-
 	intro_eureka_def((H:-B),EDId),
 	!,
 	all_eurekable(FId,Cls,ECls1,EDIds).
-all_eurekable(FId,[(H:-B)|Cls],[(H:-B)|ECls1],EDIds):-
+all_eurekable(FId,[(H:-B)|Cls],[(H:-B)|ECls1],EDIds):- % This rule only succeeds while f-tree construction wrt to each ED.
 	recorded(FId,my_node(H,B,Id)),
 	is_eurekable(Id,Id),
 	!,
 	all_eurekable(FId,Cls,ECls1,EDIds).
-all_eurekable(FId,[(H:-B)|Cls],[(H:-B)|ECls],EDIds):-
+all_eurekable(FId,[(H:-B)|Cls],[(H:-B)|ECls],EDIds):- % Memoization.
 	separate_constraints(B,_,Bs),
 	findall(Id,(my_ed(_,EB,Id),EB=@=Bs),Ids),
 	Ids=[_|_],
@@ -270,7 +270,7 @@ selection_rule(B,A):-
 	K is M-1,
 	separate_constraints(B,_,Bs),
 	findall(C,(member(C,Bs),functor(C,P,_),index_of_atom(P,J),J=<K),[R|Rs]),
-	foldl(lowest_index, Rs, R, A).
+	foldl(lowest_index, Rs, R, A). % A is the predicate with the lowest index in [R|Rs].
 
 lowest_index(A,B,A):-
 	functor(A,P,_),
@@ -296,7 +296,7 @@ all_linear([],[]).
 f_tree_cons([(H1:-B1)|ECls],[(H3:-B3)|RCls]):-
 	separate_constraints(B1,_,B1s),
 	findall((H2:-B2),(my_ed(EH,EB,_),EB=@=B1s,fold_clause((H1:-B1),(EH:-EB),(H2:-B2))),FCls),
-	FCls=[(H3:-B3)],
+	FCls=[(H3:-B3)], % Only one ED can fold (H1:-B1) and therefore,the result is one clause.
 	!,
 	f_tree_cons(ECls,RCls).
 f_tree_cons([],[]).
@@ -318,7 +318,7 @@ linearise_ed(EDId,LCls):-
 intro_eureka_def((H:-B),I):-
 	separate_constraints(B,Cs,Bs),
 	findall(EDId,(my_ed(_,EB,EDId),EB=@=Bs),EDIds),
-	EDIds=[],
+	EDIds=[], % EDIds is empty if an ED with Bs as body has not been introduced before.
 	!,
 	functor(H,P,_),
 	index_of_atom(P,K),
@@ -335,7 +335,10 @@ intro_eureka_def((H:-B),I):-
 	set_eds_id.
 intro_eureka_def(_,_):-
 	fail.
-	
+
+% Computes the minimal subset of the set of all variables in the body of
+% the ED (F) such that the eurekable clause in question can be folded using F.
+	% I is the set of variables	appearing in the Eureka predicate.
 minimal_subset_vars(VHs,VCs,VBs,I):-
 	append(VHs,VCs,L),
 	intersect_lists(L,VBs,Is),
