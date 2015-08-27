@@ -56,6 +56,7 @@ get_options([X|T],Options,Args) :-
 
 % Provided by J.P. Gallagher.
 recognised_option('-prg',  programO(R),[R]).
+recognised_option('-o',    outputFile(R),[R]).
 
 % Methods to store clauses in database. Provided by J.P. Gallagher.
 
@@ -124,7 +125,7 @@ make_clause_id(N,CN) :-
 	name(CN,CNN).
 
 clause_ids(Ids) :-
-	findall(C,my_clause(_,_,C),Ids).
+	findall(Id,my_clause(_,_,Id),Ids).
 
 make_ed_id(N,EN) :-
 	name(N,NN),
@@ -137,15 +138,13 @@ write_clauses([(H:-B)|Rs],S) :-
 	writeq(S,H),
 	write(S,' :-'),
 	write_body_atoms(S,B),
-	write(S,'.'),
-	nl(S),
+	write(S,'.'),nl(S),
 	write_clauses(Rs,S).
 write_clauses([],_).
 
 write_clauses_ids([Id|Ids],S):-
 	writeq(S,Id),
-	write(S,'.'),
-	nl(S),
+	write(S,'.'),nl(S),
 	write_clauses_ids(Ids,S).
 write_clauses_ids([],_).
 	
@@ -162,11 +161,6 @@ write_body_atoms(S,[B1,B2|Bs]) :-
 	writeq(S,B1),
 	write(S,','),
 	write_body_atoms(S,[B2|Bs]).
-
-write_pred(S,[I|Is]):-
-	writeq(S,I),
-	write_pred(S,Is).
-write_pred(_,[]).
 
 % Dependence graph manipulation methods.
 

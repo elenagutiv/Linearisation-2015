@@ -1,4 +1,4 @@
-:- module(main,[main/1,go/1]).
+:- module(main,[main/1,go/1,go/2]).
 :- use_module(clauses).
 
 % Gutierrez Viedma, Elena
@@ -20,6 +20,7 @@
 
 % Usage:
 % go('Tests/test_linear.pl').	(write to standard output)
+% go('Tests/test_linear.pl','Tests/test_output.txt')	(write to named output file)
 
 % tested in SWI Prolog
 
@@ -28,6 +29,8 @@
 
 go(F):-
 	main(['-prg',F]).
+go(FI,FO):-
+	main(['-prg',FI,'-o',FO]).
 
 main(ArgV) :-
 	cleanup,
@@ -207,7 +210,7 @@ all_eurekable(FId,[(H:-B)|Cls],[(H:-B)|ECls1],EDIds):- % This rule only succeeds
 all_eurekable(FId,[(H:-B)|Cls],[(H:-B)|ECls],EDIds):- % Memoization.
 	separate_constraints(B,_,Bs),
 	findall(Id,(my_ed(_,EB,Id),EB=@=Bs),Ids),
-	Ids=[_|_],
+	Ids=[_],
 	!,
 	all_eurekable(FId,Cls,ECls,EDIds).
 all_eurekable(FId,[_|Cls],ECls,EDIds):-
