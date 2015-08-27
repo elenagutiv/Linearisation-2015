@@ -1,0 +1,6 @@
+Eureka Definitions:
+'new1(1)'(A,B) :- 'd(0)'(A,B), 'd(0)'(B,A).
+Linearised Program:
+'d(0)'(A,B) :- 'd(0)'(A,B).
+'p(1)'(A) :- A>0, 'new1(1)'(B,C).
+'new1(1)'(A,B) :- 'new1(1)'(A,B).
