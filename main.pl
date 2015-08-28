@@ -48,6 +48,8 @@ main(ArgV) :-
 % Tranforms the set of non-linear clauses into a set of linear clauses.
 %	NLIds is the set of non-linear clauses in the input program.
 %	DG is the dependence graph associated to the program at each iteration.
+elp([],_):-
+	!.
 elp(NLIds,DG):-
 	mindex(M),
 	all_minimally_non_linear(DG,M,NLIds,MNLIds),
@@ -59,7 +61,6 @@ elp(NLIds,DG):-
 	update_dependence_graph(NDG),
 	set_mindex(M,RNLIds),
 	elp(RNLIds,NDG).
-elp([],_).
 
 % Folding and unfolding operations. 
 
@@ -202,7 +203,7 @@ all_eurekable(FId,[(H:-B)|Cls],[(H:-B)|ECls1],[EDId|EDIds]):-
 	intro_eureka_def((H:-B),EDId),
 	!,
 	all_eurekable(FId,Cls,ECls1,EDIds).
-all_eurekable(FId,[(H:-B)|Cls],[(H:-B)|ECls1],EDIds):- % This rule only succeeds while f-tree construction wrt to each ED.
+all_eurekable(FId,[(H:-B)|Cls],[(H:-B)|ECls1],EDIds):- % This rule only succeeds while e-tree construction wrt to each ED.
 	recorded(FId,my_node(H,B,Id)),
 	is_eurekable(Id,Id),
 	!,
