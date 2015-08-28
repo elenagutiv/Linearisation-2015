@@ -1,11 +1,11 @@
 Eureka Definitions:
-'new1(1)'(A,B,C,D) :- 'x(0)'(A,E,D), 'x(0)'(E,B,D), 'x(0)'(E,D,C).
-'new2(1)'(A,B,C,D) :- 'x(0)'(A,E,D), 'x(0)'(B,E,D), 'x(0)'(C,E,D).
+'new1(1)'(A,B,C,D,E) :- 'x(0)'(A,B,C), 'x(0)'(B,D,C), 'x(0)'(B,C,E).
+'new2(1)'(A,B,C,D,E) :- 'x(0)'(A,B,C), 'x(0)'(D,B,C), 'x(0)'(E,B,C).
 Linearised Program:
 'x(0)'(A,B,C) :- C>0, 'x(0)'(A,B,C).
 'x[0]'(A,B,C) :- 'x(0)'(A,B,C).
-'x(1)'(A,B,C) :- D>0, 'new1(1)'(A,B,C,D).
-'new1(1)'(A,B,C,D) :- D>0, 'new1(1)'(A,B,C,D).
-'x(1)'(A,B,C) :- D>0, 'new2(1)'(A,B,C,D).
-'new2(1)'(A,B,C,D) :- D>0, 'new2(1)'(A,B,C,D).
-'x(1)'(A,B,C) :- 'new1(1)'(A,B,C,D).
+'x(1)'(A,B,C) :- D>0, 'new1(1)'(A,E,D,B,C).
+'new1(1)'(A,B,C,D,E) :- C>0, 'new1(1)'(A,B,C,D,E).
+'x(1)'(A,B,C) :- D>0, 'new2(1)'(A,E,D,B,C).
+'new2(1)'(A,B,C,D,E) :- C>0, 'new2(1)'(A,B,C,D,E).
+'x(1)'(A,B,C) :- 'new1(1)'(A,D,E,B,C).

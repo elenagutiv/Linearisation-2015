@@ -312,24 +312,3 @@ separate_constraints([B|Bs],Cs,[B|Ds]) :-
 	separate_constraints(Bs,Cs,Ds),
 	!.
 separate_constraints([],[],[]).
-
-% Succeeds if S is the set containing all variables appearing in elements (either constraints or predicates) of list Ls.
-set_of_vars(Ls,S):-
-	extract_vars(Ls,VLs),
-	list_to_set(VLs,S).
-
-extract_vars([L|Ls],Res):-
-	L=..FTs,
-	FTs=[_|Ts],
-	all_vars(Ts,Vs),
-	extract_vars(Ls,RVs),
-	append(Vs,RVs,Res).
-extract_vars([],[]).
-
-all_vars([T|Ts],[T|Vs]):-
-	var(T),
-	!,
-	all_vars(Ts,Vs).
-all_vars([_|Ts],Vs):-
-	all_vars(Ts,Vs).
-all_vars([],[]).

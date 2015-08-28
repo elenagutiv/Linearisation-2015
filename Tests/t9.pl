@@ -1,6 +1,15 @@
-%% If the set of variables (Vs) appearing in the predicates of the eurekable body do not
-%% occur in the rest of the clause, the eureka predicate is defined on Vs.
-%% Otherwise, the ones we do not include would depend on those we include.
-
-'p(1)'(A):-A>0,'d(0)'(B,C),'d(0)'(C,B).
-'d(0)'(A,B):-'d(0)'(A,B).
+%% ELP selects in turns minimally non-linear clauses, starting with those of index k and
+%% once every non-linear clause  of index k is linearised, continuing with those of index k+1.
+%% In turns elp selects: [c4,c5,c6],[c1],[c2],[c3]
+'p(1)'(A,B):-'y(1)'(A,B),'y[0]'(A,B).
+'d(1)'(A,B):-'p(1)'(A,B),'y[0]'(A,B).
+'z(2)'(A,B):- 'y(1)'(A,C),'y(1)'(C,B).
+'y(1)'(A,B):- 'x(1)'(A,C),'x(0)'(C,B).
+'x(1)'(A,B):- 'y(1)'(A,B),'x(0)'(A,B).
+'x(1)'(A,B):- 'x(0)'(A,C),'x(0)'(C,B).
+'x(0)'(A,B):-A>0,'x(0)'(A,B).
+'x(0)'(A,B):-A>0,B>0.
+'y[0]'(A,B):-'y(0)'(A,B).
+'d(1)'(A,B):-'d(1)'(A,B).
+'p(1)'(A,B):-'p(1)'(A,B).
+'y(0)'(A,B):-'y(0)'(A,B).

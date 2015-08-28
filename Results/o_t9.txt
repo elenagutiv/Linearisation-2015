@@ -1,6 +1,57 @@
 Eureka Definitions:
-'new1(1)'(A,B) :- 'd(0)'(A,B), 'd(0)'(B,A).
+'new1(1)'(A,B,C) :- 'x(1)'(A,B), 'x(0)'(B,C).
+'new2(1)'(A,B) :- 'y(1)'(A,B), 'x(0)'(A,B).
+'new3(1)'(A,B,C) :- 'x(0)'(A,B), 'x(0)'(B,C).
+'new4(1)'(A,B) :- 'y(1)'(A,B), 'y(0)'(A,B).
+'new5(1)'(A,B) :- 'p(1)'(A,B), 'y(0)'(A,B).
+'new6(2)'(A,B,C,D) :- 'y(1)'(A,B), 'y(1)'(C,D).
+'new7(2)'(A,B,C,D) :- 'new2(1)'(A,B), 'y(1)'(C,D).
+'new8(2)'(A,B,C,D) :- 'x(0)'(A,B), 'y(1)'(C,D).
+'new9(2)'(A,B,C,D,E) :- 'new3(1)'(A,B,C), 'y(1)'(D,E).
+'new10(2)'(A,B,C,D) :- 'new1(1)'(A,B,C), 'y(1)'(C,D).
+'new11(2)'(A,B,C,D,E) :- 'new1(1)'(A,B,C), 'y(1)'(D,E).
 Linearised Program:
-'d(0)'(A,B) :- 'd(0)'(A,B).
-'p(1)'(A) :- A>0, 'new1(1)'(B,C).
-'new1(1)'(A,B) :- 'new1(1)'(A,B).
+'x(0)'(A,B) :- A>0, 'x(0)'(A,B).
+'x(0)'(A,B) :- A>0, B>0.
+'y[0]'(A,B) :- 'y(0)'(A,B).
+'d(1)'(A,B) :- 'd(1)'(A,B).
+'p(1)'(A,B) :- 'p(1)'(A,B).
+'y(0)'(A,B) :- 'y(0)'(A,B).
+'y(1)'(A,B) :- C>0, B>0, 'x(1)'(A,C).
+'y(1)'(A,B) :- C>0, 'new1(1)'(A,C,B).
+'new1(1)'(A,B,C) :- B>0, C>0, 'x(1)'(A,B).
+'new1(1)'(A,B,C) :- B>0, 'new1(1)'(A,B,C).
+'x(1)'(A,B) :- A>0, B>0, 'y(1)'(A,B).
+'x(1)'(A,B) :- A>0, 'new2(1)'(A,B).
+'new2(1)'(A,B) :- A>0, B>0, 'y(1)'(A,B).
+'new2(1)'(A,B) :- A>0, 'new2(1)'(A,B).
+'x(1)'(A,B) :- A>0, C>0, 'x(0)'(C,B).
+'x(1)'(A,B) :- A>0, 'new3(1)'(A,C,B).
+'new3(1)'(A,B,C) :- A>0, B>0, 'x(0)'(B,C).
+'new3(1)'(A,B,C) :- A>0, 'new3(1)'(A,B,C).
+'p(1)'(A,B) :- 'new4(1)'(A,B).
+'new4(1)'(A,B) :- 'new4(1)'(A,B).
+'d(1)'(A,B) :- 'new5(1)'(A,B).
+'new5(1)'(A,B) :- 'new5(1)'(A,B).
+'z(2)'(A,B) :- C>0, D>0, A>0, E>0, 'y(1)'(D,B).
+'z(2)'(A,B) :- C>0, D>0, A>0, 'new6(2)'(A,C,D,B).
+'z(2)'(A,B) :- C>0, D>0, A>0, 'new7(2)'(A,C,D,B).
+'z(2)'(A,B) :- C>0, D>0, A>0, E>0, 'new8(2)'(E,C,D,B).
+'z(2)'(A,B) :- C>0, D>0, A>0, 'new9(2)'(A,E,C,D,B).
+'z(2)'(A,B) :- C>0, 'new10(2)'(A,C,D,B).
+'new6(2)'(A,B,C,D) :- E>0, B>0, A>0, 'new6(2)'(A,E,C,D).
+'new6(2)'(A,B,C,D) :- E>0, B>0, A>0, 'new7(2)'(A,E,C,D).
+'new6(2)'(A,B,C,D) :- E>0, B>0, A>0, F>0, 'new8(2)'(F,E,C,D).
+'new6(2)'(A,B,C,D) :- E>0, B>0, A>0, 'new9(2)'(A,F,E,C,D).
+'new6(2)'(A,B,C,D) :- E>0, 'new11(2)'(A,E,B,C,D).
+'new7(2)'(A,B,C,D) :- A>0, B>0, 'new6(2)'(A,B,C,D).
+'new7(2)'(A,B,C,D) :- A>0, 'new7(2)'(A,B,C,D).
+'new8(2)'(A,B,C,D) :- A>0, B>0, 'y(1)'(C,D).
+'new8(2)'(A,B,C,D) :- A>0, 'new8(2)'(A,B,C,D).
+'new9(2)'(A,B,C,D,E) :- A>0, B>0, 'new8(2)'(B,C,D,E).
+'new9(2)'(A,B,C,D,E) :- A>0, 'new9(2)'(A,B,C,D,E).
+'new10(2)'(A,B,C,D) :- B>0, 'new10(2)'(A,B,C,D).
+'new10(2)'(A,B,C,D) :- B>0, C>0, A>0, 'new6(2)'(A,B,C,D).
+'new10(2)'(A,B,C,D) :- B>0, C>0, A>0, 'new7(2)'(A,B,C,D).
+'new10(2)'(A,B,C,D) :- B>0, C>0, A>0, E>0, 'new8(2)'(E,B,C,D).
+'new10(2)'(A,B,C,D) :- B>0, C>0, A>0, 'new9(2)'(A,E,B,C,D).

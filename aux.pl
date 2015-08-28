@@ -66,7 +66,7 @@ elp(NLIds,DG):-
 
 fold_clause((H1:-Body1),(H2:-Body2),(H1:-Body3)) :-
 	select_list(Body2,Body1,Cs),
-    append([Cs,[H2]],Body3),
+    append([Cs,[H2]],Body3).
     is_linear((_:-Body3)). % the result of folding operation is a linear clause.
 
 % Provided by J.P. Gallagher.
