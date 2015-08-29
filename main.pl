@@ -297,13 +297,27 @@ all_linear([],[]).
 
 % F-tree construction methods.
 
-f_tree_cons([(H1:-B1)|ECls],[(H3:-B3)|RCls]):-
+f_tree_cons([(H1:-B1)|ECls],[(H2:-B2)|RCls]):-
 	separate_constraints(B1,_,B1s),
-	findall((H2:-B2),(my_ed(EH,EB,_),subsumes_term(EB,B1s),fold_clause((H1:-B1),(EH:-EB),(H2:-B2))),FCls),
-	FCls=[(H3:-B3)], % Only one ED can fold (H1:-B1) and therefore,the result is one clause.
+	findall(EB,(my_ed(_,EB,_),subsumes_term(EB,B1s)),EBs),
+	ms_ed(EBs,(H:-B)),
+	fold_clause((H1:-B1),(H:-B),(H2:-B2)),
 	!,
 	f_tree_cons(ECls,RCls).
 f_tree_cons([],[]).
+
+ms_ed(EBs,(H:-B)):-
+	ms(EBs,B1),
+	my_ed(H,B,_),
+	B=@=B1.
+
+ms([L|Ls],M):-
+	foldl(most_specific,Ls,L,M).
+
+most_specific(B1,B2,B2):-
+	subsumes_term(B1,B2),
+	\+ subsumes_term(B2,B1).
+most_specific(B1,_,B1).
 
 % Eureka Definition methods.
 
