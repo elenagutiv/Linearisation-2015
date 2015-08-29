@@ -299,7 +299,7 @@ all_linear([],[]).
 
 f_tree_cons([(H1:-B1)|ECls],[(H3:-B3)|RCls]):-
 	separate_constraints(B1,_,B1s),
-	findall((H2:-B2),(my_ed(EH,EB,_),EB=@=B1s,fold_clause((H1:-B1),(EH:-EB),(H2:-B2))),FCls),
+	findall((H2:-B2),(my_ed(EH,EB,_),subsumes_term(EB,B1s),fold_clause((H1:-B1),(EH:-EB),(H2:-B2))),FCls),
 	FCls=[(H3:-B3)], % Only one ED can fold (H1:-B1) and therefore,the result is one clause.
 	!,
 	f_tree_cons(ECls,RCls).

@@ -302,6 +302,7 @@ constraint(1=0).
 constraint(true).
 constraint(fail).
 
+% Provided by J.P. Gallagher.
 % Succeeds if list Ds is the result of eliminating all constraints ([B|Cs]) from list [B|Bs].
 %	[B|Bs] is the list containing all the elements (constraints and predicates) of the body of a clause.
 separate_constraints([B|Bs],[B|Cs],Ds) :-
