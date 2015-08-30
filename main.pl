@@ -306,14 +306,24 @@ f_tree_cons([(H1:-B1)|ECls],[(H2:-B2)|RCls]):-
 	f_tree_cons(ECls,RCls).
 f_tree_cons([],[]).
 
+% If there is more than one ED whose body generalise the body of the clause to be folded,
+% ms_ed selects the most specific conjunction of atoms in the list of bodies EBs and, therefore
+% the best ED to fold the given clause.
+% 	EBs is a list that contains bodies of EDs (conjunctions of atoms) that generalise
+%	the body of the clause to be folded.
+%	(H:-B) is the selected ED to fold the given clause. 
 ms_ed(EBs,(H:-B)):-
 	ms(EBs,B1),
 	my_ed(H,B,_),
 	B=@=B1.
 
+% Succeeds if M is the most specific conjunction of atoms in [L|Ls].
 ms([L|Ls],M):-
 	foldl(most_specific,Ls,L,M).
 
+% Succeeds if B2 is more specific than B1.
+% B2 is more specific than B1 iff there exists a substitution on B1 that makes it equivalent to B2,
+% but there is not such a substitution on B2 that makes it equivalent to B1.
 most_specific(B1,B2,B2):-
 	subsumes_term(B1,B2),
 	\+ subsumes_term(B2,B1).
