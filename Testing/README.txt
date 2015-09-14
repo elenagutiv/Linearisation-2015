@@ -7,7 +7,6 @@ This folder contains:
 
 -run-tests.sh: Script to automatizes the generation of P1 and P2 from P0 and the execution of qarmc.
 
--qarmc.osx: QARMC Tool.
 -kdim.pl: Procedure that generates at-most-k dimension program from a given set of constrained horn clauses.
 
 How to run run-tests.sh:
