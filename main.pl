@@ -1,5 +1,7 @@
-:- module(main,[main/1,go/1,go/2]).
+:- module(main,[script/0,main/1,go/1,go/2]).
 :- use_module(clauses).
+
+:- dynamic script/1.
 
 % Gutierrez Viedma, Elena
 % Adapted from pocedure described in:
@@ -27,9 +29,24 @@
 %command line usage (if compiled with SWI Prolog command):
 % swipl main.pl
 
+script :-
+	current_prolog_flag(argv,Args),
+	get_arguments(Args,F,OutFile),
+	go_s(F,OutFile).
+
+get_arguments(Args,F,OutFile):-
+	Args = [F,OutFile].
+
 go(F):-
+	assert(script(false)),
 	main(['-prg',F]).
+
 go(FI,FO):-
+	assert(script(false)),
+	main(['-prg',FI,'-o',FO]).
+
+go_s(FI,FO):-
+	assert(script(true)),
 	main(['-prg',FI,'-o',FO]).
 
 main(ArgV) :-
@@ -361,7 +378,7 @@ intro_eureka_def(_,_,_):-
 
 msg(B0s,B1s,T):-
 	term_subsumer(B0s,B1s,T),
-	non_trivial_msg(T).
+	non_trivial_msg(T). % msg has to be a conjunction of atoms.
 
 non_trivial_msg([T|Ts]):-
 	nonvar(T),
@@ -372,6 +389,9 @@ non_trivial_msg([]).
 % Output methods.
 
 show_output(OutS):-
+	script(T),
+	T=false,
+	!,
 	findall((EH:-EB),my_ed(EH,EB,_),EDs),
 	clauseVars(EDs),
 	write(OutS,'Eureka Definitions:'),nl(OutS),
@@ -379,6 +399,12 @@ show_output(OutS):-
 	findall((H:-B),my_clause(H,B,_),LCls),
 	clauseVars(LCls),
 	write(OutS,'Linearised Program:'),nl(OutS),
+	write_clauses(LCls,OutS).
+show_output(OutS):-
+	script(T),
+	T=true,
+	findall((H:-B),my_clause(H,B,_),LCls),
+	clauseVars(LCls),
 	write_clauses(LCls,OutS).
 
 clauseVars([(H:-B)|LCls]):-
