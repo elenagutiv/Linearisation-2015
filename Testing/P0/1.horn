@@ -1,0 +1,5 @@
+a(X,Y):-b(X,Z),a(Z,Y).
+a(X,Y):-b(X,Z),b(X,Z).
+b(X,Y):-X>0,c(Y).
+c(X):-X<0.
+a(Z,Y):-Z=Y.
