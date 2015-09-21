@@ -1,4 +1,0 @@
-s(I):-K is I-1, s(K), a(I,K), s(K).
-s(I):-p(I).
-a(I,K):-K is I-1.
-p(0).

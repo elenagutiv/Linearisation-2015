@@ -10,7 +10,7 @@ OPTIONS:
   -h      Show this message
   -t <x>  Timeout for each test (in seconds)
   -k <x>  Index value to generate the at-most-x dimension program
-  -n <x>  Id of the program to be tested. 
+  -f <x>  Name of the file to be tested (without .horn extension). 
 
 EXAMPLES:
 $0 -t 15 unit           # run unit tests with 15 seconds for timeout
@@ -36,8 +36,8 @@ while (( "$#" )); do
   elif [[ "$1" == "-k" ]]; then
     K=$2
     shift
-  elif [[ "$1" == "-n" ]]; then
-    N=$2
+  elif [[ "$1" == "-f" ]]; then
+    F=$2
     shift
   elif [[ ${1:0:1} == "-" ]]; then
     EXTRAOPTS="$EXTRAOPTS $1"
@@ -51,13 +51,16 @@ done
 KDIM=kdim.pl
 MAIN=../main.pl
 
-base="$N".horn
+base="$F".horn
 
 P0_PATH=P0/$base
 P1_PATH=P1/$base
 P2_PATH=P2/$base
 
 swipl -f "$KDIM" -g script,halt -- $P0_PATH $K $P1_PATH
+
+echo false:-\'false[$K]\'. >> $P1_PATH
+
 swipl -f "$MAIN" -g script,halt -- $P1_PATH $P2_PATH
 
 # --------------------------------------------------------------------------------
@@ -65,7 +68,7 @@ swipl -f "$MAIN" -g script,halt -- $P1_PATH $P2_PATH
 echo "Running test.."
 echo "qarmc$EXTRAOPTS"
 echo "timeout: $TIMELIMIT"
-echo "# test: $N"
+echo "# test: $F"
 echo
 
 GOOD=0
@@ -80,7 +83,7 @@ for file in $P0_PATH $P1_PATH $P2_PATH; do
 
   logfile=$file.`date +%Y.%m.%d.%H.%M`.log
   #Note that it's essential to run this using time here
-  OUTPUT=`(time gtimeout $TIMELIMIT ./qarmc.osx $EXTRAOPTS $file > $logfile) 2>&1`
+  OUTPUT=`(time gtimeout $TIMELIMIT ./qarmc-latest.osx $EXTRAOPTS $file > $logfile) 2>&1`
 #  OUTPUT=`timeout $TIMELIMIT ./qarmc $EXTRAOPTS "$file" >& "$file.log"`
 #  OUTPUT=`timeout $TIMELIMIT ./qarmc $EXTRAOPTS "$file" 2>&1`
   RES=$?

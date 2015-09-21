@@ -1,3 +1,0 @@
-p(X,Y):- X>0,Y>0.
-p(X,Y):- p(X,Z), p(Z,Y).
-d(X,Y):- p(X,Y), p(Y,X).

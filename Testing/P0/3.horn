@@ -1,4 +1,0 @@
-a(X,Y):-b(X,Y),b(Y,X).
-b(X,Y):-a(X,Z),b(Z,Y).
-b(X,Y):-c(X,Y),c(Y,X).
-c(X,Y):-X>0,Y>0.
