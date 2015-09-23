@@ -1,0 +1,172 @@
+'main_qf(2)' :- A=<2+ (B-C)/2, 'main_q2(2)'(D,E,F,A,B,C).
+'main_qf(1)' :- A=<2+ (B-C)/2, 'main_q2(1)'(D,E,F,A,B,C).
+'main_qf(0)' :- A=<2+ (B-C)/2, 'main_q2(0)'(D,E,F,A,B,C).
+'false(2)' :- A>2+ (B-C)/2, 'main_q2(2)'(D,E,F,A,B,C).
+'false(1)' :- A>2+ (B-C)/2, 'main_q2(1)'(D,E,F,A,B,C).
+'false(0)' :- A>2+ (B-C)/2, 'main_q2(0)'(D,E,F,A,B,C).
+'main_q1(2)'(A,B,C,D,E,F) :- F>=0, E>=0, E>=F, 'main_q0(2)'(A,B,C,G,H,I).
+'main_q1(1)'(A,B,C,D,E,F) :- F>=0, E>=0, E>=F, 'main_q0(1)'(A,B,C,G,H,I).
+'main_q1(0)'(A,B,C,D,E,F) :- F>=0, E>=0, E>=F, 'main_q0(0)'(A,B,C,G,H,I).
+'main_q0(0)'(A,B,C,D,E,F) :- A=D, B=E, C=F.
+'palindrome_q4(2)'(A,B,C,D,E,F) :- D=1, G=F, H=E, I=J, 'palindrome_q3(2)'(A,C,B,K,L,G,H,I).
+'palindrome_q4(1)'(A,B,C,D,E,F) :- D=1, G=F, H=E, I=J, 'palindrome_q3(1)'(A,C,B,K,L,G,H,I).
+'palindrome_q4(0)'(A,B,C,D,E,F) :- D=1, G=F, H=E, I=J, 'palindrome_q3(0)'(A,C,B,K,L,G,H,I).
+'palindrome_q4(2)'(A,B,C,D,E,F) :- D=1+G, H=F, I=E, G=J, 'palindrome_q2(2)'(A,C,B,K,L,H,I,G).
+'palindrome_q4(1)'(A,B,C,D,E,F) :- D=1+G, H=F, I=E, G=J, 'palindrome_q2(1)'(A,C,B,K,L,H,I,G).
+'palindrome_q4(0)'(A,B,C,D,E,F) :- D=1+G, H=F, I=E, G=J, 'palindrome_q2(0)'(A,C,B,K,L,H,I,G).
+'palindrome_q3(2)'(A,B,C,D,E,F,G,H) :- I>=J, K=E, J=F, I=G, L=H, 'palindrome_q0(2)'(A,B,C,D,K,J,I,L).
+'palindrome_q3(1)'(A,B,C,D,E,F,G,H) :- I>=J, K=E, J=F, I=G, L=H, 'palindrome_q0(1)'(A,B,C,D,K,J,I,L).
+'palindrome_q3(0)'(A,B,C,D,E,F,G,H) :- I>=J, K=E, J=F, I=G, L=H, 'palindrome_q0(0)'(A,B,C,D,K,J,I,L).
+'palindrome_q1(2)'(A,B,C,D,E,F,G,H) :- I<J, K=E, J=F, I=G, L=H, 'palindrome_q0(2)'(A,B,C,D,K,J,I,L).
+'palindrome_q1(1)'(A,B,C,D,E,F,G,H) :- I<J, K=E, J=F, I=G, L=H, 'palindrome_q0(1)'(A,B,C,D,K,J,I,L).
+'palindrome_q1(0)'(A,B,C,D,E,F,G,H) :- I<J, K=E, J=F, I=G, L=H, 'palindrome_q0(0)'(A,B,C,D,K,J,I,L).
+'palindrome_q0(2)'(A,B,C,D,E,F,G,H) :- C=I+1, B=J-1, A=E, B=F, C=G, D=H, 'palindrome_q1(2)'(K,L,M,N,O,J,I,P).
+'palindrome_q0(1)'(A,B,C,D,E,F,G,H) :- C=I+1, B=J-1, A=E, B=F, C=G, D=H, 'palindrome_q1(1)'(K,L,M,N,O,J,I,P).
+'palindrome_q0(0)'(A,B,C,D,E,F,G,H) :- C=I+1, B=J-1, A=E, B=F, C=G, D=H, 'palindrome_q1(0)'(K,L,M,N,O,J,I,P).
+'palindrome_q0(2)'(A,B,C,D,E,F,G,H) :- C=I, B=J, A=E, B=F, C=G, D=H, 'main_q1(2)'(K,L,M,N,J,I).
+'palindrome_q0(1)'(A,B,C,D,E,F,G,H) :- C=I, B=J, A=E, B=F, C=G, D=H, 'main_q1(1)'(K,L,M,N,J,I).
+'palindrome_q0(0)'(A,B,C,D,E,F,G,H) :- C=I, B=J, A=E, B=F, C=G, D=H, 'main_q1(0)'(K,L,M,N,J,I).
+'false[2]' :- 'false(2)'.
+'false[2]' :- 'false(1)'.
+'false[2]' :- 'false(0)'.
+'false[1]' :- 'false(1)'.
+'false[1]' :- 'false(0)'.
+'false[0]' :- 'false(0)'.
+'main_q0[2]'(A,B,C,D,E,F) :- 'main_q0(2)'(A,B,C,D,E,F).
+'main_q0[2]'(A,B,C,D,E,F) :- 'main_q0(1)'(A,B,C,D,E,F).
+'main_q0[2]'(A,B,C,D,E,F) :- 'main_q0(0)'(A,B,C,D,E,F).
+'main_q0[1]'(A,B,C,D,E,F) :- 'main_q0(1)'(A,B,C,D,E,F).
+'main_q0[1]'(A,B,C,D,E,F) :- 'main_q0(0)'(A,B,C,D,E,F).
+'main_q0[0]'(A,B,C,D,E,F) :- 'main_q0(0)'(A,B,C,D,E,F).
+'main_q1[2]'(A,B,C,D,E,F) :- 'main_q1(2)'(A,B,C,D,E,F).
+'main_q1[2]'(A,B,C,D,E,F) :- 'main_q1(1)'(A,B,C,D,E,F).
+'main_q1[2]'(A,B,C,D,E,F) :- 'main_q1(0)'(A,B,C,D,E,F).
+'main_q1[1]'(A,B,C,D,E,F) :- 'main_q1(1)'(A,B,C,D,E,F).
+'main_q1[1]'(A,B,C,D,E,F) :- 'main_q1(0)'(A,B,C,D,E,F).
+'main_q1[0]'(A,B,C,D,E,F) :- 'main_q1(0)'(A,B,C,D,E,F).
+'main_q2[2]'(A,B,C,D,E,F) :- 'main_q2(2)'(A,B,C,D,E,F).
+'main_q2[2]'(A,B,C,D,E,F) :- 'main_q2(1)'(A,B,C,D,E,F).
+'main_q2[2]'(A,B,C,D,E,F) :- 'main_q2(0)'(A,B,C,D,E,F).
+'main_q2[1]'(A,B,C,D,E,F) :- 'main_q2(1)'(A,B,C,D,E,F).
+'main_q2[1]'(A,B,C,D,E,F) :- 'main_q2(0)'(A,B,C,D,E,F).
+'main_q2[0]'(A,B,C,D,E,F) :- 'main_q2(0)'(A,B,C,D,E,F).
+'main_qf[2]' :- 'main_qf(2)'.
+'main_qf[2]' :- 'main_qf(1)'.
+'main_qf[2]' :- 'main_qf(0)'.
+'main_qf[1]' :- 'main_qf(1)'.
+'main_qf[1]' :- 'main_qf(0)'.
+'main_qf[0]' :- 'main_qf(0)'.
+'palindrome_q0[2]'(A,B,C,D,E,F,G,H) :- 'palindrome_q0(2)'(A,B,C,D,E,F,G,H).
+'palindrome_q0[2]'(A,B,C,D,E,F,G,H) :- 'palindrome_q0(1)'(A,B,C,D,E,F,G,H).
+'palindrome_q0[2]'(A,B,C,D,E,F,G,H) :- 'palindrome_q0(0)'(A,B,C,D,E,F,G,H).
+'palindrome_q0[1]'(A,B,C,D,E,F,G,H) :- 'palindrome_q0(1)'(A,B,C,D,E,F,G,H).
+'palindrome_q0[1]'(A,B,C,D,E,F,G,H) :- 'palindrome_q0(0)'(A,B,C,D,E,F,G,H).
+'palindrome_q0[0]'(A,B,C,D,E,F,G,H) :- 'palindrome_q0(0)'(A,B,C,D,E,F,G,H).
+'palindrome_q1[2]'(A,B,C,D,E,F,G,H) :- 'palindrome_q1(2)'(A,B,C,D,E,F,G,H).
+'palindrome_q1[2]'(A,B,C,D,E,F,G,H) :- 'palindrome_q1(1)'(A,B,C,D,E,F,G,H).
+'palindrome_q1[2]'(A,B,C,D,E,F,G,H) :- 'palindrome_q1(0)'(A,B,C,D,E,F,G,H).
+'palindrome_q1[1]'(A,B,C,D,E,F,G,H) :- 'palindrome_q1(1)'(A,B,C,D,E,F,G,H).
+'palindrome_q1[1]'(A,B,C,D,E,F,G,H) :- 'palindrome_q1(0)'(A,B,C,D,E,F,G,H).
+'palindrome_q1[0]'(A,B,C,D,E,F,G,H) :- 'palindrome_q1(0)'(A,B,C,D,E,F,G,H).
+'palindrome_q2[2]'(A,B,C,D,E,F,G,H) :- 'palindrome_q2(2)'(A,B,C,D,E,F,G,H).
+'palindrome_q2[2]'(A,B,C,D,E,F,G,H) :- 'palindrome_q2(1)'(A,B,C,D,E,F,G,H).
+'palindrome_q2[2]'(A,B,C,D,E,F,G,H) :- 'palindrome_q2(0)'(A,B,C,D,E,F,G,H).
+'palindrome_q2[1]'(A,B,C,D,E,F,G,H) :- 'palindrome_q2(1)'(A,B,C,D,E,F,G,H).
+'palindrome_q2[1]'(A,B,C,D,E,F,G,H) :- 'palindrome_q2(0)'(A,B,C,D,E,F,G,H).
+'palindrome_q2[0]'(A,B,C,D,E,F,G,H) :- 'palindrome_q2(0)'(A,B,C,D,E,F,G,H).
+'palindrome_q3[2]'(A,B,C,D,E,F,G,H) :- 'palindrome_q3(2)'(A,B,C,D,E,F,G,H).
+'palindrome_q3[2]'(A,B,C,D,E,F,G,H) :- 'palindrome_q3(1)'(A,B,C,D,E,F,G,H).
+'palindrome_q3[2]'(A,B,C,D,E,F,G,H) :- 'palindrome_q3(0)'(A,B,C,D,E,F,G,H).
+'palindrome_q3[1]'(A,B,C,D,E,F,G,H) :- 'palindrome_q3(1)'(A,B,C,D,E,F,G,H).
+'palindrome_q3[1]'(A,B,C,D,E,F,G,H) :- 'palindrome_q3(0)'(A,B,C,D,E,F,G,H).
+'palindrome_q3[0]'(A,B,C,D,E,F,G,H) :- 'palindrome_q3(0)'(A,B,C,D,E,F,G,H).
+'palindrome_q4[2]'(A,B,C,D,E,F) :- 'palindrome_q4(2)'(A,B,C,D,E,F).
+'palindrome_q4[2]'(A,B,C,D,E,F) :- 'palindrome_q4(1)'(A,B,C,D,E,F).
+'palindrome_q4[2]'(A,B,C,D,E,F) :- 'palindrome_q4(0)'(A,B,C,D,E,F).
+'palindrome_q4[1]'(A,B,C,D,E,F) :- 'palindrome_q4(1)'(A,B,C,D,E,F).
+'palindrome_q4[1]'(A,B,C,D,E,F) :- 'palindrome_q4(0)'(A,B,C,D,E,F).
+'palindrome_q4[0]'(A,B,C,D,E,F) :- 'palindrome_q4(0)'(A,B,C,D,E,F).
+false :- 'false[2]'.
+'palindrome_q2(1)'(A,B,C,D,E,F,G,H) :- I=J+1, K=L-1, M=H, N=E, L=F, J=G, M=1, O=P, Q=R, S=T, U>=V, W=X, V=O, U=Q, Y=S, I=Z, K=A1, B1=W, K=V, I=U, C1=Y, Z>=0, A1>=0, A1>=Z, D1=E1, F1=G1, H1=I1, 'palindrome_q1(1)'(A,B,C,D,N,L,J,J1).
+'palindrome_q2(1)'(A,B,C,D,E,F,G,H) :- I=J+1, K=L-1, M=H, N=E, L=F, J=G, M=1, O=P, Q=R, S=T, U>=V, W=X, V=O, U=Q, Y=S, I=Z+1, K=A1-1, B1=W, K=V, I=U, C1=Y, D1<E1, F1=G1, E1=A1, D1=Z, H1=I1, 'new1(1)'(A,B,C,D,N,L,J,J1,K1,L1,M1,N1,F1,E1,D1,H1).
+'new1(1)'(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P) :- K=Q, J=R, I=M, J=N, K=O, L=P, Q>=0, R>=0, R>=Q, S=T, U=V, W=X, 'palindrome_q1(1)'(A,B,C,D,E,F,G,H).
+'new1(1)'(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P) :- K=Q+1, J=R-1, I=M, J=N, K=O, L=P, S<T, U=V, T=R, S=Q, W=X, 'new1(1)'(A,B,C,D,E,F,G,H,Y,Z,A1,B1,U,T,S,W).
+'palindrome_q2(1)'(A,B,C,D,E,F,G,H) :- I=J+1, K=L-1, M=H, N=E, L=F, J=G, O<P, Q=N, P=L, O=J, R=S, C=T, B=U, A=Q, B=P, C=O, D=R, T>=0, U>=0, U>=T, V=W, X=Y, Z=A1, 'palindrome_q4(1)'(B1,I,K,M,C1,D1).
+'palindrome_q2(1)'(A,B,C,D,E,F,G,H) :- I=J+1, K=L-1, M=H, N=E, L=F, J=G, O<P, Q=N, P=L, O=J, R=S, C=T+1, B=U-1, A=Q, B=P, C=O, D=R, 'new2(1)'(V,I,K,M,W,X,Y,Z,A1,B1,C1,U,T,D1).
+'new2(1)'(A,B,C,D,E,F,G,H,I,J,K,L,M,N) :- O<P, Q=K, P=L, O=M, R=N, I=S, H=T, G=Q, H=P, I=O, J=R, S>=0, T>=0, T>=S, U=V, W=X, Y=Z, 'palindrome_q4(1)'(A,B,C,D,E,F).
+'new2(1)'(A,B,C,D,E,F,G,H,I,J,K,L,M,N) :- O<P, Q=K, P=L, O=M, R=N, I=S+1, H=T-1, G=Q, H=P, I=O, J=R, 'new2(1)'(A,B,C,D,E,F,U,V,W,X,Y,T,S,Z).
+'palindrome_q2(1)'(A,B,C,D,E,F,G,H) :- I=J+1, K=L-1, M=H, N=E, L=F, J=G, O<P, Q=N, P=L, O=J, R=S, C=T, B=U, A=Q, B=P, C=O, D=R, T>=0, U>=0, U>=T, V=W, X=Y, Z=A1, 'palindrome_q4(0)'(B1,I,K,M,C1,D1).
+'palindrome_q2(1)'(A,B,C,D,E,F,G,H) :- I=J+1, K=L-1, M=H, N=E, L=F, J=G, O<P, Q=N, P=L, O=J, R=S, C=T+1, B=U-1, A=Q, B=P, C=O, D=R, 'new3(1)'(V,W,X,Y,Z,U,T,A1,B1,I,K,M,C1,D1).
+'new3(1)'(A,B,C,D,E,F,G,H,I,J,K,L,M,N) :- O<P, Q=E, P=F, O=G, R=H, C=S, B=T, A=Q, B=P, C=O, D=R, S>=0, T>=0, T>=S, U=V, W=X, Y=Z, 'palindrome_q4(0)'(I,J,K,L,M,N).
+'new3(1)'(A,B,C,D,E,F,G,H,I,J,K,L,M,N) :- O<P, Q=E, P=F, O=G, R=H, C=S+1, B=T-1, A=Q, B=P, C=O, D=R, 'new3(1)'(U,V,W,X,Y,T,S,Z,I,J,K,L,M,N).
+'main_q2(1)'(A,B,C,D,E,F) :- G=H, I=J, K=D, J=E, H=F, K=1, L=M, N=O, P=Q, R>=S, T=U, S=L, R=N, V=P, G=W, I=X, Y=T, I=S, G=R, Z=V, W>=0, X>=0, X>=W, A1=B1, C1=D1, E1=F1, 'main_q1(1)'(A,B,C,G1,J,H).
+'main_q2(1)'(A,B,C,D,E,F) :- G=H, I=J, K=D, J=E, H=F, K=1, L=M, N=O, P=Q, R>=S, T=U, S=L, R=N, V=P, G=W+1, I=X-1, Y=T, I=S, G=R, Z=V, A1<B1, C1=D1, B1=X, A1=W, E1=F1, 'new4(1)'(A,B,C,G1,J,H,H1,I1,J1,K1,C1,B1,A1,E1).
+'new4(1)'(A,B,C,D,E,F,G,H,I,J,K,L,M,N) :- I=O, H=P, G=K, H=L, I=M, J=N, O>=0, P>=0, P>=O, Q=R, S=T, U=V, 'main_q1(1)'(A,B,C,D,E,F).
+'new4(1)'(A,B,C,D,E,F,G,H,I,J,K,L,M,N) :- I=O+1, H=P-1, G=K, H=L, I=M, J=N, Q<R, S=T, R=P, Q=O, U=V, 'new4(1)'(A,B,C,D,E,F,W,X,Y,Z,S,R,Q,U).
+'main_q2(1)'(A,B,C,D,E,F) :- G=H, I=J, K=D, J=E, H=F, H>=0, J>=0, J>=H, A=L, B=M, C=N, 'palindrome_q4(1)'(O,G,I,K,P,Q).
+'main_q2(1)'(A,B,C,D,E,F) :- G=H, I=J, K=D, J=E, H=F, H>=0, J>=0, J>=H, A=L, B=M, C=N, 'palindrome_q4(0)'(O,G,I,K,P,Q).
+'palindrome_q2(2)'(A,B,C,D,E,F,G,H) :- I=J+1, K=L-1, M=H, N=E, L=F, J=G, M=1+O, P=Q, R=S, O=T, U=V+1, W=X-1, Y=O, Z=A1, X=P, V=R, B1<C1, D1=Z, C1=X, B1=V, E1=F1, I=G1, K=H1, I1=D1, K=C1, I=B1, J1=E1, G1>=0, H1>=0, H1>=G1, K1=L1, M1=N1, O1=P1, Y=1, Q1=R1, S1=T1, U1=V1, W1>=X1, Y1=Z1, X1=Q1, W1=S1, A2=U1, U=B2, W=C2, D2=Y1, W=X1, U=W1, E2=A2, B2>=0, C2>=0, C2>=B2, F2=G2, H2=I2, J2=K2, 'palindrome_q1(2)'(A,B,C,D,N,L,J,L2).
+'palindrome_q2(2)'(A,B,C,D,E,F,G,H) :- I=J+1, K=L-1, M=H, N=E, L=F, J=G, M=1, O=P, Q=R, S=T, U>=V, W=X, V=O, U=Q, Y=S, I=Z+1, K=A1-1, B1=W, K=V, I=U, C1=Y, D1<E1, F1=G1, E1=A1, D1=Z, H1=I1, 'new5(2)'(A,B,C,D,N,L,J,J1,K1,L1,M1,N1,F1,E1,D1,H1).
+'palindrome_q2(2)'(A,B,C,D,E,F,G,H) :- I=J+1, K=L-1, M=H, N=E, L=F, J=G, M=1+O, P=Q, R=S, O=T, U=V+1, W=X-1, Y=O, Z=A1, X=P, V=R, B1<C1, D1=Z, C1=X, B1=V, E1=F1, I=G1, K=H1, I1=D1, K=C1, I=B1, J1=E1, G1>=0, H1>=0, H1>=G1, K1=L1, M1=N1, O1=P1, 'new6(2)'(A,B,C,D,N,L,J,Q1,R1,U,W,Y,S1,T1).
+'palindrome_q2(2)'(A,B,C,D,E,F,G,H) :- I=J+1, K=L-1, M=H, N=E, L=F, J=G, M=1+O, P=Q, R=S, O=T, U=V+1, W=X-1, Y=O, Z=A1, X=P, V=R, Y=1, B1=C1, D1=E1, F1=G1, H1>=I1, J1=K1, I1=B1, H1=D1, L1=F1, U=M1, W=N1, O1=J1, W=I1, U=H1, P1=L1, M1>=0, N1>=0, N1>=M1, Q1=R1, S1=T1, U1=V1, W1<X1, Y1=Z, X1=X, W1=V, Z1=A2, 'new5(2)'(A,B,C,D,N,L,J,B2,C2,K,I,D2,Y1,X1,W1,Z1).
+'palindrome_q2(2)'(A,B,C,D,E,F,G,H) :- I=J+1, K=L-1, M=H, N=E, L=F, J=G, M=1+O, P=Q, R=S, O=T, U=V+1, W=X-1, Y=O, Z=A1, X=P, V=R, Y=1, B1=C1, D1=E1, F1=G1, H1>=I1, J1=K1, I1=B1, H1=D1, L1=F1, U=M1+1, W=N1-1, O1=J1, W=I1, U=H1, P1=L1, Q1<R1, S1=T1, R1=N1, Q1=M1, U1=V1, W1=X1+1, Y1=Z1-1, A2=S1, Y1=R1, W1=Q1, B2=U1, C2<D2, E2=F2, D2=Z1, C2=X1, G2=H2, 'new7(2)'(A,B,C,D,N,L,J,I2,J2,K,I,K2,Z,X,V,L2,M2,N2,O2,P2,E2,D2,C2,G2).
+'palindrome_q2(2)'(A,B,C,D,E,F,G,H) :- I=J+1, K=L-1, M=H, N=E, L=F, J=G, M=1+O, P=Q, R=S, O=T, U=V+1, W=X-1, Y=O, Z=A1, X=P, V=R, Y=1, B1=C1, D1=E1, F1=G1, H1>=I1, J1=K1, I1=B1, H1=D1, L1=F1, U=M1+1, W=N1-1, O1=J1, W=I1, U=H1, P1=L1, Q1<R1, S1=T1, R1=N1, Q1=M1, U1=V1, W1=X1, Y1=Z1, A2=S1, Y1=R1, W1=Q1, B2=U1, X1>=0, Z1>=0, Z1>=X1, C2=D2, E2=F2, G2=H2, I2<J2, K2=Z, J2=X, I2=V, L2=M2, 'new5(2)'(A,B,C,D,N,L,J,N2,O2,K,I,P2,K2,J2,I2,L2).
+'palindrome_q2(2)'(A,B,C,D,E,F,G,H) :- I=J+1, K=L-1, M=H, N=E, L=F, J=G, M=1+O, P=Q, R=S, O=T, U=V+1, W=X-1, Y=O, Z=A1, X=P, V=R, B1<C1, D1=Z, C1=X, B1=V, E1=F1, I=G1+1, K=H1-1, I1=D1, K=C1, I=B1, J1=E1, K1<L1, M1=N1, L1=H1, K1=G1, O1=P1, Q1=R1, S1=T1, U1=M1, S1=L1, Q1=K1, V1=O1, R1>=0, T1>=0, T1>=R1, W1=X1, Y1=Z1, A2=B2, 'new6(2)'(A,B,C,D,N,L,J,C2,D2,U,W,Y,E2,F2).
+'palindrome_q2(2)'(A,B,C,D,E,F,G,H) :- I=J+1, K=L-1, M=H, N=E, L=F, J=G, M=1+O, P=Q, R=S, O=T, U=V+1, W=X-1, Y=O, Z=A1, X=P, V=R, B1<C1, D1=Z, C1=X, B1=V, E1=F1, I=G1+1, K=H1-1, I1=D1, K=C1, I=B1, J1=E1, K1<L1, M1=N1, L1=H1, K1=G1, O1=P1, Q1=R1+1, S1=T1-1, U1=M1, S1=L1, Q1=K1, V1=O1, 'new8(2)'(A,B,C,D,N,L,J,W1,X1,U,W,Y,Y1,Z1,A2,B2,C2,D2,E2,T1,R1,F2).
+'palindrome_q2(2)'(A,B,C,D,E,F,G,H) :- I=J+1, K=L-1, M=H, N=E, L=F, J=G, M=1+O, P=Q, R=S, O=T, U=V+1, W=X-1, Y=O, Z=A1, X=P, V=R, B1<C1, D1=Z, C1=X, B1=V, E1=F1, I=G1, K=H1, I1=D1, K=C1, I=B1, J1=E1, G1>=0, H1>=0, H1>=G1, K1=L1, M1=N1, O1=P1, Y=1, Q1=R1, S1=T1, U1=V1, W1>=X1, Y1=Z1, X1=Q1, W1=S1, A2=U1, U=B2+1, W=C2-1, D2=Y1, W=X1, U=W1, E2=A2, F2<G2, H2=I2, G2=C2, F2=B2, J2=K2, 'new9(2)'(A,B,C,D,N,L,J,L2,M2,N2,O2,P2,H2,G2,F2,J2).
+'palindrome_q2(2)'(A,B,C,D,E,F,G,H) :- I=J+1, K=L-1, M=H, N=E, L=F, J=G, M=1+O, P=Q, R=S, O=T, U=V+1, W=X-1, Y=O, Z=A1, X=P, V=R, B1<C1, D1=Z, C1=X, B1=V, E1=F1, I=G1+1, K=H1-1, I1=D1, K=C1, I=B1, J1=E1, K1<L1, M1=N1, L1=H1, K1=G1, O1=P1, Q1=R1+1, S1=T1-1, U1=M1, S1=L1, Q1=K1, V1=O1, 'new10(2)'(A,B,C,D,N,L,J,W1,X1,Y1,Z1,A2,B2,T1,R1,C2,D2,U,W,Y,E2,F2).
+'palindrome_q2(2)'(A,B,C,D,E,F,G,H) :- I=J+1, K=L-1, M=H, N=E, L=F, J=G, M=1+O, P=Q, R=S, O=T, U=V+1, W=X-1, Y=O, Z=A1, X=P, V=R, B1<C1, D1=Z, C1=X, B1=V, E1=F1, I=G1+1, K=H1-1, I1=D1, K=C1, I=B1, J1=E1, K1<L1, M1=N1, L1=H1, K1=G1, O1=P1, Q1=R1, S1=T1, U1=M1, S1=L1, Q1=K1, V1=O1, R1>=0, T1>=0, T1>=R1, W1=X1, Y1=Z1, A2=B2, Y=1, C2=D2, E2=F2, G2=H2, I2>=J2, K2=L2, J2=C2, I2=E2, M2=G2, 'new9(2)'(A,B,C,D,N,L,J,N2,O2,W,U,P2,K2,J2,I2,M2).
+'palindrome_q2(2)'(A,B,C,D,E,F,G,H) :- I=J+1, K=L-1, M=H, N=E, L=F, J=G, M=1, O=P, Q=R, S=T, U>=V, W=X, V=O, U=Q, Y=S, 'new9(2)'(A,B,C,D,N,L,J,Z,A1,K,I,B1,W,V,U,Y).
+'new5(2)'(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P) :- K=Q+1, J=R-1, I=M, J=N, K=O, L=P, S<T, U=V, T=R, S=Q, W=X, 'new5(2)'(A,B,C,D,E,F,G,H,Y,Z,A1,B1,U,T,S,W).
+'new6(2)'(A,B,C,D,E,F,G,H,I,J,K,L,M,N) :- L=1, O=N, P=M, Q=R, S>=T, U=V, T=O, S=P, W=Q, 'new5(2)'(A,B,C,D,E,F,G,H,I,K,J,X,U,T,S,W).
+'new6(2)'(A,B,C,D,E,F,G,H,I,J,K,L,M,N) :- L=1+O, P=N, Q=M, O=R, S=T+1, U=V-1, W=O, X=Y, V=P, T=Q, W=1, Z=A1, B1=C1, D1=E1, F1>=G1, H1=I1, G1=Z, F1=B1, J1=D1, S=K1+1, U=L1-1, M1=H1, U=G1, S=F1, N1=J1, O1<P1, Q1=R1, P1=L1, O1=K1, S1=T1, 'new7(2)'(A,B,C,D,E,F,G,H,I,K,J,U1,X,V,T,V1,W1,X1,Y1,Z1,Q1,P1,O1,S1).
+'new6(2)'(A,B,C,D,E,F,G,H,I,J,K,L,M,N) :- L=1+O, P=N, Q=M, O=R, S=T+1, U=V-1, W=O, X=Y, V=P, T=Q, Z<A1, B1=X, A1=V, Z=T, C1=D1, J=E1, K=F1, I=B1, K=A1, J=Z, G1=C1, E1>=0, F1>=0, F1>=E1, H1=I1, J1=K1, L1=M1, 'new6(2)'(A,B,C,D,E,F,G,H,N1,S,U,W,O1,P1).
+'new6(2)'(A,B,C,D,E,F,G,H,I,J,K,L,M,N) :- L=1+O, P=N, Q=M, O=R, S=T+1, U=V-1, W=O, X=Y, V=P, T=Q, Z<A1, B1=X, A1=V, Z=T, C1=D1, J=E1+1, K=F1-1, I=B1, K=A1, J=Z, G1=C1, 'new8(2)'(A,B,C,D,E,F,G,H,H1,S,U,W,I1,J1,K1,L1,M1,N1,O1,F1,E1,P1).
+'new6(2)'(A,B,C,D,E,F,G,H,I,J,K,L,M,N) :- L=1+O, P=N, Q=M, O=R, S=T+1, U=V-1, W=O, X=Y, V=P, T=Q, Z<A1, B1=X, A1=V, Z=T, C1=D1, J=E1+1, K=F1-1, I=B1, K=A1, J=Z, G1=C1, 'new10(2)'(A,B,C,D,E,F,G,H,H1,I1,J1,K1,L1,F1,E1,M1,N1,S,U,W,O1,P1).
+'new6(2)'(A,B,C,D,E,F,G,H,I,J,K,L,M,N) :- L=1+O, P=N, Q=M, O=R, S=T+1, U=V-1, W=O, X=Y, V=P, T=Q, W=1, Z=A1, B1=C1, D1=E1, F1>=G1, H1=I1, G1=Z, F1=B1, J1=D1, S=K1, U=L1, M1=H1, U=G1, S=F1, N1=J1, K1>=0, L1>=0, L1>=K1, O1=P1, Q1=R1, S1=T1, U1<V1, W1=X, V1=V, U1=T, X1=Y1, 'new5(2)'(A,B,C,D,E,F,G,H,I,K,J,Z1,W1,V1,U1,X1).
+'new6(2)'(A,B,C,D,E,F,G,H,I,J,K,L,M,N) :- L=1+O, P=N, Q=M, O=R, S=T+1, U=V-1, W=O, X=Y, V=P, T=Q, Z<A1, B1=X, A1=V, Z=T, C1=D1, J=E1, K=F1, I=B1, K=A1, J=Z, G1=C1, E1>=0, F1>=0, F1>=E1, H1=I1, J1=K1, L1=M1, W=1, N1=O1, P1=Q1, R1=S1, T1>=U1, V1=W1, U1=N1, T1=P1, X1=R1, 'new9(2)'(A,B,C,D,E,F,G,H,Y1,U,S,Z1,V1,U1,T1,X1).
+'new7(2)'(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X) :- S=Y+1, R=Z-1, Q=U, R=V, S=W, T=X, A1<B1, C1=D1, B1=Z, A1=Y, E1=F1, 'new7(2)'(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,G1,H1,I1,J1,C1,B1,A1,E1).
+'new7(2)'(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X) :- S=Y, R=Z, Q=U, R=V, S=W, T=X, Y>=0, Z>=0, Z>=Y, A1=B1, C1=D1, E1=F1, G1<H1, I1=M, H1=N, G1=O, J1=P, 'new5(2)'(A,B,C,D,E,F,G,H,I,J,K,L,I1,H1,G1,J1).
+'new8(2)'(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V) :- W<X, Y=S, X=T, W=U, Z=V, Q=A1, P=B1, O=Y, P=X, Q=W, R=Z, A1>=0, B1>=0, B1>=A1, C1=D1, E1=F1, G1=H1, 'new6(2)'(A,B,C,D,E,F,G,H,I,J,K,L,M,N).
+'new8(2)'(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V) :- W<X, Y=S, X=T, W=U, Z=V, Q=A1+1, P=B1-1, O=Y, P=X, Q=W, R=Z, 'new8(2)'(A,B,C,D,E,F,G,H,I,J,K,L,M,N,C1,D1,E1,F1,G1,B1,A1,H1).
+'new9(2)'(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P) :- K=Q, J=R, I=M, J=N, K=O, L=P, Q>=0, R>=0, R>=Q, S=T, U=V, W=X, 'palindrome_q1(2)'(A,B,C,D,E,F,G,H).
+'new9(2)'(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P) :- K=Q+1, J=R-1, I=M, J=N, K=O, L=P, S<T, U=V, T=R, S=Q, W=X, 'new9(2)'(A,B,C,D,E,F,G,H,Y,Z,A1,B1,U,T,S,W).
+'new10(2)'(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V) :- W<X, Y=M, X=N, W=O, Z=P, K=A1+1, J=B1-1, I=Y, J=X, K=W, L=Z, 'new10(2)'(A,B,C,D,E,F,G,H,C1,D1,E1,F1,G1,B1,A1,H1,Q,R,S,T,U,V).
+'new10(2)'(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V) :- W<X, Y=M, X=N, W=O, Z=P, K=A1, J=B1, I=Y, J=X, K=W, L=Z, A1>=0, B1>=0, B1>=A1, C1=D1, E1=F1, G1=H1, T=1, I1=V, J1=U, K1=L1, M1>=N1, O1=P1, N1=I1, M1=J1, Q1=K1, 'new9(2)'(A,B,C,D,E,F,G,H,Q,S,R,R1,O1,N1,M1,Q1).
+'palindrome_q2(2)'(A,B,C,D,E,F,G,H) :- I=J+1, K=L-1, M=H, N=E, L=F, J=G, O<P, Q=N, P=L, O=J, R=S, C=T, B=U, A=Q, B=P, C=O, D=R, T>=0, U>=0, U>=T, V=W, X=Y, Z=A1, 'palindrome_q4(2)'(B1,I,K,M,C1,D1).
+'palindrome_q2(2)'(A,B,C,D,E,F,G,H) :- I=J+1, K=L-1, M=H, N=E, L=F, J=G, O<P, Q=N, P=L, O=J, R=S, C=T+1, B=U-1, A=Q, B=P, C=O, D=R, 'new11(2)'(V,I,K,M,W,X,Y,Z,A1,B1,C1,U,T,D1).
+'palindrome_q2(2)'(A,B,C,D,E,F,G,H) :- I=J+1, K=L-1, M=H, N=E, L=F, J=G, O<P, Q=N, P=L, O=J, R=S, C=T+1, B=U-1, A=Q, B=P, C=O, D=R, 'new12(2)'(V,I,K,M,W,X,Y,Z,A1,B1,C1,U,T,D1).
+'new11(2)'(A,B,C,D,E,F,G,H,I,J,K,L,M,N) :- O<P, Q=K, P=L, O=M, R=N, I=S+1, H=T-1, G=Q, H=P, I=O, J=R, 'new11(2)'(A,B,C,D,E,F,U,V,W,X,Y,T,S,Z).
+'new12(2)'(A,B,C,D,E,F,G,H,I,J,K,L,M,N) :- O<P, Q=K, P=L, O=M, R=N, I=S, H=T, G=Q, H=P, I=O, J=R, S>=0, T>=0, T>=S, U=V, W=X, Y=Z, 'palindrome_q4(2)'(A,B,C,D,E,F).
+'new12(2)'(A,B,C,D,E,F,G,H,I,J,K,L,M,N) :- O<P, Q=K, P=L, O=M, R=N, I=S+1, H=T-1, G=Q, H=P, I=O, J=R, 'new12(2)'(A,B,C,D,E,F,U,V,W,X,Y,T,S,Z).
+'palindrome_q2(2)'(A,B,C,D,E,F,G,H) :- I=J+1, K=L-1, M=H, N=E, L=F, J=G, O<P, Q=N, P=L, O=J, R=S, C=T+1, B=U-1, A=Q, B=P, C=O, D=R, 'new13(2)'(V,W,X,Y,Z,U,T,A1,B1,I,K,M,C1,D1).
+'new13(2)'(A,B,C,D,E,F,G,H,I,J,K,L,M,N) :- O<P, Q=E, P=F, O=G, R=H, C=S+1, B=T-1, A=Q, B=P, C=O, D=R, 'new13(2)'(U,V,W,X,Y,T,S,Z,I,J,K,L,M,N).
+'main_q2(2)'(A,B,C,D,E,F) :- G=H, I=J, K=D, J=E, H=F, K=1+L, M=N, O=P, L=Q, R=S+1, T=U-1, V=L, W=X, U=M, S=O, Y<Z, A1=W, Z=U, Y=S, B1=C1, G=D1, I=E1, F1=A1, I=Z, G=Y, G1=B1, D1>=0, E1>=0, E1>=D1, H1=I1, J1=K1, L1=M1, V=1, N1=O1, P1=Q1, R1=S1, T1>=U1, V1=W1, U1=N1, T1=P1, X1=R1, R=Y1, T=Z1, A2=V1, T=U1, R=T1, B2=X1, Y1>=0, Z1>=0, Z1>=Y1, C2=D2, E2=F2, G2=H2, 'main_q1(2)'(A,B,C,I2,J,H).
+'main_q2(2)'(A,B,C,D,E,F) :- G=H, I=J, K=D, J=E, H=F, K=1, L=M, N=O, P=Q, R>=S, T=U, S=L, R=N, V=P, G=W+1, I=X-1, Y=T, I=S, G=R, Z=V, A1<B1, C1=D1, B1=X, A1=W, E1=F1, 'new14(2)'(A,B,C,G1,J,H,H1,I1,J1,K1,C1,B1,A1,E1).
+'main_q2(2)'(A,B,C,D,E,F) :- G=H, I=J, K=D, J=E, H=F, K=1+L, M=N, O=P, L=Q, R=S+1, T=U-1, V=L, W=X, U=M, S=O, Y<Z, A1=W, Z=U, Y=S, B1=C1, G=D1, I=E1, F1=A1, I=Z, G=Y, G1=B1, D1>=0, E1>=0, E1>=D1, H1=I1, J1=K1, L1=M1, 'new15(2)'(A,B,C,N1,J,H,O1,R,T,V,P1,Q1).
+'main_q2(2)'(A,B,C,D,E,F) :- G=H, I=J, K=D, J=E, H=F, K=1+L, M=N, O=P, L=Q, R=S+1, T=U-1, V=L, W=X, U=M, S=O, V=1, Y=Z, A1=B1, C1=D1, E1>=F1, G1=H1, F1=Y, E1=A1, I1=C1, R=J1, T=K1, L1=G1, T=F1, R=E1, M1=I1, J1>=0, K1>=0, K1>=J1, N1=O1, P1=Q1, R1=S1, T1<U1, V1=W, U1=U, T1=S, W1=X1, 'new14(2)'(A,B,C,Y1,J,H,Z1,I,G,A2,V1,U1,T1,W1).
+'main_q2(2)'(A,B,C,D,E,F) :- G=H, I=J, K=D, J=E, H=F, K=1+L, M=N, O=P, L=Q, R=S+1, T=U-1, V=L, W=X, U=M, S=O, V=1, Y=Z, A1=B1, C1=D1, E1>=F1, G1=H1, F1=Y, E1=A1, I1=C1, R=J1+1, T=K1-1, L1=G1, T=F1, R=E1, M1=I1, N1<O1, P1=Q1, O1=K1, N1=J1, R1=S1, T1=U1+1, V1=W1-1, X1=P1, V1=O1, T1=N1, Y1=R1, Z1<A2, B2=C2, A2=W1, Z1=U1, D2=E2, 'new16(2)'(A,B,C,F2,J,H,G2,I,G,H2,W,U,S,I2,J2,K2,L2,M2,B2,A2,Z1,D2).
+'main_q2(2)'(A,B,C,D,E,F) :- G=H, I=J, K=D, J=E, H=F, K=1+L, M=N, O=P, L=Q, R=S+1, T=U-1, V=L, W=X, U=M, S=O, V=1, Y=Z, A1=B1, C1=D1, E1>=F1, G1=H1, F1=Y, E1=A1, I1=C1, R=J1+1, T=K1-1, L1=G1, T=F1, R=E1, M1=I1, N1<O1, P1=Q1, O1=K1, N1=J1, R1=S1, T1=U1, V1=W1, X1=P1, V1=O1, T1=N1, Y1=R1, U1>=0, W1>=0, W1>=U1, Z1=A2, B2=C2, D2=E2, F2<G2, H2=W, G2=U, F2=S, I2=J2, 'new14(2)'(A,B,C,K2,J,H,L2,I,G,M2,H2,G2,F2,I2).
+'main_q2(2)'(A,B,C,D,E,F) :- G=H, I=J, K=D, J=E, H=F, K=1+L, M=N, O=P, L=Q, R=S+1, T=U-1, V=L, W=X, U=M, S=O, Y<Z, A1=W, Z=U, Y=S, B1=C1, G=D1+1, I=E1-1, F1=A1, I=Z, G=Y, G1=B1, H1<I1, J1=K1, I1=E1, H1=D1, L1=M1, N1=O1, P1=Q1, R1=J1, P1=I1, N1=H1, S1=L1, O1>=0, Q1>=0, Q1>=O1, T1=U1, V1=W1, X1=Y1, 'new15(2)'(A,B,C,Z1,J,H,A2,R,T,V,B2,C2).
+'main_q2(2)'(A,B,C,D,E,F) :- G=H, I=J, K=D, J=E, H=F, K=1+L, M=N, O=P, L=Q, R=S+1, T=U-1, V=L, W=X, U=M, S=O, Y<Z, A1=W, Z=U, Y=S, B1=C1, G=D1+1, I=E1-1, F1=A1, I=Z, G=Y, G1=B1, H1<I1, J1=K1, I1=E1, H1=D1, L1=M1, N1=O1+1, P1=Q1-1, R1=J1, P1=I1, N1=H1, S1=L1, 'new17(2)'(A,B,C,T1,J,H,U1,R,T,V,V1,W1,X1,Y1,Z1,A2,B2,Q1,O1,C2).
+'main_q2(2)'(A,B,C,D,E,F) :- G=H, I=J, K=D, J=E, H=F, K=1+L, M=N, O=P, L=Q, R=S+1, T=U-1, V=L, W=X, U=M, S=O, Y<Z, A1=W, Z=U, Y=S, B1=C1, G=D1, I=E1, F1=A1, I=Z, G=Y, G1=B1, D1>=0, E1>=0, E1>=D1, H1=I1, J1=K1, L1=M1, V=1, N1=O1, P1=Q1, R1=S1, T1>=U1, V1=W1, U1=N1, T1=P1, X1=R1, R=Y1+1, T=Z1-1, A2=V1, T=U1, R=T1, B2=X1, C2<D2, E2=F2, D2=Z1, C2=Y1, G2=H2, 'new18(2)'(A,B,C,I2,J,H,J2,K2,L2,M2,E2,D2,C2,G2).
+'main_q2(2)'(A,B,C,D,E,F) :- G=H, I=J, K=D, J=E, H=F, K=1+L, M=N, O=P, L=Q, R=S+1, T=U-1, V=L, W=X, U=M, S=O, Y<Z, A1=W, Z=U, Y=S, B1=C1, G=D1+1, I=E1-1, F1=A1, I=Z, G=Y, G1=B1, H1<I1, J1=K1, I1=E1, H1=D1, L1=M1, N1=O1+1, P1=Q1-1, R1=J1, P1=I1, N1=H1, S1=L1, 'new19(2)'(A,B,C,T1,J,H,U1,V1,W1,X1,Y1,Q1,O1,Z1,A2,R,T,V,B2,C2).
+'main_q2(2)'(A,B,C,D,E,F) :- G=H, I=J, K=D, J=E, H=F, K=1+L, M=N, O=P, L=Q, R=S+1, T=U-1, V=L, W=X, U=M, S=O, Y<Z, A1=W, Z=U, Y=S, B1=C1, G=D1+1, I=E1-1, F1=A1, I=Z, G=Y, G1=B1, H1<I1, J1=K1, I1=E1, H1=D1, L1=M1, N1=O1, P1=Q1, R1=J1, P1=I1, N1=H1, S1=L1, O1>=0, Q1>=0, Q1>=O1, T1=U1, V1=W1, X1=Y1, V=1, Z1=A2, B2=C2, D2=E2, F2>=G2, H2=I2, G2=Z1, F2=B2, J2=D2, 'new18(2)'(A,B,C,K2,J,H,L2,T,R,M2,H2,G2,F2,J2).
+'main_q2(2)'(A,B,C,D,E,F) :- G=H, I=J, K=D, J=E, H=F, K=1, L=M, N=O, P=Q, R>=S, T=U, S=L, R=N, V=P, 'new18(2)'(A,B,C,W,J,H,X,I,G,Y,T,S,R,V).
+'new14(2)'(A,B,C,D,E,F,G,H,I,J,K,L,M,N) :- I=O+1, H=P-1, G=K, H=L, I=M, J=N, Q<R, S=T, R=P, Q=O, U=V, 'new14(2)'(A,B,C,D,E,F,W,X,Y,Z,S,R,Q,U).
+'new15(2)'(A,B,C,D,E,F,G,H,I,J,K,L) :- J=1, M=L, N=K, O=P, Q>=R, S=T, R=M, Q=N, U=O, 'new14(2)'(A,B,C,D,E,F,G,I,H,V,S,R,Q,U).
+'new15(2)'(A,B,C,D,E,F,G,H,I,J,K,L) :- J=1+M, N=L, O=K, M=P, Q=R+1, S=T-1, U=M, V=W, T=N, R=O, U=1, X=Y, Z=A1, B1=C1, D1>=E1, F1=G1, E1=X, D1=Z, H1=B1, Q=I1+1, S=J1-1, K1=F1, S=E1, Q=D1, L1=H1, M1<N1, O1=P1, N1=J1, M1=I1, Q1=R1, 'new16(2)'(A,B,C,D,E,F,G,I,H,S1,V,T,R,T1,U1,V1,W1,X1,O1,N1,M1,Q1).
+'new15(2)'(A,B,C,D,E,F,G,H,I,J,K,L) :- J=1+M, N=L, O=K, M=P, Q=R+1, S=T-1, U=M, V=W, T=N, R=O, X<Y, Z=V, Y=T, X=R, A1=B1, H=C1, I=D1, G=Z, I=Y, H=X, E1=A1, C1>=0, D1>=0, D1>=C1, F1=G1, H1=I1, J1=K1, 'new15(2)'(A,B,C,D,E,F,L1,Q,S,U,M1,N1).
+'new15(2)'(A,B,C,D,E,F,G,H,I,J,K,L) :- J=1+M, N=L, O=K, M=P, Q=R+1, S=T-1, U=M, V=W, T=N, R=O, X<Y, Z=V, Y=T, X=R, A1=B1, H=C1+1, I=D1-1, G=Z, I=Y, H=X, E1=A1, 'new17(2)'(A,B,C,D,E,F,F1,Q,S,U,G1,H1,I1,J1,K1,L1,M1,D1,C1,N1).
+'new15(2)'(A,B,C,D,E,F,G,H,I,J,K,L) :- J=1+M, N=L, O=K, M=P, Q=R+1, S=T-1, U=M, V=W, T=N, R=O, X<Y, Z=V, Y=T, X=R, A1=B1, H=C1+1, I=D1-1, G=Z, I=Y, H=X, E1=A1, 'new19(2)'(A,B,C,D,E,F,F1,G1,H1,I1,J1,D1,C1,K1,L1,Q,S,U,M1,N1).
+'new15(2)'(A,B,C,D,E,F,G,H,I,J,K,L) :- J=1+M, N=L, O=K, M=P, Q=R+1, S=T-1, U=M, V=W, T=N, R=O, U=1, X=Y, Z=A1, B1=C1, D1>=E1, F1=G1, E1=X, D1=Z, H1=B1, Q=I1, S=J1, K1=F1, S=E1, Q=D1, L1=H1, I1>=0, J1>=0, J1>=I1, M1=N1, O1=P1, Q1=R1, S1<T1, U1=V, T1=T, S1=R, V1=W1, 'new14(2)'(A,B,C,D,E,F,G,I,H,X1,U1,T1,S1,V1).
+'new15(2)'(A,B,C,D,E,F,G,H,I,J,K,L) :- J=1+M, N=L, O=K, M=P, Q=R+1, S=T-1, U=M, V=W, T=N, R=O, X<Y, Z=V, Y=T, X=R, A1=B1, H=C1, I=D1, G=Z, I=Y, H=X, E1=A1, C1>=0, D1>=0, D1>=C1, F1=G1, H1=I1, J1=K1, U=1, L1=M1, N1=O1, P1=Q1, R1>=S1, T1=U1, S1=L1, R1=N1, V1=P1, 'new18(2)'(A,B,C,D,E,F,W1,S,Q,X1,T1,S1,R1,V1).
+'new16(2)'(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V) :- Q=W+1, P=X-1, O=S, P=T, Q=U, R=V, Y<Z, A1=B1, Z=X, Y=W, C1=D1, 'new16(2)'(A,B,C,D,E,F,G,H,I,J,K,L,M,N,E1,F1,G1,H1,A1,Z,Y,C1).
+'new16(2)'(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V) :- Q=W, P=X, O=S, P=T, Q=U, R=V, W>=0, X>=0, X>=W, Y=Z, A1=B1, C1=D1, E1<F1, G1=K, F1=L, E1=M, H1=N, 'new14(2)'(A,B,C,D,E,F,G,H,I,J,G1,F1,E1,H1).
+'new17(2)'(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T) :- U<V, W=Q, V=R, U=S, X=T, O=Y, N=Z, M=W, N=V, O=U, P=X, Y>=0, Z>=0, Z>=Y, A1=B1, C1=D1, E1=F1, 'new15(2)'(A,B,C,D,E,F,G,H,I,J,K,L).
+'new17(2)'(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T) :- U<V, W=Q, V=R, U=S, X=T, O=Y+1, N=Z-1, M=W, N=V, O=U, P=X, 'new17(2)'(A,B,C,D,E,F,G,H,I,J,K,L,A1,B1,C1,D1,E1,Z,Y,F1).
+'new18(2)'(A,B,C,D,E,F,G,H,I,J,K,L,M,N) :- I=O, H=P, G=K, H=L, I=M, J=N, O>=0, P>=0, P>=O, Q=R, S=T, U=V, 'main_q1(2)'(A,B,C,D,E,F).
+'new18(2)'(A,B,C,D,E,F,G,H,I,J,K,L,M,N) :- I=O+1, H=P-1, G=K, H=L, I=M, J=N, Q<R, S=T, R=P, Q=O, U=V, 'new18(2)'(A,B,C,D,E,F,W,X,Y,Z,S,R,Q,U).
+'new19(2)'(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T) :- U<V, W=K, V=L, U=M, X=N, I=Y+1, H=Z-1, G=W, H=V, I=U, J=X, 'new19(2)'(A,B,C,D,E,F,A1,B1,C1,D1,E1,Z,Y,F1,O,P,Q,R,S,T).
+'new19(2)'(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T) :- U<V, W=K, V=L, U=M, X=N, I=Y, H=Z, G=W, H=V, I=U, J=X, Y>=0, Z>=0, Z>=Y, A1=B1, C1=D1, E1=F1, R=1, G1=T, H1=S, I1=J1, K1>=L1, M1=N1, L1=G1, K1=H1, O1=I1, 'new18(2)'(A,B,C,D,E,F,O,Q,P,P1,M1,L1,K1,O1).
+'main_q2(2)'(A,B,C,D,E,F) :- G=H, I=J, K=D, J=E, H=F, H>=0, J>=0, J>=H, A=L, B=M, C=N, 'palindrome_q4(2)'(O,G,I,K,P,Q).

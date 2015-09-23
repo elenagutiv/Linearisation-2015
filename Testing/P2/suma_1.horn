@@ -1,0 +1,29 @@
+'sum(0)'(A,0,B) :- A=B.
+'sum(1)'(A,B,C) :- D=B-1, E=C-1, 'sum(1)'(A,D,E).
+'sum(0)'(A,B,C) :- D=B-1, E=C-1, 'sum(0)'(A,D,E).
+'false(1)' :- A>B+C+D, 'sum3(1)'(D,C,B,A).
+'false(0)' :- A>B+C+D, 'sum3(0)'(D,C,B,A).
+'false(1)' :- A<B+C+D, 'sum3(1)'(D,C,B,A).
+'false(0)' :- A<B+C+D, 'sum3(0)'(D,C,B,A).
+'false[1]' :- 'false(1)'.
+'false[1]' :- 'false(0)'.
+'false[0]' :- 'false(0)'.
+'sum[1]'(A,B,C) :- 'sum(1)'(A,B,C).
+'sum[1]'(A,B,C) :- 'sum(0)'(A,B,C).
+'sum[0]'(A,B,C) :- 'sum(0)'(A,B,C).
+'sum3[1]'(A,B,C,D) :- 'sum3(1)'(A,B,C,D).
+'sum3[1]'(A,B,C,D) :- 'sum3(0)'(A,B,C,D).
+'sum3[0]'(A,B,C,D) :- 'sum3(0)'(A,B,C,D).
+false :- 'false[1]'.
+'sum3(1)'(A,B,0,C) :- D+1=C, E=D, 'sum(1)'(A,B,E).
+'sum3(1)'(A,B,C,D) :- E+1=D, F=C-1, G=E-1, 'new1(1)'(A,B,H,F,G).
+'new1(1)'(A,B,C,0,D) :- C=D, 'sum(1)'(A,B,C).
+'new1(1)'(A,B,C,D,E) :- F=D-1, G=E-1, 'new1(1)'(A,B,C,F,G).
+'sum3(1)'(A,0,B,C) :- D+1=C, A=E, 'sum(1)'(E,B,D).
+'sum3(1)'(A,B,C,D) :- E+1=D, F=B-1, G=H-1, 'new2(1)'(H,C,E,A,F,G).
+'new2(1)'(A,B,C,D,0,E) :- D=E, 'sum(1)'(A,B,C).
+'new2(1)'(A,B,C,D,E,F) :- G=E-1, H=F-1, 'new2(1)'(A,B,C,D,G,H).
+'sum3(1)'(A,0,B,C) :- D+1=C, A=E, 'sum(0)'(E,B,D).
+'sum3(1)'(A,B,C,D) :- E+1=D, F=B-1, G=H-1, 'new3(1)'(A,F,G,H,C,E).
+'new3(1)'(A,0,B,C,D,E) :- A=B, 'sum(0)'(C,D,E).
+'new3(1)'(A,B,C,D,E,F) :- G=B-1, H=C-1, 'new3(1)'(A,G,H,D,E,F).

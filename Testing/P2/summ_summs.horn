@@ -1,0 +1,166 @@
+'h1(0)'(A,B,C,D,E,A,B,C,D,E) :- 1=1.
+'h2(2)'(A,B,C,D,E,F,G,H,I,J) :- F=2, G=3, 'h1(2)'(A,B,C,D,E,K,L,H,I,J).
+'h2(1)'(A,B,C,D,E,F,G,H,I,J) :- F=2, G=3, 'h1(1)'(A,B,C,D,E,K,L,H,I,J).
+'h2(0)'(A,B,C,D,E,F,G,H,I,J) :- F=2, G=3, 'h1(0)'(A,B,C,D,E,K,L,H,I,J).
+'h3(2)'(A,B,A,B) :- A=C, 'h2(2)'(D,E,F,G,H,C,I,J,K,L).
+'h3(1)'(A,B,A,B) :- A=C, 'h2(1)'(D,E,F,G,H,C,I,J,K,L).
+'h3(0)'(A,B,A,B) :- A=C, 'h2(0)'(D,E,F,G,H,C,I,J,K,L).
+'h3(2)'(A,B,A,B) :- A=C, 'h5(2)'(D,E,F,G,H,I,C,J,K,L).
+'h3(1)'(A,B,A,B) :- A=C, 'h5(1)'(D,E,F,G,H,I,C,J,K,L).
+'h3(0)'(A,B,A,B) :- A=C, 'h5(0)'(D,E,F,G,H,I,C,J,K,L).
+'h9(2)'(A,B,C,D,E,F,G,H,I,J) :- I= -J+H, 'h7(2)'(A,B,C,D,E,F,G,K,I,J).
+'h9(1)'(A,B,C,D,E,F,G,H,I,J) :- I= -J+H, 'h7(1)'(A,B,C,D,E,F,G,K,I,J).
+'h9(0)'(A,B,C,D,E,F,G,H,I,J) :- I= -J+H, 'h7(0)'(A,B,C,D,E,F,G,K,I,J).
+'h10(2)'(A,B,C,D,E,F,G,H,I,J) :- 'h9(2)'(A,B,C,D,E,F,G,H,I,J).
+'h10(1)'(A,B,C,D,E,F,G,H,I,J) :- 'h9(1)'(A,B,C,D,E,F,G,H,I,J).
+'h10(0)'(A,B,C,D,E,F,G,H,I,J) :- 'h9(0)'(A,B,C,D,E,F,G,H,I,J).
+'h11(2)'(A,B,C,D,E,F,G,H,I,J) :- H=<6, 'h10(2)'(A,B,C,D,E,F,G,H,I,J).
+'h11(1)'(A,B,C,D,E,F,G,H,I,J) :- H=<6, 'h10(1)'(A,B,C,D,E,F,G,H,I,J).
+'h11(0)'(A,B,C,D,E,F,G,H,I,J) :- H=<6, 'h10(0)'(A,B,C,D,E,F,G,H,I,J).
+'false(2)' :- 'h11(2)'(A,B,C,D,E,F,G,H,I,J).
+'false(1)' :- 'h11(1)'(A,B,C,D,E,F,G,H,I,J).
+'false(0)' :- 'h11(0)'(A,B,C,D,E,F,G,H,I,J).
+'h12(2)'(A,B,C,D,E,F,G,H,I,J) :- H>=8, 'h10(2)'(A,B,C,D,E,F,G,H,I,J).
+'h12(1)'(A,B,C,D,E,F,G,H,I,J) :- H>=8, 'h10(1)'(A,B,C,D,E,F,G,H,I,J).
+'h12(0)'(A,B,C,D,E,F,G,H,I,J) :- H>=8, 'h10(0)'(A,B,C,D,E,F,G,H,I,J).
+'false(2)' :- 'h12(2)'(A,B,C,D,E,F,G,H,I,J).
+'false(1)' :- 'h12(1)'(A,B,C,D,E,F,G,H,I,J).
+'false(0)' :- 'h12(0)'(A,B,C,D,E,F,G,H,I,J).
+'h13(2)'(A,B,C,D,E,F,G,H,I,J) :- H=7, 'h10(2)'(A,B,C,D,E,F,G,H,I,J).
+'h13(1)'(A,B,C,D,E,F,G,H,I,J) :- H=7, 'h10(1)'(A,B,C,D,E,F,G,H,I,J).
+'h13(0)'(A,B,C,D,E,F,G,H,I,J) :- H=7, 'h10(0)'(A,B,C,D,E,F,G,H,I,J).
+'h14(2)'(A,B,C,D,E,F,G,H,I,J) :- 'h13(2)'(A,B,C,D,E,F,G,H,I,J).
+'h14(1)'(A,B,C,D,E,F,G,H,I,J) :- 'h13(1)'(A,B,C,D,E,F,G,H,I,J).
+'h14(0)'(A,B,C,D,E,F,G,H,I,J) :- 'h13(0)'(A,B,C,D,E,F,G,H,I,J).
+'h15(2)'(A,B,C,D,E,F,G,H,I,J) :- 'h14(2)'(A,B,C,D,E,F,G,H,I,J).
+'h15(1)'(A,B,C,D,E,F,G,H,I,J) :- 'h14(1)'(A,B,C,D,E,F,G,H,I,J).
+'h15(0)'(A,B,C,D,E,F,G,H,I,J) :- 'h14(0)'(A,B,C,D,E,F,G,H,I,J).
+'h16(2)'(A,B,C,D) :- C= -1+D, 'h3(2)'(A,B,C,E).
+'h16(1)'(A,B,C,D) :- C= -1+D, 'h3(1)'(A,B,C,E).
+'h16(0)'(A,B,C,D) :- C= -1+D, 'h3(0)'(A,B,C,E).
+'h17(2)'(A,B,C,D) :- 'h16(2)'(A,B,C,D).
+'h17(1)'(A,B,C,D) :- 'h16(1)'(A,B,C,D).
+'h17(0)'(A,B,C,D) :- 'h16(0)'(A,B,C,D).
+'h4(2)'(A,B,C,D) :- 'h17(2)'(A,B,C,D).
+'h4(1)'(A,B,C,D) :- 'h17(1)'(A,B,C,D).
+'h4(0)'(A,B,C,D) :- 'h17(0)'(A,B,C,D).
+'false[2]' :- 'false(2)'.
+'false[2]' :- 'false(1)'.
+'false[2]' :- 'false(0)'.
+'false[1]' :- 'false(1)'.
+'false[1]' :- 'false(0)'.
+'false[0]' :- 'false(0)'.
+'h1[2]'(A,B,C,D,E,F,G,H,I,J) :- 'h1(2)'(A,B,C,D,E,F,G,H,I,J).
+'h1[2]'(A,B,C,D,E,F,G,H,I,J) :- 'h1(1)'(A,B,C,D,E,F,G,H,I,J).
+'h1[2]'(A,B,C,D,E,F,G,H,I,J) :- 'h1(0)'(A,B,C,D,E,F,G,H,I,J).
+'h1[1]'(A,B,C,D,E,F,G,H,I,J) :- 'h1(1)'(A,B,C,D,E,F,G,H,I,J).
+'h1[1]'(A,B,C,D,E,F,G,H,I,J) :- 'h1(0)'(A,B,C,D,E,F,G,H,I,J).
+'h1[0]'(A,B,C,D,E,F,G,H,I,J) :- 'h1(0)'(A,B,C,D,E,F,G,H,I,J).
+'h10[2]'(A,B,C,D,E,F,G,H,I,J) :- 'h10(2)'(A,B,C,D,E,F,G,H,I,J).
+'h10[2]'(A,B,C,D,E,F,G,H,I,J) :- 'h10(1)'(A,B,C,D,E,F,G,H,I,J).
+'h10[2]'(A,B,C,D,E,F,G,H,I,J) :- 'h10(0)'(A,B,C,D,E,F,G,H,I,J).
+'h10[1]'(A,B,C,D,E,F,G,H,I,J) :- 'h10(1)'(A,B,C,D,E,F,G,H,I,J).
+'h10[1]'(A,B,C,D,E,F,G,H,I,J) :- 'h10(0)'(A,B,C,D,E,F,G,H,I,J).
+'h10[0]'(A,B,C,D,E,F,G,H,I,J) :- 'h10(0)'(A,B,C,D,E,F,G,H,I,J).
+'h11[2]'(A,B,C,D,E,F,G,H,I,J) :- 'h11(2)'(A,B,C,D,E,F,G,H,I,J).
+'h11[2]'(A,B,C,D,E,F,G,H,I,J) :- 'h11(1)'(A,B,C,D,E,F,G,H,I,J).
+'h11[2]'(A,B,C,D,E,F,G,H,I,J) :- 'h11(0)'(A,B,C,D,E,F,G,H,I,J).
+'h11[1]'(A,B,C,D,E,F,G,H,I,J) :- 'h11(1)'(A,B,C,D,E,F,G,H,I,J).
+'h11[1]'(A,B,C,D,E,F,G,H,I,J) :- 'h11(0)'(A,B,C,D,E,F,G,H,I,J).
+'h11[0]'(A,B,C,D,E,F,G,H,I,J) :- 'h11(0)'(A,B,C,D,E,F,G,H,I,J).
+'h12[2]'(A,B,C,D,E,F,G,H,I,J) :- 'h12(2)'(A,B,C,D,E,F,G,H,I,J).
+'h12[2]'(A,B,C,D,E,F,G,H,I,J) :- 'h12(1)'(A,B,C,D,E,F,G,H,I,J).
+'h12[2]'(A,B,C,D,E,F,G,H,I,J) :- 'h12(0)'(A,B,C,D,E,F,G,H,I,J).
+'h12[1]'(A,B,C,D,E,F,G,H,I,J) :- 'h12(1)'(A,B,C,D,E,F,G,H,I,J).
+'h12[1]'(A,B,C,D,E,F,G,H,I,J) :- 'h12(0)'(A,B,C,D,E,F,G,H,I,J).
+'h12[0]'(A,B,C,D,E,F,G,H,I,J) :- 'h12(0)'(A,B,C,D,E,F,G,H,I,J).
+'h13[2]'(A,B,C,D,E,F,G,H,I,J) :- 'h13(2)'(A,B,C,D,E,F,G,H,I,J).
+'h13[2]'(A,B,C,D,E,F,G,H,I,J) :- 'h13(1)'(A,B,C,D,E,F,G,H,I,J).
+'h13[2]'(A,B,C,D,E,F,G,H,I,J) :- 'h13(0)'(A,B,C,D,E,F,G,H,I,J).
+'h13[1]'(A,B,C,D,E,F,G,H,I,J) :- 'h13(1)'(A,B,C,D,E,F,G,H,I,J).
+'h13[1]'(A,B,C,D,E,F,G,H,I,J) :- 'h13(0)'(A,B,C,D,E,F,G,H,I,J).
+'h13[0]'(A,B,C,D,E,F,G,H,I,J) :- 'h13(0)'(A,B,C,D,E,F,G,H,I,J).
+'h14[2]'(A,B,C,D,E,F,G,H,I,J) :- 'h14(2)'(A,B,C,D,E,F,G,H,I,J).
+'h14[2]'(A,B,C,D,E,F,G,H,I,J) :- 'h14(1)'(A,B,C,D,E,F,G,H,I,J).
+'h14[2]'(A,B,C,D,E,F,G,H,I,J) :- 'h14(0)'(A,B,C,D,E,F,G,H,I,J).
+'h14[1]'(A,B,C,D,E,F,G,H,I,J) :- 'h14(1)'(A,B,C,D,E,F,G,H,I,J).
+'h14[1]'(A,B,C,D,E,F,G,H,I,J) :- 'h14(0)'(A,B,C,D,E,F,G,H,I,J).
+'h14[0]'(A,B,C,D,E,F,G,H,I,J) :- 'h14(0)'(A,B,C,D,E,F,G,H,I,J).
+'h15[2]'(A,B,C,D,E,F,G,H,I,J) :- 'h15(2)'(A,B,C,D,E,F,G,H,I,J).
+'h15[2]'(A,B,C,D,E,F,G,H,I,J) :- 'h15(1)'(A,B,C,D,E,F,G,H,I,J).
+'h15[2]'(A,B,C,D,E,F,G,H,I,J) :- 'h15(0)'(A,B,C,D,E,F,G,H,I,J).
+'h15[1]'(A,B,C,D,E,F,G,H,I,J) :- 'h15(1)'(A,B,C,D,E,F,G,H,I,J).
+'h15[1]'(A,B,C,D,E,F,G,H,I,J) :- 'h15(0)'(A,B,C,D,E,F,G,H,I,J).
+'h15[0]'(A,B,C,D,E,F,G,H,I,J) :- 'h15(0)'(A,B,C,D,E,F,G,H,I,J).
+'h16[2]'(A,B,C,D) :- 'h16(2)'(A,B,C,D).
+'h16[2]'(A,B,C,D) :- 'h16(1)'(A,B,C,D).
+'h16[2]'(A,B,C,D) :- 'h16(0)'(A,B,C,D).
+'h16[1]'(A,B,C,D) :- 'h16(1)'(A,B,C,D).
+'h16[1]'(A,B,C,D) :- 'h16(0)'(A,B,C,D).
+'h16[0]'(A,B,C,D) :- 'h16(0)'(A,B,C,D).
+'h17[2]'(A,B,C,D) :- 'h17(2)'(A,B,C,D).
+'h17[2]'(A,B,C,D) :- 'h17(1)'(A,B,C,D).
+'h17[2]'(A,B,C,D) :- 'h17(0)'(A,B,C,D).
+'h17[1]'(A,B,C,D) :- 'h17(1)'(A,B,C,D).
+'h17[1]'(A,B,C,D) :- 'h17(0)'(A,B,C,D).
+'h17[0]'(A,B,C,D) :- 'h17(0)'(A,B,C,D).
+'h2[2]'(A,B,C,D,E,F,G,H,I,J) :- 'h2(2)'(A,B,C,D,E,F,G,H,I,J).
+'h2[2]'(A,B,C,D,E,F,G,H,I,J) :- 'h2(1)'(A,B,C,D,E,F,G,H,I,J).
+'h2[2]'(A,B,C,D,E,F,G,H,I,J) :- 'h2(0)'(A,B,C,D,E,F,G,H,I,J).
+'h2[1]'(A,B,C,D,E,F,G,H,I,J) :- 'h2(1)'(A,B,C,D,E,F,G,H,I,J).
+'h2[1]'(A,B,C,D,E,F,G,H,I,J) :- 'h2(0)'(A,B,C,D,E,F,G,H,I,J).
+'h2[0]'(A,B,C,D,E,F,G,H,I,J) :- 'h2(0)'(A,B,C,D,E,F,G,H,I,J).
+'h3[2]'(A,B,C,D) :- 'h3(2)'(A,B,C,D).
+'h3[2]'(A,B,C,D) :- 'h3(1)'(A,B,C,D).
+'h3[2]'(A,B,C,D) :- 'h3(0)'(A,B,C,D).
+'h3[1]'(A,B,C,D) :- 'h3(1)'(A,B,C,D).
+'h3[1]'(A,B,C,D) :- 'h3(0)'(A,B,C,D).
+'h3[0]'(A,B,C,D) :- 'h3(0)'(A,B,C,D).
+'h4[2]'(A,B,C,D) :- 'h4(2)'(A,B,C,D).
+'h4[2]'(A,B,C,D) :- 'h4(1)'(A,B,C,D).
+'h4[2]'(A,B,C,D) :- 'h4(0)'(A,B,C,D).
+'h4[1]'(A,B,C,D) :- 'h4(1)'(A,B,C,D).
+'h4[1]'(A,B,C,D) :- 'h4(0)'(A,B,C,D).
+'h4[0]'(A,B,C,D) :- 'h4(0)'(A,B,C,D).
+'h5[2]'(A,B,C,D,E,F,G,H,I,J) :- 'h5(2)'(A,B,C,D,E,F,G,H,I,J).
+'h5[2]'(A,B,C,D,E,F,G,H,I,J) :- 'h5(1)'(A,B,C,D,E,F,G,H,I,J).
+'h5[2]'(A,B,C,D,E,F,G,H,I,J) :- 'h5(0)'(A,B,C,D,E,F,G,H,I,J).
+'h5[1]'(A,B,C,D,E,F,G,H,I,J) :- 'h5(1)'(A,B,C,D,E,F,G,H,I,J).
+'h5[1]'(A,B,C,D,E,F,G,H,I,J) :- 'h5(0)'(A,B,C,D,E,F,G,H,I,J).
+'h5[0]'(A,B,C,D,E,F,G,H,I,J) :- 'h5(0)'(A,B,C,D,E,F,G,H,I,J).
+'h7[2]'(A,B,C,D,E,F,G,H,I,J) :- 'h7(2)'(A,B,C,D,E,F,G,H,I,J).
+'h7[2]'(A,B,C,D,E,F,G,H,I,J) :- 'h7(1)'(A,B,C,D,E,F,G,H,I,J).
+'h7[2]'(A,B,C,D,E,F,G,H,I,J) :- 'h7(0)'(A,B,C,D,E,F,G,H,I,J).
+'h7[1]'(A,B,C,D,E,F,G,H,I,J) :- 'h7(1)'(A,B,C,D,E,F,G,H,I,J).
+'h7[1]'(A,B,C,D,E,F,G,H,I,J) :- 'h7(0)'(A,B,C,D,E,F,G,H,I,J).
+'h7[0]'(A,B,C,D,E,F,G,H,I,J) :- 'h7(0)'(A,B,C,D,E,F,G,H,I,J).
+'h9[2]'(A,B,C,D,E,F,G,H,I,J) :- 'h9(2)'(A,B,C,D,E,F,G,H,I,J).
+'h9[2]'(A,B,C,D,E,F,G,H,I,J) :- 'h9(1)'(A,B,C,D,E,F,G,H,I,J).
+'h9[2]'(A,B,C,D,E,F,G,H,I,J) :- 'h9(0)'(A,B,C,D,E,F,G,H,I,J).
+'h9[1]'(A,B,C,D,E,F,G,H,I,J) :- 'h9(1)'(A,B,C,D,E,F,G,H,I,J).
+'h9[1]'(A,B,C,D,E,F,G,H,I,J) :- 'h9(0)'(A,B,C,D,E,F,G,H,I,J).
+'h9[0]'(A,B,C,D,E,F,G,H,I,J) :- 'h9(0)'(A,B,C,D,E,F,G,H,I,J).
+false :- 'false[2]'.
+'h5(1)'(A,B,C,D,E,F,G,H,I,J) :- K=I, F=L, L= -1+K, L=M, M=2, N=3, 1=1, 'h2(1)'(A,B,C,D,E,F,G,H,O,J).
+'h5(1)'(A,B,C,D,E,F,G,C,H,E) :- I=H, F=J, F=2, G=3, 1=1, 'h4(1)'(J,K,L,I).
+'h5(1)'(A,B,C,D,E,F,G,C,H,E) :- I=H, F=J, F=2, G=3, 1=1, 'h4(0)'(J,K,L,I).
+'h7(1)'(A,B,C,D,E,F,G,H,I,J) :- K=J, G=L, L= -1+K, L=M, M=2, N=3, 1=1, 'h5(1)'(A,B,C,D,E,F,G,H,I,O).
+'h5(2)'(A,B,C,D,E,F,G,H,I,J) :- K=I, F=L, L= -1+K, L=M, N=O, P=Q, P=2, M=3, 1=1, Q= -1+N, Q=R, R=2, S=3, 'h2(2)'(A,B,C,D,E,F,G,H,T,J).
+'h5(2)'(A,B,C,D,E,F,G,H,I,J) :- K=I, F=L, L= -1+K, L=M, M=2, N=3, 1=1, 'h2(2)'(A,B,C,D,E,F,G,H,O,J).
+'h5(2)'(A,B,C,D,E,F,G,H,I,J) :- K=I, F=L, L= -1+K, L=M, N=O, P=Q, P=2, M=3, 1=1, 'new1(2)'(A,B,C,D,E,F,G,H,R,J,Q,S,T,N).
+'new1(2)'(A,B,C,D,E,F,G,H,I,J,K,L,K,M) :- K= -1+M, K=N, O=P, Q=R, Q=2, N=3, 1=1, R= -1+O, R=S, S=2, T=3, 'h2(2)'(A,B,C,D,E,F,G,H,I,J).
+'new1(2)'(A,B,C,D,E,F,G,H,I,J,K,L,K,M) :- K= -1+M, K=N, O=P, Q=R, Q=2, N=3, 1=1, 'new1(2)'(A,B,C,D,E,F,G,H,I,J,R,S,T,O).
+'h5(2)'(A,B,C,D,E,F,G,C,H,E) :- I=H, F=J, F=2, G=3, 1=1, 'h4(2)'(J,K,L,I).
+'h7(2)'(A,B,C,D,E,F,G,H,I,J) :- K=J, G=L, L= -1+K, L=M, N=O, P=Q, P=2, M=3, 1=1, Q= -1+N, Q=R, R=2, S=3, 'h5(2)'(A,B,C,D,E,F,G,H,I,T).
+'h7(2)'(A,B,C,D,E,F,G,H,I,J) :- K=J, G=L, L= -1+K, L=M, M=2, N=3, 1=1, 'h5(2)'(A,B,C,D,E,F,G,H,I,O).
+'h7(2)'(A,B,C,D,E,F,G,H,I,J) :- K=J, G=L, L= -1+K, L=M, N=O, P=Q, P=2, M=3, 1=1, 'new2(2)'(A,B,C,D,E,F,G,H,I,R,Q,S,T,N).
+'new2(2)'(A,B,C,D,E,F,G,H,I,J,K,L,K,M) :- K= -1+M, K=N, O=P, Q=R, Q=2, N=3, 1=1, R= -1+O, R=S, S=2, T=3, 'h5(2)'(A,B,C,D,E,F,G,H,I,J).
+'new2(2)'(A,B,C,D,E,F,G,H,I,J,K,L,K,M) :- K= -1+M, K=N, O=P, Q=R, Q=2, N=3, 1=1, 'new2(2)'(A,B,C,D,E,F,G,H,I,J,R,S,T,O).
+'h7(2)'(A,B,C,D,E,F,G,C,H,I) :- J=I, G=K, L=H, F=M, F=2, G=3, 1=1, M= -1+L, M=N, N=2, O=3, 'h4(2)'(K,P,Q,J).
+'h7(2)'(A,B,C,D,E,F,G,C,H,I) :- J=I, G=K, L=H, F=M, F=2, G=3, 1=1, M= -1+L, M=N, 'new3(2)'(K,O,P,J,Q,R,S,T,U,V,N,W,X,Y).
+'new3(2)'(A,B,C,D,E,F,G,H,I,J,K,G,L,I) :- M=L, J=N, J=2, K=3, 1=1, N= -1+M, N=O, O=2, P=3, 'h4(2)'(A,B,C,D).
+'new3(2)'(A,B,C,D,E,F,G,H,I,J,K,G,L,I) :- M=L, J=N, J=2, K=3, 1=1, N= -1+M, N=O, 'new3(2)'(A,B,C,D,P,Q,R,S,T,U,O,V,W,X).
+'h7(2)'(A,B,C,D,E,F,G,C,H,I) :- J=I, G=K, L=H, F=M, F=2, G=3, 1=1, M= -1+L, M=N, N=2, O=3, 'h4(1)'(K,P,Q,J).
+'h7(2)'(A,B,C,D,E,F,G,C,H,I) :- J=I, G=K, L=H, F=M, F=2, G=3, 1=1, M= -1+L, M=N, 'new4(2)'(O,P,Q,R,S,T,N,U,V,W,K,X,Y,J).
+'new4(2)'(A,B,C,D,E,F,G,C,H,E,I,J,K,L) :- M=H, F=N, F=2, G=3, 1=1, N= -1+M, N=O, O=2, P=3, 'h4(1)'(I,J,K,L).
+'new4(2)'(A,B,C,D,E,F,G,C,H,E,I,J,K,L) :- M=H, F=N, F=2, G=3, 1=1, N= -1+M, N=O, 'new4(2)'(P,Q,R,S,T,U,O,V,W,X,I,J,K,L).

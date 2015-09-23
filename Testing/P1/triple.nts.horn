@@ -1,0 +1,116 @@
+'main_qf(2)' :- C=D+D+D, 'main_q2(2)'(A,B,C,D).
+'main_qf(1)' :- C=D+D+D, 'main_q2(1)'(A,B,C,D).
+'main_qf(0)' :- C=D+D+D, 'main_q2(0)'(A,B,C,D).
+'false(2)' :- 'main_q2(2)'(A,B,C,D), '\\+[1]'(C=D+D+D).
+'false(2)' :- '\\+(2)'(C=D+D+D), 'main_q2[1]'(A,B,C,D).
+'false(2)' :- 'main_q2(1)'(A,B,C,D), '\\+(1)'(C=D+D+D).
+'false(1)' :- 'main_q2(1)'(A,B,C,D), '\\+[0]'(C=D+D+D).
+'false(1)' :- '\\+(1)'(C=D+D+D), 'main_q2[0]'(A,B,C,D).
+'false(1)' :- 'main_q2(0)'(A,B,C,D), '\\+(0)'(C=D+D+D).
+'main_q1(2)'(A,B,C,D) :- D>=0, 'main_q0(2)'(A,B,E,F).
+'main_q1(1)'(A,B,C,D) :- D>=0, 'main_q0(1)'(A,B,E,F).
+'main_q1(0)'(A,B,C,D) :- D>=0, 'main_q0(0)'(A,B,E,F).
+'main_q0(0)'(A,B,C,D) :- A=C, B=D.
+'triple_q5(2)'(A,B,C,D) :- C=2*G, G=I, H=D, 'triple_q4(2)'(A,E,B,F,G,H).
+'triple_q5(1)'(A,B,C,D) :- C=2*G, G=I, H=D, 'triple_q4(1)'(A,E,B,F,G,H).
+'triple_q5(0)'(A,B,C,D) :- C=2*G, G=I, H=D, 'triple_q4(0)'(A,E,B,F,G,H).
+'triple_q5(2)'(A,B,C,D) :- C=3+2*G, G=I, H=D, 'triple_q3(2)'(A,E,B,F,G,H).
+'triple_q5(1)'(A,B,C,D) :- C=3+2*G, G=I, H=D, 'triple_q3(1)'(A,E,B,F,G,H).
+'triple_q5(0)'(A,B,C,D) :- C=3+2*G, G=I, H=D, 'triple_q3(0)'(A,E,B,F,G,H).
+'triple_q5(2)'(A,B,C,D) :- C=0, G=I, H=D, 'triple_q2(2)'(A,E,B,F,G,H).
+'triple_q5(1)'(A,B,C,D) :- C=0, G=I, H=D, 'triple_q2(1)'(A,E,B,F,G,H).
+'triple_q5(0)'(A,B,C,D) :- C=0, G=I, H=D, 'triple_q2(0)'(A,E,B,F,G,H).
+'triple_q4(2)'(A,B,C,D,E,F) :- I mod 2=0, G=D, H=E, I=F, 'triple_q1(2)'(A,B,C,G,H,I).
+'triple_q4(1)'(A,B,C,D,E,F) :- I mod 2=0, G=D, H=E, I=F, 'triple_q1(1)'(A,B,C,G,H,I).
+'triple_q4(0)'(A,B,C,D,E,F) :- I mod 2=0, G=D, H=E, I=F, 'triple_q1(0)'(A,B,C,G,H,I).
+'triple_q3(2)'(A,B,C,D,E,F) :- I mod 2=1, G=D, H=E, I=F, 'triple_q1(2)'(A,B,C,G,H,I).
+'triple_q3(1)'(A,B,C,D,E,F) :- I mod 2=1, G=D, H=E, I=F, 'triple_q1(1)'(A,B,C,G,H,I).
+'triple_q3(0)'(A,B,C,D,E,F) :- I mod 2=1, G=D, H=E, I=F, 'triple_q1(0)'(A,B,C,G,H,I).
+'triple_q2(2)'(A,B,C,D,E,F) :- I=0, G=D, H=E, I=F, 'triple_q0(2)'(A,B,C,G,H,I).
+'triple_q2(1)'(A,B,C,D,E,F) :- I=0, G=D, H=E, I=F, 'triple_q0(1)'(A,B,C,G,H,I).
+'triple_q2(0)'(A,B,C,D,E,F) :- I=0, G=D, H=E, I=F, 'triple_q0(0)'(A,B,C,G,H,I).
+'triple_q1(2)'(A,B,C,D,E,F) :- J=I/2, L=E, G=D, I=F, 'triple_q0(2)'(A,B,C,G,H,I), 'triple_q5[1]'(K,J,L,M).
+'triple_q1(2)'(A,B,C,D,E,F) :- J=I/2, L=E, G=D, I=F, 'triple_q5(2)'(K,J,L,M), 'triple_q0[1]'(A,B,C,G,H,I).
+'triple_q1(2)'(A,B,C,D,E,F) :- J=I/2, L=E, G=D, I=F, 'triple_q0(1)'(A,B,C,G,H,I), 'triple_q5(1)'(K,J,L,M).
+'triple_q1(1)'(A,B,C,D,E,F) :- J=I/2, L=E, G=D, I=F, 'triple_q0(1)'(A,B,C,G,H,I), 'triple_q5[0]'(K,J,L,M).
+'triple_q1(1)'(A,B,C,D,E,F) :- J=I/2, L=E, G=D, I=F, 'triple_q5(1)'(K,J,L,M), 'triple_q0[0]'(A,B,C,G,H,I).
+'triple_q1(1)'(A,B,C,D,E,F) :- J=I/2, L=E, G=D, I=F, 'triple_q0(0)'(A,B,C,G,H,I), 'triple_q5(0)'(K,J,L,M).
+'triple_q0(2)'(A,B,C,D,E,F) :- C=L/2, A=D, B=E, C=F, 'triple_q0(2)'(G,H,I,J,K,L).
+'triple_q0(1)'(A,B,C,D,E,F) :- C=L/2, A=D, B=E, C=F, 'triple_q0(1)'(G,H,I,J,K,L).
+'triple_q0(0)'(A,B,C,D,E,F) :- C=L/2, A=D, B=E, C=F, 'triple_q0(0)'(G,H,I,J,K,L).
+'main_q2(2)'(A,B,C,D) :- G=F, I=C, F=D, 'main_q1(2)'(A,B,E,F), 'triple_q5[1]'(H,G,I,J).
+'main_q2(2)'(A,B,C,D) :- G=F, I=C, F=D, 'triple_q5(2)'(H,G,I,J), 'main_q1[1]'(A,B,E,F).
+'main_q2(2)'(A,B,C,D) :- G=F, I=C, F=D, 'main_q1(1)'(A,B,E,F), 'triple_q5(1)'(H,G,I,J).
+'main_q2(1)'(A,B,C,D) :- G=F, I=C, F=D, 'main_q1(1)'(A,B,E,F), 'triple_q5[0]'(H,G,I,J).
+'main_q2(1)'(A,B,C,D) :- G=F, I=C, F=D, 'triple_q5(1)'(H,G,I,J), 'main_q1[0]'(A,B,E,F).
+'main_q2(1)'(A,B,C,D) :- G=F, I=C, F=D, 'main_q1(0)'(A,B,E,F), 'triple_q5(0)'(H,G,I,J).
+'triple_q0(2)'(A,B,C,D,E,F) :- C=J, A=D, B=E, C=F, 'main_q1(2)'(G,H,I,J).
+'triple_q0(1)'(A,B,C,D,E,F) :- C=J, A=D, B=E, C=F, 'main_q1(1)'(G,H,I,J).
+'triple_q0(0)'(A,B,C,D,E,F) :- C=J, A=D, B=E, C=F, 'main_q1(0)'(G,H,I,J).
+'false[2]' :- 'false(2)'.
+'false[2]' :- 'false(1)'.
+'false[2]' :- 'false(0)'.
+'false[1]' :- 'false(1)'.
+'false[1]' :- 'false(0)'.
+'false[0]' :- 'false(0)'.
+'main_q0[2]'(A,B,C,D) :- 'main_q0(2)'(A,B,C,D).
+'main_q0[2]'(A,B,C,D) :- 'main_q0(1)'(A,B,C,D).
+'main_q0[2]'(A,B,C,D) :- 'main_q0(0)'(A,B,C,D).
+'main_q0[1]'(A,B,C,D) :- 'main_q0(1)'(A,B,C,D).
+'main_q0[1]'(A,B,C,D) :- 'main_q0(0)'(A,B,C,D).
+'main_q0[0]'(A,B,C,D) :- 'main_q0(0)'(A,B,C,D).
+'main_q1[2]'(A,B,C,D) :- 'main_q1(2)'(A,B,C,D).
+'main_q1[2]'(A,B,C,D) :- 'main_q1(1)'(A,B,C,D).
+'main_q1[2]'(A,B,C,D) :- 'main_q1(0)'(A,B,C,D).
+'main_q1[1]'(A,B,C,D) :- 'main_q1(1)'(A,B,C,D).
+'main_q1[1]'(A,B,C,D) :- 'main_q1(0)'(A,B,C,D).
+'main_q1[0]'(A,B,C,D) :- 'main_q1(0)'(A,B,C,D).
+'main_q2[2]'(A,B,C,D) :- 'main_q2(2)'(A,B,C,D).
+'main_q2[2]'(A,B,C,D) :- 'main_q2(1)'(A,B,C,D).
+'main_q2[2]'(A,B,C,D) :- 'main_q2(0)'(A,B,C,D).
+'main_q2[1]'(A,B,C,D) :- 'main_q2(1)'(A,B,C,D).
+'main_q2[1]'(A,B,C,D) :- 'main_q2(0)'(A,B,C,D).
+'main_q2[0]'(A,B,C,D) :- 'main_q2(0)'(A,B,C,D).
+'main_qf[2]' :- 'main_qf(2)'.
+'main_qf[2]' :- 'main_qf(1)'.
+'main_qf[2]' :- 'main_qf(0)'.
+'main_qf[1]' :- 'main_qf(1)'.
+'main_qf[1]' :- 'main_qf(0)'.
+'main_qf[0]' :- 'main_qf(0)'.
+'triple_q0[2]'(A,B,C,D,E,F) :- 'triple_q0(2)'(A,B,C,D,E,F).
+'triple_q0[2]'(A,B,C,D,E,F) :- 'triple_q0(1)'(A,B,C,D,E,F).
+'triple_q0[2]'(A,B,C,D,E,F) :- 'triple_q0(0)'(A,B,C,D,E,F).
+'triple_q0[1]'(A,B,C,D,E,F) :- 'triple_q0(1)'(A,B,C,D,E,F).
+'triple_q0[1]'(A,B,C,D,E,F) :- 'triple_q0(0)'(A,B,C,D,E,F).
+'triple_q0[0]'(A,B,C,D,E,F) :- 'triple_q0(0)'(A,B,C,D,E,F).
+'triple_q1[2]'(A,B,C,D,E,F) :- 'triple_q1(2)'(A,B,C,D,E,F).
+'triple_q1[2]'(A,B,C,D,E,F) :- 'triple_q1(1)'(A,B,C,D,E,F).
+'triple_q1[2]'(A,B,C,D,E,F) :- 'triple_q1(0)'(A,B,C,D,E,F).
+'triple_q1[1]'(A,B,C,D,E,F) :- 'triple_q1(1)'(A,B,C,D,E,F).
+'triple_q1[1]'(A,B,C,D,E,F) :- 'triple_q1(0)'(A,B,C,D,E,F).
+'triple_q1[0]'(A,B,C,D,E,F) :- 'triple_q1(0)'(A,B,C,D,E,F).
+'triple_q2[2]'(A,B,C,D,E,F) :- 'triple_q2(2)'(A,B,C,D,E,F).
+'triple_q2[2]'(A,B,C,D,E,F) :- 'triple_q2(1)'(A,B,C,D,E,F).
+'triple_q2[2]'(A,B,C,D,E,F) :- 'triple_q2(0)'(A,B,C,D,E,F).
+'triple_q2[1]'(A,B,C,D,E,F) :- 'triple_q2(1)'(A,B,C,D,E,F).
+'triple_q2[1]'(A,B,C,D,E,F) :- 'triple_q2(0)'(A,B,C,D,E,F).
+'triple_q2[0]'(A,B,C,D,E,F) :- 'triple_q2(0)'(A,B,C,D,E,F).
+'triple_q3[2]'(A,B,C,D,E,F) :- 'triple_q3(2)'(A,B,C,D,E,F).
+'triple_q3[2]'(A,B,C,D,E,F) :- 'triple_q3(1)'(A,B,C,D,E,F).
+'triple_q3[2]'(A,B,C,D,E,F) :- 'triple_q3(0)'(A,B,C,D,E,F).
+'triple_q3[1]'(A,B,C,D,E,F) :- 'triple_q3(1)'(A,B,C,D,E,F).
+'triple_q3[1]'(A,B,C,D,E,F) :- 'triple_q3(0)'(A,B,C,D,E,F).
+'triple_q3[0]'(A,B,C,D,E,F) :- 'triple_q3(0)'(A,B,C,D,E,F).
+'triple_q4[2]'(A,B,C,D,E,F) :- 'triple_q4(2)'(A,B,C,D,E,F).
+'triple_q4[2]'(A,B,C,D,E,F) :- 'triple_q4(1)'(A,B,C,D,E,F).
+'triple_q4[2]'(A,B,C,D,E,F) :- 'triple_q4(0)'(A,B,C,D,E,F).
+'triple_q4[1]'(A,B,C,D,E,F) :- 'triple_q4(1)'(A,B,C,D,E,F).
+'triple_q4[1]'(A,B,C,D,E,F) :- 'triple_q4(0)'(A,B,C,D,E,F).
+'triple_q4[0]'(A,B,C,D,E,F) :- 'triple_q4(0)'(A,B,C,D,E,F).
+'triple_q5[2]'(A,B,C,D) :- 'triple_q5(2)'(A,B,C,D).
+'triple_q5[2]'(A,B,C,D) :- 'triple_q5(1)'(A,B,C,D).
+'triple_q5[2]'(A,B,C,D) :- 'triple_q5(0)'(A,B,C,D).
+'triple_q5[1]'(A,B,C,D) :- 'triple_q5(1)'(A,B,C,D).
+'triple_q5[1]'(A,B,C,D) :- 'triple_q5(0)'(A,B,C,D).
+'triple_q5[0]'(A,B,C,D) :- 'triple_q5(0)'(A,B,C,D).
+false:-'false[2]'.

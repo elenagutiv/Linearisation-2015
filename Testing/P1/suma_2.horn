@@ -1,0 +1,47 @@
+'sum(0)'(A,0,B) :- A=B.
+'sum(2)'(A,B,C) :- D=B-1, E=C-1, 'sum(2)'(A,D,E).
+'sum(1)'(A,B,C) :- D=B-1, E=C-1, 'sum(1)'(A,D,E).
+'sum(0)'(A,B,C) :- D=B-1, E=C-1, 'sum(0)'(A,D,E).
+'sum3(2)'(A,B,C,D) :- F+1=D, 'sum(2)'(A,B,E), 'sum[1]'(E,C,F).
+'sum3(2)'(A,B,C,D) :- F+1=D, 'sum(2)'(E,C,F), 'sum[1]'(A,B,E).
+'sum3(2)'(A,B,C,D) :- F+1=D, 'sum(1)'(A,B,E), 'sum(1)'(E,C,F).
+'sum3(1)'(A,B,C,D) :- F+1=D, 'sum(1)'(A,B,E), 'sum[0]'(E,C,F).
+'sum3(1)'(A,B,C,D) :- F+1=D, 'sum(1)'(E,C,F), 'sum[0]'(A,B,E).
+'sum3(1)'(A,B,C,D) :- F+1=D, 'sum(0)'(A,B,E), 'sum(0)'(E,C,F).
+'sum5(2)'(A,B,C,D,E,F) :- H+1=F, 'sum3(2)'(A,B,C,G), 'sum3[1]'(G,D,E,H).
+'sum5(2)'(A,B,C,D,E,F) :- H+1=F, 'sum3(2)'(G,D,E,H), 'sum3[1]'(A,B,C,G).
+'sum5(2)'(A,B,C,D,E,F) :- H+1=F, 'sum3(1)'(A,B,C,G), 'sum3(1)'(G,D,E,H).
+'sum5(1)'(A,B,C,D,E,F) :- H+1=F, 'sum3(1)'(A,B,C,G), 'sum3[0]'(G,D,E,H).
+'sum5(1)'(A,B,C,D,E,F) :- H+1=F, 'sum3(1)'(G,D,E,H), 'sum3[0]'(A,B,C,G).
+'sum5(1)'(A,B,C,D,E,F) :- H+1=F, 'sum3(0)'(A,B,C,G), 'sum3(0)'(G,D,E,H).
+'false(2)' :- F<E+D+C+B+A, 'sum5(2)'(A,B,C,D,E,F).
+'false(1)' :- F<E+D+C+B+A, 'sum5(1)'(A,B,C,D,E,F).
+'false(0)' :- F<E+D+C+B+A, 'sum5(0)'(A,B,C,D,E,F).
+'false(2)' :- F>E+D+C+B+A, 'sum5(2)'(A,B,C,D,E,F).
+'false(1)' :- F>E+D+C+B+A, 'sum5(1)'(A,B,C,D,E,F).
+'false(0)' :- F>E+D+C+B+A, 'sum5(0)'(A,B,C,D,E,F).
+'false[2]' :- 'false(2)'.
+'false[2]' :- 'false(1)'.
+'false[2]' :- 'false(0)'.
+'false[1]' :- 'false(1)'.
+'false[1]' :- 'false(0)'.
+'false[0]' :- 'false(0)'.
+'sum[2]'(A,B,C) :- 'sum(2)'(A,B,C).
+'sum[2]'(A,B,C) :- 'sum(1)'(A,B,C).
+'sum[2]'(A,B,C) :- 'sum(0)'(A,B,C).
+'sum[1]'(A,B,C) :- 'sum(1)'(A,B,C).
+'sum[1]'(A,B,C) :- 'sum(0)'(A,B,C).
+'sum[0]'(A,B,C) :- 'sum(0)'(A,B,C).
+'sum3[2]'(A,B,C,D) :- 'sum3(2)'(A,B,C,D).
+'sum3[2]'(A,B,C,D) :- 'sum3(1)'(A,B,C,D).
+'sum3[2]'(A,B,C,D) :- 'sum3(0)'(A,B,C,D).
+'sum3[1]'(A,B,C,D) :- 'sum3(1)'(A,B,C,D).
+'sum3[1]'(A,B,C,D) :- 'sum3(0)'(A,B,C,D).
+'sum3[0]'(A,B,C,D) :- 'sum3(0)'(A,B,C,D).
+'sum5[2]'(A,B,C,D,E,F) :- 'sum5(2)'(A,B,C,D,E,F).
+'sum5[2]'(A,B,C,D,E,F) :- 'sum5(1)'(A,B,C,D,E,F).
+'sum5[2]'(A,B,C,D,E,F) :- 'sum5(0)'(A,B,C,D,E,F).
+'sum5[1]'(A,B,C,D,E,F) :- 'sum5(1)'(A,B,C,D,E,F).
+'sum5[1]'(A,B,C,D,E,F) :- 'sum5(0)'(A,B,C,D,E,F).
+'sum5[0]'(A,B,C,D,E,F) :- 'sum5(0)'(A,B,C,D,E,F).
+false:-'false[2]'.
