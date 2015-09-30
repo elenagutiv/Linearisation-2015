@@ -1,10 +1,7 @@
 'eq(0)'(A,B) :- A=B.
-'false(2)' :- A>B, 'eq4(2)'(A,C,D,E,B).
-'false(1)' :- A>B, 'eq4(1)'(A,C,D,E,B).
-'false(0)' :- A>B, 'eq4(0)'(A,C,D,E,B).
-'false(2)' :- A<B, 'eq4(2)'(A,C,D,E,B).
-'false(1)' :- A<B, 'eq4(1)'(A,C,D,E,B).
-'false(0)' :- A<B, 'eq4(0)'(A,C,D,E,B).
+'false(2)' :- A>B, 'eq4(2)'(C,A,D,E,B).
+'false(1)' :- A>B, 'eq4(1)'(C,A,D,E,B).
+'false(0)' :- A>B, 'eq4(0)'(C,A,D,E,B).
 'eq[2]'(A,B) :- 'eq(2)'(A,B).
 'eq[2]'(A,B) :- 'eq(1)'(A,B).
 'eq[2]'(A,B) :- 'eq(0)'(A,B).

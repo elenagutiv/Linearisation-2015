@@ -11,12 +11,9 @@
 'eq4(1)'(A,B,C,D,E) :- F=E+1, 'eq2(1)'(A,B,C), 'eq2[0]'(C,D,F).
 'eq4(1)'(A,B,C,D,E) :- F=E+1, 'eq2(1)'(C,D,F), 'eq2[0]'(A,B,C).
 'eq4(1)'(A,B,C,D,E) :- F=E+1, 'eq2(0)'(A,B,C), 'eq2(0)'(C,D,F).
-'false(2)' :- A>E, 'eq4(2)'(A,B,C,D,E).
-'false(1)' :- A>E, 'eq4(1)'(A,B,C,D,E).
-'false(0)' :- A>E, 'eq4(0)'(A,B,C,D,E).
-'false(2)' :- A<E, 'eq4(2)'(A,B,C,D,E).
-'false(1)' :- A<E, 'eq4(1)'(A,B,C,D,E).
-'false(0)' :- A<E, 'eq4(0)'(A,B,C,D,E).
+'false(2)' :- B>E, 'eq4(2)'(A,B,C,D,E).
+'false(1)' :- B>E, 'eq4(1)'(A,B,C,D,E).
+'false(0)' :- B>E, 'eq4(0)'(A,B,C,D,E).
 'eq[2]'(A,B) :- 'eq(2)'(A,B).
 'eq[2]'(A,B) :- 'eq(1)'(A,B).
 'eq[2]'(A,B) :- 'eq(0)'(A,B).

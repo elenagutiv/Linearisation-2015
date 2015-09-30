@@ -1,4 +1,0 @@
-3: from([2]) by trans(4-52-64)
-2: from([1]) by trans(80)
-1: from([]) by trans(2-70)
-cex_tids([2-70,80,4-52-64]).
