@@ -1,0 +1,61 @@
+'fib(0)'(0,0) :- true.
+'fib(0)'(1,1) :- true.
+'false(2)' :- A=8, B=6, 'fib(2)'(B,A).
+'false(1)' :- A=8, B=6, 'fib(1)'(B,A).
+'false(0)' :- A=8, B=6, 'fib(0)'(B,A).
+'false[2]' :- 'false(2)'.
+'false[2]' :- 'false(1)'.
+'false[2]' :- 'false(0)'.
+'false[1]' :- 'false(1)'.
+'false[1]' :- 'false(0)'.
+'false[0]' :- 'false(0)'.
+'fib[2]'(A,B) :- 'fib(2)'(A,B).
+'fib[2]'(A,B) :- 'fib(1)'(A,B).
+'fib[2]'(A,B) :- 'fib(0)'(A,B).
+'fib[1]'(A,B) :- 'fib(1)'(A,B).
+'fib[1]'(A,B) :- 'fib(0)'(A,B).
+'fib[0]'(A,B) :- 'fib(0)'(A,B).
+false :- 'false[2]'.
+'fib(1)'(A,B) :- 0=A-1, C=A-2, B=0+D, true, 'fib(1)'(C,D).
+'fib(1)'(A,B) :- 1=A-1, C=A-2, B=1+D, true, 'fib(1)'(C,D).
+'fib(1)'(A,B) :- C=A-1, 0=A-2, B=D+0, true, 'fib(1)'(C,D).
+'fib(1)'(A,B) :- C=A-1, 1=A-2, B=D+1, true, 'fib(1)'(C,D).
+'fib(1)'(A,B) :- 0=A-1, C=A-2, B=0+D, true, 'fib(0)'(C,D).
+'fib(1)'(A,B) :- 1=A-1, C=A-2, B=1+D, true, 'fib(0)'(C,D).
+'fib(2)'(A,B) :- C=A-1, D=A-2, B=E+F, 0=D-1, 0=D-2, F=0+0, true, 'fib(2)'(C,E).
+'fib(2)'(A,B) :- C=A-1, D=A-2, B=E+F, 0=D-1, 1=D-2, F=0+1, true, 'fib(2)'(C,E).
+'fib(2)'(A,B) :- C=A-1, D=A-2, B=E+F, 1=D-1, 0=D-2, F=1+0, true, 'fib(2)'(C,E).
+'fib(2)'(A,B) :- C=A-1, D=A-2, B=E+F, 1=D-1, 1=D-2, F=1+1, true, 'fib(2)'(C,E).
+'fib(2)'(A,B) :- C=A-1, 0=A-2, B=D+0, true, 'fib(2)'(C,D).
+'fib(2)'(A,B) :- C=A-1, 1=A-2, B=D+1, true, 'fib(2)'(C,D).
+'fib(2)'(A,B) :- C=A-1, D=A-2, B=E+F, 0=D-1, G=D-2, F=0+H, true, 'new1(2)'(C,E,G,H).
+'fib(2)'(A,B) :- C=A-1, D=A-2, B=E+F, 1=D-1, G=D-2, F=1+H, true, 'new1(2)'(C,E,G,H).
+'fib(2)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, 0=D-2, F=H+0, true, 'new1(2)'(C,E,G,H).
+'fib(2)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, 1=D-2, F=H+1, true, 'new1(2)'(C,E,G,H).
+'new1(2)'(A,B,C,D) :- 0=C-1, 0=C-2, D=0+0, true, 'fib(2)'(A,B).
+'new1(2)'(A,B,C,D) :- 0=C-1, 1=C-2, D=0+1, true, 'fib(2)'(A,B).
+'new1(2)'(A,B,C,D) :- 1=C-1, 0=C-2, D=1+0, true, 'fib(2)'(A,B).
+'new1(2)'(A,B,C,D) :- 1=C-1, 1=C-2, D=1+1, true, 'fib(2)'(A,B).
+'new1(2)'(A,B,C,D) :- 0=C-1, E=C-2, D=0+F, true, 'new1(2)'(A,B,E,F).
+'new1(2)'(A,B,C,D) :- 1=C-1, E=C-2, D=1+F, true, 'new1(2)'(A,B,E,F).
+'new1(2)'(A,B,C,D) :- E=C-1, 0=C-2, D=F+0, true, 'new1(2)'(A,B,E,F).
+'new1(2)'(A,B,C,D) :- E=C-1, 1=C-2, D=F+1, true, 'new1(2)'(A,B,E,F).
+'fib(2)'(A,B) :- 0=A-1, C=A-2, B=0+D, true, 'fib(2)'(C,D).
+'fib(2)'(A,B) :- 1=A-1, C=A-2, B=1+D, true, 'fib(2)'(C,D).
+'fib(2)'(A,B) :- C=A-1, D=A-2, B=E+F, 'new1(2)'(D,F,C,E).
+'fib(2)'(A,B) :- C=A-1, D=A-2, B=E+F, 0=C-1, 0=C-2, E=0+0, true, 'fib(1)'(D,F).
+'fib(2)'(A,B) :- C=A-1, D=A-2, B=E+F, 0=C-1, 1=C-2, E=0+1, true, 'fib(1)'(D,F).
+'fib(2)'(A,B) :- C=A-1, D=A-2, B=E+F, 1=C-1, 0=C-2, E=1+0, true, 'fib(1)'(D,F).
+'fib(2)'(A,B) :- C=A-1, D=A-2, B=E+F, 1=C-1, 1=C-2, E=1+1, true, 'fib(1)'(D,F).
+'fib(2)'(A,B) :- C=A-1, D=A-2, B=E+F, 0=C-1, G=C-2, E=0+H, true, 'new2(2)'(G,H,D,F).
+'fib(2)'(A,B) :- C=A-1, D=A-2, B=E+F, 1=C-1, G=C-2, E=1+H, true, 'new2(2)'(G,H,D,F).
+'fib(2)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, 0=C-2, E=H+0, true, 'new2(2)'(G,H,D,F).
+'fib(2)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, 1=C-2, E=H+1, true, 'new2(2)'(G,H,D,F).
+'new2(2)'(A,B,C,D) :- 0=A-1, 0=A-2, B=0+0, true, 'fib(1)'(C,D).
+'new2(2)'(A,B,C,D) :- 0=A-1, 1=A-2, B=0+1, true, 'fib(1)'(C,D).
+'new2(2)'(A,B,C,D) :- 1=A-1, 0=A-2, B=1+0, true, 'fib(1)'(C,D).
+'new2(2)'(A,B,C,D) :- 1=A-1, 1=A-2, B=1+1, true, 'fib(1)'(C,D).
+'new2(2)'(A,B,C,D) :- 0=A-1, E=A-2, B=0+F, true, 'new2(2)'(E,F,C,D).
+'new2(2)'(A,B,C,D) :- 1=A-1, E=A-2, B=1+F, true, 'new2(2)'(E,F,C,D).
+'new2(2)'(A,B,C,D) :- E=A-1, 0=A-2, B=F+0, true, 'new2(2)'(E,F,C,D).
+'new2(2)'(A,B,C,D) :- E=A-1, 1=A-2, B=F+1, true, 'new2(2)'(E,F,C,D).

@@ -25,10 +25,10 @@
 'fib[1]'(A,B) :- 'fib(0)'(A,B).
 'fib[0]'(A,B) :- 'fib(0)'(A,B).
 false :- 'false[3]'.
-'fib(1)'(A,B) :- C=A-1, 0=A-2, B=D+0, true, 'fib(1)'(C,D).
-'fib(1)'(A,B) :- C=A-1, 1=A-2, B=D+1, true, 'fib(1)'(C,D).
 'fib(1)'(A,B) :- 0=A-1, C=A-2, B=0+D, true, 'fib(1)'(C,D).
 'fib(1)'(A,B) :- 1=A-1, C=A-2, B=1+D, true, 'fib(1)'(C,D).
+'fib(1)'(A,B) :- C=A-1, 0=A-2, B=D+0, true, 'fib(1)'(C,D).
+'fib(1)'(A,B) :- C=A-1, 1=A-2, B=D+1, true, 'fib(1)'(C,D).
 'fib(1)'(A,B) :- 0=A-1, C=A-2, B=0+D, true, 'fib(0)'(C,D).
 'fib(1)'(A,B) :- 1=A-1, C=A-2, B=1+D, true, 'fib(0)'(C,D).
 'fib(2)'(A,B) :- C=A-1, D=A-2, B=E+F, 0=D-1, 0=D-2, F=0+0, true, 'fib(2)'(C,E).
@@ -37,18 +37,18 @@ false :- 'false[3]'.
 'fib(2)'(A,B) :- C=A-1, D=A-2, B=E+F, 1=D-1, 1=D-2, F=1+1, true, 'fib(2)'(C,E).
 'fib(2)'(A,B) :- C=A-1, 0=A-2, B=D+0, true, 'fib(2)'(C,D).
 'fib(2)'(A,B) :- C=A-1, 1=A-2, B=D+1, true, 'fib(2)'(C,D).
-'fib(2)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, 0=D-2, F=H+0, true, 'new1(2)'(C,E,G,H).
-'fib(2)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, 1=D-2, F=H+1, true, 'new1(2)'(C,E,G,H).
 'fib(2)'(A,B) :- C=A-1, D=A-2, B=E+F, 0=D-1, G=D-2, F=0+H, true, 'new1(2)'(C,E,G,H).
 'fib(2)'(A,B) :- C=A-1, D=A-2, B=E+F, 1=D-1, G=D-2, F=1+H, true, 'new1(2)'(C,E,G,H).
+'fib(2)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, 0=D-2, F=H+0, true, 'new1(2)'(C,E,G,H).
+'fib(2)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, 1=D-2, F=H+1, true, 'new1(2)'(C,E,G,H).
 'new1(2)'(A,B,C,D) :- 0=C-1, 0=C-2, D=0+0, true, 'fib(2)'(A,B).
 'new1(2)'(A,B,C,D) :- 0=C-1, 1=C-2, D=0+1, true, 'fib(2)'(A,B).
 'new1(2)'(A,B,C,D) :- 1=C-1, 0=C-2, D=1+0, true, 'fib(2)'(A,B).
 'new1(2)'(A,B,C,D) :- 1=C-1, 1=C-2, D=1+1, true, 'fib(2)'(A,B).
-'new1(2)'(A,B,C,D) :- E=C-1, 0=C-2, D=F+0, true, 'new1(2)'(A,B,E,F).
-'new1(2)'(A,B,C,D) :- E=C-1, 1=C-2, D=F+1, true, 'new1(2)'(A,B,E,F).
 'new1(2)'(A,B,C,D) :- 0=C-1, E=C-2, D=0+F, true, 'new1(2)'(A,B,E,F).
 'new1(2)'(A,B,C,D) :- 1=C-1, E=C-2, D=1+F, true, 'new1(2)'(A,B,E,F).
+'new1(2)'(A,B,C,D) :- E=C-1, 0=C-2, D=F+0, true, 'new1(2)'(A,B,E,F).
+'new1(2)'(A,B,C,D) :- E=C-1, 1=C-2, D=F+1, true, 'new1(2)'(A,B,E,F).
 'fib(2)'(A,B) :- 0=A-1, C=A-2, B=0+D, true, 'fib(2)'(C,D).
 'fib(2)'(A,B) :- 1=A-1, C=A-2, B=1+D, true, 'fib(2)'(C,D).
 'fib(2)'(A,B) :- C=A-1, D=A-2, B=E+F, 'new1(2)'(D,F,C,E).
@@ -56,18 +56,18 @@ false :- 'false[3]'.
 'fib(2)'(A,B) :- C=A-1, D=A-2, B=E+F, 0=C-1, 1=C-2, E=0+1, true, 'fib(1)'(D,F).
 'fib(2)'(A,B) :- C=A-1, D=A-2, B=E+F, 1=C-1, 0=C-2, E=1+0, true, 'fib(1)'(D,F).
 'fib(2)'(A,B) :- C=A-1, D=A-2, B=E+F, 1=C-1, 1=C-2, E=1+1, true, 'fib(1)'(D,F).
-'fib(2)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, 0=C-2, E=H+0, true, 'new2(2)'(G,H,D,F).
-'fib(2)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, 1=C-2, E=H+1, true, 'new2(2)'(G,H,D,F).
 'fib(2)'(A,B) :- C=A-1, D=A-2, B=E+F, 0=C-1, G=C-2, E=0+H, true, 'new2(2)'(G,H,D,F).
 'fib(2)'(A,B) :- C=A-1, D=A-2, B=E+F, 1=C-1, G=C-2, E=1+H, true, 'new2(2)'(G,H,D,F).
+'fib(2)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, 0=C-2, E=H+0, true, 'new2(2)'(G,H,D,F).
+'fib(2)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, 1=C-2, E=H+1, true, 'new2(2)'(G,H,D,F).
 'new2(2)'(A,B,C,D) :- 0=A-1, 0=A-2, B=0+0, true, 'fib(1)'(C,D).
 'new2(2)'(A,B,C,D) :- 0=A-1, 1=A-2, B=0+1, true, 'fib(1)'(C,D).
 'new2(2)'(A,B,C,D) :- 1=A-1, 0=A-2, B=1+0, true, 'fib(1)'(C,D).
 'new2(2)'(A,B,C,D) :- 1=A-1, 1=A-2, B=1+1, true, 'fib(1)'(C,D).
-'new2(2)'(A,B,C,D) :- E=A-1, 0=A-2, B=F+0, true, 'new2(2)'(E,F,C,D).
-'new2(2)'(A,B,C,D) :- E=A-1, 1=A-2, B=F+1, true, 'new2(2)'(E,F,C,D).
 'new2(2)'(A,B,C,D) :- 0=A-1, E=A-2, B=0+F, true, 'new2(2)'(E,F,C,D).
 'new2(2)'(A,B,C,D) :- 1=A-1, E=A-2, B=1+F, true, 'new2(2)'(E,F,C,D).
+'new2(2)'(A,B,C,D) :- E=A-1, 0=A-2, B=F+0, true, 'new2(2)'(E,F,C,D).
+'new2(2)'(A,B,C,D) :- E=A-1, 1=A-2, B=F+1, true, 'new2(2)'(E,F,C,D).
 'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 0=G-1, 0=G-2, I=0+0, true, 0=H-1, 0=H-2, J=0+0, 'fib(3)'(C,E).
 'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 0=G-1, 0=G-2, I=0+0, true, 0=H-1, 1=H-2, J=0+1, 'fib(3)'(C,E).
 'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 0=G-1, 0=G-2, I=0+0, true, 1=H-1, 0=H-2, J=1+0, 'fib(3)'(C,E).
@@ -98,76 +98,76 @@ false :- 'false[3]'.
 'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, 1=D-2, F=H+1, true, 'new3(3)'(C,E,G,H).
 'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, 0=D-1, G=D-2, F=0+H, true, 'new3(3)'(C,E,G,H).
 'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, 1=D-1, G=D-2, F=1+H, true, 'new3(3)'(C,E,G,H).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 0=H-1, K=H-2, J=0+L, true, 0=K-1, 0=K-2, L=0+0, 'new3(3)'(C,E,G,I).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 0=H-1, K=H-2, J=0+L, true, 0=K-1, 1=K-2, L=0+1, 'new3(3)'(C,E,G,I).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 0=H-1, K=H-2, J=0+L, true, 1=K-1, 0=K-2, L=1+0, 'new3(3)'(C,E,G,I).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 0=H-1, K=H-2, J=0+L, true, 1=K-1, 1=K-2, L=1+1, 'new3(3)'(C,E,G,I).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 0=H-1, K=H-2, J=0+L, true, M=K-1, 0=K-2, L=N+0, 'new4(3)'(C,E,G,I,M,N).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 0=H-1, K=H-2, J=0+L, true, M=K-1, 1=K-2, L=N+1, 'new4(3)'(C,E,G,I,M,N).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 0=H-1, K=H-2, J=0+L, true, 0=K-1, M=K-2, L=0+N, 'new4(3)'(C,E,G,I,M,N).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 0=H-1, K=H-2, J=0+L, true, 1=K-1, M=K-2, L=1+N, 'new4(3)'(C,E,G,I,M,N).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 1=H-1, K=H-2, J=1+L, true, 0=K-1, 0=K-2, L=0+0, 'new3(3)'(C,E,G,I).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 1=H-1, K=H-2, J=1+L, true, 0=K-1, 1=K-2, L=0+1, 'new3(3)'(C,E,G,I).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 1=H-1, K=H-2, J=1+L, true, 1=K-1, 0=K-2, L=1+0, 'new3(3)'(C,E,G,I).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 1=H-1, K=H-2, J=1+L, true, 1=K-1, 1=K-2, L=1+1, 'new3(3)'(C,E,G,I).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 1=H-1, K=H-2, J=1+L, true, M=K-1, 0=K-2, L=N+0, 'new4(3)'(C,E,G,I,M,N).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 1=H-1, K=H-2, J=1+L, true, M=K-1, 1=K-2, L=N+1, 'new4(3)'(C,E,G,I,M,N).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 1=H-1, K=H-2, J=1+L, true, 0=K-1, M=K-2, L=0+N, 'new4(3)'(C,E,G,I,M,N).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 1=H-1, K=H-2, J=1+L, true, 1=K-1, M=K-2, L=1+N, 'new4(3)'(C,E,G,I,M,N).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, K=H-1, 0=H-2, J=L+0, true, 0=K-1, 0=K-2, L=0+0, 'new3(3)'(C,E,G,I).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, K=H-1, 0=H-2, J=L+0, true, 0=K-1, 1=K-2, L=0+1, 'new3(3)'(C,E,G,I).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, K=H-1, 0=H-2, J=L+0, true, 1=K-1, 0=K-2, L=1+0, 'new3(3)'(C,E,G,I).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, K=H-1, 0=H-2, J=L+0, true, 1=K-1, 1=K-2, L=1+1, 'new3(3)'(C,E,G,I).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, K=H-1, 0=H-2, J=L+0, true, 0=K-1, M=K-2, L=0+N, 'new4(3)'(C,E,G,I,M,N).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, K=H-1, 0=H-2, J=L+0, true, 1=K-1, M=K-2, L=1+N, 'new4(3)'(C,E,G,I,M,N).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, K=H-1, 0=H-2, J=L+0, true, M=K-1, 0=K-2, L=N+0, 'new4(3)'(C,E,G,I,M,N).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, K=H-1, 0=H-2, J=L+0, true, M=K-1, 1=K-2, L=N+1, 'new4(3)'(C,E,G,I,M,N).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, K=H-1, 1=H-2, J=L+1, true, 0=K-1, 0=K-2, L=0+0, 'new3(3)'(C,E,G,I).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, K=H-1, 1=H-2, J=L+1, true, 0=K-1, 1=K-2, L=0+1, 'new3(3)'(C,E,G,I).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, K=H-1, 1=H-2, J=L+1, true, 1=K-1, 0=K-2, L=1+0, 'new3(3)'(C,E,G,I).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, K=H-1, 1=H-2, J=L+1, true, 1=K-1, 1=K-2, L=1+1, 'new3(3)'(C,E,G,I).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, K=H-1, 1=H-2, J=L+1, true, 0=K-1, M=K-2, L=0+N, 'new4(3)'(C,E,G,I,M,N).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, K=H-1, 1=H-2, J=L+1, true, 1=K-1, M=K-2, L=1+N, 'new4(3)'(C,E,G,I,M,N).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, K=H-1, 1=H-2, J=L+1, true, M=K-1, 0=K-2, L=N+0, 'new4(3)'(C,E,G,I,M,N).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, K=H-1, 1=H-2, J=L+1, true, M=K-1, 1=K-2, L=N+1, 'new4(3)'(C,E,G,I,M,N).
 'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 0=G-1, 0=G-2, I=0+0, true, 'new3(3)'(C,E,H,J).
 'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 0=G-1, 1=G-2, I=0+1, true, 'new3(3)'(C,E,H,J).
 'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 1=G-1, 0=G-2, I=1+0, true, 'new3(3)'(C,E,H,J).
 'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 1=G-1, 1=G-2, I=1+1, true, 'new3(3)'(C,E,H,J).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, K=G-1, 0=G-2, I=L+0, true, 'new4(3)'(C,E,H,J,K,L).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, K=G-1, 1=G-2, I=L+1, true, 'new4(3)'(C,E,H,J,K,L).
 'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 0=G-1, K=G-2, I=0+L, true, 'new4(3)'(C,E,H,J,K,L).
 'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 1=G-1, K=G-2, I=1+L, true, 'new4(3)'(C,E,H,J,K,L).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 0=G-1, 0=G-2, I=0+0, true, K=H-1, 0=H-2, J=L+0, 'new5(3)'(C,E,K,L).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 0=G-1, 0=G-2, I=0+0, true, K=H-1, 1=H-2, J=L+1, 'new5(3)'(C,E,K,L).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, K=G-1, 0=G-2, I=L+0, true, 'new4(3)'(C,E,H,J,K,L).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, K=G-1, 1=G-2, I=L+1, true, 'new4(3)'(C,E,H,J,K,L).
 'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 0=G-1, 0=G-2, I=0+0, true, 0=H-1, K=H-2, J=0+L, 'new5(3)'(C,E,K,L).
 'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 0=G-1, 0=G-2, I=0+0, true, 1=H-1, K=H-2, J=1+L, 'new5(3)'(C,E,K,L).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 0=G-1, 1=G-2, I=0+1, true, K=H-1, 0=H-2, J=L+0, 'new5(3)'(C,E,K,L).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 0=G-1, 1=G-2, I=0+1, true, K=H-1, 1=H-2, J=L+1, 'new5(3)'(C,E,K,L).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 0=G-1, 0=G-2, I=0+0, true, K=H-1, 0=H-2, J=L+0, 'new5(3)'(C,E,K,L).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 0=G-1, 0=G-2, I=0+0, true, K=H-1, 1=H-2, J=L+1, 'new5(3)'(C,E,K,L).
 'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 0=G-1, 1=G-2, I=0+1, true, 0=H-1, K=H-2, J=0+L, 'new5(3)'(C,E,K,L).
 'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 0=G-1, 1=G-2, I=0+1, true, 1=H-1, K=H-2, J=1+L, 'new5(3)'(C,E,K,L).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 1=G-1, 0=G-2, I=1+0, true, K=H-1, 0=H-2, J=L+0, 'new5(3)'(C,E,K,L).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 1=G-1, 0=G-2, I=1+0, true, K=H-1, 1=H-2, J=L+1, 'new5(3)'(C,E,K,L).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 0=G-1, 1=G-2, I=0+1, true, K=H-1, 0=H-2, J=L+0, 'new5(3)'(C,E,K,L).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 0=G-1, 1=G-2, I=0+1, true, K=H-1, 1=H-2, J=L+1, 'new5(3)'(C,E,K,L).
 'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 1=G-1, 0=G-2, I=1+0, true, 0=H-1, K=H-2, J=0+L, 'new5(3)'(C,E,K,L).
 'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 1=G-1, 0=G-2, I=1+0, true, 1=H-1, K=H-2, J=1+L, 'new5(3)'(C,E,K,L).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 1=G-1, 1=G-2, I=1+1, true, K=H-1, 0=H-2, J=L+0, 'new5(3)'(C,E,K,L).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 1=G-1, 1=G-2, I=1+1, true, K=H-1, 1=H-2, J=L+1, 'new5(3)'(C,E,K,L).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 1=G-1, 0=G-2, I=1+0, true, K=H-1, 0=H-2, J=L+0, 'new5(3)'(C,E,K,L).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 1=G-1, 0=G-2, I=1+0, true, K=H-1, 1=H-2, J=L+1, 'new5(3)'(C,E,K,L).
 'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 1=G-1, 1=G-2, I=1+1, true, 0=H-1, K=H-2, J=0+L, 'new5(3)'(C,E,K,L).
 'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 1=G-1, 1=G-2, I=1+1, true, 1=H-1, K=H-2, J=1+L, 'new5(3)'(C,E,K,L).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 0=G-1, K=G-2, I=0+L, true, 0=K-1, 0=K-2, L=0+0, 'new5(3)'(C,E,H,J).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 0=G-1, K=G-2, I=0+L, true, 0=K-1, 1=K-2, L=0+1, 'new5(3)'(C,E,H,J).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 0=G-1, K=G-2, I=0+L, true, 1=K-1, 0=K-2, L=1+0, 'new5(3)'(C,E,H,J).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 0=G-1, K=G-2, I=0+L, true, 1=K-1, 1=K-2, L=1+1, 'new5(3)'(C,E,H,J).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 0=G-1, K=G-2, I=0+L, true, M=K-1, 0=K-2, L=N+0, 'new6(3)'(C,E,M,N,H,J).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 0=G-1, K=G-2, I=0+L, true, M=K-1, 1=K-2, L=N+1, 'new6(3)'(C,E,M,N,H,J).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 0=G-1, K=G-2, I=0+L, true, 0=K-1, M=K-2, L=0+N, 'new6(3)'(C,E,M,N,H,J).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 0=G-1, K=G-2, I=0+L, true, 1=K-1, M=K-2, L=1+N, 'new6(3)'(C,E,M,N,H,J).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 1=G-1, K=G-2, I=1+L, true, 0=K-1, 0=K-2, L=0+0, 'new5(3)'(C,E,H,J).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 1=G-1, K=G-2, I=1+L, true, 0=K-1, 1=K-2, L=0+1, 'new5(3)'(C,E,H,J).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 1=G-1, K=G-2, I=1+L, true, 1=K-1, 0=K-2, L=1+0, 'new5(3)'(C,E,H,J).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 1=G-1, K=G-2, I=1+L, true, 1=K-1, 1=K-2, L=1+1, 'new5(3)'(C,E,H,J).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 1=G-1, K=G-2, I=1+L, true, M=K-1, 0=K-2, L=N+0, 'new6(3)'(C,E,M,N,H,J).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 1=G-1, K=G-2, I=1+L, true, M=K-1, 1=K-2, L=N+1, 'new6(3)'(C,E,M,N,H,J).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 1=G-1, K=G-2, I=1+L, true, 0=K-1, M=K-2, L=0+N, 'new6(3)'(C,E,M,N,H,J).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 1=G-1, K=G-2, I=1+L, true, 1=K-1, M=K-2, L=1+N, 'new6(3)'(C,E,M,N,H,J).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, 0=D-2, F=H+0, true, 'new5(3)'(C,E,G,H).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, 1=D-2, F=H+1, true, 'new5(3)'(C,E,G,H).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 1=G-1, 1=G-2, I=1+1, true, K=H-1, 0=H-2, J=L+0, 'new5(3)'(C,E,K,L).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, 1=G-1, 1=G-2, I=1+1, true, K=H-1, 1=H-2, J=L+1, 'new5(3)'(C,E,K,L).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, K=G-1, 0=G-2, I=L+0, true, 0=K-1, 0=K-2, L=0+0, 'new5(3)'(C,E,H,J).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, K=G-1, 0=G-2, I=L+0, true, 0=K-1, 1=K-2, L=0+1, 'new5(3)'(C,E,H,J).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, K=G-1, 0=G-2, I=L+0, true, 1=K-1, 0=K-2, L=1+0, 'new5(3)'(C,E,H,J).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, K=G-1, 0=G-2, I=L+0, true, 1=K-1, 1=K-2, L=1+1, 'new5(3)'(C,E,H,J).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, K=G-1, 0=G-2, I=L+0, true, 0=K-1, M=K-2, L=0+N, 'new6(3)'(C,E,M,N,H,J).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, K=G-1, 0=G-2, I=L+0, true, 1=K-1, M=K-2, L=1+N, 'new6(3)'(C,E,M,N,H,J).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, K=G-1, 0=G-2, I=L+0, true, M=K-1, 0=K-2, L=N+0, 'new6(3)'(C,E,M,N,H,J).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, K=G-1, 0=G-2, I=L+0, true, M=K-1, 1=K-2, L=N+1, 'new6(3)'(C,E,M,N,H,J).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, K=G-1, 1=G-2, I=L+1, true, 0=K-1, 0=K-2, L=0+0, 'new5(3)'(C,E,H,J).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, K=G-1, 1=G-2, I=L+1, true, 0=K-1, 1=K-2, L=0+1, 'new5(3)'(C,E,H,J).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, K=G-1, 1=G-2, I=L+1, true, 1=K-1, 0=K-2, L=1+0, 'new5(3)'(C,E,H,J).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, K=G-1, 1=G-2, I=L+1, true, 1=K-1, 1=K-2, L=1+1, 'new5(3)'(C,E,H,J).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, K=G-1, 1=G-2, I=L+1, true, 0=K-1, M=K-2, L=0+N, 'new6(3)'(C,E,M,N,H,J).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, K=G-1, 1=G-2, I=L+1, true, 1=K-1, M=K-2, L=1+N, 'new6(3)'(C,E,M,N,H,J).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, K=G-1, 1=G-2, I=L+1, true, M=K-1, 0=K-2, L=N+0, 'new6(3)'(C,E,M,N,H,J).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, H=D-2, F=I+J, K=G-1, 1=G-2, I=L+1, true, M=K-1, 1=K-2, L=N+1, 'new6(3)'(C,E,M,N,H,J).
 'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, 0=D-1, G=D-2, F=0+H, true, 'new5(3)'(C,E,G,H).
 'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, 1=D-1, G=D-2, F=1+H, true, 'new5(3)'(C,E,G,H).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, 0=D-2, F=H+0, true, 'new5(3)'(C,E,G,H).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=D-1, 1=D-2, F=H+1, true, 'new5(3)'(C,E,G,H).
 'new3(3)'(A,B,C,D) :- E=C-1, F=C-2, D=G+H, 0=F-1, 0=F-2, H=0+0, true, 'new3(3)'(A,B,E,G).
 'new3(3)'(A,B,C,D) :- E=C-1, F=C-2, D=G+H, 0=F-1, 1=F-2, H=0+1, true, 'new3(3)'(A,B,E,G).
 'new3(3)'(A,B,C,D) :- E=C-1, F=C-2, D=G+H, 1=F-1, 0=F-2, H=1+0, true, 'new3(3)'(A,B,E,G).
 'new3(3)'(A,B,C,D) :- E=C-1, F=C-2, D=G+H, 1=F-1, 1=F-2, H=1+1, true, 'new3(3)'(A,B,E,G).
 'new3(3)'(A,B,C,D) :- E=C-1, 0=C-2, D=F+0, true, 'new3(3)'(A,B,E,F).
 'new3(3)'(A,B,C,D) :- E=C-1, 1=C-2, D=F+1, true, 'new3(3)'(A,B,E,F).
-'new3(3)'(A,B,C,D) :- E=C-1, F=C-2, D=G+H, I=F-1, 0=F-2, H=J+0, true, 'new4(3)'(A,B,E,G,I,J).
-'new3(3)'(A,B,C,D) :- E=C-1, F=C-2, D=G+H, I=F-1, 1=F-2, H=J+1, true, 'new4(3)'(A,B,E,G,I,J).
 'new3(3)'(A,B,C,D) :- E=C-1, F=C-2, D=G+H, 0=F-1, I=F-2, H=0+J, true, 'new4(3)'(A,B,E,G,I,J).
 'new3(3)'(A,B,C,D) :- E=C-1, F=C-2, D=G+H, 1=F-1, I=F-2, H=1+J, true, 'new4(3)'(A,B,E,G,I,J).
+'new3(3)'(A,B,C,D) :- E=C-1, F=C-2, D=G+H, I=F-1, 0=F-2, H=J+0, true, 'new4(3)'(A,B,E,G,I,J).
+'new3(3)'(A,B,C,D) :- E=C-1, F=C-2, D=G+H, I=F-1, 1=F-2, H=J+1, true, 'new4(3)'(A,B,E,G,I,J).
 'new3(3)'(A,B,C,D) :- 0=C-1, E=C-2, D=0+F, true, 'new3(3)'(A,B,E,F).
 'new3(3)'(A,B,C,D) :- 1=C-1, E=C-2, D=1+F, true, 'new3(3)'(A,B,E,F).
 'new3(3)'(A,B,C,D) :- E=C-1, F=C-2, D=G+H, 'new4(3)'(A,B,F,H,E,G).
@@ -175,34 +175,34 @@ false :- 'false[3]'.
 'new3(3)'(A,B,C,D) :- E=C-1, F=C-2, D=G+H, 0=E-1, 1=E-2, G=0+1, true, 'new5(3)'(A,B,F,H).
 'new3(3)'(A,B,C,D) :- E=C-1, F=C-2, D=G+H, 1=E-1, 0=E-2, G=1+0, true, 'new5(3)'(A,B,F,H).
 'new3(3)'(A,B,C,D) :- E=C-1, F=C-2, D=G+H, 1=E-1, 1=E-2, G=1+1, true, 'new5(3)'(A,B,F,H).
-'new3(3)'(A,B,C,D) :- E=C-1, F=C-2, D=G+H, I=E-1, 0=E-2, G=J+0, true, 'new6(3)'(A,B,I,J,F,H).
-'new3(3)'(A,B,C,D) :- E=C-1, F=C-2, D=G+H, I=E-1, 1=E-2, G=J+1, true, 'new6(3)'(A,B,I,J,F,H).
 'new3(3)'(A,B,C,D) :- E=C-1, F=C-2, D=G+H, 0=E-1, I=E-2, G=0+J, true, 'new6(3)'(A,B,I,J,F,H).
 'new3(3)'(A,B,C,D) :- E=C-1, F=C-2, D=G+H, 1=E-1, I=E-2, G=1+J, true, 'new6(3)'(A,B,I,J,F,H).
+'new3(3)'(A,B,C,D) :- E=C-1, F=C-2, D=G+H, I=E-1, 0=E-2, G=J+0, true, 'new6(3)'(A,B,I,J,F,H).
+'new3(3)'(A,B,C,D) :- E=C-1, F=C-2, D=G+H, I=E-1, 1=E-2, G=J+1, true, 'new6(3)'(A,B,I,J,F,H).
 'new4(3)'(A,B,C,D,E,F) :- 0=E-1, 0=E-2, F=0+0, true, 'new3(3)'(A,B,C,D).
 'new4(3)'(A,B,C,D,E,F) :- 0=E-1, 1=E-2, F=0+1, true, 'new3(3)'(A,B,C,D).
 'new4(3)'(A,B,C,D,E,F) :- 1=E-1, 0=E-2, F=1+0, true, 'new3(3)'(A,B,C,D).
 'new4(3)'(A,B,C,D,E,F) :- 1=E-1, 1=E-2, F=1+1, true, 'new3(3)'(A,B,C,D).
-'new4(3)'(A,B,C,D,E,F) :- G=E-1, 0=E-2, F=H+0, true, 'new4(3)'(A,B,C,D,G,H).
-'new4(3)'(A,B,C,D,E,F) :- G=E-1, 1=E-2, F=H+1, true, 'new4(3)'(A,B,C,D,G,H).
 'new4(3)'(A,B,C,D,E,F) :- 0=E-1, G=E-2, F=0+H, true, 'new4(3)'(A,B,C,D,G,H).
 'new4(3)'(A,B,C,D,E,F) :- 1=E-1, G=E-2, F=1+H, true, 'new4(3)'(A,B,C,D,G,H).
+'new4(3)'(A,B,C,D,E,F) :- G=E-1, 0=E-2, F=H+0, true, 'new4(3)'(A,B,C,D,G,H).
+'new4(3)'(A,B,C,D,E,F) :- G=E-1, 1=E-2, F=H+1, true, 'new4(3)'(A,B,C,D,G,H).
 'new5(3)'(A,B,C,D) :- 0=C-1, 0=C-2, D=0+0, true, 'fib(3)'(A,B).
 'new5(3)'(A,B,C,D) :- 0=C-1, 1=C-2, D=0+1, true, 'fib(3)'(A,B).
 'new5(3)'(A,B,C,D) :- 1=C-1, 0=C-2, D=1+0, true, 'fib(3)'(A,B).
 'new5(3)'(A,B,C,D) :- 1=C-1, 1=C-2, D=1+1, true, 'fib(3)'(A,B).
-'new5(3)'(A,B,C,D) :- E=C-1, 0=C-2, D=F+0, true, 'new5(3)'(A,B,E,F).
-'new5(3)'(A,B,C,D) :- E=C-1, 1=C-2, D=F+1, true, 'new5(3)'(A,B,E,F).
 'new5(3)'(A,B,C,D) :- 0=C-1, E=C-2, D=0+F, true, 'new5(3)'(A,B,E,F).
 'new5(3)'(A,B,C,D) :- 1=C-1, E=C-2, D=1+F, true, 'new5(3)'(A,B,E,F).
+'new5(3)'(A,B,C,D) :- E=C-1, 0=C-2, D=F+0, true, 'new5(3)'(A,B,E,F).
+'new5(3)'(A,B,C,D) :- E=C-1, 1=C-2, D=F+1, true, 'new5(3)'(A,B,E,F).
 'new6(3)'(A,B,C,D,E,F) :- 0=C-1, 0=C-2, D=0+0, true, 'new5(3)'(A,B,E,F).
 'new6(3)'(A,B,C,D,E,F) :- 0=C-1, 1=C-2, D=0+1, true, 'new5(3)'(A,B,E,F).
 'new6(3)'(A,B,C,D,E,F) :- 1=C-1, 0=C-2, D=1+0, true, 'new5(3)'(A,B,E,F).
 'new6(3)'(A,B,C,D,E,F) :- 1=C-1, 1=C-2, D=1+1, true, 'new5(3)'(A,B,E,F).
-'new6(3)'(A,B,C,D,E,F) :- G=C-1, 0=C-2, D=H+0, true, 'new6(3)'(A,B,G,H,E,F).
-'new6(3)'(A,B,C,D,E,F) :- G=C-1, 1=C-2, D=H+1, true, 'new6(3)'(A,B,G,H,E,F).
 'new6(3)'(A,B,C,D,E,F) :- 0=C-1, G=C-2, D=0+H, true, 'new6(3)'(A,B,G,H,E,F).
 'new6(3)'(A,B,C,D,E,F) :- 1=C-1, G=C-2, D=1+H, true, 'new6(3)'(A,B,G,H,E,F).
+'new6(3)'(A,B,C,D,E,F) :- G=C-1, 0=C-2, D=H+0, true, 'new6(3)'(A,B,G,H,E,F).
+'new6(3)'(A,B,C,D,E,F) :- G=C-1, 1=C-2, D=H+1, true, 'new6(3)'(A,B,G,H,E,F).
 'fib(3)'(A,B) :- 0=A-1, C=A-2, B=0+D, true, 'fib(3)'(C,D).
 'fib(3)'(A,B) :- 1=A-1, C=A-2, B=1+D, true, 'fib(3)'(C,D).
 'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, 'new3(3)'(D,F,C,E).
@@ -231,72 +231,72 @@ false :- 'false[3]'.
 'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, 1=C-2, E=H+1, true, 'new7(3)'(G,H,D,F).
 'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, 0=C-1, G=C-2, E=0+H, true, 'new7(3)'(G,H,D,F).
 'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, 1=C-1, G=C-2, E=1+H, true, 'new7(3)'(G,H,D,F).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, 0=H-1, K=H-2, J=0+L, true, 0=K-1, 0=K-2, L=0+0, 'new7(3)'(G,I,D,F).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, 0=H-1, K=H-2, J=0+L, true, 0=K-1, 1=K-2, L=0+1, 'new7(3)'(G,I,D,F).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, 0=H-1, K=H-2, J=0+L, true, 1=K-1, 0=K-2, L=1+0, 'new7(3)'(G,I,D,F).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, 0=H-1, K=H-2, J=0+L, true, 1=K-1, 1=K-2, L=1+1, 'new7(3)'(G,I,D,F).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, 0=H-1, K=H-2, J=0+L, true, M=K-1, 0=K-2, L=N+0, 'new8(3)'(G,I,M,N,D,F).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, 0=H-1, K=H-2, J=0+L, true, M=K-1, 1=K-2, L=N+1, 'new8(3)'(G,I,M,N,D,F).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, 0=H-1, K=H-2, J=0+L, true, 0=K-1, M=K-2, L=0+N, 'new8(3)'(G,I,M,N,D,F).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, 0=H-1, K=H-2, J=0+L, true, 1=K-1, M=K-2, L=1+N, 'new8(3)'(G,I,M,N,D,F).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, 1=H-1, K=H-2, J=1+L, true, 0=K-1, 0=K-2, L=0+0, 'new7(3)'(G,I,D,F).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, 1=H-1, K=H-2, J=1+L, true, 0=K-1, 1=K-2, L=0+1, 'new7(3)'(G,I,D,F).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, 1=H-1, K=H-2, J=1+L, true, 1=K-1, 0=K-2, L=1+0, 'new7(3)'(G,I,D,F).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, 1=H-1, K=H-2, J=1+L, true, 1=K-1, 1=K-2, L=1+1, 'new7(3)'(G,I,D,F).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, 1=H-1, K=H-2, J=1+L, true, M=K-1, 0=K-2, L=N+0, 'new8(3)'(G,I,M,N,D,F).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, 1=H-1, K=H-2, J=1+L, true, M=K-1, 1=K-2, L=N+1, 'new8(3)'(G,I,M,N,D,F).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, 1=H-1, K=H-2, J=1+L, true, 0=K-1, M=K-2, L=0+N, 'new8(3)'(G,I,M,N,D,F).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, 1=H-1, K=H-2, J=1+L, true, 1=K-1, M=K-2, L=1+N, 'new8(3)'(G,I,M,N,D,F).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, K=H-1, 0=H-2, J=L+0, true, 0=K-1, 0=K-2, L=0+0, 'new7(3)'(G,I,D,F).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, K=H-1, 0=H-2, J=L+0, true, 0=K-1, 1=K-2, L=0+1, 'new7(3)'(G,I,D,F).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, K=H-1, 0=H-2, J=L+0, true, 1=K-1, 0=K-2, L=1+0, 'new7(3)'(G,I,D,F).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, K=H-1, 0=H-2, J=L+0, true, 1=K-1, 1=K-2, L=1+1, 'new7(3)'(G,I,D,F).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, K=H-1, 0=H-2, J=L+0, true, 0=K-1, M=K-2, L=0+N, 'new8(3)'(G,I,M,N,D,F).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, K=H-1, 0=H-2, J=L+0, true, 1=K-1, M=K-2, L=1+N, 'new8(3)'(G,I,M,N,D,F).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, K=H-1, 0=H-2, J=L+0, true, M=K-1, 0=K-2, L=N+0, 'new8(3)'(G,I,M,N,D,F).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, K=H-1, 0=H-2, J=L+0, true, M=K-1, 1=K-2, L=N+1, 'new8(3)'(G,I,M,N,D,F).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, K=H-1, 1=H-2, J=L+1, true, 0=K-1, 0=K-2, L=0+0, 'new7(3)'(G,I,D,F).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, K=H-1, 1=H-2, J=L+1, true, 0=K-1, 1=K-2, L=0+1, 'new7(3)'(G,I,D,F).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, K=H-1, 1=H-2, J=L+1, true, 1=K-1, 0=K-2, L=1+0, 'new7(3)'(G,I,D,F).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, K=H-1, 1=H-2, J=L+1, true, 1=K-1, 1=K-2, L=1+1, 'new7(3)'(G,I,D,F).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, K=H-1, 1=H-2, J=L+1, true, 0=K-1, M=K-2, L=0+N, 'new8(3)'(G,I,M,N,D,F).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, K=H-1, 1=H-2, J=L+1, true, 1=K-1, M=K-2, L=1+N, 'new8(3)'(G,I,M,N,D,F).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, K=H-1, 1=H-2, J=L+1, true, M=K-1, 0=K-2, L=N+0, 'new8(3)'(G,I,M,N,D,F).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, K=H-1, 1=H-2, J=L+1, true, M=K-1, 1=K-2, L=N+1, 'new8(3)'(G,I,M,N,D,F).
 'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, 0=G-1, 0=G-2, I=0+0, true, 'new7(3)'(H,J,D,F).
 'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, 0=G-1, 1=G-2, I=0+1, true, 'new7(3)'(H,J,D,F).
 'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, 1=G-1, 0=G-2, I=1+0, true, 'new7(3)'(H,J,D,F).
 'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, 1=G-1, 1=G-2, I=1+1, true, 'new7(3)'(H,J,D,F).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, K=G-1, 0=G-2, I=L+0, true, 'new8(3)'(H,J,K,L,D,F).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, K=G-1, 1=G-2, I=L+1, true, 'new8(3)'(H,J,K,L,D,F).
 'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, 0=G-1, K=G-2, I=0+L, true, 'new8(3)'(H,J,K,L,D,F).
 'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, 1=G-1, K=G-2, I=1+L, true, 'new8(3)'(H,J,K,L,D,F).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, 0=G-1, 0=G-2, I=0+0, true, K=H-1, 0=H-2, J=L+0, 'new9(3)'(K,L,D,F).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, 0=G-1, 0=G-2, I=0+0, true, K=H-1, 1=H-2, J=L+1, 'new9(3)'(K,L,D,F).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, K=G-1, 0=G-2, I=L+0, true, 'new8(3)'(H,J,K,L,D,F).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, K=G-1, 1=G-2, I=L+1, true, 'new8(3)'(H,J,K,L,D,F).
 'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, 0=G-1, 0=G-2, I=0+0, true, 0=H-1, K=H-2, J=0+L, 'new9(3)'(K,L,D,F).
 'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, 0=G-1, 0=G-2, I=0+0, true, 1=H-1, K=H-2, J=1+L, 'new9(3)'(K,L,D,F).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, 0=G-1, 1=G-2, I=0+1, true, K=H-1, 0=H-2, J=L+0, 'new9(3)'(K,L,D,F).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, 0=G-1, 1=G-2, I=0+1, true, K=H-1, 1=H-2, J=L+1, 'new9(3)'(K,L,D,F).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, 0=G-1, 0=G-2, I=0+0, true, K=H-1, 0=H-2, J=L+0, 'new9(3)'(K,L,D,F).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, 0=G-1, 0=G-2, I=0+0, true, K=H-1, 1=H-2, J=L+1, 'new9(3)'(K,L,D,F).
 'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, 0=G-1, 1=G-2, I=0+1, true, 0=H-1, K=H-2, J=0+L, 'new9(3)'(K,L,D,F).
 'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, 0=G-1, 1=G-2, I=0+1, true, 1=H-1, K=H-2, J=1+L, 'new9(3)'(K,L,D,F).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, 1=G-1, 0=G-2, I=1+0, true, K=H-1, 0=H-2, J=L+0, 'new9(3)'(K,L,D,F).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, 1=G-1, 0=G-2, I=1+0, true, K=H-1, 1=H-2, J=L+1, 'new9(3)'(K,L,D,F).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, 0=G-1, 1=G-2, I=0+1, true, K=H-1, 0=H-2, J=L+0, 'new9(3)'(K,L,D,F).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, 0=G-1, 1=G-2, I=0+1, true, K=H-1, 1=H-2, J=L+1, 'new9(3)'(K,L,D,F).
 'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, 1=G-1, 0=G-2, I=1+0, true, 0=H-1, K=H-2, J=0+L, 'new9(3)'(K,L,D,F).
 'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, 1=G-1, 0=G-2, I=1+0, true, 1=H-1, K=H-2, J=1+L, 'new9(3)'(K,L,D,F).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, 1=G-1, 1=G-2, I=1+1, true, K=H-1, 0=H-2, J=L+0, 'new9(3)'(K,L,D,F).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, 1=G-1, 1=G-2, I=1+1, true, K=H-1, 1=H-2, J=L+1, 'new9(3)'(K,L,D,F).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, 1=G-1, 0=G-2, I=1+0, true, K=H-1, 0=H-2, J=L+0, 'new9(3)'(K,L,D,F).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, 1=G-1, 0=G-2, I=1+0, true, K=H-1, 1=H-2, J=L+1, 'new9(3)'(K,L,D,F).
 'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, 1=G-1, 1=G-2, I=1+1, true, 0=H-1, K=H-2, J=0+L, 'new9(3)'(K,L,D,F).
 'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, 1=G-1, 1=G-2, I=1+1, true, 1=H-1, K=H-2, J=1+L, 'new9(3)'(K,L,D,F).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, 0=G-1, K=G-2, I=0+L, true, 0=K-1, 0=K-2, L=0+0, 'new9(3)'(H,J,D,F).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, 0=G-1, K=G-2, I=0+L, true, 0=K-1, 1=K-2, L=0+1, 'new9(3)'(H,J,D,F).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, 0=G-1, K=G-2, I=0+L, true, 1=K-1, 0=K-2, L=1+0, 'new9(3)'(H,J,D,F).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, 0=G-1, K=G-2, I=0+L, true, 1=K-1, 1=K-2, L=1+1, 'new9(3)'(H,J,D,F).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, 0=G-1, K=G-2, I=0+L, true, M=K-1, 0=K-2, L=N+0, 'new10(3)'(M,N,H,J,D,F).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, 0=G-1, K=G-2, I=0+L, true, M=K-1, 1=K-2, L=N+1, 'new10(3)'(M,N,H,J,D,F).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, 0=G-1, K=G-2, I=0+L, true, 0=K-1, M=K-2, L=0+N, 'new10(3)'(M,N,H,J,D,F).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, 0=G-1, K=G-2, I=0+L, true, 1=K-1, M=K-2, L=1+N, 'new10(3)'(M,N,H,J,D,F).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, 1=G-1, K=G-2, I=1+L, true, 0=K-1, 0=K-2, L=0+0, 'new9(3)'(H,J,D,F).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, 1=G-1, K=G-2, I=1+L, true, 0=K-1, 1=K-2, L=0+1, 'new9(3)'(H,J,D,F).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, 1=G-1, K=G-2, I=1+L, true, 1=K-1, 0=K-2, L=1+0, 'new9(3)'(H,J,D,F).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, 1=G-1, K=G-2, I=1+L, true, 1=K-1, 1=K-2, L=1+1, 'new9(3)'(H,J,D,F).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, 1=G-1, K=G-2, I=1+L, true, M=K-1, 0=K-2, L=N+0, 'new10(3)'(M,N,H,J,D,F).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, 1=G-1, K=G-2, I=1+L, true, M=K-1, 1=K-2, L=N+1, 'new10(3)'(M,N,H,J,D,F).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, 1=G-1, K=G-2, I=1+L, true, 0=K-1, M=K-2, L=0+N, 'new10(3)'(M,N,H,J,D,F).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, 1=G-1, K=G-2, I=1+L, true, 1=K-1, M=K-2, L=1+N, 'new10(3)'(M,N,H,J,D,F).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, 1=G-1, 1=G-2, I=1+1, true, K=H-1, 0=H-2, J=L+0, 'new9(3)'(K,L,D,F).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, 1=G-1, 1=G-2, I=1+1, true, K=H-1, 1=H-2, J=L+1, 'new9(3)'(K,L,D,F).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, K=G-1, 0=G-2, I=L+0, true, 0=K-1, 0=K-2, L=0+0, 'new9(3)'(H,J,D,F).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, K=G-1, 0=G-2, I=L+0, true, 0=K-1, 1=K-2, L=0+1, 'new9(3)'(H,J,D,F).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, K=G-1, 0=G-2, I=L+0, true, 1=K-1, 0=K-2, L=1+0, 'new9(3)'(H,J,D,F).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, K=G-1, 0=G-2, I=L+0, true, 1=K-1, 1=K-2, L=1+1, 'new9(3)'(H,J,D,F).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, K=G-1, 0=G-2, I=L+0, true, 0=K-1, M=K-2, L=0+N, 'new10(3)'(M,N,H,J,D,F).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, K=G-1, 0=G-2, I=L+0, true, 1=K-1, M=K-2, L=1+N, 'new10(3)'(M,N,H,J,D,F).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, K=G-1, 0=G-2, I=L+0, true, M=K-1, 0=K-2, L=N+0, 'new10(3)'(M,N,H,J,D,F).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, K=G-1, 0=G-2, I=L+0, true, M=K-1, 1=K-2, L=N+1, 'new10(3)'(M,N,H,J,D,F).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, K=G-1, 1=G-2, I=L+1, true, 0=K-1, 0=K-2, L=0+0, 'new9(3)'(H,J,D,F).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, K=G-1, 1=G-2, I=L+1, true, 0=K-1, 1=K-2, L=0+1, 'new9(3)'(H,J,D,F).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, K=G-1, 1=G-2, I=L+1, true, 1=K-1, 0=K-2, L=1+0, 'new9(3)'(H,J,D,F).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, K=G-1, 1=G-2, I=L+1, true, 1=K-1, 1=K-2, L=1+1, 'new9(3)'(H,J,D,F).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, K=G-1, 1=G-2, I=L+1, true, 0=K-1, M=K-2, L=0+N, 'new10(3)'(M,N,H,J,D,F).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, K=G-1, 1=G-2, I=L+1, true, 1=K-1, M=K-2, L=1+N, 'new10(3)'(M,N,H,J,D,F).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, K=G-1, 1=G-2, I=L+1, true, M=K-1, 0=K-2, L=N+0, 'new10(3)'(M,N,H,J,D,F).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, G=C-1, H=C-2, E=I+J, K=G-1, 1=G-2, I=L+1, true, M=K-1, 1=K-2, L=N+1, 'new10(3)'(M,N,H,J,D,F).
 'new7(3)'(A,B,C,D) :- E=A-1, F=A-2, B=G+H, 0=F-1, 0=F-2, H=0+0, true, 'new7(3)'(E,G,C,D).
 'new7(3)'(A,B,C,D) :- E=A-1, F=A-2, B=G+H, 0=F-1, 1=F-2, H=0+1, true, 'new7(3)'(E,G,C,D).
 'new7(3)'(A,B,C,D) :- E=A-1, F=A-2, B=G+H, 1=F-1, 0=F-2, H=1+0, true, 'new7(3)'(E,G,C,D).
 'new7(3)'(A,B,C,D) :- E=A-1, F=A-2, B=G+H, 1=F-1, 1=F-2, H=1+1, true, 'new7(3)'(E,G,C,D).
 'new7(3)'(A,B,C,D) :- E=A-1, 0=A-2, B=F+0, true, 'new7(3)'(E,F,C,D).
 'new7(3)'(A,B,C,D) :- E=A-1, 1=A-2, B=F+1, true, 'new7(3)'(E,F,C,D).
-'new7(3)'(A,B,C,D) :- E=A-1, F=A-2, B=G+H, I=F-1, 0=F-2, H=J+0, true, 'new8(3)'(E,G,I,J,C,D).
-'new7(3)'(A,B,C,D) :- E=A-1, F=A-2, B=G+H, I=F-1, 1=F-2, H=J+1, true, 'new8(3)'(E,G,I,J,C,D).
 'new7(3)'(A,B,C,D) :- E=A-1, F=A-2, B=G+H, 0=F-1, I=F-2, H=0+J, true, 'new8(3)'(E,G,I,J,C,D).
 'new7(3)'(A,B,C,D) :- E=A-1, F=A-2, B=G+H, 1=F-1, I=F-2, H=1+J, true, 'new8(3)'(E,G,I,J,C,D).
+'new7(3)'(A,B,C,D) :- E=A-1, F=A-2, B=G+H, I=F-1, 0=F-2, H=J+0, true, 'new8(3)'(E,G,I,J,C,D).
+'new7(3)'(A,B,C,D) :- E=A-1, F=A-2, B=G+H, I=F-1, 1=F-2, H=J+1, true, 'new8(3)'(E,G,I,J,C,D).
 'new7(3)'(A,B,C,D) :- 0=A-1, E=A-2, B=0+F, true, 'new7(3)'(E,F,C,D).
 'new7(3)'(A,B,C,D) :- 1=A-1, E=A-2, B=1+F, true, 'new7(3)'(E,F,C,D).
 'new7(3)'(A,B,C,D) :- E=A-1, F=A-2, B=G+H, 'new8(3)'(F,H,E,G,C,D).
@@ -304,31 +304,31 @@ false :- 'false[3]'.
 'new7(3)'(A,B,C,D) :- E=A-1, F=A-2, B=G+H, 0=E-1, 1=E-2, G=0+1, true, 'new9(3)'(F,H,C,D).
 'new7(3)'(A,B,C,D) :- E=A-1, F=A-2, B=G+H, 1=E-1, 0=E-2, G=1+0, true, 'new9(3)'(F,H,C,D).
 'new7(3)'(A,B,C,D) :- E=A-1, F=A-2, B=G+H, 1=E-1, 1=E-2, G=1+1, true, 'new9(3)'(F,H,C,D).
-'new7(3)'(A,B,C,D) :- E=A-1, F=A-2, B=G+H, I=E-1, 0=E-2, G=J+0, true, 'new10(3)'(I,J,F,H,C,D).
-'new7(3)'(A,B,C,D) :- E=A-1, F=A-2, B=G+H, I=E-1, 1=E-2, G=J+1, true, 'new10(3)'(I,J,F,H,C,D).
 'new7(3)'(A,B,C,D) :- E=A-1, F=A-2, B=G+H, 0=E-1, I=E-2, G=0+J, true, 'new10(3)'(I,J,F,H,C,D).
 'new7(3)'(A,B,C,D) :- E=A-1, F=A-2, B=G+H, 1=E-1, I=E-2, G=1+J, true, 'new10(3)'(I,J,F,H,C,D).
+'new7(3)'(A,B,C,D) :- E=A-1, F=A-2, B=G+H, I=E-1, 0=E-2, G=J+0, true, 'new10(3)'(I,J,F,H,C,D).
+'new7(3)'(A,B,C,D) :- E=A-1, F=A-2, B=G+H, I=E-1, 1=E-2, G=J+1, true, 'new10(3)'(I,J,F,H,C,D).
 'new8(3)'(A,B,C,D,E,F) :- 0=C-1, 0=C-2, D=0+0, true, 'new7(3)'(A,B,E,F).
 'new8(3)'(A,B,C,D,E,F) :- 0=C-1, 1=C-2, D=0+1, true, 'new7(3)'(A,B,E,F).
 'new8(3)'(A,B,C,D,E,F) :- 1=C-1, 0=C-2, D=1+0, true, 'new7(3)'(A,B,E,F).
 'new8(3)'(A,B,C,D,E,F) :- 1=C-1, 1=C-2, D=1+1, true, 'new7(3)'(A,B,E,F).
-'new8(3)'(A,B,C,D,E,F) :- G=C-1, 0=C-2, D=H+0, true, 'new8(3)'(A,B,G,H,E,F).
-'new8(3)'(A,B,C,D,E,F) :- G=C-1, 1=C-2, D=H+1, true, 'new8(3)'(A,B,G,H,E,F).
 'new8(3)'(A,B,C,D,E,F) :- 0=C-1, G=C-2, D=0+H, true, 'new8(3)'(A,B,G,H,E,F).
 'new8(3)'(A,B,C,D,E,F) :- 1=C-1, G=C-2, D=1+H, true, 'new8(3)'(A,B,G,H,E,F).
+'new8(3)'(A,B,C,D,E,F) :- G=C-1, 0=C-2, D=H+0, true, 'new8(3)'(A,B,G,H,E,F).
+'new8(3)'(A,B,C,D,E,F) :- G=C-1, 1=C-2, D=H+1, true, 'new8(3)'(A,B,G,H,E,F).
 'new9(3)'(A,B,C,D) :- 0=A-1, 0=A-2, B=0+0, true, 'fib(2)'(C,D).
 'new9(3)'(A,B,C,D) :- 0=A-1, 1=A-2, B=0+1, true, 'fib(2)'(C,D).
 'new9(3)'(A,B,C,D) :- 1=A-1, 0=A-2, B=1+0, true, 'fib(2)'(C,D).
 'new9(3)'(A,B,C,D) :- 1=A-1, 1=A-2, B=1+1, true, 'fib(2)'(C,D).
-'new9(3)'(A,B,C,D) :- E=A-1, 0=A-2, B=F+0, true, 'new9(3)'(E,F,C,D).
-'new9(3)'(A,B,C,D) :- E=A-1, 1=A-2, B=F+1, true, 'new9(3)'(E,F,C,D).
 'new9(3)'(A,B,C,D) :- 0=A-1, E=A-2, B=0+F, true, 'new9(3)'(E,F,C,D).
 'new9(3)'(A,B,C,D) :- 1=A-1, E=A-2, B=1+F, true, 'new9(3)'(E,F,C,D).
+'new9(3)'(A,B,C,D) :- E=A-1, 0=A-2, B=F+0, true, 'new9(3)'(E,F,C,D).
+'new9(3)'(A,B,C,D) :- E=A-1, 1=A-2, B=F+1, true, 'new9(3)'(E,F,C,D).
 'new10(3)'(A,B,C,D,E,F) :- 0=A-1, 0=A-2, B=0+0, true, 'new9(3)'(C,D,E,F).
 'new10(3)'(A,B,C,D,E,F) :- 0=A-1, 1=A-2, B=0+1, true, 'new9(3)'(C,D,E,F).
 'new10(3)'(A,B,C,D,E,F) :- 1=A-1, 0=A-2, B=1+0, true, 'new9(3)'(C,D,E,F).
 'new10(3)'(A,B,C,D,E,F) :- 1=A-1, 1=A-2, B=1+1, true, 'new9(3)'(C,D,E,F).
-'new10(3)'(A,B,C,D,E,F) :- G=A-1, 0=A-2, B=H+0, true, 'new10(3)'(G,H,C,D,E,F).
-'new10(3)'(A,B,C,D,E,F) :- G=A-1, 1=A-2, B=H+1, true, 'new10(3)'(G,H,C,D,E,F).
 'new10(3)'(A,B,C,D,E,F) :- 0=A-1, G=A-2, B=0+H, true, 'new10(3)'(G,H,C,D,E,F).
 'new10(3)'(A,B,C,D,E,F) :- 1=A-1, G=A-2, B=1+H, true, 'new10(3)'(G,H,C,D,E,F).
+'new10(3)'(A,B,C,D,E,F) :- G=A-1, 0=A-2, B=H+0, true, 'new10(3)'(G,H,C,D,E,F).
+'new10(3)'(A,B,C,D,E,F) :- G=A-1, 1=A-2, B=H+1, true, 'new10(3)'(G,H,C,D,E,F).
