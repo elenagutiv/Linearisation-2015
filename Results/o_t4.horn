@@ -1,0 +1,55 @@
+Eureka Definitions:
+'new1(1)'(A,B,C) :- 'x(0)'(A,B), 'x(0)'(B,C).
+'new2(1)'(A,B,C,D) :- 'd(1)'(A,B), 'x(0)'(C,D).
+'new3(2)'(A,B,C) :- 'x(2)'(A,B), 'x(0)'(C,B).
+'new4(2)'(A,B,C,D) :- 'x(2)'(A,B), 'new1(1)'(C,D,B).
+'new5(2)'(A,B,C) :- 'x(2)'(A,B), 'f(1)'(A,C).
+'new6(2)'(A,B,C,D) :- 'x(2)'(A,B), 'new2(1)'(A,C,D,B).
+'new7(2)'(A,B,C) :- 'x(0)'(A,B), 'x(1)'(C,B).
+'new8(2)'(A,B,C,D) :- 'new1(1)'(A,B,C), 'x(1)'(D,C).
+'new9(2)'(A,B,C) :- 'f(1)'(A,B), 'x(1)'(A,C).
+'new10(2)'(A,B,C,D) :- 'new2(1)'(A,B,C,D), 'x(1)'(A,D).
+Linearised Program:
+'d(1)'(A,B) :- 'f(1)'(A,B).
+'f(1)'(A,B) :- 'f(1)'(A,B).
+'x(0)'(A,B) :- A>B.
+'x(0)'(A,B) :- A>C, 'x(0)'(C,B).
+'x[1]'(A,B) :- 'x(1)'(A,B).
+'x[1]'(A,B) :- 'x(0)'(A,B).
+'x[0]'(A,B) :- 'x(0)'(A,B).
+'x(1)'(A,B) :- A>C, 'x(0)'(C,B).
+'x(1)'(A,B) :- A>C, 'new1(1)'(C,D,B).
+'new1(1)'(A,B,C) :- A>B, 'x(0)'(B,C).
+'new1(1)'(A,B,C) :- A>D, 'new1(1)'(D,B,C).
+'x(1)'(A,B) :- A>0, C>B, 'd(1)'(A,C).
+'x(1)'(A,B) :- A>0, C>D, 'new2(1)'(A,C,D,B).
+'new2(1)'(A,B,C,D) :- C>D, 'd(1)'(A,B).
+'new2(1)'(A,B,C,D) :- C>E, 'new2(1)'(A,B,E,D).
+'x(2)'(A,B) :- A>C, C>B, 'x(2)'(A,B).
+'x(2)'(A,B) :- A>B, 'x(2)'(A,B).
+'x(2)'(A,B) :- A>C, C>D, 'new3(2)'(A,B,D).
+'x(2)'(A,B) :- A>C, C>D, 'new4(2)'(A,B,D,E).
+'x(2)'(A,B) :- A>0, C>B, 'new5(2)'(A,B,C).
+'x(2)'(A,B) :- A>0, C>D, D>E, 'new6(2)'(A,B,C,E).
+'x(2)'(A,B) :- A>0, C>D, D>B, 'new5(2)'(A,B,C).
+'x(2)'(A,B) :- A>C, 'new3(2)'(A,B,C).
+'new3(2)'(A,B,C) :- C>B, 'x(2)'(A,B).
+'new3(2)'(A,B,C) :- C>D, 'new3(2)'(A,B,D).
+'new4(2)'(A,B,C,D) :- C>D, 'new3(2)'(A,B,D).
+'new4(2)'(A,B,C,D) :- C>E, 'new4(2)'(A,B,E,D).
+'new5(2)'(A,B,C) :- 'new5(2)'(A,B,C).
+'new6(2)'(A,B,C,D) :- D>E, 'new6(2)'(A,B,C,E).
+'new6(2)'(A,B,C,D) :- D>B, 'new5(2)'(A,B,C).
+'x(2)'(A,B) :- A>C, C>B, 'x(1)'(A,B).
+'x(2)'(A,B) :- A>C, C>D, 'new7(2)'(D,B,A).
+'x(2)'(A,B) :- A>C, C>D, 'new8(2)'(D,E,B,A).
+'x(2)'(A,B) :- A>0, C>B, 'new9(2)'(A,C,B).
+'x(2)'(A,B) :- A>0, C>D, D>E, 'new10(2)'(A,C,E,B).
+'x(2)'(A,B) :- A>0, C>D, D>B, 'new9(2)'(A,C,B).
+'new7(2)'(A,B,C) :- A>B, 'x(1)'(C,B).
+'new7(2)'(A,B,C) :- A>D, 'new7(2)'(D,B,C).
+'new8(2)'(A,B,C,D) :- A>B, 'new7(2)'(B,C,D).
+'new8(2)'(A,B,C,D) :- A>E, 'new8(2)'(E,B,C,D).
+'new9(2)'(A,B,C) :- 'new9(2)'(A,B,C).
+'new10(2)'(A,B,C,D) :- C>E, 'new10(2)'(A,B,E,D).
+'new10(2)'(A,B,C,D) :- C>D, 'new9(2)'(A,B,D).

@@ -116,7 +116,7 @@ set_mindex(K,NLIds):-
 	assert(mindex(N)).
 set_mindex(_,_).
 set_mindex:-
-	assert(mindex(1)).
+	assert(mindex(3)).
 
 % Provided by J.P. Gallagher.
 make_clause_id(N,CN) :-
