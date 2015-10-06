@@ -97,7 +97,7 @@ for file in $P0_PATH $P1_PATH $P2_PATH; do
 #  TODO: reenable when MCC is in place
 #  elif ( grep -q "Q'ARMC: program is correct" "$TMP" && grep -A1 "verifying fixpoint..." "$TMP" | grep -q "done." ) ; then
   elif ( ( test $SHOULDPASS == 1 && cat $logfile | grep -q "Q'ARMC: program is correct" ) ||
-	 ( test $SHOULDPASS == 0 && cat $logfile| grep -q "Q'ARMC: program is not correct" ) ) ; then
+   ( test $SHOULDPASS == 0 && cat $logfile| grep -q "Q'ARMC: program is not correct" ) ) ; then
     echo -n -e "\033[1;32mPASSED\033[0m"
     : $(( ++GOOD ))
   elif ( echo $OUTPUT | grep -q "Resource error: insufficient memory" ) ; then
