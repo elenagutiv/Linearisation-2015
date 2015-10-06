@@ -206,7 +206,7 @@ construct_subtree(RId,LCls,ECls,EDIds):-
 	append([EDIds1,EDIds2],EDIds).
 
 construct_all_subtrees(RId,[(H:-B)|FCls],LCls,ECls,EDIds):-
-	recorded(RId,my_node(H,B,Id)),
+	recorded(RId,my_node(H,Bs,Id)),B=@=Bs,
 	construct_subtree(Id,LCls1,ECls1,EDIds1),
 	construct_all_subtrees(RId,FCls,LCls2,ECls2,EDIds2),
 	append([LCls1,LCls2],LCls),
@@ -220,16 +220,15 @@ all_eurekable(FId,[(H:-B)|Cls],[(H:-B)|ECls1],[EDId|EDIds]):-
 	intro_eureka_def(H,T,EDId),
 	!,
 	all_eurekable(FId,Cls,ECls1,EDIds).
-all_eurekable(FId,[(H:-B)|Cls],[(H:-B)|ECls1],EDIds):- % This rule only succeeds while e-tree construction wrt to each ED.
-	recorded(FId,my_node(H,B,Id)),
-	is_eurekable(Id,Id,_),
-	!,
-	all_eurekable(FId,Cls,ECls1,EDIds).
+%all_eurekable(FId,[(H:-B)|Cls],[(H:-B)|ECls1],EDIds):- % This rule only succeeds while e-tree construction wrt to each ED.
+%	recorded(FId,my_node(H,B,Id)),
+%	is_eurekable(Id,Id,_),
+%	!,
+%	all_eurekable(FId,Cls,ECls1,EDIds).
 all_eurekable(FId,[(H:-B)|Cls],[(H:-B)|ECls],EDIds):- % Memoization.
 	separate_constraints(B,_,Bs),
 	findall(Id,(my_ed(_,EB,Id),subsumes_term(EB,Bs)),Ids),
 	Ids=[_],
-	!,
 	all_eurekable(FId,Cls,ECls,EDIds).
 all_eurekable(FId,[_|Cls],ECls,EDIds):-
 	all_eurekable(FId,Cls,ECls,EDIds).
@@ -367,7 +366,7 @@ intro_eureka_def(H,T,I):-
 	functor(H,P,_),
 	index_of_atom(P,K),
 	eds_id(I),
-	atom_concat('new',I,EN),
+	atom_concat('New',I,EN),
 	dim_ed(EN,K,EP),
 	set_of_vars(T,VT),
 	append([EP],VT,NHs),

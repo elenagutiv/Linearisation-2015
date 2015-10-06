@@ -1,5 +1,5 @@
 fib(0,0).
 fib(1,1).
-fib(M,N):-L=M-1,P=M-2,fib(L,Q),fib(P,R),N=Q+R.
+fib(M,N):-L=M-1,P=M-2,fib(P,Q),fib(L,R),N=Q+R.
 
-false:-fib(A,B),B=8,A=6. 
+false:-fib(A,B),B=21,A=8. 

@@ -1,18 +1,27 @@
 'fib(0)'(0,0) :- true.
 'fib(0)'(1,1) :- true.
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, 'fib(3)'(C,E), 'fib[2]'(D,F).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, 'fib(3)'(D,F), 'fib[2]'(C,E).
-'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, 'fib(2)'(C,E), 'fib(2)'(D,F).
-'fib(2)'(A,B) :- C=A-1, D=A-2, B=E+F, 'fib(2)'(C,E), 'fib[1]'(D,F).
-'fib(2)'(A,B) :- C=A-1, D=A-2, B=E+F, 'fib(2)'(D,F), 'fib[1]'(C,E).
-'fib(2)'(A,B) :- C=A-1, D=A-2, B=E+F, 'fib(1)'(C,E), 'fib(1)'(D,F).
-'fib(1)'(A,B) :- C=A-1, D=A-2, B=E+F, 'fib(1)'(C,E), 'fib[0]'(D,F).
-'fib(1)'(A,B) :- C=A-1, D=A-2, B=E+F, 'fib(1)'(D,F), 'fib[0]'(C,E).
-'fib(1)'(A,B) :- C=A-1, D=A-2, B=E+F, 'fib(0)'(C,E), 'fib(0)'(D,F).
-'false(3)' :- B=8, A=6, 'fib(3)'(A,B).
-'false(2)' :- B=8, A=6, 'fib(2)'(A,B).
-'false(1)' :- B=8, A=6, 'fib(1)'(A,B).
-'false(0)' :- B=8, A=6, 'fib(0)'(A,B).
+'fib(4)'(A,B) :- C=A-1, D=A-2, B=E+F, 'fib(4)'(D,E), 'fib[3]'(C,F).
+'fib(4)'(A,B) :- C=A-1, D=A-2, B=E+F, 'fib(4)'(C,F), 'fib[3]'(D,E).
+'fib(4)'(A,B) :- C=A-1, D=A-2, B=E+F, 'fib(3)'(D,E), 'fib(3)'(C,F).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, 'fib(3)'(D,E), 'fib[2]'(C,F).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, 'fib(3)'(C,F), 'fib[2]'(D,E).
+'fib(3)'(A,B) :- C=A-1, D=A-2, B=E+F, 'fib(2)'(D,E), 'fib(2)'(C,F).
+'fib(2)'(A,B) :- C=A-1, D=A-2, B=E+F, 'fib(2)'(D,E), 'fib[1]'(C,F).
+'fib(2)'(A,B) :- C=A-1, D=A-2, B=E+F, 'fib(2)'(C,F), 'fib[1]'(D,E).
+'fib(2)'(A,B) :- C=A-1, D=A-2, B=E+F, 'fib(1)'(D,E), 'fib(1)'(C,F).
+'fib(1)'(A,B) :- C=A-1, D=A-2, B=E+F, 'fib(1)'(D,E), 'fib[0]'(C,F).
+'fib(1)'(A,B) :- C=A-1, D=A-2, B=E+F, 'fib(1)'(C,F), 'fib[0]'(D,E).
+'fib(1)'(A,B) :- C=A-1, D=A-2, B=E+F, 'fib(0)'(D,E), 'fib(0)'(C,F).
+'false(4)' :- B=21, A=8, 'fib(4)'(A,B).
+'false(3)' :- B=21, A=8, 'fib(3)'(A,B).
+'false(2)' :- B=21, A=8, 'fib(2)'(A,B).
+'false(1)' :- B=21, A=8, 'fib(1)'(A,B).
+'false(0)' :- B=21, A=8, 'fib(0)'(A,B).
+'false[4]' :- 'false(4)'.
+'false[4]' :- 'false(3)'.
+'false[4]' :- 'false(2)'.
+'false[4]' :- 'false(1)'.
+'false[4]' :- 'false(0)'.
 'false[3]' :- 'false(3)'.
 'false[3]' :- 'false(2)'.
 'false[3]' :- 'false(1)'.
@@ -23,6 +32,11 @@
 'false[1]' :- 'false(1)'.
 'false[1]' :- 'false(0)'.
 'false[0]' :- 'false(0)'.
+'fib[4]'(A,B) :- 'fib(4)'(A,B).
+'fib[4]'(A,B) :- 'fib(3)'(A,B).
+'fib[4]'(A,B) :- 'fib(2)'(A,B).
+'fib[4]'(A,B) :- 'fib(1)'(A,B).
+'fib[4]'(A,B) :- 'fib(0)'(A,B).
 'fib[3]'(A,B) :- 'fib(3)'(A,B).
 'fib[3]'(A,B) :- 'fib(2)'(A,B).
 'fib[3]'(A,B) :- 'fib(1)'(A,B).
@@ -33,4 +47,4 @@
 'fib[1]'(A,B) :- 'fib(1)'(A,B).
 'fib[1]'(A,B) :- 'fib(0)'(A,B).
 'fib[0]'(A,B) :- 'fib(0)'(A,B).
-false:-'false[3]'.
+false:-'false[4]'.
