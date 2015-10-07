@@ -22,7 +22,7 @@ EOF
 
 FILE=
 
-TIMELIMIT=60
+TIMELIMIT=600
 EXTRAOPTS=
 
 
@@ -83,7 +83,8 @@ for file in $P0_PATH $P1_PATH $P2_PATH; do
 
   logfile=$file.`date +%Y.%m.%d.%H.%M`.log
   #Note that it's essential to run this using time here
-  OUTPUT=`(time gtimeout $TIMELIMIT ./qarmc-latest.osx $EXTRAOPTS $file > $logfile) 2>&1`
+  OUTPUT=`(./qarmc-latest.osx $EXTRAOPTS $file > $logfile) 2>&1`
+  #OUTPUT=`(time gtimeout $TIMELIMIT ./qarmc-latest.osx $EXTRAOPTS $file > $logfile) 2>&1`
 #  OUTPUT=`timeout $TIMELIMIT ./qarmc $EXTRAOPTS "$file" >& "$file.log"`
 #  OUTPUT=`timeout $TIMELIMIT ./qarmc $EXTRAOPTS "$file" 2>&1`
   RES=$?

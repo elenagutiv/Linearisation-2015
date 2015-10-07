@@ -1,0 +1,33 @@
+'triangular(2)'(A,B) :- C=A-1, B=A+D, 'triangular(2)'(C,D).
+'triangular(1)'(A,B) :- C=A-1, B=A+D, 'triangular(1)'(C,D).
+'triangular(0)'(A,B) :- C=A-1, B=A+D, 'triangular(0)'(C,D).
+'triangular(0)'(0,0) :- true.
+'perfect(0)'(0) :- true.
+'perfect(2)'(A) :- B=D-1, A=C+E, 'triangular(2)'(B,C), 'triangular[1]'(D,E).
+'perfect(2)'(A) :- B=D-1, A=C+E, 'triangular(2)'(D,E), 'triangular[1]'(B,C).
+'perfect(2)'(A) :- B=D-1, A=C+E, 'triangular(1)'(B,C), 'triangular(1)'(D,E).
+'perfect(1)'(A) :- B=D-1, A=C+E, 'triangular(1)'(B,C), 'triangular[0]'(D,E).
+'perfect(1)'(A) :- B=D-1, A=C+E, 'triangular(1)'(D,E), 'triangular[0]'(B,C).
+'perfect(1)'(A) :- B=D-1, A=C+E, 'triangular(0)'(B,C), 'triangular(0)'(D,E).
+'false(2)' :- A=197, 'perfect(2)'(A).
+'false(1)' :- A=197, 'perfect(1)'(A).
+'false(0)' :- A=197, 'perfect(0)'(A).
+'false[2]' :- 'false(2)'.
+'false[2]' :- 'false(1)'.
+'false[2]' :- 'false(0)'.
+'false[1]' :- 'false(1)'.
+'false[1]' :- 'false(0)'.
+'false[0]' :- 'false(0)'.
+'perfect[2]'(A) :- 'perfect(2)'(A).
+'perfect[2]'(A) :- 'perfect(1)'(A).
+'perfect[2]'(A) :- 'perfect(0)'(A).
+'perfect[1]'(A) :- 'perfect(1)'(A).
+'perfect[1]'(A) :- 'perfect(0)'(A).
+'perfect[0]'(A) :- 'perfect(0)'(A).
+'triangular[2]'(A,B) :- 'triangular(2)'(A,B).
+'triangular[2]'(A,B) :- 'triangular(1)'(A,B).
+'triangular[2]'(A,B) :- 'triangular(0)'(A,B).
+'triangular[1]'(A,B) :- 'triangular(1)'(A,B).
+'triangular[1]'(A,B) :- 'triangular(0)'(A,B).
+'triangular[0]'(A,B) :- 'triangular(0)'(A,B).
+false:-'false[2]'.

@@ -1,0 +1,9 @@
+triangular(A,B):- C=A-1, triangular(C,D), B=A+D.
+triangular(0,0).
+
+perfect(0).
+perfect(A):- triangular(B,C), B=D-1, triangular(D,E), A=C+E.
+
+false:-perfect(A),A=197.
+
+

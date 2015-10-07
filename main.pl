@@ -366,7 +366,7 @@ intro_eureka_def(H,T,I):-
 	functor(H,P,_),
 	index_of_atom(P,K),
 	eds_id(I),
-	atom_concat('New',I,EN),
+	atom_concat('new',I,EN),
 	dim_ed(EN,K,EP),
 	set_of_vars(T,VT),
 	append([EP],VT,NHs),
