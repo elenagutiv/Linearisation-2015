@@ -1,41 +1,64 @@
 'eq(0)'(A,B) :- A=B.
+'eq2(3)'(A,B,C) :- 'eq(3)'(A,B), 'eq[2]'(B,C).
+'eq2(3)'(A,B,C) :- 'eq(3)'(B,C), 'eq[2]'(A,B).
+'eq2(3)'(A,B,C) :- 'eq(2)'(A,B), 'eq(2)'(B,C).
 'eq2(2)'(A,B,C) :- 'eq(2)'(A,B), 'eq[1]'(B,C).
 'eq2(2)'(A,B,C) :- 'eq(2)'(B,C), 'eq[1]'(A,B).
 'eq2(2)'(A,B,C) :- 'eq(1)'(A,B), 'eq(1)'(B,C).
 'eq2(1)'(A,B,C) :- 'eq(1)'(A,B), 'eq[0]'(B,C).
 'eq2(1)'(A,B,C) :- 'eq(1)'(B,C), 'eq[0]'(A,B).
 'eq2(1)'(A,B,C) :- 'eq(0)'(A,B), 'eq(0)'(B,C).
+'eq4(3)'(A,B,C,D,E) :- F=E+1, 'eq2(3)'(A,B,C), 'eq2[2]'(C,D,F).
+'eq4(3)'(A,B,C,D,E) :- F=E+1, 'eq2(3)'(C,D,F), 'eq2[2]'(A,B,C).
+'eq4(3)'(A,B,C,D,E) :- F=E+1, 'eq2(2)'(A,B,C), 'eq2(2)'(C,D,F).
 'eq4(2)'(A,B,C,D,E) :- F=E+1, 'eq2(2)'(A,B,C), 'eq2[1]'(C,D,F).
 'eq4(2)'(A,B,C,D,E) :- F=E+1, 'eq2(2)'(C,D,F), 'eq2[1]'(A,B,C).
 'eq4(2)'(A,B,C,D,E) :- F=E+1, 'eq2(1)'(A,B,C), 'eq2(1)'(C,D,F).
 'eq4(1)'(A,B,C,D,E) :- F=E+1, 'eq2(1)'(A,B,C), 'eq2[0]'(C,D,F).
 'eq4(1)'(A,B,C,D,E) :- F=E+1, 'eq2(1)'(C,D,F), 'eq2[0]'(A,B,C).
 'eq4(1)'(A,B,C,D,E) :- F=E+1, 'eq2(0)'(A,B,C), 'eq2(0)'(C,D,F).
+'false(3)' :- B>E, 'eq4(3)'(A,B,C,D,E).
 'false(2)' :- B>E, 'eq4(2)'(A,B,C,D,E).
 'false(1)' :- B>E, 'eq4(1)'(A,B,C,D,E).
 'false(0)' :- B>E, 'eq4(0)'(A,B,C,D,E).
+'eq[3]'(A,B) :- 'eq(3)'(A,B).
+'eq[3]'(A,B) :- 'eq(2)'(A,B).
+'eq[3]'(A,B) :- 'eq(1)'(A,B).
+'eq[3]'(A,B) :- 'eq(0)'(A,B).
 'eq[2]'(A,B) :- 'eq(2)'(A,B).
 'eq[2]'(A,B) :- 'eq(1)'(A,B).
 'eq[2]'(A,B) :- 'eq(0)'(A,B).
 'eq[1]'(A,B) :- 'eq(1)'(A,B).
 'eq[1]'(A,B) :- 'eq(0)'(A,B).
 'eq[0]'(A,B) :- 'eq(0)'(A,B).
+'eq2[3]'(A,B,C) :- 'eq2(3)'(A,B,C).
+'eq2[3]'(A,B,C) :- 'eq2(2)'(A,B,C).
+'eq2[3]'(A,B,C) :- 'eq2(1)'(A,B,C).
+'eq2[3]'(A,B,C) :- 'eq2(0)'(A,B,C).
 'eq2[2]'(A,B,C) :- 'eq2(2)'(A,B,C).
 'eq2[2]'(A,B,C) :- 'eq2(1)'(A,B,C).
 'eq2[2]'(A,B,C) :- 'eq2(0)'(A,B,C).
 'eq2[1]'(A,B,C) :- 'eq2(1)'(A,B,C).
 'eq2[1]'(A,B,C) :- 'eq2(0)'(A,B,C).
 'eq2[0]'(A,B,C) :- 'eq2(0)'(A,B,C).
+'eq4[3]'(A,B,C,D,E) :- 'eq4(3)'(A,B,C,D,E).
+'eq4[3]'(A,B,C,D,E) :- 'eq4(2)'(A,B,C,D,E).
+'eq4[3]'(A,B,C,D,E) :- 'eq4(1)'(A,B,C,D,E).
+'eq4[3]'(A,B,C,D,E) :- 'eq4(0)'(A,B,C,D,E).
 'eq4[2]'(A,B,C,D,E) :- 'eq4(2)'(A,B,C,D,E).
 'eq4[2]'(A,B,C,D,E) :- 'eq4(1)'(A,B,C,D,E).
 'eq4[2]'(A,B,C,D,E) :- 'eq4(0)'(A,B,C,D,E).
 'eq4[1]'(A,B,C,D,E) :- 'eq4(1)'(A,B,C,D,E).
 'eq4[1]'(A,B,C,D,E) :- 'eq4(0)'(A,B,C,D,E).
 'eq4[0]'(A,B,C,D,E) :- 'eq4(0)'(A,B,C,D,E).
+'false[3]' :- 'false(3)'.
+'false[3]' :- 'false(2)'.
+'false[3]' :- 'false(1)'.
+'false[3]' :- 'false(0)'.
 'false[2]' :- 'false(2)'.
 'false[2]' :- 'false(1)'.
 'false[2]' :- 'false(0)'.
 'false[1]' :- 'false(1)'.
 'false[1]' :- 'false(0)'.
 'false[0]' :- 'false(0)'.
-false:-'false[2]'.
+false:-'false[3]'.

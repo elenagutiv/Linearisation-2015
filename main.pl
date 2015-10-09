@@ -228,7 +228,7 @@ all_eurekable(FId,[(H:-B)|Cls],[(H:-B)|ECls1],[EDId|EDIds]):-
 all_eurekable(FId,[(H:-B)|Cls],[(H:-B)|ECls],EDIds):- % Memoization.
 	separate_constraints(B,_,Bs),
 	findall(Id,(my_ed(_,EB,Id),subsumes_term(EB,Bs)),Ids),
-	Ids=[_],
+	Ids=[_|_],
 	all_eurekable(FId,Cls,ECls,EDIds).
 all_eurekable(FId,[_|Cls],ECls,EDIds):-
 	all_eurekable(FId,Cls,ECls,EDIds).

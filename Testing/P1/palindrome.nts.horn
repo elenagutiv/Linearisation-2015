@@ -1,101 +1,156 @@
+'main_qf(3)' :- D=<2+ (E-F)/2, 'main_q2(3)'(A,B,C,D,E,F).
 'main_qf(2)' :- D=<2+ (E-F)/2, 'main_q2(2)'(A,B,C,D,E,F).
 'main_qf(1)' :- D=<2+ (E-F)/2, 'main_q2(1)'(A,B,C,D,E,F).
 'main_qf(0)' :- D=<2+ (E-F)/2, 'main_q2(0)'(A,B,C,D,E,F).
+'false(3)' :- D>2+ (E-F)/2, 'main_q2(3)'(A,B,C,D,E,F).
 'false(2)' :- D>2+ (E-F)/2, 'main_q2(2)'(A,B,C,D,E,F).
 'false(1)' :- D>2+ (E-F)/2, 'main_q2(1)'(A,B,C,D,E,F).
 'false(0)' :- D>2+ (E-F)/2, 'main_q2(0)'(A,B,C,D,E,F).
+'main_q1(3)'(A,B,C,D,E,F) :- F>=0, E>=0, E>=F, 'main_q0(3)'(A,B,C,G,H,I).
 'main_q1(2)'(A,B,C,D,E,F) :- F>=0, E>=0, E>=F, 'main_q0(2)'(A,B,C,G,H,I).
 'main_q1(1)'(A,B,C,D,E,F) :- F>=0, E>=0, E>=F, 'main_q0(1)'(A,B,C,G,H,I).
 'main_q1(0)'(A,B,C,D,E,F) :- F>=0, E>=0, E>=F, 'main_q0(0)'(A,B,C,G,H,I).
 'main_q0(0)'(A,B,C,D,E,F) :- A=D, B=E, C=F.
+'palindrome_q4(3)'(A,B,C,D,E,F) :- D=1, I=F, J=E, K=L, 'palindrome_q3(3)'(A,C,B,G,H,I,J,K).
 'palindrome_q4(2)'(A,B,C,D,E,F) :- D=1, I=F, J=E, K=L, 'palindrome_q3(2)'(A,C,B,G,H,I,J,K).
 'palindrome_q4(1)'(A,B,C,D,E,F) :- D=1, I=F, J=E, K=L, 'palindrome_q3(1)'(A,C,B,G,H,I,J,K).
 'palindrome_q4(0)'(A,B,C,D,E,F) :- D=1, I=F, J=E, K=L, 'palindrome_q3(0)'(A,C,B,G,H,I,J,K).
+'palindrome_q4(3)'(A,B,C,D,E,F) :- D=1+K, I=F, J=E, K=L, 'palindrome_q2(3)'(A,C,B,G,H,I,J,K).
 'palindrome_q4(2)'(A,B,C,D,E,F) :- D=1+K, I=F, J=E, K=L, 'palindrome_q2(2)'(A,C,B,G,H,I,J,K).
 'palindrome_q4(1)'(A,B,C,D,E,F) :- D=1+K, I=F, J=E, K=L, 'palindrome_q2(1)'(A,C,B,G,H,I,J,K).
 'palindrome_q4(0)'(A,B,C,D,E,F) :- D=1+K, I=F, J=E, K=L, 'palindrome_q2(0)'(A,C,B,G,H,I,J,K).
+'palindrome_q3(3)'(A,B,C,D,E,F,G,H) :- K>=J, I=E, J=F, K=G, L=H, 'palindrome_q0(3)'(A,B,C,D,I,J,K,L).
 'palindrome_q3(2)'(A,B,C,D,E,F,G,H) :- K>=J, I=E, J=F, K=G, L=H, 'palindrome_q0(2)'(A,B,C,D,I,J,K,L).
 'palindrome_q3(1)'(A,B,C,D,E,F,G,H) :- K>=J, I=E, J=F, K=G, L=H, 'palindrome_q0(1)'(A,B,C,D,I,J,K,L).
 'palindrome_q3(0)'(A,B,C,D,E,F,G,H) :- K>=J, I=E, J=F, K=G, L=H, 'palindrome_q0(0)'(A,B,C,D,I,J,K,L).
+'palindrome_q1(3)'(A,B,C,D,E,F,G,H) :- K<J, I=E, J=F, K=G, L=H, 'palindrome_q0(3)'(A,B,C,D,I,J,K,L).
 'palindrome_q1(2)'(A,B,C,D,E,F,G,H) :- K<J, I=E, J=F, K=G, L=H, 'palindrome_q0(2)'(A,B,C,D,I,J,K,L).
 'palindrome_q1(1)'(A,B,C,D,E,F,G,H) :- K<J, I=E, J=F, K=G, L=H, 'palindrome_q0(1)'(A,B,C,D,I,J,K,L).
 'palindrome_q1(0)'(A,B,C,D,E,F,G,H) :- K<J, I=E, J=F, K=G, L=H, 'palindrome_q0(0)'(A,B,C,D,I,J,K,L).
+'palindrome_q2(3)'(A,B,C,D,E,F,G,H) :- M=K+1, N=J-1, P=H, I=E, J=F, K=G, 'palindrome_q1(3)'(A,B,C,D,I,J,K,L), 'palindrome_q4[2]'(O,M,N,P,Q,R).
+'palindrome_q2(3)'(A,B,C,D,E,F,G,H) :- M=K+1, N=J-1, P=H, I=E, J=F, K=G, 'palindrome_q4(3)'(O,M,N,P,Q,R), 'palindrome_q1[2]'(A,B,C,D,I,J,K,L).
+'palindrome_q2(3)'(A,B,C,D,E,F,G,H) :- M=K+1, N=J-1, P=H, I=E, J=F, K=G, 'palindrome_q1(2)'(A,B,C,D,I,J,K,L), 'palindrome_q4(2)'(O,M,N,P,Q,R).
 'palindrome_q2(2)'(A,B,C,D,E,F,G,H) :- M=K+1, N=J-1, P=H, I=E, J=F, K=G, 'palindrome_q1(2)'(A,B,C,D,I,J,K,L), 'palindrome_q4[1]'(O,M,N,P,Q,R).
 'palindrome_q2(2)'(A,B,C,D,E,F,G,H) :- M=K+1, N=J-1, P=H, I=E, J=F, K=G, 'palindrome_q4(2)'(O,M,N,P,Q,R), 'palindrome_q1[1]'(A,B,C,D,I,J,K,L).
 'palindrome_q2(2)'(A,B,C,D,E,F,G,H) :- M=K+1, N=J-1, P=H, I=E, J=F, K=G, 'palindrome_q1(1)'(A,B,C,D,I,J,K,L), 'palindrome_q4(1)'(O,M,N,P,Q,R).
 'palindrome_q2(1)'(A,B,C,D,E,F,G,H) :- M=K+1, N=J-1, P=H, I=E, J=F, K=G, 'palindrome_q1(1)'(A,B,C,D,I,J,K,L), 'palindrome_q4[0]'(O,M,N,P,Q,R).
 'palindrome_q2(1)'(A,B,C,D,E,F,G,H) :- M=K+1, N=J-1, P=H, I=E, J=F, K=G, 'palindrome_q4(1)'(O,M,N,P,Q,R), 'palindrome_q1[0]'(A,B,C,D,I,J,K,L).
 'palindrome_q2(1)'(A,B,C,D,E,F,G,H) :- M=K+1, N=J-1, P=H, I=E, J=F, K=G, 'palindrome_q1(0)'(A,B,C,D,I,J,K,L), 'palindrome_q4(0)'(O,M,N,P,Q,R).
+'palindrome_q0(3)'(A,B,C,D,E,F,G,H) :- C=O+1, B=N-1, A=E, B=F, C=G, D=H, 'palindrome_q1(3)'(I,J,K,L,M,N,O,P).
 'palindrome_q0(2)'(A,B,C,D,E,F,G,H) :- C=O+1, B=N-1, A=E, B=F, C=G, D=H, 'palindrome_q1(2)'(I,J,K,L,M,N,O,P).
 'palindrome_q0(1)'(A,B,C,D,E,F,G,H) :- C=O+1, B=N-1, A=E, B=F, C=G, D=H, 'palindrome_q1(1)'(I,J,K,L,M,N,O,P).
 'palindrome_q0(0)'(A,B,C,D,E,F,G,H) :- C=O+1, B=N-1, A=E, B=F, C=G, D=H, 'palindrome_q1(0)'(I,J,K,L,M,N,O,P).
+'main_q2(3)'(A,B,C,D,E,F) :- J=I, K=H, M=D, H=E, I=F, 'main_q1(3)'(A,B,C,G,H,I), 'palindrome_q4[2]'(L,J,K,M,N,O).
+'main_q2(3)'(A,B,C,D,E,F) :- J=I, K=H, M=D, H=E, I=F, 'palindrome_q4(3)'(L,J,K,M,N,O), 'main_q1[2]'(A,B,C,G,H,I).
+'main_q2(3)'(A,B,C,D,E,F) :- J=I, K=H, M=D, H=E, I=F, 'main_q1(2)'(A,B,C,G,H,I), 'palindrome_q4(2)'(L,J,K,M,N,O).
 'main_q2(2)'(A,B,C,D,E,F) :- J=I, K=H, M=D, H=E, I=F, 'main_q1(2)'(A,B,C,G,H,I), 'palindrome_q4[1]'(L,J,K,M,N,O).
 'main_q2(2)'(A,B,C,D,E,F) :- J=I, K=H, M=D, H=E, I=F, 'palindrome_q4(2)'(L,J,K,M,N,O), 'main_q1[1]'(A,B,C,G,H,I).
 'main_q2(2)'(A,B,C,D,E,F) :- J=I, K=H, M=D, H=E, I=F, 'main_q1(1)'(A,B,C,G,H,I), 'palindrome_q4(1)'(L,J,K,M,N,O).
 'main_q2(1)'(A,B,C,D,E,F) :- J=I, K=H, M=D, H=E, I=F, 'main_q1(1)'(A,B,C,G,H,I), 'palindrome_q4[0]'(L,J,K,M,N,O).
 'main_q2(1)'(A,B,C,D,E,F) :- J=I, K=H, M=D, H=E, I=F, 'palindrome_q4(1)'(L,J,K,M,N,O), 'main_q1[0]'(A,B,C,G,H,I).
 'main_q2(1)'(A,B,C,D,E,F) :- J=I, K=H, M=D, H=E, I=F, 'main_q1(0)'(A,B,C,G,H,I), 'palindrome_q4(0)'(L,J,K,M,N,O).
+'palindrome_q0(3)'(A,B,C,D,E,F,G,H) :- C=N, B=M, A=E, B=F, C=G, D=H, 'main_q1(3)'(I,J,K,L,M,N).
 'palindrome_q0(2)'(A,B,C,D,E,F,G,H) :- C=N, B=M, A=E, B=F, C=G, D=H, 'main_q1(2)'(I,J,K,L,M,N).
 'palindrome_q0(1)'(A,B,C,D,E,F,G,H) :- C=N, B=M, A=E, B=F, C=G, D=H, 'main_q1(1)'(I,J,K,L,M,N).
 'palindrome_q0(0)'(A,B,C,D,E,F,G,H) :- C=N, B=M, A=E, B=F, C=G, D=H, 'main_q1(0)'(I,J,K,L,M,N).
+'false[3]' :- 'false(3)'.
+'false[3]' :- 'false(2)'.
+'false[3]' :- 'false(1)'.
+'false[3]' :- 'false(0)'.
 'false[2]' :- 'false(2)'.
 'false[2]' :- 'false(1)'.
 'false[2]' :- 'false(0)'.
 'false[1]' :- 'false(1)'.
 'false[1]' :- 'false(0)'.
 'false[0]' :- 'false(0)'.
+'main_q0[3]'(A,B,C,D,E,F) :- 'main_q0(3)'(A,B,C,D,E,F).
+'main_q0[3]'(A,B,C,D,E,F) :- 'main_q0(2)'(A,B,C,D,E,F).
+'main_q0[3]'(A,B,C,D,E,F) :- 'main_q0(1)'(A,B,C,D,E,F).
+'main_q0[3]'(A,B,C,D,E,F) :- 'main_q0(0)'(A,B,C,D,E,F).
 'main_q0[2]'(A,B,C,D,E,F) :- 'main_q0(2)'(A,B,C,D,E,F).
 'main_q0[2]'(A,B,C,D,E,F) :- 'main_q0(1)'(A,B,C,D,E,F).
 'main_q0[2]'(A,B,C,D,E,F) :- 'main_q0(0)'(A,B,C,D,E,F).
 'main_q0[1]'(A,B,C,D,E,F) :- 'main_q0(1)'(A,B,C,D,E,F).
 'main_q0[1]'(A,B,C,D,E,F) :- 'main_q0(0)'(A,B,C,D,E,F).
 'main_q0[0]'(A,B,C,D,E,F) :- 'main_q0(0)'(A,B,C,D,E,F).
+'main_q1[3]'(A,B,C,D,E,F) :- 'main_q1(3)'(A,B,C,D,E,F).
+'main_q1[3]'(A,B,C,D,E,F) :- 'main_q1(2)'(A,B,C,D,E,F).
+'main_q1[3]'(A,B,C,D,E,F) :- 'main_q1(1)'(A,B,C,D,E,F).
+'main_q1[3]'(A,B,C,D,E,F) :- 'main_q1(0)'(A,B,C,D,E,F).
 'main_q1[2]'(A,B,C,D,E,F) :- 'main_q1(2)'(A,B,C,D,E,F).
 'main_q1[2]'(A,B,C,D,E,F) :- 'main_q1(1)'(A,B,C,D,E,F).
 'main_q1[2]'(A,B,C,D,E,F) :- 'main_q1(0)'(A,B,C,D,E,F).
 'main_q1[1]'(A,B,C,D,E,F) :- 'main_q1(1)'(A,B,C,D,E,F).
 'main_q1[1]'(A,B,C,D,E,F) :- 'main_q1(0)'(A,B,C,D,E,F).
 'main_q1[0]'(A,B,C,D,E,F) :- 'main_q1(0)'(A,B,C,D,E,F).
+'main_q2[3]'(A,B,C,D,E,F) :- 'main_q2(3)'(A,B,C,D,E,F).
+'main_q2[3]'(A,B,C,D,E,F) :- 'main_q2(2)'(A,B,C,D,E,F).
+'main_q2[3]'(A,B,C,D,E,F) :- 'main_q2(1)'(A,B,C,D,E,F).
+'main_q2[3]'(A,B,C,D,E,F) :- 'main_q2(0)'(A,B,C,D,E,F).
 'main_q2[2]'(A,B,C,D,E,F) :- 'main_q2(2)'(A,B,C,D,E,F).
 'main_q2[2]'(A,B,C,D,E,F) :- 'main_q2(1)'(A,B,C,D,E,F).
 'main_q2[2]'(A,B,C,D,E,F) :- 'main_q2(0)'(A,B,C,D,E,F).
 'main_q2[1]'(A,B,C,D,E,F) :- 'main_q2(1)'(A,B,C,D,E,F).
 'main_q2[1]'(A,B,C,D,E,F) :- 'main_q2(0)'(A,B,C,D,E,F).
 'main_q2[0]'(A,B,C,D,E,F) :- 'main_q2(0)'(A,B,C,D,E,F).
+'main_qf[3]' :- 'main_qf(3)'.
+'main_qf[3]' :- 'main_qf(2)'.
+'main_qf[3]' :- 'main_qf(1)'.
+'main_qf[3]' :- 'main_qf(0)'.
 'main_qf[2]' :- 'main_qf(2)'.
 'main_qf[2]' :- 'main_qf(1)'.
 'main_qf[2]' :- 'main_qf(0)'.
 'main_qf[1]' :- 'main_qf(1)'.
 'main_qf[1]' :- 'main_qf(0)'.
 'main_qf[0]' :- 'main_qf(0)'.
+'palindrome_q0[3]'(A,B,C,D,E,F,G,H) :- 'palindrome_q0(3)'(A,B,C,D,E,F,G,H).
+'palindrome_q0[3]'(A,B,C,D,E,F,G,H) :- 'palindrome_q0(2)'(A,B,C,D,E,F,G,H).
+'palindrome_q0[3]'(A,B,C,D,E,F,G,H) :- 'palindrome_q0(1)'(A,B,C,D,E,F,G,H).
+'palindrome_q0[3]'(A,B,C,D,E,F,G,H) :- 'palindrome_q0(0)'(A,B,C,D,E,F,G,H).
 'palindrome_q0[2]'(A,B,C,D,E,F,G,H) :- 'palindrome_q0(2)'(A,B,C,D,E,F,G,H).
 'palindrome_q0[2]'(A,B,C,D,E,F,G,H) :- 'palindrome_q0(1)'(A,B,C,D,E,F,G,H).
 'palindrome_q0[2]'(A,B,C,D,E,F,G,H) :- 'palindrome_q0(0)'(A,B,C,D,E,F,G,H).
 'palindrome_q0[1]'(A,B,C,D,E,F,G,H) :- 'palindrome_q0(1)'(A,B,C,D,E,F,G,H).
 'palindrome_q0[1]'(A,B,C,D,E,F,G,H) :- 'palindrome_q0(0)'(A,B,C,D,E,F,G,H).
 'palindrome_q0[0]'(A,B,C,D,E,F,G,H) :- 'palindrome_q0(0)'(A,B,C,D,E,F,G,H).
+'palindrome_q1[3]'(A,B,C,D,E,F,G,H) :- 'palindrome_q1(3)'(A,B,C,D,E,F,G,H).
+'palindrome_q1[3]'(A,B,C,D,E,F,G,H) :- 'palindrome_q1(2)'(A,B,C,D,E,F,G,H).
+'palindrome_q1[3]'(A,B,C,D,E,F,G,H) :- 'palindrome_q1(1)'(A,B,C,D,E,F,G,H).
+'palindrome_q1[3]'(A,B,C,D,E,F,G,H) :- 'palindrome_q1(0)'(A,B,C,D,E,F,G,H).
 'palindrome_q1[2]'(A,B,C,D,E,F,G,H) :- 'palindrome_q1(2)'(A,B,C,D,E,F,G,H).
 'palindrome_q1[2]'(A,B,C,D,E,F,G,H) :- 'palindrome_q1(1)'(A,B,C,D,E,F,G,H).
 'palindrome_q1[2]'(A,B,C,D,E,F,G,H) :- 'palindrome_q1(0)'(A,B,C,D,E,F,G,H).
 'palindrome_q1[1]'(A,B,C,D,E,F,G,H) :- 'palindrome_q1(1)'(A,B,C,D,E,F,G,H).
 'palindrome_q1[1]'(A,B,C,D,E,F,G,H) :- 'palindrome_q1(0)'(A,B,C,D,E,F,G,H).
 'palindrome_q1[0]'(A,B,C,D,E,F,G,H) :- 'palindrome_q1(0)'(A,B,C,D,E,F,G,H).
+'palindrome_q2[3]'(A,B,C,D,E,F,G,H) :- 'palindrome_q2(3)'(A,B,C,D,E,F,G,H).
+'palindrome_q2[3]'(A,B,C,D,E,F,G,H) :- 'palindrome_q2(2)'(A,B,C,D,E,F,G,H).
+'palindrome_q2[3]'(A,B,C,D,E,F,G,H) :- 'palindrome_q2(1)'(A,B,C,D,E,F,G,H).
+'palindrome_q2[3]'(A,B,C,D,E,F,G,H) :- 'palindrome_q2(0)'(A,B,C,D,E,F,G,H).
 'palindrome_q2[2]'(A,B,C,D,E,F,G,H) :- 'palindrome_q2(2)'(A,B,C,D,E,F,G,H).
 'palindrome_q2[2]'(A,B,C,D,E,F,G,H) :- 'palindrome_q2(1)'(A,B,C,D,E,F,G,H).
 'palindrome_q2[2]'(A,B,C,D,E,F,G,H) :- 'palindrome_q2(0)'(A,B,C,D,E,F,G,H).
 'palindrome_q2[1]'(A,B,C,D,E,F,G,H) :- 'palindrome_q2(1)'(A,B,C,D,E,F,G,H).
 'palindrome_q2[1]'(A,B,C,D,E,F,G,H) :- 'palindrome_q2(0)'(A,B,C,D,E,F,G,H).
 'palindrome_q2[0]'(A,B,C,D,E,F,G,H) :- 'palindrome_q2(0)'(A,B,C,D,E,F,G,H).
+'palindrome_q3[3]'(A,B,C,D,E,F,G,H) :- 'palindrome_q3(3)'(A,B,C,D,E,F,G,H).
+'palindrome_q3[3]'(A,B,C,D,E,F,G,H) :- 'palindrome_q3(2)'(A,B,C,D,E,F,G,H).
+'palindrome_q3[3]'(A,B,C,D,E,F,G,H) :- 'palindrome_q3(1)'(A,B,C,D,E,F,G,H).
+'palindrome_q3[3]'(A,B,C,D,E,F,G,H) :- 'palindrome_q3(0)'(A,B,C,D,E,F,G,H).
 'palindrome_q3[2]'(A,B,C,D,E,F,G,H) :- 'palindrome_q3(2)'(A,B,C,D,E,F,G,H).
 'palindrome_q3[2]'(A,B,C,D,E,F,G,H) :- 'palindrome_q3(1)'(A,B,C,D,E,F,G,H).
 'palindrome_q3[2]'(A,B,C,D,E,F,G,H) :- 'palindrome_q3(0)'(A,B,C,D,E,F,G,H).
 'palindrome_q3[1]'(A,B,C,D,E,F,G,H) :- 'palindrome_q3(1)'(A,B,C,D,E,F,G,H).
 'palindrome_q3[1]'(A,B,C,D,E,F,G,H) :- 'palindrome_q3(0)'(A,B,C,D,E,F,G,H).
 'palindrome_q3[0]'(A,B,C,D,E,F,G,H) :- 'palindrome_q3(0)'(A,B,C,D,E,F,G,H).
+'palindrome_q4[3]'(A,B,C,D,E,F) :- 'palindrome_q4(3)'(A,B,C,D,E,F).
+'palindrome_q4[3]'(A,B,C,D,E,F) :- 'palindrome_q4(2)'(A,B,C,D,E,F).
+'palindrome_q4[3]'(A,B,C,D,E,F) :- 'palindrome_q4(1)'(A,B,C,D,E,F).
+'palindrome_q4[3]'(A,B,C,D,E,F) :- 'palindrome_q4(0)'(A,B,C,D,E,F).
 'palindrome_q4[2]'(A,B,C,D,E,F) :- 'palindrome_q4(2)'(A,B,C,D,E,F).
 'palindrome_q4[2]'(A,B,C,D,E,F) :- 'palindrome_q4(1)'(A,B,C,D,E,F).
 'palindrome_q4[2]'(A,B,C,D,E,F) :- 'palindrome_q4(0)'(A,B,C,D,E,F).
 'palindrome_q4[1]'(A,B,C,D,E,F) :- 'palindrome_q4(1)'(A,B,C,D,E,F).
 'palindrome_q4[1]'(A,B,C,D,E,F) :- 'palindrome_q4(0)'(A,B,C,D,E,F).
 'palindrome_q4[0]'(A,B,C,D,E,F) :- 'palindrome_q4(0)'(A,B,C,D,E,F).
-false:-'false[2]'.
+false:-'false[3]'.

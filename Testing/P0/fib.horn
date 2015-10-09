@@ -2,4 +2,4 @@ fib(0,0).
 fib(1,1).
 fib(M,N):-L=M-1,P=M-2,fib(P,Q),fib(L,R),N=Q+R.
 
-false:-fib(A,B),B=55,A=10. 
+false:-fib(A,B),B=14,A=7. 
