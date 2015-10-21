@@ -55,9 +55,8 @@ main(ArgV) :-
 	set_options(ArgV,File,OutS),
 	load_file(File),
 	clause_ids(Ids),
-	create_dependence_graph(DG),
 	all_non_linear(Ids,NLIds),
-	elp(NLIds,DG),
+	elp(NLIds),
 	show_output(OutS),
 	close(OutS).
 
@@ -65,19 +64,17 @@ main(ArgV) :-
 % Tranforms the set of non-linear clauses into a set of linear clauses.
 %	NLIds is the set of non-linear clauses in the input program.
 %	DG is the dependence graph associated to the program at each iteration.
-elp([],_):-
+elp([]):-
 	!.
-elp(NLIds,DG):-
+elp(NLIds):-
 	mindex(M),
-	all_minimally_non_linear(DG,M,NLIds,MNLIds),
-	MNLIds=[SId|_],
+	NLIds=[SId|_],
 	clp(SId,LCls),
-	remember_all_linear(LCls),
+	remember_all_unfolded(LCls),	
 	retractall(my_clause(_,_,SId)),
-	select_list([SId],NLIds,RNLIds),
-	update_dependence_graph(NDG),
+	NLIds=[SId|RNLIds],
 	set_mindex(M,RNLIds),
-	elp(RNLIds,NDG).
+	elp(RNLIds).
 
 % Folding and unfolding operations. 
 
@@ -104,39 +101,6 @@ split(Pre,A,Post,Body):-
 	append(Pre,[A|Post],Body), % unfolding operation works on the first occurence of atom A (if there is more than one) in the given clause.
 	!.
 
-% Minimally non linear clause manipulation.
-
-all_minimally_non_linear(DG,M,[Id|Ids],[Id|MNLIds]):-
-	my_clause(He,B,Id),
-	functor(He,H,_),
-	index_of_atom(H,K),
-	M=K,
-	separate_constraints(B,_,Bs),
-	findall((P,N),(member(C,Bs),functor(C,P,N)),Ps),
-	is_minimally_non_linear(DG,M,H,Ps),
-	!,
-	all_minimally_non_linear(DG,M,Ids,MNLIds).
-all_minimally_non_linear(DG,M,[_|Ids],MNLIds):-
-	all_minimally_non_linear(DG,M,Ids,MNLIds).
-all_minimally_non_linear(_,_,[],[]).
-
-is_minimally_non_linear(_,M,_,Bs):-
-	findall((B,N),(member((B,N),Bs),index_of_atom(B,M)),Rs),
-	Rs=[],
-	!.
-is_minimally_non_linear(DG,M,H,Bs):-
-	findall((B,N),(member((B,N),Bs),index_of_atom(B,M)),Rs),
-	Rs=[R],
-	depends(DG,R,H),
-	!.
-is_minimally_non_linear(DG,M,_,Bs):-
-	findall((B,N),(member((B,N),Bs),index_of_atom(B,M)),Rs),
-	Rs=[R],
-	tc_is_linear(DG,R),
-	!.
-is_minimally_non_linear(_,_,_,[]):-
-	!.
-
 % Non-linear clause manipulation.
 
 all_non_linear([Id|Ids],[Id|NLIds]):-
@@ -154,25 +118,22 @@ all_non_linear([],[]).
 % Transforms a non-linear clause into a set of linear clauses.
 %	SId is the id of the non-linear clause.
 %	LCls is the resultant set of linear clauses.
-clp(SId,LCls):-
-	e_tree_cons(SId,LCls1,ECls,EDIds),
+clp(SId,Cls):-
+	e_tree_cons(SId,LCls,ECls),
 	e_tree_del,
-	f_tree_cons(ECls,FCls),
-	append([LCls1,FCls],LCls2),
-	linearise_eds(EDIds,LCls3),
-	append([LCls2,LCls3],LCls).
+	append([LCls,ECls],Cls).
 
 % Storing linear clauses methods.
 
-remember_all_linear([LCl|LCls]):-
+remember_all_unfolded([LCl|LCls]):-
 	is_duplicated(LCl),
 	!,
-	remember_all_linear(LCls).
-remember_all_linear([LCl|LCls]):-
+	remember_all_unfolded(LCls).
+remember_all_unfolded([LCl|LCls]):-
 	remember_clause(LCl),
 	set_cls_id,
-	remember_all_linear(LCls).
-remember_all_linear([]).
+	remember_all_unfolded(LCls).
+remember_all_unfolded([]).
 
 is_duplicated((H1:-B1)):-
 	my_clause(H2,B2,_),
@@ -180,60 +141,57 @@ is_duplicated((H1:-B1)):-
 
 % E-tree construction methods.
 
-e_tree_cons(RId,LCls,ECls,EDIds):-
+e_tree_cons(RId,LCls,ECls):-
 	my_clause(H,B,RId),
 	!,
 	recorda(0,my_node(H,B,1)),
 	set_next_node_id,
-	construct_subtree(1,LCls,ECls,EDIds).
+	construct_subtree(1,LCls,ECls).
 e_tree_cons(Id,LCls,ECls):-
 	my_ed(H,B,Id),
 	recorda(0,my_node(H,B,1)),
 	set_next_node_id,
-	construct_subtree(1,LCls,ECls,_).
+	construct_subtree(1,LCls,ECls).
 
-construct_subtree(RId,LCls,ECls,EDIds):-
+construct_subtree(RId,LCls,ECls):-
 	recorded(_,my_node(H,B,RId)),
 	selection_rule(B,A),
 	unfold((H:-B),A,Cls),
 	all_linear(Cls,LCls1),
 	select_list(LCls1,Cls,RCls),
-	all_eurekable(RId,RCls,ECls1,EDIds1),
+	all_eurekable(RId,RCls,ECls1),
 	select_list(ECls1,RCls,FCls),
-	construct_all_subtrees(RId,FCls,LCls2,ECls2,EDIds2),
+	construct_all_subtrees(RId,FCls,LCls2,ECls2),
 	append([LCls1,LCls2],LCls),
-	append([ECls1,ECls2],ECls),
-	append([EDIds1,EDIds2],EDIds).
+	append([ECls1,ECls2],ECls).
 
-construct_all_subtrees(RId,[(H:-B)|FCls],LCls,ECls,EDIds):-
+construct_all_subtrees(RId,[(H:-B)|FCls],LCls,ECls):-
 	recorded(RId,my_node(Hs,Bs,Id)),(H:-B)=@=(Hs:-Bs),
-	construct_subtree(Id,LCls1,ECls1,EDIds1),
-	construct_all_subtrees(RId,FCls,LCls2,ECls2,EDIds2),
+	construct_subtree(Id,LCls1,ECls1),
+	construct_all_subtrees(RId,FCls,LCls2,ECls2),
 	append([LCls1,LCls2],LCls),
-	append([ECls1,ECls2],ECls),
-	append([EDIds1,EDIds2],EDIds).
-construct_all_subtrees(_,[],[],[],[]).
+	append([ECls1,ECls2],ECls).
+construct_all_subtrees(_,[],[],[]).
 
-all_eurekable(FId,[(H:-B)|Cls],[(H:-B)|ECls1],[EDId|EDIds]):-
+all_eurekable(FId,[(H:-B)|Cls],[(H:-B)|ECls1]):-
 	remember_node(FId,H,B,Id),
-	is_eurekable(Id,Id,T),
-	intro_eureka_def(H,T,EDId),
+	is_eurekable(Id,Id,_),
 	!,
-	all_eurekable(FId,Cls,ECls1,EDIds).
-all_eurekable(FId,[(H:-B)|Cls],[(H:-B)|ECls1],EDIds):- % This rule only succeeds while e-tree construction wrt to each ED.
+	all_eurekable(FId,Cls,ECls1).
+all_eurekable(FId,[(H:-B)|Cls],[(H:-B)|ECls1]):- % This rule only succeeds while e-tree construction wrt to each ED.
 	recorded(FId,my_node(Hs,Bs,Id)),(H:-B)=@=(Hs:-Bs),
 	is_eurekable(Id,Id,_),
 	!,
-	all_eurekable(FId,Cls,ECls1,EDIds).
-all_eurekable(FId,[(H:-B)|Cls],[(H:-B)|ECls],EDIds):- % Memoization.
-	separate_constraints(B,_,Bs),
-	findall(Id,(my_ed(_,EB,Id),subsumes_term(EB,Bs)),Ids),
-	Ids=[_|_],
-	!,
-	all_eurekable(FId,Cls,ECls,EDIds).
-all_eurekable(FId,[_|Cls],ECls,EDIds):-
-	all_eurekable(FId,Cls,ECls,EDIds).
-all_eurekable(_,[],[],[]).
+	all_eurekable(FId,Cls,ECls1).
+%% all_eurekable(FId,[(H:-B)|Cls],[(H:-B)|ECls],EDIds):- % Memoization.
+%% 	separate_constraints(B,_,Bs),
+%% 	findall(Id,(my_ed(_,EB,Id),subsumes_term(EB,Bs)),Ids),
+%% 	Ids=[_|_],
+%% 	!,
+%% 	all_eurekable(FId,Cls,ECls,EDIds).
+all_eurekable(FId,[_|Cls],ECls):-
+	all_eurekable(FId,Cls,ECls).
+all_eurekable(_,[],[]).
 
 % Succeeds if first argument references to an eurekable node in e-tree with respect to
 % an ancestor node, computed form the second argument.
@@ -399,13 +357,9 @@ show_output(OutS):-
 	script(T),
 	T=false,
 	!,
-	findall((EH:-EB),my_ed(EH,EB,_),EDs),
-	clauseVars(EDs),
-	write(OutS,'Eureka Definitions:'),nl(OutS),
-	write_clauses(EDs,OutS),
 	findall((H:-B),my_clause(H,B,_),LCls),
 	clauseVars(LCls),
-	write(OutS,'Linearised Program:'),nl(OutS),
+	write(OutS,'Folded Program:'),nl(OutS),
 	write_clauses(LCls,OutS).
 show_output(OutS):-
 	script(T),
@@ -413,8 +367,6 @@ show_output(OutS):-
 
 	findall((EH:-EB),my_ed(EH,EB,_),EDs),
 	clauseVars(EDs),
-	write(OutS,'Eureka Definitions:'),nl(OutS),
-	write_clauses(EDs,OutS),
 	
 	findall((H:-B),my_clause(H,B,_),LCls),
 	clauseVars(LCls),
