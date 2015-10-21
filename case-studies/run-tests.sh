@@ -48,7 +48,7 @@ done
 
 # Running swipl and generating programs P1 and P2 from P0: 
 
-KDIM=kdim.pl
+KDIM=kdim_latest.pl
 MAIN=../main.pl
 
 base="$F".horn
@@ -57,9 +57,9 @@ P0_PATH=P0/$base
 P1_PATH=P1/$base
 P2_PATH=P2/$base
 
-swipl -f "$KDIM" -g script,halt -- $P0_PATH $K $P1_PATH
+#swipl -f "$KDIM" -g script,halt -- $P0_PATH $K $P1_PATH
 
-echo false:-\'false[$K]\'. >> $P1_PATH
+#echo false:-\'false[$K]\'. >> $P1_PATH
 
 swipl -f "$MAIN" -g script,halt -- $P1_PATH $P2_PATH
 

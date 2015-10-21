@@ -206,7 +206,7 @@ construct_subtree(RId,LCls,ECls,EDIds):-
 	append([EDIds1,EDIds2],EDIds).
 
 construct_all_subtrees(RId,[(H:-B)|FCls],LCls,ECls,EDIds):-
-	recorded(RId,my_node(H,Bs,Id)),B=@=Bs,
+	recorded(RId,my_node(Hs,Bs,Id)),(H:-B)=@=(Hs:-Bs),
 	construct_subtree(Id,LCls1,ECls1,EDIds1),
 	construct_all_subtrees(RId,FCls,LCls2,ECls2,EDIds2),
 	append([LCls1,LCls2],LCls),
@@ -220,15 +220,16 @@ all_eurekable(FId,[(H:-B)|Cls],[(H:-B)|ECls1],[EDId|EDIds]):-
 	intro_eureka_def(H,T,EDId),
 	!,
 	all_eurekable(FId,Cls,ECls1,EDIds).
-%all_eurekable(FId,[(H:-B)|Cls],[(H:-B)|ECls1],EDIds):- % This rule only succeeds while e-tree construction wrt to each ED.
-%	recorded(FId,my_node(H,B,Id)),
-%	is_eurekable(Id,Id,_),
-%	!,
-%	all_eurekable(FId,Cls,ECls1,EDIds).
+all_eurekable(FId,[(H:-B)|Cls],[(H:-B)|ECls1],EDIds):- % This rule only succeeds while e-tree construction wrt to each ED.
+	recorded(FId,my_node(Hs,Bs,Id)),(H:-B)=@=(Hs:-Bs),
+	is_eurekable(Id,Id,_),
+	!,
+	all_eurekable(FId,Cls,ECls1,EDIds).
 all_eurekable(FId,[(H:-B)|Cls],[(H:-B)|ECls],EDIds):- % Memoization.
 	separate_constraints(B,_,Bs),
 	findall(Id,(my_ed(_,EB,Id),subsumes_term(EB,Bs)),Ids),
 	Ids=[_|_],
+	!,
 	all_eurekable(FId,Cls,ECls,EDIds).
 all_eurekable(FId,[_|Cls],ECls,EDIds):-
 	all_eurekable(FId,Cls,ECls,EDIds).
@@ -285,21 +286,25 @@ erase_all([]).
 
 %
 
-selection_rule(B,A):-
-	mindex(M),
-	K is M-1,
+selection_rule(B,A) :-
 	separate_constraints(B,_,Bs),
-	findall(C,(member(C,Bs),functor(C,P,_),index_of_atom(P,J),J=<K),[R|Rs]),
-	foldl(lowest_index, Rs, R, A). % A is the predicate with the lowest index in [R|Rs].
+	Bs=[A|_].
 
-lowest_index(A,B,A):-
-	functor(A,P,_),
-	functor(B,Q,_),
-	index_of_atom(P,K1),
-	index_of_atom(Q,K2),
-	K1<K2,
-	!.
-lowest_index(_,B,B).
+%% selection_rule(B,A):-
+%% 	mindex(M),
+%% 	K is M-1,
+%% 	separate_constraints(B,_,Bs),
+%% 	findall(C,(member(C,Bs),functor(C,P,_),index_of_atom(P,J),J=<K),[R|Rs]),
+%% 	foldl(lowest_index, Rs, R, A). % A is the predicate with the lowest index in [R|Rs].
+
+%% lowest_index(A,B,A):-
+%% 	functor(A,P,_),
+%% 	functor(B,Q,_),
+%% 	index_of_atom(P,K1),
+%% 	index_of_atom(Q,K2),
+%% 	K1<K2,
+%% 	!.
+%% lowest_index(_,B,B).
 
 all_linear([(H:-B)|Cls],[(H:-B)|LCls]):-
 	separate_constraints(B,_,Bs),
@@ -330,6 +335,7 @@ f_tree_cons([],[]).
 %	(H:-B) is the selected ED to fold the given clause. 
 ms_ed(EBs,(H:-B)):-
 	ms(EBs,B1),
+	%EBs=[B1|_],
 	my_ed(H,B,_),
 	B=@=B1.
 
@@ -342,7 +348,8 @@ ms([L|Ls],M):-
 % but there is not such a substitution on B2 that makes it equivalent to B1.
 most_specific(B1,B2,B2):-
 	subsumes_term(B1,B2),
-	\+ subsumes_term(B2,B1).
+	\+ subsumes_term(B2,B1),
+	!.
 most_specific(B1,_,B1).
 
 % Eureka Definition methods.
@@ -403,6 +410,12 @@ show_output(OutS):-
 show_output(OutS):-
 	script(T),
 	T=true,
+
+	findall((EH:-EB),my_ed(EH,EB,_),EDs),
+	clauseVars(EDs),
+	write(OutS,'Eureka Definitions:'),nl(OutS),
+	write_clauses(EDs,OutS),
+	
 	findall((H:-B),my_clause(H,B,_),LCls),
 	clauseVars(LCls),
 	write_clauses(LCls,OutS).
