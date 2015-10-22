@@ -214,8 +214,15 @@ construct_all_subtrees(RId,[(H:-B)|FCls],LCls,ECls,EDIds):-
 	append([EDIds1,EDIds2],EDIds).
 construct_all_subtrees(_,[],[],[],[]).
 
+all_eurekable(FId,[(H:-B)|Cls],[(H:-B)|ECls],EDIds):- % Memoization.
+	separate_constraints(B,_,Bs),
+	remember_node(FId,H,B,_),
+	findall(Id,(my_ed(_,EB,Id),subsumes_term(EB,Bs)),Ids),
+	Ids=[_|_],
+	!,
+	all_eurekable(FId,Cls,ECls,EDIds).
 all_eurekable(FId,[(H:-B)|Cls],[(H:-B)|ECls1],[EDId|EDIds]):-
-	remember_node(FId,H,B,Id),
+	recorded(FId,my_node(Hs,Bs,Id)),(H:-B)=@=(Hs:-Bs),
 	is_eurekable(Id,Id,T),
 	intro_eureka_def(H,T,EDId),
 	!,
@@ -225,12 +232,6 @@ all_eurekable(FId,[(H:-B)|Cls],[(H:-B)|ECls1],EDIds):- % This rule only succeeds
 	is_eurekable(Id,Id,_),
 	!,
 	all_eurekable(FId,Cls,ECls1,EDIds).
-all_eurekable(FId,[(H:-B)|Cls],[(H:-B)|ECls],EDIds):- % Memoization.
-	separate_constraints(B,_,Bs),
-	findall(Id,(my_ed(_,EB,Id),subsumes_term(EB,Bs)),Ids),
-	Ids=[_|_],
-	!,
-	all_eurekable(FId,Cls,ECls,EDIds).
 all_eurekable(FId,[_|Cls],ECls,EDIds):-
 	all_eurekable(FId,Cls,ECls,EDIds).
 all_eurekable(_,[],[],[]).
