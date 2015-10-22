@@ -57,9 +57,9 @@ P0_PATH=P0/$base
 P1_PATH=P1/$base
 P2_PATH=P2/$base
 
-#swipl -f "$KDIM" -g script,halt -- $P0_PATH $K $P1_PATH
+swipl -f "$KDIM" -g script,halt -- $P0_PATH $K $P1_PATH
 
-#echo false:-\'false[$K]\'. >> $P1_PATH
+echo false:-\'false[$K]\'. >> $P1_PATH
 
 swipl -f "$MAIN" -g script,halt -- $P1_PATH $P2_PATH
 

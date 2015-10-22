@@ -183,12 +183,12 @@ all_eurekable(FId,[(H:-B)|Cls],[(H:-B)|ECls1]):- % This rule only succeeds while
 	is_eurekable(Id,Id,_),
 	!,
 	all_eurekable(FId,Cls,ECls1).
-%% all_eurekable(FId,[(H:-B)|Cls],[(H:-B)|ECls],EDIds):- % Memoization.
-%% 	separate_constraints(B,_,Bs),
-%% 	findall(Id,(my_ed(_,EB,Id),subsumes_term(EB,Bs)),Ids),
-%% 	Ids=[_|_],
-%% 	!,
-%% 	all_eurekable(FId,Cls,ECls,EDIds).
+all_eurekable(FId,[(H:-B)|Cls],[(H:-B)|ECls]):- % Memoization.
+	separate_constraints(B,_,Bs),
+	findall(Id,(my_ed(_,EB,Id),subsumes_term(EB,Bs)),Ids),
+	Ids=[_|_],
+	!,
+	all_eurekable(FId,Cls,ECls).
 all_eurekable(FId,[_|Cls],ECls):-
 	all_eurekable(FId,Cls,ECls).
 all_eurekable(_,[],[]).
