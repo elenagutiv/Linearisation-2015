@@ -48,7 +48,7 @@ done
 
 # Running swipl and generating programs P1 and P2 from P0: 
 
-KDIM=kdim_latest.pl
+KDIM=kdim.pl
 MAIN=../main.pl
 
 base="$F".horn
