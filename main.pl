@@ -336,7 +336,6 @@ f_tree_cons([],[]).
 %	(H:-B) is the selected ED to fold the given clause. 
 ms_ed(EBs,(H:-B)):-
 	ms(EBs,B1),
-	%EBs=[B1|_],
 	my_ed(H,B,_),
 	B=@=B1.
 
