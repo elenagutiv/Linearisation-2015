@@ -227,7 +227,7 @@ all_eurekable(FId,[(H:-B)|Cls],[(H:-B)|ECls1],[EDId|EDIds]):-
 	intro_eureka_def(H,T,EDId),
 	!,
 	all_eurekable(FId,Cls,ECls1,EDIds).
-all_eurekable(FId,[(H:-B)|Cls],[(H:-B)|ECls1],EDIds):- % This rule only succeeds while e-tree construction wrt to each ED.
+all_eurekable(FId,[(H:-B)|Cls],[(H:-B)|ECls1],EDIds):-
 	recorded(FId,my_node(Hs,Bs,Id)),(H:-B)=@=(Hs:-Bs),
 	is_eurekable(Id,Id,_),
 	!,
@@ -289,23 +289,7 @@ erase_all([]).
 
 selection_rule(B,A) :-
 	separate_constraints(B,_,Bs),
-	Bs=[A|_].
-
-%% selection_rule(B,A):-
-%% 	mindex(M),
-%% 	K is M-1,
-%% 	separate_constraints(B,_,Bs),
-%% 	findall(C,(member(C,Bs),functor(C,P,_),index_of_atom(P,J),J=<K),[R|Rs]),
-%% 	foldl(lowest_index, Rs, R, A). % A is the predicate with the lowest index in [R|Rs].
-
-%% lowest_index(A,B,A):-
-%% 	functor(A,P,_),
-%% 	functor(B,Q,_),
-%% 	index_of_atom(P,K1),
-%% 	index_of_atom(Q,K2),
-%% 	K1<K2,
-%% 	!.
-%% lowest_index(_,B,B).
+	Bs=[A|_]. % predicates in the body are ordered from lower to higher index.
 
 all_linear([(H:-B)|Cls],[(H:-B)|LCls]):-
 	separate_constraints(B,_,Bs),
@@ -410,12 +394,6 @@ show_output(OutS):-
 show_output(OutS):-
 	script(T),
 	T=true,
-
-	findall((EH:-EB),my_ed(EH,EB,_),EDs),
-	clauseVars(EDs),
-	write(OutS,'Eureka Definitions:'),nl(OutS),
-	write_clauses(EDs,OutS),
-	
 	findall((H:-B),my_clause(H,B,_),LCls),
 	clauseVars(LCls),
 	write_clauses(LCls,OutS).

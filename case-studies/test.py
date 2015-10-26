@@ -1,5 +1,7 @@
 #!/bin/python
+
 import sys, getopt,subprocess
+from subprocess import call
 
 argv = sys.argv[1:]
 
@@ -28,10 +30,11 @@ p0_path="P0/"+base
 p1_path="P1/"+base
 p2_path="P2/"+base
 
-#swipl -f "$KDIM" -g script,halt -- $P0_PATH $K $P1_PATH
+call(['swipl','-g','script,halt','-f',kdim,'--',p0_path,k,p1_path])
 
-# echo false:-\'false[$K]\'. >> $P1_PATH
+fp=open(p1_path,'a') 
+print >> fp , "false:-\'false["+k+"]\'."
+fp.close()
 
-# swipl -f "$MAIN" -g script,halt -- $P1_PATH $P2_PATH
-from subprocess import call
-call(['swipl','-g','script,halt','-f','kdim.pl','--','P0/fib.horn','3','P1/fib.horn'])
+call(['swipl','-g','script,halt','-f',main,'--',p1_path,p2_path])
+
