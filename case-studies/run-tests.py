@@ -5,7 +5,7 @@ from subprocess import call
 from glob import glob
 from os.path import join
 
-tests = glob(join('P0', 'fib.horn'))
+tests = glob(join('P0', '*.horn'))
 
 # Running swipl and generating programs P1 and P2 from P0: 
 
@@ -18,6 +18,10 @@ elp_timelimit = "60"
 
 elp_timeout = 0
 qarmc_timeout = 0
+qarmc_grep_error = 0
+passed = "PASSED"
+qarmc_time = "-1.0"
+
 
 
 outfile = open('data.json', 'w')
@@ -69,19 +73,22 @@ for files in tests:
 				print "QARMC command error: "+e.output
 
 		if qarmc_timeout == 0:
-			o_passed = subprocess.check_output(['grep'+" 'program is correct' "+logfile], shell = True)
-			o_time = subprocess.check_output(['grep'+" '\"total_time\":' " + logfile],shell = True)
-
-			if o_passed == 1 :
-				passed = "FAILED"
-			else:
-				passed = "PASSED"
-
-			# Extract QARMC time
 			try:
-			    qarmc_time = re.search('((\d+)\.(\d+))}}', o_time).group(1)
-			except AttributeError:
-			    qarmc_time = ''
+				o_passed = subprocess.check_output(['grep'+" 'program is correct' "+logfile], shell = True)
+			except subprocess.CalledProcessError,e:
+				if e.returncode > 1:
+					passed = "FAILED"
+			try:
+				o_time = subprocess.check_output(['grep'+" '\"total_time\":' " + logfile],shell = True)
+			except subprocess.CalledProcessError,e:
+				if e.returncode > 1:
+					qarmc_time = "-1.0"
+					qarmc_grep_error = 1
+			if qarmc_grep_error == 0: # Extract QARMC time
+				try:
+				    qarmc_time = re.search('((\d+)\.(\d+))}}', o_time).group(1)
+				except AttributeError:
+					qarmc_time = "-1.0"
 		else:
 			passed = "QARMC_TIMEOUT"
 			qarmc_time = "-1.0"
