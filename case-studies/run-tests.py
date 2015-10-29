@@ -16,17 +16,15 @@ extraoptions = " -debug "
 qarmc_timelimit = "60"
 elp_timelimit = "60"
 
-elp_timeout = 0
-qarmc_timeout = 0
-qarmc_grep_error = 0
-passed = "PASSED"
-qarmc_time = "-1.0"
-
-
-
 outfile = open('data.json', 'w')
 
 for files in tests:
+
+	elp_timeout = 0
+	qarmc_timeout = 0
+	qarmc_grep_error = 0
+	passed = "PASSED"
+	qarmc_time = "-1.0"
 
 	f = os.path.basename(files) # Extract the name of the file
 	base = os.path.splitext(f)[0] # Split name an extension from the file name. Assign name to base
