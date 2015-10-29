@@ -5,7 +5,7 @@ from subprocess import call
 from glob import glob
 from os.path import join
 
-tests = glob(join('P0', '*.horn'))
+tests = glob(join('P0', 'fib.horn'))
 
 # Running swipl and generating programs P1 and P2 from P0: 
 
@@ -42,6 +42,8 @@ for files in tests:
 	except subprocess.CalledProcessError, e:
 		if e.returncode == 124: #ELP TIMEOUT
 			elp_timeout = 1
+		else:
+			print "Swipl command error: "+e.output
 
 	if elp_timeout == 0:
 		end_time_elp = int(round(time.time() * 1000))
@@ -59,13 +61,15 @@ for files in tests:
 		logfile = file+log_sufix+".log"
 
 		try:
-			output = subprocess.check_output(["time"+" gtimeout "+qarmc_timelimit+" ./qarmc-latest.osx " + extraoptions + file + " > " + logfile],shell = True)
+			output = subprocess.check_output(["time gtimeout "+qarmc_timelimit+" ./qarmc-latest.osx " + extraoptions + file + " > " + logfile],shell = True)
 		except subprocess.CalledProcessError,e:
 			if e.returncode == 124: #QARMC TIMEOUT
 				qarmc_timeout = 1
+			else:
+				print "QARMC command error: "+e.output
 
 		if qarmc_timeout == 0:
-			o_passed = subprocess.call(['grep'," 'program is correct' ", logfile])
+			o_passed = subprocess.check_output(['grep'+" 'program is correct' "+logfile], shell = True)
 			o_time = subprocess.check_output(['grep'+" '\"total_time\":' " + logfile],shell = True)
 
 			if o_passed == 1 :
