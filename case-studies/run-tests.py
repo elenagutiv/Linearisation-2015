@@ -4,14 +4,12 @@
 # This file contains instructions to run a batch of tests located in directory P0. For each individual test, it generates P1 and P2 programs located in their
 # respective  directories. Then, it runs QARMC to solve each. To show results a JSON file is generated.
 
-import json,subprocess,os,time,re,sys
+import json,subprocess,os,time,re
 from subprocess import call
 from glob import glob
 from os.path import join
 
 tests = glob(join('P0', '*.horn'))
-
-sys.stdout = open(os.devnull,'a')
 
 # Running swipl and generating programs P1 and P2 from P0: 
 
@@ -22,7 +20,7 @@ extraoptions = " -debug "
 qarmc_timelimit = "600" # sec.
 elp_timelimit = "600" # sec.
 
-outfile = open('data.json', 'w')
+outfile = open('results_'+k+'.json', 'w')
 
 for files in tests:
 
