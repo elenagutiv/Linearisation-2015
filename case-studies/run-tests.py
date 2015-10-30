@@ -25,11 +25,7 @@ outfile = open('results_k'+k+'.json', 'w')
 for files in tests:
 
 	elp_timeout = 0
-	qarmc_timeout = 0
-	qarmc_grep_error = 0
-	passed = "PASSED"
-	qarmc_time = "-1.0"
-
+	
 	f = os.path.basename(files)
 	base = os.path.splitext(f)[0]
 
@@ -65,6 +61,10 @@ for files in tests:
 
 	for file in programs:
 
+		qarmc_timeout = 0
+		qarmc_grep_error = 0
+		passed = "PASSED"
+		qarmc_time = "-1.0"
 		log_sufix = time.strftime(".%Y.%m.%d.%H.%M")
 		logfile = file+log_sufix+".log"
 
@@ -87,7 +87,6 @@ for files in tests:
 				o_time = subprocess.check_output(['grep'+" '\"total_time\":' " + logfile],shell = True)
 			except subprocess.CalledProcessError,e:
 				if e.returncode > 0:
-					qarmc_time = "-1.0"
 					qarmc_grep_error = 1
 
 			if qarmc_grep_error == 0: # Extract QARMC time
@@ -97,7 +96,6 @@ for files in tests:
 					qarmc_time = "-1.0"
 		else:
 			passed = "QARMC_TIMEOUT"
-			qarmc_time = "-1.0"
 
 		if "P2" in file:
 	  		data = {
