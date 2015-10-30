@@ -17,10 +17,10 @@ kdim="kdim.pl"
 main="../main.pl"
 k="2"
 extraoptions = " -debug "
-qarmc_timelimit = "600" # sec.
-elp_timelimit = "600" # sec.
+qarmc_timelimit = "300" # sec.
+elp_timelimit = "300" # sec.
 
-outfile = open('results_'+k+'.json', 'w')
+outfile = open('results_k'+k+'.json', 'w')
 
 for files in tests:
 
@@ -121,7 +121,7 @@ for files in tests:
 		    'passed' : "ELP_TIMEOUT",
 		    'k' : int(k),
 		    'file' : file,
-		    'QARMC time(s)' : "-1.0"
+		    'QARMC time(s)' : -1.0
 		    }
 		json.dump(data, outfile,sort_keys=True,indent = 2)
 outfile.close()
