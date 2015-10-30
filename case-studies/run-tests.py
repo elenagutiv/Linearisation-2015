@@ -1,15 +1,17 @@
 #!/bin/python
 # Gutierrez Viedma, Elena
 
-# This file contains instructions to run a batch of tests  located in directory P0. For each individual test, it generates P1 and P2 programs located in their
+# This file contains instructions to run a batch of tests located in directory P0. For each individual test, it generates P1 and P2 programs located in their
 # respective  directories. Then, it runs QARMC to solve each. To show results a JSON file is generated.
 
-import json,subprocess,os,time,re
+import json,subprocess,os,time,re,sys
 from subprocess import call
 from glob import glob
 from os.path import join
 
 tests = glob(join('P0', '*.horn'))
+
+sys.stdout = open(os.devnull,'a')
 
 # Running swipl and generating programs P1 and P2 from P0: 
 
@@ -51,7 +53,7 @@ for files in tests:
 		if e.returncode == 124: #ELP TIMEOUT
 			elp_timeout = 1
 		else:
-			print "Swipl command error: "+e.output
+			sys.exit("Swipl command error: "+e.output)
 
 	if elp_timeout == 0:
 		end_time_elp = int(round(time.time() * 1000))
@@ -74,8 +76,8 @@ for files in tests:
 		except subprocess.CalledProcessError,e:
 			if e.returncode == 124: #QARMC TIMEOUT
 				qarmc_timeout = 1
-			else:
-				print "QARMC command error: "+e.output
+			else: 
+				sys.exit("QARMC command error: "+e.output)
 
 		if qarmc_timeout == 0:
 			try:
@@ -86,9 +88,10 @@ for files in tests:
 			try:
 				o_time = subprocess.check_output(['grep'+" '\"total_time\":' " + logfile],shell = True)
 			except subprocess.CalledProcessError,e:
-				if e.returncode > 1:
+				if e.returncode > 0:
 					qarmc_time = "-1.0"
 					qarmc_grep_error = 1
+
 			if qarmc_grep_error == 0: # Extract QARMC time
 				try:
 				    qarmc_time = re.search('((\d+)\.(\d+))}}', o_time).group(1)
@@ -104,14 +107,14 @@ for files in tests:
 		    'k' : int(k),
 		    'file' : file,
 		    'ELP time(s)' : elp_time,
-		    'QARMC time' : float(qarmc_time)
+		    'QARMC time(s)' : float(qarmc_time)
 		    }
 		else:
 			data = {
 		    'passed' : passed,
 		    'k' : int(k),
 		    'file' : file,
-		    'QARMC time' : float(qarmc_time)
+		    'QARMC time(s)' : float(qarmc_time)
 		    }
 		json.dump(data, outfile,sort_keys=True,indent = 2)
 
@@ -120,7 +123,7 @@ for files in tests:
 		    'passed' : "ELP_TIMEOUT",
 		    'k' : int(k),
 		    'file' : file,
-		    'QARMC time' : "-1.0"
+		    'QARMC time(s)' : "-1.0"
 		    }
 		json.dump(data, outfile,sort_keys=True,indent = 2)
 outfile.close()
