@@ -1,0 +1,7 @@
+hanoi(N,H) :- N=1, H=1.
+false :- hanoi(N,H), N=1, H>=2.
+false :- hanoi(N,H), N=1, H=<0.
+
+hanoi(N,H) :- N>=2, N1=N-1, H=2*H1+1, hanoi(N1,H1).
+false :- hanoi(N,H), N>=2, N1=N-1, H>=2*H1+2, hanoi(N1,H1).
+false :- hanoi(N,H), N>=2, N1=N-1, H=<2*H1, hanoi(N1,H1).

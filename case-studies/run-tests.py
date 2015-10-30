@@ -19,8 +19,8 @@ kdim="kdim.pl"
 main="../main.pl"
 k="2"
 extraoptions = " -debug "
-qarmc_timelimit = "60" # sec.
-elp_timelimit = "60" # sec.
+qarmc_timelimit = "600" # sec.
+elp_timelimit = "600" # sec.
 
 outfile = open('data.json', 'w')
 
