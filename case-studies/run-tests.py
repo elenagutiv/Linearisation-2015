@@ -1,4 +1,8 @@
 #!/bin/python
+# Gutierrez Viedma, Elena
+
+# This file contains instructions to run a batch of tests  located in directory P0. For each individual test, it generates P1 and P2 programs located in their
+# respective  directories. Then, it runs QARMC to solve each. To show results a JSON file is generated.
 
 import json,subprocess,os,time,re
 from subprocess import call
@@ -13,8 +17,8 @@ kdim="kdim.pl"
 main="../main.pl"
 k="2"
 extraoptions = " -debug "
-qarmc_timelimit = "60"
-elp_timelimit = "60"
+qarmc_timelimit = "60" # sec.
+elp_timelimit = "60" # sec.
 
 outfile = open('data.json', 'w')
 
@@ -26,19 +30,21 @@ for files in tests:
 	passed = "PASSED"
 	qarmc_time = "-1.0"
 
-	f = os.path.basename(files) # Extract the name of the file
-	base = os.path.splitext(f)[0] # Split name an extension from the file name. Assign name to base
+	f = os.path.basename(files)
+	base = os.path.splitext(f)[0]
 
-	p0_path="P0/"+base+".horn" ; p1_path="P1/"+base+".horn" ; p2_path="P2/"+base+".horn"
+	p0_path="P0/"+base+".horn" ; p1_path="P1/"+base+".horn" ; p2_path="P2/"+base+".horn" # Set paths for P0,P1 and P2 programs
 
+	# Build P1 program from P0 (KDIM)
 	call(['swipl','-g','script,halt','-f',kdim,'--',p0_path,k,p1_path])
-
-	fp=open(p1_path,'a') 
-	print >> fp , "false:-\'false["+k+"]\'."
+	
+	fp = open(p1_path,'a') 
+	print >> fp , "false:-\'false["+k+"]\'." # Add false clause to P1
 	fp.close()
 	
 	begin_time_elp = int(round(time.time() * 1000))
 
+	# Build P2 from P1 (ELP)
 	try:
 		output = subprocess.check_output(['time','gtimeout', elp_timelimit, 'swipl','-g','script,halt','-f',main,'--',p1_path,p2_path])
 	except subprocess.CalledProcessError, e:
@@ -62,6 +68,7 @@ for files in tests:
 		log_sufix = time.strftime(".%Y.%m.%d.%H.%M")
 		logfile = file+log_sufix+".log"
 
+		# Run QARMC 
 		try:
 			output = subprocess.check_output(["time gtimeout "+qarmc_timelimit+" ./qarmc-latest.osx " + extraoptions + file + " > " + logfile],shell = True)
 		except subprocess.CalledProcessError,e:
@@ -74,7 +81,7 @@ for files in tests:
 			try:
 				o_passed = subprocess.check_output(['grep'+" 'program is correct' "+logfile], shell = True)
 			except subprocess.CalledProcessError,e:
-				if e.returncode > 1:
+				if e.returncode > 0:
 					passed = "FAILED"
 			try:
 				o_time = subprocess.check_output(['grep'+" '\"total_time\":' " + logfile],shell = True)
