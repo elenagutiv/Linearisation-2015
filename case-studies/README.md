@@ -28,19 +28,15 @@ JSON file will be generated in `results/`
 
 To customize execution options, open and edit `run-tests.py`:
 
-----------
 
+`# USER OPTIONS #`
 
-# USER OPTIONS #
-
-tests = glob(join('../P0', '<myfile.horn> ...')) # Specify set of programs in P0 to be tested
-k="<d>" # Specify dimension value
-extraoptions = "<qarmc extraoptions>" # Specify QARMC extra options
-qarmc_timelimit = "<s>" # Specify QARMC time limit in seconds
-elp_timelimit = "<s>" # Specify ELP time limit in seconds
-JSONfile = '../results/<myJSONfile.json>' # Specify name of file
-
-----------
+`tests = glob(join('../P0', '<myfile.horn> ...')) # Specify set of programs in P0 to be tested`
+`k="<d>" # Specify dimension value`
+`extraoptions = "<qarmc extraoptions>" # Specify QARMC extra options`
+`qarmc_timelimit = "<s>" # Specify QARMC time limit in seconds`
+`elp_timelimit = "<s>" # Specify ELP time limit in seconds`
+`JSONfile = '../results/<myJSONfile.json>' # Specify name of file`
 
 
 To clean, type in `case-studies/scripts/`:
