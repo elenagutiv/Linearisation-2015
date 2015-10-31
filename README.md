@@ -1,7 +1,7 @@
 ## Linearisation-2015##
 
 #ELP#
-**Linearisation Procedure applied to index bounded sets of Horn clauses**
+**Linearisation Procedure applied to index-bounded sets of Horn Clauses**
 
 
 *ELP* is a linearisation procedure applied to CLPs that generate *at-most-k-dimensional* derivations, for a given positive integer *k*.
