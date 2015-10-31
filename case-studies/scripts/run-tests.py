@@ -4,23 +4,23 @@
 # This file contains instructions to run a batch of tests located in directory P0. For each individual test, it generates P1 and P2 programs located in their
 # respective  directories. Then, it runs QARMC to solve each. To show results a JSON file is generated.
 
-import json,subprocess,os,time,re
+import json,subprocess,os,time,re,sys
 from subprocess import call
 from glob import glob
 from os.path import join
 
-tests = glob(join('P0', '*.horn'))
+tests = glob(join('../P0', '*.horn'))
 
 # Running swipl and generating programs P1 and P2 from P0: 
 
 kdim="kdim.pl"
-main="../main.pl"
+main="../../src/main.pl"
 k="2"
 extraoptions = " -debug "
 qarmc_timelimit = "300" # sec.
 elp_timelimit = "300" # sec.
 
-outfile = open('results_k'+k+'.json', 'w')
+outfile = open('../results/k'+k+'.json', 'w')
 
 for files in tests:
 
@@ -29,7 +29,7 @@ for files in tests:
 	f = os.path.basename(files)
 	base = os.path.splitext(f)[0]
 
-	p0_path="P0/"+base+".horn" ; p1_path="P1/"+base+".horn" ; p2_path="P2/"+base+".horn" # Set paths for P0,P1 and P2 programs
+	p0_path="../P0/"+base+".horn" ; p1_path="../P1/"+base+".horn" ; p2_path="../P2/"+base+".horn" # Set paths for P0,P1 and P2 programs
 
 	# Build P1 program from P0 (KDIM)
 	call(['swipl','-g','script,halt','-f',kdim,'--',p0_path,k,p1_path])

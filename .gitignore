@@ -1,5 +1,7 @@
 *.osx
 *.log
-P1
-P2
-
+P1/
+P2/
+*.sh
+!remove.sh
+kdim.pl
