@@ -21,8 +21,8 @@
 % clauses.pl 	Contains clause manipulation and other auxiliar methods.
 
 % Usage:
-% go('Tests/test_linear.pl').	(write to standard output)
-% go('Tests/test_linear.pl','Tests/test_output.txt')	(write to named output file)
+% go('<program_to_be_linearised.horn>').	(write to standard output)
+% go('<program_to_be_linearised.horn>','<output_file.txt>').	(write to named output file)
 
 % tested in SWI Prolog
 
