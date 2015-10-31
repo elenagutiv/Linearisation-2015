@@ -19,6 +19,7 @@ results			   | `run-tests.py` output in JSON format.
 
 
 > - It requires to include QARM'C (Abstraction Refinement Model Checker for Horn clauses, revision 123 or later)  in the same path as `run-tests.py`
+
 ----------
 
 To **run** tests in P0, type in `case-studies/scripts/`:
@@ -26,6 +27,7 @@ To **run** tests in P0, type in `case-studies/scripts/`:
 `$ python run-tests.py`
 
 JSON file will be generated in `results/`
+
 ----------
 
 To **customize** execution options, open and edit `run-tests.py`:
@@ -44,6 +46,7 @@ To **customize** execution options, open and edit `run-tests.py`:
 `elp_timelimit = "<s>" # Specify ELP time limit in seconds`
 
 `JSONfile = '../results/<myJSONfile.json>' # Specify name of file`
+
 ----------
 
 
