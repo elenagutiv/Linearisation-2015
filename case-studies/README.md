@@ -19,3 +19,27 @@ results			   | `run-tests.py` output in JSON format.
 
 
 > - It requires to include QARM'C (Abstraction Refinement Model Checker for Horn clauses, revision 123 or later)  in the same path as `run-tests.py`
+
+Type in `case-studies/scripts/`:
+`$ python run-tests.py`
+
+JSON file will be generated in `results/`
+
+To customize execution options, open and edit `run-tests.py`:
+
+
+`# USER OPTIONS #
+
+tests = glob(join('../P0', '<myfile.horn> ...')) # Specify set of programs in P0 to be tested
+k="<d>" # Specify dimension value
+extraoptions = "<qarmc extraoptions>" # Specify QARMC extra options
+qarmc_timelimit = "<s>" # Specify QARMC time limit in seconds
+elp_timelimit = "<s>" # Specify ELP time limit in seconds
+JSONfile = '../results/<myJSONfile.json>' # Specify name of file`
+
+
+To clean, type in `case-studies/scripts/`:
+
+`$ ./remove.sh`
+
+This will remove all log files in `PO/` and directories `P1/` and `P2/`
