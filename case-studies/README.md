@@ -3,7 +3,7 @@
 
 Given a set of *non-linear* Constrained Logic Programs namely P0,  and a positive integer *k*, we will build sets  P1 and P2. 
 
-P1 is the set of CLPs generating the *at-most-k-dimensional* derivations w.r.t. set P0. P2 is the set of *linear* programs w.r.t P1. We will rely on transformation procedure implemented in `kdim.pl` to build P1 and on *ELP * to build P2.
+P1 is the set of CLPs generating the *at-most-k-dimensional* derivations w.r.t. set P0. P2 is the set of *linear* programs w.r.t P1. We will rely on transformation procedure implemented in `kdim.pl` to build P1 and on *ELP* to build P2.
 
 Once P1 and P2 are built, we will run QARM'C (Model Checker for HC) on each program of both sets. For each program, we will annotate runtime and QARM'C output in JSON format.
 

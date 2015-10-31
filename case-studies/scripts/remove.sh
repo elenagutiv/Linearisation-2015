@@ -1,7 +1,4 @@
 #!/bin/sh
 
-# Remove logs from tests
-rm -f P*/*.log
-
-rm -f P1/*
-rm -f P2/*
+rm -r ../P1 ../P2
+rm -f ../P0/*.log

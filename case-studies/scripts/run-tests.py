@@ -9,18 +9,28 @@ from subprocess import call
 from glob import glob
 from os.path import join
 
-tests = glob(join('../P0', '*.horn'))
-
-# Running swipl and generating programs P1 and P2 from P0: 
-
 kdim="kdim.pl"
 main="../../src/main.pl"
+
+# USER OPTIONS #
+
+tests = glob(join('../P0', '*.horn'))
 k="2"
 extraoptions = " -debug "
-qarmc_timelimit = "300" # sec.
-elp_timelimit = "300" # sec.
+qarmc_timelimit = "10" # sec.
+elp_timelimit = "10" # sec.
+JSONfile = '../results/k'+k+'.json'
 
-outfile = open('../results/k'+k+'.json', 'w')
+################
+
+print "Running tests..."
+print "k = "+k
+print "QARMC time limit = "+qarmc_timelimit
+print "ELP time limit = "+elp_timelimit
+print ""
+
+output = subprocess.Popen(['mkdir','../P1','../P2'], stdout = subprocess.PIPE, stderr = subprocess.PIPE)
+outfile = open(JSONfile, 'w')
 
 for files in tests:
 
@@ -42,7 +52,7 @@ for files in tests:
 
 	# Build P2 from P1 (ELP)
 	try:
-		output = subprocess.check_output(['time','gtimeout', elp_timelimit, 'swipl','-g','script,halt','-f',main,'--',p1_path,p2_path])
+		output = subprocess.Popen(['time','gtimeout', elp_timelimit, 'swipl','-g','script,halt','-f',main,'--',p1_path,p2_path], stdout = subprocess.PIPE, stderr = subprocess.PIPE)
 	except subprocess.CalledProcessError, e:
 		if e.returncode == 124: #ELP TIMEOUT
 			elp_timeout = 1
@@ -64,13 +74,13 @@ for files in tests:
 		qarmc_timeout = 0
 		qarmc_grep_error = 0
 		passed = "PASSED"
-		qarmc_time = "-1.0"
+		qarmc_time = -1.0
 		log_sufix = time.strftime(".%Y.%m.%d.%H.%M")
 		logfile = file+log_sufix+".log"
 
 		# Run QARMC 
 		try:
-			output = subprocess.check_output(["time gtimeout "+qarmc_timelimit+" ./qarmc-latest.osx " + extraoptions + file + " > " + logfile],shell = True)
+			output = subprocess.check_output(["time gtimeout "+qarmc_timelimit+" ./qarmc-latest.osx " + extraoptions + file + " > " + logfile], shell = True, stderr = subprocess.STDOUT)
 		except subprocess.CalledProcessError,e:
 			if e.returncode == 124: #QARMC TIMEOUT
 				qarmc_timeout = 1
@@ -91,9 +101,9 @@ for files in tests:
 
 			if qarmc_grep_error == 0: # Extract QARMC time
 				try:
-				    qarmc_time = re.search('((\d+)\.(\d+))}}', o_time).group(1)
+				    qarmc_time = float(re.search('((\d+)\.(\d+))}}', o_time).group(1))
 				except AttributeError:
-					qarmc_time = "-1.0"
+					qarmc_time = -1.0
 		else:
 			passed = "QARMC_TIMEOUT"
 
@@ -103,14 +113,14 @@ for files in tests:
 		    'k' : int(k),
 		    'file' : file,
 		    'ELP time(s)' : elp_time,
-		    'QARMC time(s)' : float(qarmc_time)
+		    'QARMC time(s)' : qarmc_time
 		    }
 		else:
 			data = {
 		    'passed' : passed,
 		    'k' : int(k),
 		    'file' : file,
-		    'QARMC time(s)' : float(qarmc_time)
+		    'QARMC time(s)' : qarmc_time
 		    }
 		json.dump(data, outfile,sort_keys=True,indent = 2)
 
@@ -122,6 +132,11 @@ for files in tests:
 		    'QARMC time(s)' : -1.0
 		    }
 		json.dump(data, outfile,sort_keys=True,indent = 2)
+
+	print f+"	Done"
 outfile.close()
+
+print ""
+print "JSON output in "+ JSONfile
 
 
