@@ -7,6 +7,7 @@ ELP Prolog implementation.
 #Contents#
 
 -**`main.pl`** Contains ELP implementation, including CLP (*Clause Linearisation Procedure*) and other methods directly related with ELP.
+
 -**`clause.pl`** Contains clause manipulation methods.
 
 # How to run ELP: #
