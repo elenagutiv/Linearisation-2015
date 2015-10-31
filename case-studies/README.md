@@ -1,15 +1,21 @@
-This folder contains:
+
+## **case-studies** ##
+
+Given a set of *non-linear* Constrained Logic Programs namely P0,  and a positive integer *k*, we will build sets  P1 and P2. 
+
+P1 is the set of CLPs generating the *at-most-k-dimensional* derivations w.r.t. set P0. P2 is the set of *linear* programs w.r.t P1. We will rely on transformation procedure implemented in `kdim.pl` to build P1 and on *ELP * to build P2.
+
+Once P1 and P2 are built, we will run QARM'C (Model Checker for HC) on each program of both sets. For each program, we will annotate runtime and QARM'C output in JSON format.
+
+#Contents#
 
 Directory | Contents															|
 ---------------|--------------------------------------------------------------------|
-P0			   | It contains a set of non-linear CLPs.	 															|
-scripts			   | It contains `run-tests.py`-a python script that (given a dimension value *k*) builds:
-	- for each program in `P0/`, the at-most-k-dimension program (and locates it in `P1/`) and,
-	- for each program in `P1/`, its linear version (and locates it in `P2/`). 
-	Finally, it runs Q'ARMC on each program in `P1/` and `P2/` and collects runtimes and outputs in JSON format. It also contains `remove.sh`- a script that cleans the directory after each test execution and `kdim.pl`- Prolog code that transforms (given k) a program from `P0/` into its at-most-k-dimension version (provided by J.P. Gallagher). 	 															|
-results			   | It contains `run-tests.py` output in JSON format.		 															|
+P0			   | A set of non-linear CLPs.	 															|
+scripts			   | <ul><li>`run-tests.py`- It builds sets P1 and P2, runs QARM'C and writes the results in a JSON file.</li> <li>`remove.sh`- It cleans the directory after each `run-tests.py`execution</li><li>`kdim.pl` Given *k*, it transforms a program from P0 into a program in P1 ( code provided by J.P. Gallagher)</li></ul> 	 															|
+results			   | `run-tests.py` output in JSON format.
+
+#How to run tests:#
 
 
-## How to run tests:
-
-It requires Q'ARMC (Abstraction Refinement Model Checker for Horn clauses, revision 123 or later) located in the same path as `run-tests.py`.
+> - It requires to include QARM'C (Abstraction Refinement Model Checker for Horn clauses, revision 123 or later)  in the same path as `run-tests.py`
