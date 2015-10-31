@@ -47,7 +47,7 @@ for files in tests:
 		if e.returncode == 124: #ELP TIMEOUT
 			elp_timeout = 1
 		else:
-			sys.exit("Swipl command error: "+e.output)
+			sys.exit("Swipl command error")
 
 	if elp_timeout == 0:
 		end_time_elp = int(round(time.time() * 1000))
@@ -75,7 +75,7 @@ for files in tests:
 			if e.returncode == 124: #QARMC TIMEOUT
 				qarmc_timeout = 1
 			else: 
-				sys.exit("QARMC command error: "+e.output)
+				sys.exit("QARMC command error")
 
 		if qarmc_timeout == 0:
 			try:
