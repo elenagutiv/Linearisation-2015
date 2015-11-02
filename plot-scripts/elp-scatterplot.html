@@ -2,9 +2,9 @@ t<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
-    <link href="mynvd3-lib/nv.d3.css" rel="stylesheet" type="text/css">
+    <link href="mynvd3-lib/nv.d3.min.css" rel="stylesheet" type="text/css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.2/d3.min.js" charset="utf-8"></script>
-    <script src="mynvd3-lib/nv.d3.js"></script>
+    <script src="mynvd3-lib/nv.d3.min.js"></script>
 
     <style>
         text {
@@ -28,6 +28,18 @@ t<!DOCTYPE html>
 </div>
 
 <script>
+    //Load JSON data : TODO
+    var jasonData = [
+    {"time1":1, "time2":2, "passed":"PASSED"},
+    {"time1":3, "time2":4, "passed":"FAILED"},
+    {"time1":5, "time2":6, "passed":"PASSED"},
+    {"time1":7, "time2":8, "passed":"PASSED"},
+    {"time1":9, "time2":10, "passed":"PASSED"},
+    {"time1":11, "time2":12, "passed":"FAILED"},
+    {"time1":13, "time2":14, "passed":"PASSED"},
+    {"time1":15, "time2":16, "passed":"FAILED"},
+    ];
+
     var chart;
     nv.addGraph(function() {
         chart = nv.models.scatterChart()
@@ -41,35 +53,38 @@ t<!DOCTYPE html>
         chart.xAxis.tickFormat(d3.format('.02f'));
         chart.yAxis.tickFormat(d3.format('.02f'));
         d3.select('#test1 svg')
-            .datum(nv.log(randomData(2,40)))
+            .datum(nv.log(inputData(jasonData,2,8)))
             .call(chart);
         nv.utils.windowResize(chart.update);
         chart.dispatch.on('stateChange', function(e) { nv.log('New State:', JSON.stringify(e)); });
         return chart;
     });
-    function randomData(n_groups,points) { //# groups,# points per group
-        var data = [],
-            shapes = ['circle'],
-            groups = ['Failed','Passed']
-            random = d3.random.normal();
-        for (i = 0; i < n_groups; i++) {
-            data.push({
-                key: groups[i],
-                values: [],
-                slope: Math.random() - .01,
-                intercept: Math.random() - .5
-            });
-            for (j = 0; j < points; j++) {
-                data[i].values.push({
-                    x: random(),
-                    y: random(),
-                    size: Math.random(),
-                    shape: shapes[j % shapes.length]
-                });
-            }
-        }
-        return data;
+
+
+function inputData(inputData,ngroups, points) { //# groups,# points per group
+    var outputData = [],
+      shapes = ['circle', 'cross', 'triangle-up', 'triangle-down', 'diamond', 'square'],
+      random = d3.random.normal(),
+      groups = ['Passed','Failed'],
+      group ;
+
+    for (i = 0; i < ngroups; i++) {
+    outputData.push({
+      key: groups[i],
+      values: []
+    });
     }
+    for (j = 0; j < points; j++) {
+      group = (inputData[j].passed == "PASSED") ? 0 : 1 ;
+      outputData[group].values.push({
+        x: inputData[j].time1
+      , y: inputData[j].time2
+      , size: 0 //Math.random()   //Configure the size of each scatter point
+      , shape: "circle" //Configure the shape of each scatter point.
+      });
+    }
+    return outputData;
+}
 </script>
 </body>
 </html>
