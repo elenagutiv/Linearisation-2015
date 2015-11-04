@@ -29,16 +29,13 @@ t<!DOCTYPE html>
 
 <script>
     //Load JSON data : TODO
-    var jasonData = [
-    {"time1":1, "time2":2, "passed":"PASSED"},
-    {"time1":3, "time2":4, "passed":"FAILED"},
-    {"time1":5, "time2":6, "passed":"PASSED"},
-    {"time1":7, "time2":8, "passed":"PASSED"},
-    {"time1":9, "time2":10, "passed":"PASSED"},
-    {"time1":11, "time2":12, "passed":"FAILED"},
-    {"time1":13, "time2":14, "passed":"PASSED"},
-    {"time1":15, "time2":16, "passed":"FAILED"},
-    ];
+    var testdata;    
+    d3.json("../case-studies/results/testdata.json", function(error, dataSet){
+    if(error) return console.warn(error);
+    testdata = dataSet;
+    });
+
+    console.log(testdata);
 
     var chart;
     nv.addGraph(function() {
@@ -53,7 +50,7 @@ t<!DOCTYPE html>
         chart.xAxis.tickFormat(d3.format('.02f'));
         chart.yAxis.tickFormat(d3.format('.02f'));
         d3.select('#test1 svg')
-            .datum(nv.log(inputData(jasonData,2,8)))
+            .datum(nv.log(inputData(testdata,5,8)))
             .call(chart);
         nv.utils.windowResize(chart.update);
         chart.dispatch.on('stateChange', function(e) { nv.log('New State:', JSON.stringify(e)); });
@@ -61,30 +58,41 @@ t<!DOCTYPE html>
     });
 
 
-function inputData(inputData,ngroups, points) { //# groups,# points per group
-    var outputData = [],
-      shapes = ['circle', 'cross', 'triangle-up', 'triangle-down', 'diamond', 'square'],
-      random = d3.random.normal(),
-      groups = ['Passed','Failed'],
-      group ;
+    function inputData(inputData,ngroups, points) { //# groups,# points per group
+        var outputData = [],
+          random = d3.random.normal(),
+          group, shape,
+          shapes = ['circle', 'square', 'triangle-up', 'triangle-down', 'diamond', 'cross'],
+          groups = [];
 
-    for (i = 0; i < ngroups; i++) {
-    outputData.push({
-      key: groups[i],
-      values: []
-    });
-    }
-    for (j = 0; j < points; j++) {
-      group = (inputData[j].passed == "PASSED") ? 0 : 1 ;
-      outputData[group].values.push({
-        x: inputData[j].time1
-      , y: inputData[j].time2
-      , size: 0 //Math.random()   //Configure the size of each scatter point
-      , shape: "circle" //Configure the shape of each scatter point.
-      });
-    }
-    return outputData;
-}
+          for(n=0; n <ngroups; n++){
+            groups[n] = 'k = ' + (n+1).toString(); 
+          };
+        
+        for (i = 0; i < ngroups; i++) {
+            outputData.push({
+              key: groups[i],
+              values: []
+            });
+        }
+        for (j = 0; j < points; j++) {
+            for (i = 0; i < ngroups; i++) {
+                if (inputData[j].k == (i+1)){
+                    group = i;
+                    break;
+                }
+            }
+            shape = (inputData[j].passed == 1) ? 0 : 1 ;
+            outputData[group].values.push({
+            x: inputData[j].time1
+            , y: inputData[j].time2
+            , size: 10 //Math.random()   //Configure the size of each scatter point
+            , shape: shapes[shape] //Configure the shape of each scatter point.
+            });
+        }
+        return outputData;
+    };
+
 </script>
 </body>
 </html>

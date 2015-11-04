@@ -1,0 +1,689 @@
+{
+  "QARMC time(s)": 0.03, 
+  "file": "../P0/eq.horn", 
+  "k": 2, 
+  "passed": "FAILED"
+}{
+  "QARMC time(s)": 0.04, 
+  "file": "../P1/eq.horn", 
+  "k": 2, 
+  "passed": "FAILED"
+}{
+  "ELP time(s)": 0.004, 
+  "QARMC time(s)": 0.03, 
+  "file": "../P2/eq.horn", 
+  "k": 2, 
+  "passed": "FAILED"
+}{
+  "QARMC time(s)": 0.2, 
+  "file": "../P0/fib.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": 0.16, 
+  "file": "../P1/fib.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "ELP time(s)": 0.002, 
+  "QARMC time(s)": 0.1, 
+  "file": "../P2/fib.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": -1.0, 
+  "file": "../P0/fib2.horn", 
+  "k": 2, 
+  "passed": "QARMC_TIMEOUT"
+}{
+  "QARMC time(s)": 0.53, 
+  "file": "../P1/fib2.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "ELP time(s)": 0.002, 
+  "QARMC time(s)": 0.26, 
+  "file": "../P2/fib2.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": -1.0, 
+  "file": "../P0/gcd.horn", 
+  "k": 2, 
+  "passed": "QARMC_TIMEOUT"
+}{
+  "QARMC time(s)": -1.0, 
+  "file": "../P1/gcd.horn", 
+  "k": 2, 
+  "passed": "QARMC_TIMEOUT"
+}{
+  "ELP time(s)": 0.002, 
+  "QARMC time(s)": -1.0, 
+  "file": "../P2/gcd.horn", 
+  "k": 2, 
+  "passed": "QARMC_TIMEOUT"
+}{
+  "QARMC time(s)": -1.0, 
+  "file": "../P0/hanoi.horn", 
+  "k": 2, 
+  "passed": "QARMC_TIMEOUT"
+}{
+  "QARMC time(s)": -1.0, 
+  "file": "../P1/hanoi.horn", 
+  "k": 2, 
+  "passed": "QARMC_TIMEOUT"
+}{
+  "ELP time(s)": 0.003, 
+  "QARMC time(s)": -1.0, 
+  "file": "../P2/hanoi.horn", 
+  "k": 2, 
+  "passed": "QARMC_TIMEOUT"
+}{
+  "QARMC time(s)": 0.13, 
+  "file": "../P0/mccarthy91.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": 0.13, 
+  "file": "../P1/mccarthy91.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "ELP time(s)": 0.004, 
+  "QARMC time(s)": 0.12, 
+  "file": "../P2/mccarthy91.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": 0.17, 
+  "file": "../P0/palindrome.nts.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": 0.16, 
+  "file": "../P1/palindrome.nts.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "ELP time(s)": 0.004, 
+  "QARMC time(s)": 0.17, 
+  "file": "../P2/palindrome.nts.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": 4.03, 
+  "file": "../P0/perfect.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": 3.96, 
+  "file": "../P1/perfect.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "ELP time(s)": 0.002, 
+  "QARMC time(s)": -1.0, 
+  "file": "../P2/perfect.horn", 
+  "k": 2, 
+  "passed": "QARMC_TIMEOUT"
+}{
+  "QARMC time(s)": 0.07, 
+  "file": "../P0/suma1.horn", 
+  "k": 2, 
+  "passed": "FAILED"
+}{
+  "QARMC time(s)": 0.09, 
+  "file": "../P1/suma1.horn", 
+  "k": 2, 
+  "passed": "FAILED"
+}{
+  "ELP time(s)": 0.003, 
+  "QARMC time(s)": 0.09, 
+  "file": "../P2/suma1.horn", 
+  "k": 2, 
+  "passed": "FAILED"
+}{
+  "QARMC time(s)": 0.12, 
+  "file": "../P0/suma2.horn", 
+  "k": 2, 
+  "passed": "FAILED"
+}{
+  "QARMC time(s)": 0.15, 
+  "file": "../P1/suma2.horn", 
+  "k": 2, 
+  "passed": "FAILED"
+}{
+  "ELP time(s)": 0.003, 
+  "QARMC time(s)": 0.2, 
+  "file": "../P2/suma2.horn", 
+  "k": 2, 
+  "passed": "FAILED"
+}{
+  "QARMC time(s)": 0.75, 
+  "file": "../P0/summ_ackermann.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": 6.81, 
+  "file": "../P1/summ_ackermann.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "ELP time(s)": 0.005, 
+  "QARMC time(s)": 0.02, 
+  "file": "../P2/summ_ackermann.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": 0.09, 
+  "file": "../P0/summ_b.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": 0.09, 
+  "file": "../P1/summ_b.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "ELP time(s)": 0.003, 
+  "QARMC time(s)": 0.02, 
+  "file": "../P2/summ_b.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": 0.23, 
+  "file": "../P0/summ_binsearch-inlined.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": 0.2, 
+  "file": "../P1/summ_binsearch-inlined.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "ELP time(s)": 0.002, 
+  "QARMC time(s)": 0.25, 
+  "file": "../P2/summ_binsearch-inlined.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": 0.6, 
+  "file": "../P0/summ_binsearch.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": 0.61, 
+  "file": "../P1/summ_binsearch.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "ELP time(s)": 0.003, 
+  "QARMC time(s)": 0.03, 
+  "file": "../P2/summ_binsearch.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": 0.04, 
+  "file": "../P0/summ_cil.casts.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": 0.04, 
+  "file": "../P1/summ_cil.casts.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "ELP time(s)": 0.003, 
+  "QARMC time(s)": 0.03, 
+  "file": "../P2/summ_cil.casts.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": 5.99, 
+  "file": "../P0/summ_evenodd.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": 0.32, 
+  "file": "../P1/summ_evenodd.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "ELP time(s)": 0.004, 
+  "QARMC time(s)": 0.02, 
+  "file": "../P2/summ_evenodd.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": 0.03, 
+  "file": "../P0/summ_formals.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": 0.04, 
+  "file": "../P1/summ_formals.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "ELP time(s)": 0.002, 
+  "QARMC time(s)": 0.03, 
+  "file": "../P2/summ_formals.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": 0.06, 
+  "file": "../P0/summ_g.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": 0.04, 
+  "file": "../P1/summ_g.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "ELP time(s)": 0.003, 
+  "QARMC time(s)": 0.06, 
+  "file": "../P2/summ_g.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": 0.03, 
+  "file": "../P0/summ_globals.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": 0.03, 
+  "file": "../P1/summ_globals.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "ELP time(s)": 0.002, 
+  "QARMC time(s)": 0.04, 
+  "file": "../P2/summ_globals.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": 0.03, 
+  "file": "../P0/summ_h.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": 0.03, 
+  "file": "../P1/summ_h.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "ELP time(s)": 0.004, 
+  "QARMC time(s)": 0.03, 
+  "file": "../P2/summ_h.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": 0.03, 
+  "file": "../P0/summ_local-ctx-call.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": 0.03, 
+  "file": "../P1/summ_local-ctx-call.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "ELP time(s)": 0.003, 
+  "QARMC time(s)": 0.03, 
+  "file": "../P2/summ_local-ctx-call.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": 0.06, 
+  "file": "../P0/summ_locals.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": 0.09, 
+  "file": "../P1/summ_locals.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "ELP time(s)": 0.003, 
+  "QARMC time(s)": 0.02, 
+  "file": "../P2/summ_locals.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": 0.03, 
+  "file": "../P0/summ_locals2.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": 0.03, 
+  "file": "../P1/summ_locals2.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "ELP time(s)": 0.002, 
+  "QARMC time(s)": 0.03, 
+  "file": "../P2/summ_locals2.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": 0.03, 
+  "file": "../P0/summ_locals3.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": 0.03, 
+  "file": "../P1/summ_locals3.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "ELP time(s)": 0.003, 
+  "QARMC time(s)": 0.03, 
+  "file": "../P2/summ_locals3.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": 0.07, 
+  "file": "../P0/summ_locals4.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": 0.07, 
+  "file": "../P1/summ_locals4.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "ELP time(s)": 0.003, 
+  "QARMC time(s)": 0.06, 
+  "file": "../P2/summ_locals4.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": 0.57, 
+  "file": "../P0/summ_mccarthy.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": 0.22, 
+  "file": "../P1/summ_mccarthy.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "ELP time(s)": 0.003, 
+  "QARMC time(s)": 0.01, 
+  "file": "../P2/summ_mccarthy.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": 0.21, 
+  "file": "../P0/summ_mccarthy2.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": 0.39, 
+  "file": "../P1/summ_mccarthy2.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "ELP time(s)": 0.002, 
+  "QARMC time(s)": 0.02, 
+  "file": "../P2/summ_mccarthy2.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": 0.21, 
+  "file": "../P0/summ_mccarthy3.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": 0.34, 
+  "file": "../P1/summ_mccarthy3.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "ELP time(s)": 0.005, 
+  "QARMC time(s)": 0.02, 
+  "file": "../P2/summ_mccarthy3.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": 0.08, 
+  "file": "../P0/summ_multi-call.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": 0.11, 
+  "file": "../P1/summ_multi-call.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "ELP time(s)": 0.004, 
+  "QARMC time(s)": 0.05, 
+  "file": "../P2/summ_multi-call.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": 0.04, 
+  "file": "../P0/summ_nested.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": 0.05, 
+  "file": "../P1/summ_nested.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "ELP time(s)": 0.003, 
+  "QARMC time(s)": 0.05, 
+  "file": "../P2/summ_nested.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": 0.03, 
+  "file": "../P0/summ_ptr_assign.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": 0.05, 
+  "file": "../P1/summ_ptr_assign.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "ELP time(s)": 0.005, 
+  "QARMC time(s)": 0.04, 
+  "file": "../P2/summ_ptr_assign.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": 0.16, 
+  "file": "../P0/summ_recursive.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": 0.13, 
+  "file": "../P1/summ_recursive.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "ELP time(s)": 0.004, 
+  "QARMC time(s)": 0.02, 
+  "file": "../P2/summ_recursive.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": 0.03, 
+  "file": "../P0/summ_rholocal.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": 0.04, 
+  "file": "../P1/summ_rholocal.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "ELP time(s)": 0.003, 
+  "QARMC time(s)": 0.03, 
+  "file": "../P2/summ_rholocal.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": 0.02, 
+  "file": "../P0/summ_rholocal2.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": 0.03, 
+  "file": "../P1/summ_rholocal2.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "ELP time(s)": 0.003, 
+  "QARMC time(s)": 0.03, 
+  "file": "../P2/summ_rholocal2.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": 0.11, 
+  "file": "../P0/summ_SG1.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": 0.13, 
+  "file": "../P1/summ_SG1.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "ELP time(s)": 0.005, 
+  "QARMC time(s)": 0.14, 
+  "file": "../P2/summ_SG1.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": -1.0, 
+  "file": "../P0/summ_SG1.r.horn", 
+  "k": 2, 
+  "passed": "QARMC_TIMEOUT"
+}{
+  "QARMC time(s)": -1.0, 
+  "file": "../P1/summ_SG1.r.horn", 
+  "k": 2, 
+  "passed": "QARMC_TIMEOUT"
+}{
+  "ELP time(s)": 0.004, 
+  "QARMC time(s)": -1.0, 
+  "file": "../P2/summ_SG1.r.horn", 
+  "k": 2, 
+  "passed": "QARMC_TIMEOUT"
+}{
+  "QARMC time(s)": -1.0, 
+  "file": "../P0/summ_SG2.horn", 
+  "k": 2, 
+  "passed": "QARMC_TIMEOUT"
+}{
+  "QARMC time(s)": -1.0, 
+  "file": "../P1/summ_SG2.horn", 
+  "k": 2, 
+  "passed": "QARMC_TIMEOUT"
+}{
+  "ELP time(s)": 0.003, 
+  "QARMC time(s)": -1.0, 
+  "file": "../P2/summ_SG2.horn", 
+  "k": 2, 
+  "passed": "QARMC_TIMEOUT"
+}{
+  "QARMC time(s)": -1.0, 
+  "file": "../P0/summ_SG2.r.horn", 
+  "k": 2, 
+  "passed": "QARMC_TIMEOUT"
+}{
+  "QARMC time(s)": -1.0, 
+  "file": "../P1/summ_SG2.r.horn", 
+  "k": 2, 
+  "passed": "QARMC_TIMEOUT"
+}{
+  "ELP time(s)": 0.003, 
+  "QARMC time(s)": -1.0, 
+  "file": "../P2/summ_SG2.r.horn", 
+  "k": 2, 
+  "passed": "QARMC_TIMEOUT"
+}{
+  "QARMC time(s)": 0.13, 
+  "file": "../P0/summ_SG3.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": 0.21, 
+  "file": "../P1/summ_SG3.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "ELP time(s)": 0.003, 
+  "QARMC time(s)": 0.12, 
+  "file": "../P2/summ_SG3.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": 0.08, 
+  "file": "../P0/summ_slicing.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": 0.09, 
+  "file": "../P1/summ_slicing.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "ELP time(s)": 0.002, 
+  "QARMC time(s)": 0.02, 
+  "file": "../P2/summ_slicing.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": 0.07, 
+  "file": "../P0/summ_summs.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": 0.06, 
+  "file": "../P1/summ_summs.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "ELP time(s)": 0.004, 
+  "QARMC time(s)": 0.07, 
+  "file": "../P2/summ_summs.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": 0.04, 
+  "file": "../P0/summ_typedef.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": 0.05, 
+  "file": "../P1/summ_typedef.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "ELP time(s)": 0.003, 
+  "QARMC time(s)": 0.05, 
+  "file": "../P2/summ_typedef.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": 0.02, 
+  "file": "../P0/summ_x.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "QARMC time(s)": 0.03, 
+  "file": "../P1/summ_x.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}{
+  "ELP time(s)": 0.003, 
+  "QARMC time(s)": 0.03, 
+  "file": "../P2/summ_x.horn", 
+  "k": 2, 
+  "passed": "PASSED"
+}
