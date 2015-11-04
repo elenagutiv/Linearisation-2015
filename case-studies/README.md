@@ -12,7 +12,7 @@ Once P1 and P2 are built, we will run QARM'C (Model Checker for HC) on each prog
 Directory | Contents															|
 ---------------|--------------------------------------------------------------------|
 P0			   | A set of non-linear CLPs.	 															|
-scripts			   | <ul><li>`run-tests.py`- It builds sets P1 and P2, runs QARM'C and writes the results in a JSON file.</li> <li>`remove.sh`- It cleans the directory after each `run-tests.py`execution</li><li>`kdim.pl` Given *k*, it transforms a program from P0 into a program in P1 ( code provided by J.P. Gallagher)</li></ul> 	 															|
+scripts			   | <ul><li>`run-tests.py`- It builds sets P1 and P2, runs QARM'C and writes the results in a JSON file.</li> <li>`remove.sh`- It cleans the directory after each `run-tests.py`execution</li><li>`run-tests-to-plot.py`- Same as `run-tests.py` but gives special format to JSON data in order to build the scatter plot.</li> <li>`remove.sh`- It cleans the directory after each `run-tests.py`execution</li><li>`kdim.pl` Given *k*, it transforms a program from P0 into a program in P1 ( code provided by J.P. Gallagher)</li></ul> 	 															|
 results			   | `run-tests.py` output in JSON format.
 
 #How to run tests:#
@@ -27,6 +27,10 @@ To **run** tests in P0, type in `case-studies/scripts/`:
 `$ python run-tests.py`
 
 JSON file will be generated in `results/`
+
+Alternatively, to get JSON data in a suitable format to build the **scatter plot** (NVD3):
+
+`$ python run-tests-to-plot.py`
 
 ----------
 

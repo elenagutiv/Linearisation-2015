@@ -21,7 +21,7 @@ k="2"
 extraoptions = " -debug "
 qarmc_timelimit = "2" # sec.
 elp_timelimit = "2" # sec.
-JSONfile = '../results/testdatak'+k+'.json'
+JSONfile = '../results/plot_'+k+'.json'
 N=0 #number of tests in JSON output
 
 ################
