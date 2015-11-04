@@ -60,14 +60,13 @@ t<!DOCTYPE html>
 
     function inputData(inputData,ngroups, points) { //# groups,# points per group
         var outputData = [],
-          random = d3.random.normal(),
-          group, shape,
-          shapes = ['circle', 'square', 'triangle-up', 'triangle-down', 'diamond', 'cross'],
-          groups = [];
+            group, shape,
+            shapes = ['circle', 'square'],
+            groups = [];
 
-          for(n=0; n <ngroups; n++){
+            for(n=0; n <ngroups; n++){
             groups[n] = 'k = ' + (n+1).toString(); 
-          };
+            };
         
         for (i = 0; i < ngroups; i++) {
             outputData.push({
@@ -81,15 +80,15 @@ t<!DOCTYPE html>
                     group = i;
                     break;
                 }
-            }
-            shape = (inputData[j].passed == 1) ? 0 : 1 ;
+            };
+            shape = (inputData[j].passed == 1) ? 0 : 1;
             outputData[group].values.push({
-            x: inputData[j].time1
-            , y: inputData[j].time2
-            , size: 10 //Math.random()   //Configure the size of each scatter point
-            , shape: shapes[shape] //Configure the shape of each scatter point.
+                x: inputData[j].time1,
+                y: inputData[j].time2,
+                size: 10,
+                shape: shapes[shape]
             });
-        }
+        };
         return outputData;
     };
 
