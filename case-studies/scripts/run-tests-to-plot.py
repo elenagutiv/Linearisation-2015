@@ -1,7 +1,7 @@
 #!/bin/python
 # Gutierrez Viedma, Elena
 
-# JSON DATA GENERATION SCRIPT
+# SCATTER PLOT DATA GENERATION SCRIPT
 
 # This file contains instructions to run a batch of tests located in directory P0. For each individual test, it generates P1 and P2 programs located in their
 # respective  directories. Then, it runs QARMC to solve each. To show results a JSON file is generated.
@@ -19,9 +19,10 @@ main="../../src/main.pl"
 tests = glob(join('../P0', '*.horn'))
 k="2"
 extraoptions = " -debug "
-qarmc_timelimit = "10" # sec.
-elp_timelimit = "10" # sec.
-JSONfile = '../results/k'+k+'.json'
+qarmc_timelimit = "2" # sec.
+elp_timelimit = "2" # sec.
+JSONfile = '../results/testdatak'+k+'.json'
+N=0 #number of tests in JSON output
 
 ################
 
@@ -37,6 +38,9 @@ outfile = open(JSONfile, 'w+')
 for files in tests:
 
 	elp_timeout = 0
+	i = 0
+	passed = [None]*2
+	qarmc_time = [None]*2
 	
 	f = os.path.basename(files)
 	base = os.path.splitext(f)[0]
@@ -64,9 +68,10 @@ for files in tests:
 	if elp_timeout == 0:
 		end_time_elp = int(round(time.time() * 1000))
 		elp_time = float(end_time_elp - begin_time_elp)/1000
-		programs = [p0_path,p1_path,p2_path]
+		programs = [p1_path,p2_path] # Only care about runtimes of P1 and P2 to build scatterplot
 	else:
-		programs = [p0_path,p1_path]
+		print f+"	Discarded"
+		break # If P2 is not generated, we discard  P1 as well
 			 
 
 	# Create JSON file with test results
@@ -75,10 +80,12 @@ for files in tests:
 
 		qarmc_timeout = 0
 		qarmc_grep_error = 0
-		passed = "PASSED"
-		qarmc_time = -1.0
+		qarmc_time_regex_error = 0
+		error = 0
 		log_sufix = time.strftime(".%Y.%m.%d.%H.%M")
 		logfile = file+log_sufix+".log"
+
+		passed[i] = 1
 
 		# Run QARMC 
 		try:
@@ -94,48 +101,44 @@ for files in tests:
 				o_passed = subprocess.check_output(['grep'+" 'program is correct' "+logfile], shell = True)
 			except subprocess.CalledProcessError,e:
 				if e.returncode > 0:
-					passed = "FAILED"
+					passed[i] = 0
 			try:
 				o_time = subprocess.check_output(['grep'+" '\"total_time\":' " + logfile],shell = True)
 			except subprocess.CalledProcessError,e:
 				if e.returncode > 0:
 					qarmc_grep_error = 1
+					break
 
 			if qarmc_grep_error == 0: # Extract QARMC time
 				try:
-				    qarmc_time = float(re.search('((\d+)\.(\d+))}}', o_time).group(1))
+				    qarmc_time[i] = float(re.search('((\d+)\.(\d+))}}', o_time).group(1))
 				except AttributeError:
-					qarmc_time = -1.0
+					 qarmc_time_regex_error = 1
 		else:
-			passed = "QARMC_TIMEOUT"
+			qarmc_time[i]=int(qarmc_timelimit)+1
 
-		if "P2" in file:
-	  		data = {
-		    'passed' : passed,
-		    'k' : int(k),
-		    'file' : file,
-		    'ELP time(s)' : elp_time,
-		    'QARMC time(s)' : qarmc_time
-		    }
-		else:
-			data = {
-		    'passed' : passed,
-		    'k' : int(k),
-		    'file' : file,
-		    'QARMC time(s)' : qarmc_time
-		    }
-		json.dump(data, outfile,sort_keys=True,indent = 2)
+		if (qarmc_grep_error == 1 or qarmc_time_regex_error ==1):
+			error=1
+			break
+		i+=1
 
-	if elp_timeout==1:
+	if (error == 0) :
 		data = {
-		    'passed' : "ELP_TIMEOUT",
+			'N' : N,
+		    'passed1' : passed[0],
+		    'passed2' : passed[1],
 		    'k' : int(k),
 		    'file' : file,
-		    'QARMC time(s)' : -1.0
+		    'qarmctime1' : qarmc_time[0],
+		    'qarmctime2': qarmc_time[1]
 		    }
 		json.dump(data, outfile,sort_keys=True,indent = 2)
-
-	print f+"	Done"
+		N+=1
+		print f+"	Done"
+	else:
+		print f+"	Discarded"	
+	
+	
 outfile.close()
 
 print ""

@@ -28,9 +28,8 @@ t<!DOCTYPE html>
 </div>
 
 <script>
-    //Load JSON data : TODO
     var testdata;    
-    d3.json("../case-studies/results/testdata.json", function(error, dataSet){
+    d3.json("../case-studies/results/testdatak2.json", function(error, dataSet){
     if(error) return console.warn(error);
     testdata = dataSet;
     });
@@ -50,7 +49,7 @@ t<!DOCTYPE html>
         chart.xAxis.tickFormat(d3.format('.02f'));
         chart.yAxis.tickFormat(d3.format('.02f'));
         d3.select('#test1 svg')
-            .datum(nv.log(inputData(testdata,5,8)))
+            .datum(nv.log(inputData(testdata,2,8)))
             .call(chart);
         nv.utils.windowResize(chart.update);
         chart.dispatch.on('stateChange', function(e) { nv.log('New State:', JSON.stringify(e)); });
@@ -60,15 +59,13 @@ t<!DOCTYPE html>
 
     function inputData(inputData,ngroups, points) { //# groups,# points per group
         var outputData = [],
-            group, shape,
-            shapes = ['circle', 'square'],
+            group, shape,n
+            nshapes = 4,
+            shapes = ['square', 'triangle-down','triangle-up', 'circle'],
             groups = [];
 
-            for(n=0; n <ngroups; n++){
-            groups[n] = 'k = ' + (n+1).toString(); 
-            };
-        
         for (i = 0; i < ngroups; i++) {
+            groups[i] = 'k = ' + (i+1).toString();
             outputData.push({
               key: groups[i],
               values: []
@@ -81,10 +78,16 @@ t<!DOCTYPE html>
                     break;
                 }
             };
-            shape = (inputData[j].passed == 1) ? 0 : 1;
+            for (i = 0; i < nshapes; i++) {
+                n = 2*inputData[j].passed1 + inputData[j].passed2 // square = 0, trinagle-down = 1, triangle-up = 2, circle = 3
+                if (n == i){
+                    shape = i;
+                    break;
+                }
+            };
             outputData[group].values.push({
-                x: inputData[j].time1,
-                y: inputData[j].time2,
+                x: inputData[j].qarmctime1,
+                y: inputData[j].qarmctime2,
                 size: 10,
                 shape: shapes[shape]
             });
