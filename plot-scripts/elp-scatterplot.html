@@ -28,8 +28,9 @@ t<!DOCTYPE html>
 </div>
 
 <script>
+    var timelimit = 1.2, tam = 214, ks = 5;
     var testdata;    
-    d3.json("../case-studies/results/testdatak2.json", function(error, dataSet){
+    d3.json("../case-studies/results/plot.json", function(error, dataSet){
     if(error) return console.warn(error);
     testdata = dataSet;
     });
@@ -46,18 +47,29 @@ t<!DOCTYPE html>
         chart.dispatch.on('renderEnd', function(){
             console.log('render complete');
         });
+        chart.xDomain( [ 0, timelimit + 1 ] ).yDomain( [ 0, timelimit + 1] );
+
         chart.xAxis.tickFormat(d3.format('.02f'));
         chart.yAxis.tickFormat(d3.format('.02f'));
         d3.select('#test1 svg')
-            .datum(nv.log(inputData(testdata,2,8)))
-            .call(chart);
+            .datum(nv.log(inputData(testdata,ks,tam)))
+            .call(chart)
+            .append('line')
+            .attr({
+                x1: 75 + chart.xAxis.scale()(0),
+                y1: 30 + chart.yAxis.scale()(0),
+                x2: 75 + chart.xAxis.scale()(timelimit+1),
+                y2: 30 + chart.yAxis.scale()(timelimit+1)
+            })
+            .style("stroke-dasharray", ("3,3"))
+            .style("stroke","black");
         nv.utils.windowResize(chart.update);
         chart.dispatch.on('stateChange', function(e) { nv.log('New State:', JSON.stringify(e)); });
         return chart;
     });
 
 
-    function inputData(inputData,ngroups, points) { //# groups,# points per group
+    function inputData(inputData, ngroups, points) { //# groups,# points per group
         var outputData = [],
             group, shape,n
             nshapes = 4,
@@ -79,7 +91,7 @@ t<!DOCTYPE html>
                 }
             };
             for (i = 0; i < nshapes; i++) {
-                n = 2*inputData[j].passed1 + inputData[j].passed2 // square = 0, trinagle-down = 1, triangle-up = 2, circle = 3
+                n = 2*inputData[j].passed1 + inputData[j].passed2 // square = 0, triangle-down = 1, triangle-up = 2, circle = 3
                 if (n == i){
                     shape = i;
                     break;

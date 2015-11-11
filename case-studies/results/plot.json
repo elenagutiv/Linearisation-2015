@@ -1,0 +1,1937 @@
+[
+  {
+    "N": 0, 
+    "file": "../P2/eq.horn", 
+    "k": 1, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.02, 
+    "qarmctime2": 0.03
+  }, 
+  {
+    "N": 1, 
+    "file": "../P2/fib.horn", 
+    "k": 1, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.08, 
+    "qarmctime2": 0.05
+  }, 
+  {
+    "N": 2, 
+    "file": "../P2/fib2.horn", 
+    "k": 1, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.13, 
+    "qarmctime2": 0.09
+  }, 
+  {
+    "N": 3, 
+    "file": "../P2/gcd.horn", 
+    "k": 1, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 2.1, 
+    "qarmctime2": 2.1
+  }, 
+  {
+    "N": 4, 
+    "file": "../P2/hanoi.horn", 
+    "k": 1, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 2.1, 
+    "qarmctime2": 2.1
+  }, 
+  {
+    "N": 5, 
+    "file": "../P2/mccarthy91.horn", 
+    "k": 1, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.07, 
+    "qarmctime2": 0.08
+  }, 
+  {
+    "N": 6, 
+    "file": "../P2/palindrome.nts.horn", 
+    "k": 1, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.14, 
+    "qarmctime2": 0.16
+  }, 
+  {
+    "N": 7, 
+    "file": "../P2/perfect.horn", 
+    "k": 1, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 2.1, 
+    "qarmctime2": 2.1
+  }, 
+  {
+    "N": 8, 
+    "file": "../P2/suma1.horn", 
+    "k": 1, 
+    "passed1": 0, 
+    "passed2": 0, 
+    "qarmctime1": 0.07, 
+    "qarmctime2": 0.07
+  }, 
+  {
+    "N": 9, 
+    "file": "../P2/suma2.horn", 
+    "k": 1, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.03, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 10, 
+    "file": "../P2/summ_ackermann.horn", 
+    "k": 1, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.32, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 11, 
+    "file": "../P2/summ_b.horn", 
+    "k": 1, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.08, 
+    "qarmctime2": 0.03
+  }, 
+  {
+    "N": 12, 
+    "file": "../P2/summ_binsearch-inlined.horn", 
+    "k": 1, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.16, 
+    "qarmctime2": 0.17
+  }, 
+  {
+    "N": 13, 
+    "file": "../P2/summ_binsearch.horn", 
+    "k": 1, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.13, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 14, 
+    "file": "../P2/summ_cil.casts.horn", 
+    "k": 1, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.02, 
+    "qarmctime2": 0.03
+  }, 
+  {
+    "N": 15, 
+    "file": "../P2/summ_evenodd.horn", 
+    "k": 1, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.15, 
+    "qarmctime2": 0.01
+  }, 
+  {
+    "N": 16, 
+    "file": "../P2/summ_formals.horn", 
+    "k": 1, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.02, 
+    "qarmctime2": 0.03
+  }, 
+  {
+    "N": 17, 
+    "file": "../P2/summ_g.horn", 
+    "k": 1, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.03, 
+    "qarmctime2": 0.03
+  }, 
+  {
+    "N": 18, 
+    "file": "../P2/summ_globals.horn", 
+    "k": 1, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.03, 
+    "qarmctime2": 0.03
+  }, 
+  {
+    "N": 19, 
+    "file": "../P2/summ_h.horn", 
+    "k": 1, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.03, 
+    "qarmctime2": 0.03
+  }, 
+  {
+    "N": 20, 
+    "file": "../P2/summ_local-ctx-call.horn", 
+    "k": 1, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.03, 
+    "qarmctime2": 0.03
+  }, 
+  {
+    "N": 21, 
+    "file": "../P2/summ_locals.horn", 
+    "k": 1, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.06, 
+    "qarmctime2": 0.03
+  }, 
+  {
+    "N": 22, 
+    "file": "../P2/summ_locals2.horn", 
+    "k": 1, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.02, 
+    "qarmctime2": 0.03
+  }, 
+  {
+    "N": 23, 
+    "file": "../P2/summ_locals3.horn", 
+    "k": 1, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.04, 
+    "qarmctime2": 0.03
+  }, 
+  {
+    "N": 24, 
+    "file": "../P2/summ_locals4.horn", 
+    "k": 1, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.04, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 25, 
+    "file": "../P2/summ_mccarthy.horn", 
+    "k": 1, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.08, 
+    "qarmctime2": 0.03
+  }, 
+  {
+    "N": 26, 
+    "file": "../P2/summ_mccarthy2.horn", 
+    "k": 1, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.14, 
+    "qarmctime2": 0.13
+  }, 
+  {
+    "N": 27, 
+    "file": "../P2/summ_mccarthy3.horn", 
+    "k": 1, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.14, 
+    "qarmctime2": 0.19
+  }, 
+  {
+    "N": 28, 
+    "file": "../P2/summ_multi-call.horn", 
+    "k": 1, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.06, 
+    "qarmctime2": 0.03
+  }, 
+  {
+    "N": 29, 
+    "file": "../P2/summ_nested.horn", 
+    "k": 1, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.03, 
+    "qarmctime2": 0.03
+  }, 
+  {
+    "N": 30, 
+    "file": "../P2/summ_ptr_assign.horn", 
+    "k": 1, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.03, 
+    "qarmctime2": 0.03
+  }, 
+  {
+    "N": 31, 
+    "file": "../P2/summ_recursive.horn", 
+    "k": 1, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.08, 
+    "qarmctime2": 0.06
+  }, 
+  {
+    "N": 32, 
+    "file": "../P2/summ_rholocal.horn", 
+    "k": 1, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.02, 
+    "qarmctime2": 0.04
+  }, 
+  {
+    "N": 33, 
+    "file": "../P2/summ_rholocal2.horn", 
+    "k": 1, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.03, 
+    "qarmctime2": 0.03
+  }, 
+  {
+    "N": 34, 
+    "file": "../P2/summ_SG1.horn", 
+    "k": 1, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.09, 
+    "qarmctime2": 0.11
+  }, 
+  {
+    "N": 35, 
+    "file": "../P2/summ_SG1.r.horn", 
+    "k": 1, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 2.1, 
+    "qarmctime2": 2.1
+  }, 
+  {
+    "N": 36, 
+    "file": "../P2/summ_SG2.horn", 
+    "k": 1, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 2.1, 
+    "qarmctime2": 2.1
+  }, 
+  {
+    "N": 37, 
+    "file": "../P2/summ_SG2.r.horn", 
+    "k": 1, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 2.1, 
+    "qarmctime2": 2.1
+  }, 
+  {
+    "N": 38, 
+    "file": "../P2/summ_SG3.horn", 
+    "k": 1, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.19, 
+    "qarmctime2": 0.1
+  }, 
+  {
+    "N": 39, 
+    "file": "../P2/summ_slicing.horn", 
+    "k": 1, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.03, 
+    "qarmctime2": 0.03
+  }, 
+  {
+    "N": 40, 
+    "file": "../P2/summ_summs.horn", 
+    "k": 1, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.04, 
+    "qarmctime2": 0.04
+  }, 
+  {
+    "N": 41, 
+    "file": "../P2/summ_typedef.horn", 
+    "k": 1, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.04, 
+    "qarmctime2": 0.05
+  }, 
+  {
+    "N": 42, 
+    "file": "../P2/summ_x.horn", 
+    "k": 1, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.02, 
+    "qarmctime2": 0.03
+  }, 
+  {
+    "N": 43, 
+    "file": "../P2/eq.horn", 
+    "k": 2, 
+    "passed1": 0, 
+    "passed2": 0, 
+    "qarmctime1": 0.03, 
+    "qarmctime2": 0.04
+  }, 
+  {
+    "N": 44, 
+    "file": "../P2/fib.horn", 
+    "k": 2, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.14, 
+    "qarmctime2": 0.11
+  }, 
+  {
+    "N": 45, 
+    "file": "../P2/fib2.horn", 
+    "k": 2, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.44, 
+    "qarmctime2": 0.22
+  }, 
+  {
+    "N": 46, 
+    "file": "../P2/gcd.horn", 
+    "k": 2, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 2.1, 
+    "qarmctime2": 2.1
+  }, 
+  {
+    "N": 47, 
+    "file": "../P2/hanoi.horn", 
+    "k": 2, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 2.1, 
+    "qarmctime2": 2.1
+  }, 
+  {
+    "N": 48, 
+    "file": "../P2/mccarthy91.horn", 
+    "k": 2, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.11, 
+    "qarmctime2": 0.07
+  }, 
+  {
+    "N": 49, 
+    "file": "../P2/palindrome.nts.horn", 
+    "k": 2, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.12, 
+    "qarmctime2": 0.15
+  }, 
+  {
+    "N": 50, 
+    "file": "../P2/perfect.horn", 
+    "k": 2, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 2.1, 
+    "qarmctime2": 2.1
+  }, 
+  {
+    "N": 51, 
+    "file": "../P2/suma1.horn", 
+    "k": 2, 
+    "passed1": 0, 
+    "passed2": 0, 
+    "qarmctime1": 0.07, 
+    "qarmctime2": 0.07
+  }, 
+  {
+    "N": 52, 
+    "file": "../P2/suma2.horn", 
+    "k": 2, 
+    "passed1": 0, 
+    "passed2": 0, 
+    "qarmctime1": 0.1, 
+    "qarmctime2": 0.09
+  }, 
+  {
+    "N": 53, 
+    "file": "../P2/summ_ackermann.horn", 
+    "k": 2, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 2.1, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 54, 
+    "file": "../P2/summ_b.horn", 
+    "k": 2, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.08, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 55, 
+    "file": "../P2/summ_binsearch-inlined.horn", 
+    "k": 2, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.18, 
+    "qarmctime2": 0.2
+  }, 
+  {
+    "N": 56, 
+    "file": "../P2/summ_binsearch.horn", 
+    "k": 2, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.35, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 57, 
+    "file": "../P2/summ_cil.casts.horn", 
+    "k": 2, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.03, 
+    "qarmctime2": 0.03
+  }, 
+  {
+    "N": 58, 
+    "file": "../P2/summ_evenodd.horn", 
+    "k": 2, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.42, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 59, 
+    "file": "../P2/summ_formals.horn", 
+    "k": 2, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.04, 
+    "qarmctime2": 0.03
+  }, 
+  {
+    "N": 60, 
+    "file": "../P2/summ_g.horn", 
+    "k": 2, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.02, 
+    "qarmctime2": 0.04
+  }, 
+  {
+    "N": 61, 
+    "file": "../P2/summ_globals.horn", 
+    "k": 2, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.04, 
+    "qarmctime2": 0.04
+  }, 
+  {
+    "N": 62, 
+    "file": "../P2/summ_h.horn", 
+    "k": 2, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.03, 
+    "qarmctime2": 0.03
+  }, 
+  {
+    "N": 63, 
+    "file": "../P2/summ_local-ctx-call.horn", 
+    "k": 2, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.03, 
+    "qarmctime2": 0.03
+  }, 
+  {
+    "N": 64, 
+    "file": "../P2/summ_locals.horn", 
+    "k": 2, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.06, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 65, 
+    "file": "../P2/summ_locals2.horn", 
+    "k": 2, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.03, 
+    "qarmctime2": 0.03
+  }, 
+  {
+    "N": 66, 
+    "file": "../P2/summ_locals3.horn", 
+    "k": 2, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.03, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 67, 
+    "file": "../P2/summ_locals4.horn", 
+    "k": 2, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.05, 
+    "qarmctime2": 0.01
+  }, 
+  {
+    "N": 68, 
+    "file": "../P2/summ_mccarthy.horn", 
+    "k": 2, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.18, 
+    "qarmctime2": 0.01
+  }, 
+  {
+    "N": 69, 
+    "file": "../P2/summ_mccarthy2.horn", 
+    "k": 2, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.35, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 70, 
+    "file": "../P2/summ_mccarthy3.horn", 
+    "k": 2, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.29, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 71, 
+    "file": "../P2/summ_multi-call.horn", 
+    "k": 2, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.07, 
+    "qarmctime2": 0.03
+  }, 
+  {
+    "N": 72, 
+    "file": "../P2/summ_nested.horn", 
+    "k": 2, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.03, 
+    "qarmctime2": 0.03
+  }, 
+  {
+    "N": 73, 
+    "file": "../P2/summ_ptr_assign.horn", 
+    "k": 2, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.03, 
+    "qarmctime2": 0.03
+  }, 
+  {
+    "N": 74, 
+    "file": "../P2/summ_recursive.horn", 
+    "k": 2, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.08, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 75, 
+    "file": "../P2/summ_rholocal.horn", 
+    "k": 2, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.03, 
+    "qarmctime2": 0.03
+  }, 
+  {
+    "N": 76, 
+    "file": "../P2/summ_rholocal2.horn", 
+    "k": 2, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.03, 
+    "qarmctime2": 0.03
+  }, 
+  {
+    "N": 77, 
+    "file": "../P2/summ_SG1.horn", 
+    "k": 2, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.11, 
+    "qarmctime2": 0.12
+  }, 
+  {
+    "N": 78, 
+    "file": "../P2/summ_SG1.r.horn", 
+    "k": 2, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 2.1, 
+    "qarmctime2": 2.1
+  }, 
+  {
+    "N": 79, 
+    "file": "../P2/summ_SG2.horn", 
+    "k": 2, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 2.1, 
+    "qarmctime2": 2.1
+  }, 
+  {
+    "N": 80, 
+    "file": "../P2/summ_SG2.r.horn", 
+    "k": 2, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 2.1, 
+    "qarmctime2": 2.1
+  }, 
+  {
+    "N": 81, 
+    "file": "../P2/summ_SG3.horn", 
+    "k": 2, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.22, 
+    "qarmctime2": 0.12
+  }, 
+  {
+    "N": 82, 
+    "file": "../P2/summ_slicing.horn", 
+    "k": 2, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.08, 
+    "qarmctime2": 0.01
+  }, 
+  {
+    "N": 83, 
+    "file": "../P2/summ_summs.horn", 
+    "k": 2, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.09, 
+    "qarmctime2": 0.06
+  }, 
+  {
+    "N": 84, 
+    "file": "../P2/summ_typedef.horn", 
+    "k": 2, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.05, 
+    "qarmctime2": 0.06
+  }, 
+  {
+    "N": 85, 
+    "file": "../P2/summ_x.horn", 
+    "k": 2, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.03, 
+    "qarmctime2": 0.03
+  }, 
+  {
+    "N": 86, 
+    "file": "../P2/eq.horn", 
+    "k": 3, 
+    "passed1": 0, 
+    "passed2": 0, 
+    "qarmctime1": 0.04, 
+    "qarmctime2": 0.03
+  }, 
+  {
+    "N": 87, 
+    "file": "../P2/fib.horn", 
+    "k": 3, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.19, 
+    "qarmctime2": 0.37
+  }, 
+  {
+    "N": 88, 
+    "file": "../P2/fib2.horn", 
+    "k": 3, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 2.1, 
+    "qarmctime2": 0.03
+  }, 
+  {
+    "N": 89, 
+    "file": "../P2/gcd.horn", 
+    "k": 3, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 2.1, 
+    "qarmctime2": 2.1
+  }, 
+  {
+    "N": 90, 
+    "file": "../P2/hanoi.horn", 
+    "k": 3, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 2.1, 
+    "qarmctime2": 2.1
+  }, 
+  {
+    "N": 91, 
+    "file": "../P2/mccarthy91.horn", 
+    "k": 3, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.15, 
+    "qarmctime2": 0.13
+  }, 
+  {
+    "N": 92, 
+    "file": "../P2/palindrome.nts.horn", 
+    "k": 3, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.13, 
+    "qarmctime2": 0.01
+  }, 
+  {
+    "N": 93, 
+    "file": "../P2/perfect.horn", 
+    "k": 3, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 2.1, 
+    "qarmctime2": 2.1
+  }, 
+  {
+    "N": 94, 
+    "file": "../P2/suma1.horn", 
+    "k": 3, 
+    "passed1": 0, 
+    "passed2": 0, 
+    "qarmctime1": 0.07, 
+    "qarmctime2": 0.08
+  }, 
+  {
+    "N": 95, 
+    "file": "../P2/suma2.horn", 
+    "k": 3, 
+    "passed1": 0, 
+    "passed2": 0, 
+    "qarmctime1": 0.12, 
+    "qarmctime2": 0.1
+  }, 
+  {
+    "N": 96, 
+    "file": "../P2/summ_ackermann.horn", 
+    "k": 3, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 2.1, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 97, 
+    "file": "../P2/summ_b.horn", 
+    "k": 3, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.1, 
+    "qarmctime2": 0.01
+  }, 
+  {
+    "N": 98, 
+    "file": "../P2/summ_binsearch-inlined.horn", 
+    "k": 3, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.21, 
+    "qarmctime2": 0.18
+  }, 
+  {
+    "N": 99, 
+    "file": "../P2/summ_binsearch.horn", 
+    "k": 3, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.38, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 100, 
+    "file": "../P2/summ_cil.casts.horn", 
+    "k": 3, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.04, 
+    "qarmctime2": 0.03
+  }, 
+  {
+    "N": 101, 
+    "file": "../P2/summ_evenodd.horn", 
+    "k": 3, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 1.53, 
+    "qarmctime2": 0.01
+  }, 
+  {
+    "N": 102, 
+    "file": "../P2/summ_formals.horn", 
+    "k": 3, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.04, 
+    "qarmctime2": 0.04
+  }, 
+  {
+    "N": 103, 
+    "file": "../P2/summ_g.horn", 
+    "k": 3, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.03, 
+    "qarmctime2": 0.03
+  }, 
+  {
+    "N": 104, 
+    "file": "../P2/summ_globals.horn", 
+    "k": 3, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.03, 
+    "qarmctime2": 0.03
+  }, 
+  {
+    "N": 105, 
+    "file": "../P2/summ_h.horn", 
+    "k": 3, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.03, 
+    "qarmctime2": 0.03
+  }, 
+  {
+    "N": 106, 
+    "file": "../P2/summ_local-ctx-call.horn", 
+    "k": 3, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.04, 
+    "qarmctime2": 0.03
+  }, 
+  {
+    "N": 107, 
+    "file": "../P2/summ_locals.horn", 
+    "k": 3, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.08, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 108, 
+    "file": "../P2/summ_locals2.horn", 
+    "k": 3, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.03, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 109, 
+    "file": "../P2/summ_locals3.horn", 
+    "k": 3, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.04, 
+    "qarmctime2": 0.03
+  }, 
+  {
+    "N": 110, 
+    "file": "../P2/summ_locals4.horn", 
+    "k": 3, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.06, 
+    "qarmctime2": 0.01
+  }, 
+  {
+    "N": 111, 
+    "file": "../P2/summ_mccarthy.horn", 
+    "k": 3, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.46, 
+    "qarmctime2": 0.01
+  }, 
+  {
+    "N": 112, 
+    "file": "../P2/summ_mccarthy2.horn", 
+    "k": 3, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.47, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 113, 
+    "file": "../P2/summ_mccarthy3.horn", 
+    "k": 3, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.39, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 114, 
+    "file": "../P2/summ_multi-call.horn", 
+    "k": 3, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.09, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 115, 
+    "file": "../P2/summ_nested.horn", 
+    "k": 3, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.03, 
+    "qarmctime2": 0.03
+  }, 
+  {
+    "N": 116, 
+    "file": "../P2/summ_ptr_assign.horn", 
+    "k": 3, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.03, 
+    "qarmctime2": 0.03
+  }, 
+  {
+    "N": 117, 
+    "file": "../P2/summ_recursive.horn", 
+    "k": 3, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.09, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 118, 
+    "file": "../P2/summ_rholocal.horn", 
+    "k": 3, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.04, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 119, 
+    "file": "../P2/summ_rholocal2.horn", 
+    "k": 3, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.03, 
+    "qarmctime2": 0.03
+  }, 
+  {
+    "N": 120, 
+    "file": "../P2/summ_SG1.horn", 
+    "k": 3, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.1, 
+    "qarmctime2": 0.11
+  }, 
+  {
+    "N": 121, 
+    "file": "../P2/summ_SG1.r.horn", 
+    "k": 3, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 2.1, 
+    "qarmctime2": 2.1
+  }, 
+  {
+    "N": 122, 
+    "file": "../P2/summ_SG2.horn", 
+    "k": 3, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 2.1, 
+    "qarmctime2": 2.1
+  }, 
+  {
+    "N": 123, 
+    "file": "../P2/summ_SG2.r.horn", 
+    "k": 3, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 2.1, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 124, 
+    "file": "../P2/summ_SG3.horn", 
+    "k": 3, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.23, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 125, 
+    "file": "../P2/summ_slicing.horn", 
+    "k": 3, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.2, 
+    "qarmctime2": 0.01
+  }, 
+  {
+    "N": 126, 
+    "file": "../P2/summ_summs.horn", 
+    "k": 3, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.09, 
+    "qarmctime2": 0.03
+  }, 
+  {
+    "N": 127, 
+    "file": "../P2/summ_typedef.horn", 
+    "k": 3, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.06, 
+    "qarmctime2": 0.05
+  }, 
+  {
+    "N": 128, 
+    "file": "../P2/summ_x.horn", 
+    "k": 3, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.04, 
+    "qarmctime2": 0.01
+  }, 
+  {
+    "N": 129, 
+    "file": "../P2/eq.horn", 
+    "k": 4, 
+    "passed1": 0, 
+    "passed2": 0, 
+    "qarmctime1": 0.04, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 130, 
+    "file": "../P2/fib.horn", 
+    "k": 4, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.23, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 131, 
+    "file": "../P2/fib2.horn", 
+    "k": 4, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 2.1, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 132, 
+    "file": "../P2/gcd.horn", 
+    "k": 4, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 2.1, 
+    "qarmctime2": 2.1
+  }, 
+  {
+    "N": 133, 
+    "file": "../P2/hanoi.horn", 
+    "k": 4, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 2.1, 
+    "qarmctime2": 2.1
+  }, 
+  {
+    "N": 134, 
+    "file": "../P2/mccarthy91.horn", 
+    "k": 4, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.15, 
+    "qarmctime2": 0.01
+  }, 
+  {
+    "N": 135, 
+    "file": "../P2/palindrome.nts.horn", 
+    "k": 4, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.19, 
+    "qarmctime2": 0.01
+  }, 
+  {
+    "N": 136, 
+    "file": "../P2/perfect.horn", 
+    "k": 4, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 2.1, 
+    "qarmctime2": 2.1
+  }, 
+  {
+    "N": 137, 
+    "file": "../P2/suma1.horn", 
+    "k": 4, 
+    "passed1": 0, 
+    "passed2": 0, 
+    "qarmctime1": 0.07, 
+    "qarmctime2": 0.07
+  }, 
+  {
+    "N": 138, 
+    "file": "../P2/suma2.horn", 
+    "k": 4, 
+    "passed1": 0, 
+    "passed2": 0, 
+    "qarmctime1": 0.12, 
+    "qarmctime2": 0.14
+  }, 
+  {
+    "N": 139, 
+    "file": "../P2/summ_ackermann.horn", 
+    "k": 4, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 2.1, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 140, 
+    "file": "../P2/summ_b.horn", 
+    "k": 4, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.11, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 141, 
+    "file": "../P2/summ_binsearch-inlined.horn", 
+    "k": 4, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.21, 
+    "qarmctime2": 0.21
+  }, 
+  {
+    "N": 142, 
+    "file": "../P2/summ_binsearch.horn", 
+    "k": 4, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.43, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 143, 
+    "file": "../P2/summ_cil.casts.horn", 
+    "k": 4, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.05, 
+    "qarmctime2": 0.03
+  }, 
+  {
+    "N": 144, 
+    "file": "../P2/summ_evenodd.horn", 
+    "k": 4, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 2.1, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 145, 
+    "file": "../P2/summ_formals.horn", 
+    "k": 4, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.04, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 146, 
+    "file": "../P2/summ_g.horn", 
+    "k": 4, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.05, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 147, 
+    "file": "../P2/summ_globals.horn", 
+    "k": 4, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.06, 
+    "qarmctime2": 0.03
+  }, 
+  {
+    "N": 148, 
+    "file": "../P2/summ_h.horn", 
+    "k": 4, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.03, 
+    "qarmctime2": 0.04
+  }, 
+  {
+    "N": 149, 
+    "file": "../P2/summ_local-ctx-call.horn", 
+    "k": 4, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.04, 
+    "qarmctime2": 0.04
+  }, 
+  {
+    "N": 150, 
+    "file": "../P2/summ_locals.horn", 
+    "k": 4, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.09, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 151, 
+    "file": "../P2/summ_locals2.horn", 
+    "k": 4, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.05, 
+    "qarmctime2": 0.03
+  }, 
+  {
+    "N": 152, 
+    "file": "../P2/summ_locals3.horn", 
+    "k": 4, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.03, 
+    "qarmctime2": 0.04
+  }, 
+  {
+    "N": 153, 
+    "file": "../P2/summ_locals4.horn", 
+    "k": 4, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.06, 
+    "qarmctime2": 0.01
+  }, 
+  {
+    "N": 154, 
+    "file": "../P2/summ_mccarthy.horn", 
+    "k": 4, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.77, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 155, 
+    "file": "../P2/summ_mccarthy2.horn", 
+    "k": 4, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.62, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 156, 
+    "file": "../P2/summ_mccarthy3.horn", 
+    "k": 4, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.88, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 157, 
+    "file": "../P2/summ_multi-call.horn", 
+    "k": 4, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.08, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 158, 
+    "file": "../P2/summ_nested.horn", 
+    "k": 4, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.06, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 159, 
+    "file": "../P2/summ_ptr_assign.horn", 
+    "k": 4, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.06, 
+    "qarmctime2": 0.04
+  }, 
+  {
+    "N": 160, 
+    "file": "../P2/summ_recursive.horn", 
+    "k": 4, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.13, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 161, 
+    "file": "../P2/summ_rholocal.horn", 
+    "k": 4, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.05, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 162, 
+    "file": "../P2/summ_rholocal2.horn", 
+    "k": 4, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.03, 
+    "qarmctime2": 0.03
+  }, 
+  {
+    "N": 163, 
+    "file": "../P2/summ_SG1.horn", 
+    "k": 4, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.11, 
+    "qarmctime2": 0.12
+  }, 
+  {
+    "N": 164, 
+    "file": "../P2/summ_SG1.r.horn", 
+    "k": 4, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 2.1, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 165, 
+    "file": "../P2/summ_SG2.horn", 
+    "k": 4, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 2.1, 
+    "qarmctime2": 2.1
+  }, 
+  {
+    "N": 166, 
+    "file": "../P2/summ_SG2.r.horn", 
+    "k": 4, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 2.1, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 167, 
+    "file": "../P2/summ_SG3.horn", 
+    "k": 4, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.23, 
+    "qarmctime2": 0.01
+  }, 
+  {
+    "N": 168, 
+    "file": "../P2/summ_slicing.horn", 
+    "k": 4, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.2, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 169, 
+    "file": "../P2/summ_summs.horn", 
+    "k": 4, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.1, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 170, 
+    "file": "../P2/summ_typedef.horn", 
+    "k": 4, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.09, 
+    "qarmctime2": 0.03
+  }, 
+  {
+    "N": 171, 
+    "file": "../P2/summ_x.horn", 
+    "k": 4, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.06, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 172, 
+    "file": "../P2/eq.horn", 
+    "k": 5, 
+    "passed1": 0, 
+    "passed2": 0, 
+    "qarmctime1": 0.04, 
+    "qarmctime2": 0.04
+  }, 
+  {
+    "N": 173, 
+    "file": "../P2/fib.horn", 
+    "k": 5, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.23, 
+    "qarmctime2": 0.01
+  }, 
+  {
+    "N": 174, 
+    "file": "../P2/fib2.horn", 
+    "k": 5, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 2.1, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 175, 
+    "file": "../P2/gcd.horn", 
+    "k": 5, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 2.1, 
+    "qarmctime2": 2.1
+  }, 
+  {
+    "N": 176, 
+    "file": "../P2/hanoi.horn", 
+    "k": 5, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 2.1, 
+    "qarmctime2": 2.1
+  }, 
+  {
+    "N": 177, 
+    "file": "../P2/mccarthy91.horn", 
+    "k": 5, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.16, 
+    "qarmctime2": 0.01
+  }, 
+  {
+    "N": 178, 
+    "file": "../P2/palindrome.nts.horn", 
+    "k": 5, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.19, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 179, 
+    "file": "../P2/perfect.horn", 
+    "k": 5, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 2.1, 
+    "qarmctime2": 2.1
+  }, 
+  {
+    "N": 180, 
+    "file": "../P2/suma1.horn", 
+    "k": 5, 
+    "passed1": 0, 
+    "passed2": 0, 
+    "qarmctime1": 0.08, 
+    "qarmctime2": 0.08
+  }, 
+  {
+    "N": 181, 
+    "file": "../P2/suma2.horn", 
+    "k": 5, 
+    "passed1": 0, 
+    "passed2": 1, 
+    "qarmctime1": 0.12, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 182, 
+    "file": "../P2/summ_ackermann.horn", 
+    "k": 5, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 2.1, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 183, 
+    "file": "../P2/summ_b.horn", 
+    "k": 5, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.13, 
+    "qarmctime2": 0.01
+  }, 
+  {
+    "N": 184, 
+    "file": "../P2/summ_binsearch-inlined.horn", 
+    "k": 5, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.24, 
+    "qarmctime2": 0.19
+  }, 
+  {
+    "N": 185, 
+    "file": "../P2/summ_binsearch.horn", 
+    "k": 5, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.49, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 186, 
+    "file": "../P2/summ_cil.casts.horn", 
+    "k": 5, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.05, 
+    "qarmctime2": 0.01
+  }, 
+  {
+    "N": 187, 
+    "file": "../P2/summ_evenodd.horn", 
+    "k": 5, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 2.1, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 188, 
+    "file": "../P2/summ_formals.horn", 
+    "k": 5, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.04, 
+    "qarmctime2": 0.01
+  }, 
+  {
+    "N": 189, 
+    "file": "../P2/summ_g.horn", 
+    "k": 5, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.06, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 190, 
+    "file": "../P2/summ_globals.horn", 
+    "k": 5, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.06, 
+    "qarmctime2": 0.01
+  }, 
+  {
+    "N": 191, 
+    "file": "../P2/summ_h.horn", 
+    "k": 5, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.06, 
+    "qarmctime2": 0.03
+  }, 
+  {
+    "N": 192, 
+    "file": "../P2/summ_local-ctx-call.horn", 
+    "k": 5, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.04, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 193, 
+    "file": "../P2/summ_locals.horn", 
+    "k": 5, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.1, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 194, 
+    "file": "../P2/summ_locals2.horn", 
+    "k": 5, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.05, 
+    "qarmctime2": 0.03
+  }, 
+  {
+    "N": 195, 
+    "file": "../P2/summ_locals3.horn", 
+    "k": 5, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.04, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 196, 
+    "file": "../P2/summ_locals4.horn", 
+    "k": 5, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.07, 
+    "qarmctime2": 0.01
+  }, 
+  {
+    "N": 197, 
+    "file": "../P2/summ_mccarthy.horn", 
+    "k": 5, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 1.04, 
+    "qarmctime2": 0.01
+  }, 
+  {
+    "N": 198, 
+    "file": "../P2/summ_mccarthy2.horn", 
+    "k": 5, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.89, 
+    "qarmctime2": 0.01
+  }, 
+  {
+    "N": 199, 
+    "file": "../P2/summ_mccarthy3.horn", 
+    "k": 5, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 2.1, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 200, 
+    "file": "../P2/summ_multi-call.horn", 
+    "k": 5, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.07, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 201, 
+    "file": "../P2/summ_nested.horn", 
+    "k": 5, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.06, 
+    "qarmctime2": 0.03
+  }, 
+  {
+    "N": 202, 
+    "file": "../P2/summ_ptr_assign.horn", 
+    "k": 5, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.06, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 203, 
+    "file": "../P2/summ_recursive.horn", 
+    "k": 5, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.18, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 204, 
+    "file": "../P2/summ_rholocal.horn", 
+    "k": 5, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.07, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 205, 
+    "file": "../P2/summ_rholocal2.horn", 
+    "k": 5, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.05, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 206, 
+    "file": "../P2/summ_SG1.horn", 
+    "k": 5, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.12, 
+    "qarmctime2": 0.11
+  }, 
+  {
+    "N": 207, 
+    "file": "../P2/summ_SG1.r.horn", 
+    "k": 5, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 2.1, 
+    "qarmctime2": 0.01
+  }, 
+  {
+    "N": 208, 
+    "file": "../P2/summ_SG2.horn", 
+    "k": 5, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 2.1, 
+    "qarmctime2": 2.1
+  }, 
+  {
+    "N": 209, 
+    "file": "../P2/summ_SG2.r.horn", 
+    "k": 5, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 2.1, 
+    "qarmctime2": 0.03
+  }, 
+  {
+    "N": 210, 
+    "file": "../P2/summ_SG3.horn", 
+    "k": 5, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.24, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 211, 
+    "file": "../P2/summ_slicing.horn", 
+    "k": 5, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.23, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 212, 
+    "file": "../P2/summ_summs.horn", 
+    "k": 5, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.1, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 213, 
+    "file": "../P2/summ_typedef.horn", 
+    "k": 5, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.11, 
+    "qarmctime2": 0.02
+  }, 
+  {
+    "N": 214, 
+    "file": "../P2/summ_x.horn", 
+    "k": 5, 
+    "passed1": 1, 
+    "passed2": 1, 
+    "qarmctime1": 0.07, 
+    "qarmctime2": 0.02
+  }
+]
