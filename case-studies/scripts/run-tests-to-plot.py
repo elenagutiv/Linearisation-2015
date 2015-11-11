@@ -23,6 +23,7 @@ qarmc_timelimit = "2" # sec.
 elp_timelimit = "2" # sec.
 JSONfile = '../results/plot_'+k+'.json'
 N=0 #number of tests in JSON output
+data = []
 
 ################
 
@@ -123,7 +124,7 @@ for files in tests:
 		i+=1
 
 	if (error == 0) :
-		data = {
+		d = {
 			'N' : N,
 		    'passed1' : passed[0],
 		    'passed2' : passed[1],
@@ -132,13 +133,13 @@ for files in tests:
 		    'qarmctime1' : qarmc_time[0],
 		    'qarmctime2': qarmc_time[1]
 		    }
-		json.dump(data, outfile,sort_keys=True,indent = 2)
+		data.append(d)
 		N+=1
 		print f+"	Done"
 	else:
 		print f+"	Discarded"	
-	
-	
+
+json.dump(data, outfile, sort_keys=True, indent = 2)
 outfile.close()
 
 print ""
