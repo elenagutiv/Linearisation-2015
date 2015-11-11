@@ -28,7 +28,7 @@ t<!DOCTYPE html>
 </div>
 
 <script>
-    var timelimit = 1.2, tam = 214, ks = 5;
+    var timelimit = 2.5, tam = 214, ks = 5;
     var testdata;    
     d3.json("../case-studies/results/plot.json", function(error, dataSet){
     if(error) return console.warn(error);
@@ -47,7 +47,7 @@ t<!DOCTYPE html>
         chart.dispatch.on('renderEnd', function(){
             console.log('render complete');
         });
-        chart.xDomain( [ 0, timelimit + 1 ] ).yDomain( [ 0, timelimit + 1] );
+        chart.xDomain( [ 0, timelimit ] ).yDomain( [ 0, timelimit] );
 
         chart.xAxis.tickFormat(d3.format('.02f'));
         chart.yAxis.tickFormat(d3.format('.02f'));
@@ -58,8 +58,8 @@ t<!DOCTYPE html>
             .attr({
                 x1: 75 + chart.xAxis.scale()(0),
                 y1: 30 + chart.yAxis.scale()(0),
-                x2: 75 + chart.xAxis.scale()(timelimit+1),
-                y2: 30 + chart.yAxis.scale()(timelimit+1)
+                x2: 75 + chart.xAxis.scale()(timelimit),
+                y2: 30 + chart.yAxis.scale()(timelimit)
             })
             .style("stroke-dasharray", ("3,3"))
             .style("stroke","black");
