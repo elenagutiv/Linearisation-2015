@@ -28,7 +28,7 @@ t<!DOCTYPE html>
 </div>
 
 <script>
-    var timelimit = 11, tam = 165, ks = 5;
+    var timelimit = 2, tam = 164, ks = 5;
     var testdata;    
     d3.json("../case-studies/results/plot.json", function(error, dataSet){
     if(error) return console.warn(error);
@@ -52,6 +52,7 @@ t<!DOCTYPE html>
         chart.xAxis.tickFormat(d3.format('.02f'));
         chart.yAxis.tickFormat(d3.format('.02f'));
         chart.pointRange([80,80]);
+
         d3.select('#test1 svg')
             .datum(nv.log(inputData(testdata,ks,tam)))
             .call(chart)
