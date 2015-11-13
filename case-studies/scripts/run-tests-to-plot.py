@@ -19,19 +19,19 @@ main="../../src/main.pl"
 tests = glob(join('../P0', '*.horn'))
 ks=[1,2,3,4,5]
 extraoptions = " -debug "
-qarmc_timelimit = "2" # sec.
-elp_timelimit = "2" # sec.
+qarmc_timelimit = "8" # sec.
+elp_timelimit = "15" # sec.
 JSONfile = '../results/plot.json'
 N=0 #number of tests in JSON output
 data = []
 
 ################
 
-print "Running tests..."
-print '[%s]' % ', '.join(map(str, ks))
-print "QARMC time limit = "+qarmc_timelimit
-print "ELP time limit = "+elp_timelimit
-print ""
+print("Running tests...")
+print('k-values = [%s]' % ', '.join(map(str, ks)))
+print("QARMC time limit = ",qarmc_timelimit)
+print("ELP time limit = ",elp_timelimit)
+print()
 
 output = subprocess.Popen(['mkdir','../P1','../P2'], stdout = subprocess.PIPE, stderr = subprocess.PIPE)
 outfile = open(JSONfile, 'w+')
@@ -54,28 +54,26 @@ for k in ks:
 		call(['swipl','-g','script,halt','-f',kdim,'--',p0_path,k,p1_path])
 		
 		fp = open(p1_path,'a') 
-		print >> fp , "false:-\'false["+k+"]\'." # Add false clause to P1
+		print("false:-\'false["+k+"]\'.", file = fp)# Add false clause to P1)
 		fp.close()
 		
 		begin_time_elp = int(round(time.time() * 1000))
 
 		# Build P2 from P1 (ELP)
 		try:
-			output = subprocess.Popen(['time','gtimeout', elp_timelimit, 'swipl','-g','script,halt','-f',main,'--',p1_path,p2_path], stdout = subprocess.PIPE, stderr = subprocess.PIPE)
-		except subprocess.CalledProcessError, e:
-			if e.returncode == 124: #ELP TIMEOUT
-				elp_timeout = 1
-			else:
-				sys.exit("Swipl command error")
+			output = subprocess.call('time gtimeout '+elp_timelimit+' swipl -g script,halt -f '+main+' -- '+p1_path+' '+p2_path, timeout = float(elp_timelimit), shell = True)
+		except subprocess.TimeoutExpired:
+			elp_timeout = 1
+			print("ELP TIMEOUT")
 
 		if elp_timeout == 0:
 			end_time_elp = int(round(time.time() * 1000))
 			elp_time = float(end_time_elp - begin_time_elp)/1000
 			programs = [p1_path,p2_path] # Only care about runtimes of P1 and P2 to build scatterplot
 		else:
-			print f+"	Discarded"
-			break # If P2 is not generated, we discard  P1 as well
-				 
+			print(f,"	Discarded")
+			continue
+			#programs = [] # If P2 is not generated, we discard  P1 as well
 
 		# Create JSON file with test results
 
@@ -93,28 +91,29 @@ for k in ks:
 			# Run QARMC 
 			try:
 				output = subprocess.check_output(["time gtimeout "+qarmc_timelimit+" ./qarmc-latest.osx " + extraoptions + file + " > " + logfile], shell = True, stderr = subprocess.STDOUT)
-			except subprocess.CalledProcessError,e:
+			except subprocess.CalledProcessError as e:
 				if e.returncode == 124: #QARMC TIMEOUT
 					qarmc_timeout = 1
+					print("qarmc TIMEOUT")
 				else: 
 					sys.exit("QARMC command error")
 
 			if qarmc_timeout == 0:
 				try:
 					o_passed = subprocess.check_output(['grep'+" 'program is correct' "+logfile], shell = True)
-				except subprocess.CalledProcessError,e:
+				except subprocess.CalledProcessError as e:
 					if e.returncode > 0:
 						passed[i] = 0
 				try:
 					o_time = subprocess.check_output(['grep'+" '\"total_time\":' " + logfile],shell = True)
-				except subprocess.CalledProcessError,e:
+				except subprocess.CalledProcessError as e:
 					if e.returncode > 0:
 						qarmc_grep_error = 1
 						break
 
 				if qarmc_grep_error == 0: # Extract QARMC time
 					try:
-					    qarmc_time[i] = float(re.search('((\d+)\.(\d+))}}', o_time).group(1))
+						 qarmc_time[i] = float(re.search('((\d+)\.(\d+))}}', str(o_time)).group(1))
 					except AttributeError:
 						 qarmc_time_regex_error = 1
 			else:
@@ -131,20 +130,20 @@ for k in ks:
 			    'passed1' : passed[0],
 			    'passed2' : passed[1],
 			    'k' : int(k),
-			    'file' : file,
+			    'file' : base,
 			    'qarmctime1' : qarmc_time[0],
 			    'qarmctime2': qarmc_time[1]
 			    }
 			data.append(d)
 			N+=1
-			print f+"	Done"
+			print(f,"	Done")
 		else:
-			print f+"	Discarded"	
+			print(f,"	Discarded"	)
 
 json.dump(data, outfile, sort_keys=True, indent = 2)
 outfile.close()
 
-print ""
-print "JSON output in "+ JSONfile
+print()
+print("JSON output in ",JSONfile)
 
 

@@ -28,9 +28,9 @@ t<!DOCTYPE html>
 </div>
 
 <script>
-    var timelimit = 2.5, tam = 214, ks = 5;
+    var timelimit = 11, tam = 164, ks = 5;
     var testdata;    
-    d3.json("../case-studies/results/plot.json", function(error, dataSet){
+    d3.json("../case-studies/results/plotprueba.json", function(error, dataSet){
     if(error) return console.warn(error);
     testdata = dataSet;
     });
@@ -51,6 +51,7 @@ t<!DOCTYPE html>
 
         chart.xAxis.tickFormat(d3.format('.02f'));
         chart.yAxis.tickFormat(d3.format('.02f'));
+
         d3.select('#test1 svg')
             .datum(nv.log(inputData(testdata,ks,tam)))
             .call(chart)
