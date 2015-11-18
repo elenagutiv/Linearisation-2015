@@ -65,6 +65,18 @@
             .style("stroke","black");
         nv.utils.windowResize(chart.update);
         chart.dispatch.on('stateChange', function(e) { nv.log('New State:', JSON.stringify(e)); });
+        
+        // Function that generates the tooltip content html
+        chart.tooltip.contentGenerator (function (d){
+            var html = "<h3> P1 time = <b>"+d.value+"</b></h3>";
+
+            d.series.forEach(function(elem){
+            html += "<h3> P2 time = <b>"+ elem.value + "</b></h3><h3> filename = "+ elem.values[d.pointIndex].file + "</h3>";
+            })
+            return html;
+
+        });
+
         return chart;
     });
 
@@ -100,6 +112,7 @@
             outputData[group].values.push({
                 x: inputData[j].qarmctime1,
                 y: inputData[j].qarmctime2,
+                file: inputData[j].file,
                 size: 10,
                 shape: shapes[shape]
             });
