@@ -49,7 +49,10 @@
         chart.xDomain( [ 0, timelimit ] ).yDomain( [ 0, timelimit] );
 
         chart.xAxis.tickFormat(d3.format('.02f'));
+        chart.xAxis.axisLabel('P1 Q\'ARMC Runtime (s)');
+
         chart.yAxis.tickFormat(d3.format('.02f'));
+        chart.yAxis.axisLabel('P2 Q\'ARMC Runtime (s)');
         chart.pointRange([80,80]);
         d3.select('#test1 svg')
             .datum(nv.log(inputData(testdata,ks,tam)))
@@ -65,7 +68,7 @@
             .style("stroke","black");
         nv.utils.windowResize(chart.update);
         chart.dispatch.on('stateChange', function(e) { nv.log('New State:', JSON.stringify(e)); });
-        
+
         // Function that generates the tooltip content html
         chart.tooltip.contentGenerator (function (d){
             var html = "<h3> P1 time = <b>"+d.value+"</b></h3>";
