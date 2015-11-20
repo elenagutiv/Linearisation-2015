@@ -1,4 +1,0 @@
-{ "translator" :[
-{"graph": "graph1", "file": "begin", "svg": "svg1"},
-{"graph": "graph2", "file": "body_template", "svg": "svg2"},
-{"graph": "graph3", "file": "vars_and_funcs", "svg": "svg3"}]}
