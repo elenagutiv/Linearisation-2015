@@ -104,7 +104,7 @@
             var html = "<h3> P0 time = <b>"+d.value+"</b></h3>";
 
             d.series.forEach(function(elem){
-            html += "<h3> P1 time = <b>"+ elem.value + "</b></h3><h3> filename = "+ elem.values[d.pointIndex].file + "</h3>";
+                html += "<h3> P"+elem.values[d.pointIndex].program+" time = <b>"+ elem.value + "</b></h3><h3> filename = "+ elem.values[d.pointIndex].file + "</h3>";
             })
             return html;
 
@@ -130,6 +130,7 @@
         }
         for (j = 0; j < points; j++) {
             best_time = (inputData[j].qarmctime1 < inputData[j].qarmctime2) ? inputData[j].qarmctime1 : inputData[j].qarmctime2 ; //choose best solving time for P1 and P2
+            best_program = (inputData[j].qarmctime1 < inputData[j].qarmctime2) ? 1 : 2 ;
             for (i = 0; i < ngroups; i++) {
                 if (inputData[j].k == (i+1)){
                     group = i;
@@ -146,6 +147,7 @@
             outputData[group].values.push({
                 x: inputData[j].qarmctime0,
                 y:  best_time,
+                program: best_program,
                 file: inputData[j].file,
                 size: 10,
                 shape: shapes[shape]
