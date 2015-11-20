@@ -5,3 +5,4 @@ P2/
 *.sh
 !remove.sh
 kdim.pl
+*.bak

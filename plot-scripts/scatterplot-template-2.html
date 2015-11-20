@@ -14,23 +14,53 @@
             display: block;
         }
         html, body, #test1, svg {
-            margin: 0px;
-            padding: 0px;
-            height: 100%;
-            width: 100%;
+            margin: 10px;
+            padding: 10px;
+            height: 93%;
+            width: 93%;
+        }
+        #title-text {
+            float:center;
+            font: 15px "Trebuchet MS", Helvetica, sans-serif;
+            font-weight: bold;
+            text-align: center;
+
+        }
+        #key {
+            float:right;
+            font: 12px "Trebuchet MS", Helvetica, sans-serif;
+            text-align: left;
+            padding: 8px;
+            border: 1px solid;
+
         }
     </style>
 </head>
 <body class='with-3d-shadow with-transitions'>
+
+<div>
+    <div id="key"><br style="clear:both;"/>
+        <div id="timelimit">timelimit</div>
+        <div id="samplesize">samplesize</div>
+        <div>Same answer: <font size=3>&#9675;</font></div>
+        <div>Different answer: <font size=2>&#9633;</font></div>
+        
+    </div>
+    <div id="title-text" class="chart-title"><center>QARM'C Solving time for P0 vs. its index bounded version </center></div>
+</div>
 
 <div id="test1" class="chartWrap">
     <svg></svg>
 </div>
 
 <script>
+    var timelimit = 8, tam = 166, ks = 5;
+    var element = document.getElementById("timelimit");
+    element.innerHTML = "QARMC Timeout (s): "+timelimit;
 
+    element = document.getElementById("samplesize");
+    element.innerHTML = "Sample size: "+ tam;
 
-    var timelimit = 11, tam = 166, ks = 5;
     {{#translator}}
     var testdata = {{{data}}};
     {{/translator}}
@@ -45,7 +75,7 @@
         chart.dispatch.on('renderEnd', function(){
             console.log('render complete');
         });
-        chart.xDomain( [ 0, timelimit ] ).yDomain( [ 0, timelimit] );
+        chart.xDomain( [ 0, timelimit+3 ] ).yDomain( [ 0, timelimit+3] );
 
         chart.xAxis.tickFormat(d3.format('.02f'));
         chart.xAxis.axisLabel('P1 Q\'ARMC Runtime (s)');
@@ -60,8 +90,8 @@
             .attr({
                 x1: 75 + chart.xAxis.scale()(0),
                 y1: 30 + chart.yAxis.scale()(0),
-                x2: 75 + chart.xAxis.scale()(timelimit),
-                y2: 30 + chart.yAxis.scale()(timelimit)
+                x2: 75 + chart.xAxis.scale()(timelimit+3),
+                y2: 30 + chart.yAxis.scale()(timelimit+3)
             })
             .style("stroke-dasharray", ("3,3"))
             .style("stroke","black");
@@ -71,10 +101,10 @@
 
         // Function that generates the tooltip content html
         chart.tooltip.contentGenerator (function (d){
-            var html = "<h3> P1 time = <b>"+d.value+"</b></h3>";
+            var html = "<h3> P0 time = <b>"+d.value+"</b></h3>";
 
             d.series.forEach(function(elem){
-            html += "<h3> P2 time = <b>"+ elem.value + "</b></h3><h3> filename = "+ elem.values[d.pointIndex].file + "</h3>";
+            html += "<h3> P1 time = <b>"+ elem.value + "</b></h3><h3> filename = "+ elem.values[d.pointIndex].file + "</h3>";
             })
             return html;
 
