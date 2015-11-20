@@ -14,6 +14,6 @@ This procedure has been implemented in Prolog (SWI-Prolog). For further detail a
 Directory | Contents															|
 ---------------|--------------------------------------------------------------------|
 case-studies			   | Set of tests, scripts and results. For further detail, [README.md](https://github.com/elenagutiv/Linearisation-2015/tree/master/case-studies)	 															|
-plot-scripts			   | [In construction] It will contain scatter plot generation scripts	 															|
+plot-scripts			   | It contains scatter-plot generation HTML files.	 															|
 src		   | `main.pl` and `clause.pl` - *ELP* Prolog implementation
 
