@@ -13,7 +13,7 @@ Directory | Contents															|
 ---------------|--------------------------------------------------------------------|
 P0			   | A set of non-linear CLPs.	 															|
 scripts			   | <ul><li>`run-tests.py`- It builds sets P1 and P2, runs QARM'C and writes the results in a JSON file.</li><li>`run-tests-to-plot.py`- Same as `run-tests.py` excepting it gives special format to JSON data in order to build the scatter plot.</li> <li>`remove.sh`- It cleans the directory after each `run-tests.py`execution</li><li>`kdim.pl` Given *k*, it transforms a program from P0 into a program in P1 ( code provided by J.P. Gallagher)</li></ul> 	 															|
-results		| `translator.yml` which is a dictionary to translate mustache tags in both templates.
+results		| `translator.yml` . Results are given in special format in order to be inlined directly to the HTML file that shows the graphs.
 #How to run tests:#
 
 
