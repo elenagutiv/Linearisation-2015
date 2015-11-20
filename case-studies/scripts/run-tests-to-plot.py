@@ -6,7 +6,7 @@
 # This file contains instructions to run a batch of tests located in directory P0. For each individual test, it generates P1 and P2 programs located in their
 # respective  directories. Then, it runs QARMC to solve each. To show results a JSON file is generated.
 
-import json,subprocess,os,time,re,sys
+import json,subprocess,os,time,re,sys,fileinput
 from subprocess import call
 from glob import glob
 from os.path import join
@@ -21,7 +21,7 @@ ks=[1,2,3,4,5]
 extraoptions = " -debug "
 qarmc_timelimit = "8" # sec.
 elp_timelimit = "15" # sec.
-JSONfile = '../results/plot.json'
+JSONfile = '../results/translator.yml'
 N=0 #number of tests in JSON output
 data = []
 
@@ -42,8 +42,8 @@ for k in ks:
 
 		elp_timeout = 0
 		i = 0
-		passed = [None]*2
-		qarmc_time = [None]*2
+		passed = [None]*3
+		qarmc_time = [None]*3
 		
 		f = os.path.basename(files)
 		base = os.path.splitext(f)[0]
@@ -54,7 +54,7 @@ for k in ks:
 		call(['swipl','-g','script,halt','-f',kdim,'--',p0_path,k,p1_path])
 		
 		fp = open(p1_path,'a') 
-		print("false:-\'false["+k+"]\'.", file = fp)# Add false clause to P1)
+		print("false:-\'false["+k+"]\'.", file = fp)# Add false clause to P1
 		fp.close()
 		
 		begin_time_elp = int(round(time.time() * 1000))
@@ -69,7 +69,7 @@ for k in ks:
 		if elp_timeout == 0:
 			end_time_elp = int(round(time.time() * 1000))
 			elp_time = float(end_time_elp - begin_time_elp)/1000
-			programs = [p1_path,p2_path] # Only care about runtimes of P1 and P2 to build scatterplot
+			programs = [p0_path,p1_path,p2_path] 
 		else:
 			print(f,"	Discarded")
 			continue
@@ -127,12 +127,14 @@ for k in ks:
 		if (error == 0) :
 			d = {
 				'N' : N,
-			    'passed1' : passed[0],
-			    'passed2' : passed[1],
+			    'passed0' : passed[0],
+			    'passed1' : passed[1],
+			    'passed2' : passed[2],
 			    'k' : int(k),
 			    'file' : base,
-			    'qarmctime1' : qarmc_time[0],
-			    'qarmctime2': qarmc_time[1]
+			    'qarmctime0' : qarmc_time[0],
+			    'qarmctime1': qarmc_time[1],
+			    'qarmctime2': qarmc_time[2]
 			    }
 			data.append(d)
 			N+=1
@@ -142,6 +144,24 @@ for k in ks:
 
 json.dump(data, outfile, sort_keys=True, indent = 2)
 outfile.close()
+
+#Formating outfile to be processed by mustache:
+
+with fileinput.FileInput(JSONfile, inplace=True, backup='.bak') as file:
+	for line in file:
+		print (line.replace ('\n',""), end = '')
+
+with fileinput.FileInput(JSONfile, inplace=True, backup='.bak') as file:
+	for line in file:
+			print (line.replace ('\"',"\\\""), end = '')
+
+with fileinput.FileInput(JSONfile, inplace=True, backup='.bak') as file:
+	for first in file:
+			print (first.replace ('[','{\"translator\" :[{\"data\": \"['), end = '')
+
+with fileinput.FileInput(JSONfile, inplace=True, backup='.bak') as file:
+	for first in file:
+			print (first.replace (']',']\"}]}'), end = '')
 
 print()
 print("JSON output in ",JSONfile)

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.1/nv.d3.min.css" rel="stylesheet" type="text/css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.2/d3.min.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.1/nv.d3.min.js"></script>
+    
+    <style>
+        text {
+            font: 12px sans-serif;
+        }
+        svg {
+            display: block;
+        }
+        html, body, #test1, svg {
+            margin: 0px;
+            padding: 0px;
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+</head>
+<body class='with-3d-shadow with-transitions'>
+
+<div id="test1" class="chartWrap">
+    <svg></svg>
+</div>
+
+<script>
+
+
+    var timelimit = 11, tam = 166, ks = 5;
+    {{#translator}}
+    var testdata = {{{data}}};
+    {{/translator}}
+
+    var chart;
+    nv.addGraph(function() {
+        chart = nv.models.scatterChart()
+            .showDistX(true)
+            .showDistY(true)
+            .duration(300)
+            .color(d3.scale.category10().range());
+        chart.dispatch.on('renderEnd', function(){
+            console.log('render complete');
+        });
+        chart.xDomain( [ 0, timelimit ] ).yDomain( [ 0, timelimit] );
+
+        chart.xAxis.tickFormat(d3.format('.02f'));
+        chart.xAxis.axisLabel('P1 Q\'ARMC Runtime (s)');
+
+        chart.yAxis.tickFormat(d3.format('.02f'));
+        chart.yAxis.axisLabel('P2 Q\'ARMC Runtime (s)');
+        chart.pointRange([80,80]);
+        d3.select('#test1 svg')
+            .datum(nv.log(inputData(testdata,ks,tam)))
+            .call(chart)
+            .append('line')
+            .attr({
+                x1: 75 + chart.xAxis.scale()(0),
+                y1: 30 + chart.yAxis.scale()(0),
+                x2: 75 + chart.xAxis.scale()(timelimit),
+                y2: 30 + chart.yAxis.scale()(timelimit)
+            })
+            .style("stroke-dasharray", ("3,3"))
+            .style("stroke","black");
+
+        nv.utils.windowResize(chart.update);
+        chart.dispatch.on('stateChange', function(e) { nv.log('New State:', JSON.stringify(e)); });
+
+        // Function that generates the tooltip content html
+        chart.tooltip.contentGenerator (function (d){
+            var html = "<h3> P1 time = <b>"+d.value+"</b></h3>";
+
+            d.series.forEach(function(elem){
+            html += "<h3> P2 time = <b>"+ elem.value + "</b></h3><h3> filename = "+ elem.values[d.pointIndex].file + "</h3>";
+            })
+            return html;
+
+        });
+
+        return chart;
+    });
+
+
+    function inputData(inputData, ngroups, points) { //# groups,# points per group
+        var outputData = [],
+            group, shape,n
+            nshapes = 2,
+            shapes = ['circle','square'],
+            groups = [];
+
+        for (i = 0; i < ngroups; i++) {
+            groups[i] = 'k = ' + (i+1).toString();
+            outputData.push({
+              key: groups[i],
+              values: []
+            });
+        }
+        for (j = 0; j < points; j++) {
+            best_time = (inputData[j].qarmctime1 < inputData[j].qarmctime2) ? inputData[j].qarmctime1 : inputData[j].qarmctime2 ; //choose best solving time for P1 and P2
+            for (i = 0; i < ngroups; i++) {
+                if (inputData[j].k == (i+1)){
+                    group = i;
+                    break;
+                }
+            };
+            for (i = 0; i < nshapes; i++) {
+                n = ((inputData[j].passed0 + inputData[j].passed1)%2) // circle = same answer; square = different answer // inputData[j].passed1 = inputData[j].passed2
+                if (n == i){
+                    shape = i;
+                    break;
+                }
+            };
+            outputData[group].values.push({
+                x: inputData[j].qarmctime0,
+                y:  best_time,
+                file: inputData[j].file,
+                size: 10,
+                shape: shapes[shape]
+            });
+        };
+        return outputData;
+    };
+
+</script>
+</body>
+</html>
