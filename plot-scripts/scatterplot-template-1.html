@@ -52,7 +52,7 @@
 </div>
 
 <script>
-    var timelimit = 8, tam = 166, ks = 5;
+    var min = 0.01, timelimit = 8, tam = 166, ks = 5;
     var element = document.getElementById("timelimit");
     element.innerHTML = "QARMC Timeout (s): "+timelimit;
 
@@ -73,28 +73,34 @@
         chart.dispatch.on('renderEnd', function(){
             console.log('render complete');
         });
-        chart.xDomain( [ 0, timelimit+3 ] ).yDomain( [ 0, timelimit+3] );
+        // Log scale settings for X axis
+        chart.forceX([min]);
+        chart.xScale(d3.scale.log());
+        chart.xDomain( [ min, timelimit+3 ] ).yDomain( [ min, timelimit+3] );
 
         chart.xAxis.tickFormat(d3.format('.02f'));
         chart.xAxis.axisLabel('P1 Q\'ARMC Runtime (s)');
 
+        // Log scale settings for Y axis
+        chart.yScale(d3.scale.log());
+        chart.forceY([min]); 
+
         chart.yAxis.tickFormat(d3.format('.02f'));
         chart.yAxis.axisLabel('P2 Q\'ARMC Runtime (s)');
-        chart.pointRange([80,80]);
+
         d3.select('#test1 svg')
             .datum(nv.log(inputData(testdata,ks,tam)))
             .call(chart)
             .append('line')
             .attr({
-                x1: 75 + chart.xAxis.scale()(0),
-                y1: 30 + chart.yAxis.scale()(0),
+                x1: 75 + chart.xAxis.scale()(min),
+                y1: 30 + chart.yAxis.scale()(min),
                 x2: 75 + chart.xAxis.scale()(timelimit+3),
                 y2: 30 + chart.yAxis.scale()(timelimit+3)
             })
             .style("stroke-dasharray", ("3,3"))
             .style("stroke","black");
 
-        nv.utils.windowResize(chart.update);
         chart.dispatch.on('stateChange', function(e) { nv.log('New State:', JSON.stringify(e)); });
 
         // Function that generates the tooltip content html
@@ -107,7 +113,8 @@
             return html;
 
         });
-
+        nv.utils.windowResize(chart.update);
+        
         return chart;
     });
 
