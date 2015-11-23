@@ -83,13 +83,13 @@
         chart.xDomain( [ min, timelimit+3 ] ).yDomain( [ min, timelimit+3] );
 
         chart.xAxis.tickFormat(d3.format('.02f'));
-        chart.xAxis.axisLabel('P1 Q\'ARMC Runtime (s)');
+        chart.xAxis.axisLabel('P0 Q\'ARMC Runtime (s)');
 
         // Log scale settings for Y axis
         chart.yScale(d3.scale.log());
         chart.forceY([min]); 
         chart.yAxis.tickFormat(d3.format('.02f'));
-        chart.yAxis.axisLabel('P2 Q\'ARMC Runtime (s)');
+        chart.yAxis.axisLabel('min(P1,P2) Q\'ARMC Runtime (s)');
 
         d3.select('#test1 svg')
             .datum(nv.log(inputData(testdata,ks,tam)))

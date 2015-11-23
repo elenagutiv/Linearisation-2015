@@ -21,7 +21,7 @@ ks=[1,2,3,4,5]
 extraoptions = " -debug "
 qarmc_timelimit = "8" # sec.
 elp_timelimit = "15" # sec.
-JSONfile = '../results/translator.yml'
+JSONfile = '../../plot-scripts/translator.yml'
 N=0 #number of tests in JSON output
 data = []
 
