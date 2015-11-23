@@ -36,15 +36,17 @@ print()
 output = subprocess.Popen(['mkdir','../P1','../P2'], stdout = subprocess.PIPE, stderr = subprocess.PIPE)
 outfile = open(JSONfile, 'w+')
 
-for k in ks:
-	k = str(k)
-	for files in tests:
+for files in tests:
+	passed = [None]*3
+	qarmc_time = [None]*3
+	run_P0 = 0 # flag run_P0 is 1 if we have taken P0 runtime for every program in P0/ and 0 if not.
 
+	for k in ks:
+
+		k = str(k)
 		elp_timeout = 0
 		i = 0
-		passed = [None]*3
-		qarmc_time = [None]*3
-		
+
 		f = os.path.basename(files)
 		base = os.path.splitext(f)[0]
 
@@ -69,7 +71,11 @@ for k in ks:
 		if elp_timeout == 0:
 			end_time_elp = int(round(time.time() * 1000))
 			elp_time = float(end_time_elp - begin_time_elp)/1000
-			programs = [p0_path,p1_path,p2_path] 
+			if run_P0 == 0:
+				programs = [p0_path,p1_path,p2_path]
+			else:
+				i = 1
+				programs = [p1_path,p2_path] #Once we have taken runtimes for every program in P0 we can remove from the list
 		else:
 			print(f,"	Discarded")
 			continue
@@ -123,6 +129,7 @@ for k in ks:
 				error=1
 				break
 			i+=1
+			run_P0 = 1 # At this point we have taken run times for every program in the directory P0/
 
 		if (error == 0) :
 			d = {
@@ -142,6 +149,7 @@ for k in ks:
 		else:
 			print(f,"	Discarded"	)
 
+	
 json.dump(data, outfile, sort_keys=True, indent = 2)
 outfile.close()
 
