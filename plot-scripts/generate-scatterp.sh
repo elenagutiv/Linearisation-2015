@@ -22,6 +22,6 @@ TRANSLATOR="translator.yml"
 # Run mustache:
 
 echo "Running mustache..."
-cat $TRANSLATOR | mustache - $TEMPLATE > $PLOT
+mustache $TRANSLATOR $TEMPLATE > $PLOT
 
 echo "HTML file: $PLOT"
