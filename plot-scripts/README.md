@@ -10,9 +10,11 @@ Directory | Contents															|
 `elp-scatterplot-P1-P2.html`			   | A scatterplot comparing the time for P1 vs P2 using QARMC.	 															|
 `scatterplot-template-1`		   | Mustache template to inline JSON data in `elp-scatterplot-P1-P2.html`
 `scatterplot-template-2`		   | Mustache template to inline JSON data in `elp-scatterplot-P0-Pk.html`
-
 `generate-scatterp.sh`		   | Script that runs Mustache using one of the templates above and produces an HTML file containing JSON data hard-coded. 
 `running-times.yml`		   | Data used to plot both graphs in a format specified by Mustache. 
+
+----------
+
 
 > - #Software Requirements:#
 > - Mustache tool needs to be installed to run `generate-scatterp.sh`. For this end, visit: https://github.com/janl/mustache.js/
