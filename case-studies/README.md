@@ -5,42 +5,49 @@ Given a set of *non-linear* Constrained Logic Programs namely P0,  and a positiv
 
 P1 is the set of CLPs generating the *at-most-k-dimensional* derivations w.r.t. set P0. P2 is the set of *linear* programs w.r.t P1. We will rely on transformation procedure implemented in `kdim.pl` to build P1 and on *ELP* to build P2.
 
-Once P1 and P2 are built, we will run QARM'C (Model Checker for HC) on each program of both sets. For each program, we will annotate runtime and QARM'C output in JSON format.
+Once P1 and P2 are built, we will run QARMC (Model Checker for HC) on each program of both sets. For each program, we will annotate runtime and QARMC output in JSON format.
 
 #Contents#
 
 Directory | Contents															|
 ---------------|--------------------------------------------------------------------|
 P0			   | A set of non-linear CLPs.	 															|
-scripts			   | <ul><li>`run-tests.py`- It builds sets P1 and P2, runs QARM'C and writes the results in a JSON file.</li><li>`run-tests-to-plot.py`- Same as `run-tests.py` excepting it gives special format to JSON data in order to build the scatter plot.</li> <li>`remove.sh`- It cleans the directory after each `run-tests.py`execution</li><li>`kdim.pl` Given *k*, it transforms a program from P0 into a program in P1 ( code provided by J.P. Gallagher)</li></ul> 	 															|
-results		| `translator.yml` . Results are given in special format in order to be inlined directly to the HTML file that shows the graphs.
-#How to run tests:#
+scripts			   | <ul><li>`run-tests-to-JSON.py`- It builds sets P1 and P2, runs QARMC for P0, P1 and P2 and writes the results (including QARMC answer and runnning times) in JSON format in : `results/running-times.json` (directory `results` is created during the execution).</li><li>`run-tests-to-plot.py`- Same as `run-tests-to-JSON.py` excepting it gives special format to JSON data in order to build the scatter plot. In this case, the output is located in `plot-scripts/running-times.yml`.</li> <li>`remove.sh`- It cleans the directory after each `run-tests-to-JSON.py`
+
+> - During `run-tests-to-JSON.py` directories `P1/`, `P2/` and `results/` are created containing sets of programs P1 and P2 and `run-tests-to-JSON.py` output file: running-times.json`.
+----------
 
 
-> - It requires to include QARM'C (Abstraction Refinement Model Checker for Horn clauses, revision 123 or later)  in the same path as `run-tests.py`
+> - #Software Requirements:#
+
+> - QARMC (Abstraction Refinement Model Checker for Horn clauses, revision 123 or later)  in the same path as `run-tests-to-JSON.py` and `run-tests-to-plot.py` files. The executable file name is assumed to be `qarmc-latest.osx` but it can be changed by editing the script (see second section below).
+> - Pyhton 3.5.0 or greater to execute both python scripts.
+> - SWI-Prolog Version 7.2.3 or greater.
+>- To generate plots Mustache will be needed (for further information see [README.md](https://github.com/elenagutiv/Linearisation-2015/blob/master/plot-scripts/README.md))
+
 
 ----------
 
-To **run** tests in P0, type in `case-studies/scripts/`:
+To **run** tests, type in `case-studies/scripts/`:
 
-`$ python run-tests.py`
+`$ python3 run-tests-to-JSON.py`
 
 JSON file will be generated in `results/`
 
 Alternatively, to get JSON data in a suitable format to build the **scatter plot** (NVD3):
 
-`$ python run-tests-to-plot.py`
+`$ python3 run-tests-to-plot.py`
 
 ----------
 
-To **customize** execution options, open and edit `run-tests.py`:
+To **customize** execution options, open and edit `run-tests-to-JSON.py` or `run-tests-to-plot.py`:
 
 
 `# USER OPTIONS #`
 
 `tests = glob(join('../P0', '<myfile.horn> ...')) # Specify set of programs in P0 to be tested`
 
-`k="<d>" # Specify dimension value`
+`k="[<d1,..>]" # Specify dimension values for which running-times will be measured.`
 
 `extraoptions = "<qarmc extraoptions>" # Specify QARMC extra options`
 
