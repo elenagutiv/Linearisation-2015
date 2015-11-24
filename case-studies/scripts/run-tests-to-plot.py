@@ -156,19 +156,19 @@ outfile.close()
 
 #Formating outfile to be processed by mustache:
 
-with fileinput.FileInput(JSONfile, inplace=True, backup='.bak') as file:
+with fileinput.FileInput(JSONfile, inplace=True) as file:
 	for line in file:
 		print (line.replace ('\n',""), end = '')
 
-with fileinput.FileInput(JSONfile, inplace=True, backup='.bak') as file:
+with fileinput.FileInput(JSONfile, inplace=True) as file:
 	for line in file:
 			print (line.replace ('\"',"\\\""), end = '')
 
-with fileinput.FileInput(JSONfile, inplace=True, backup='.bak') as file:
+with fileinput.FileInput(JSONfile, inplace=True) as file:
 	for first in file:
 			print (first.replace ('[','{\"translator\" :[{\"data\": \"['), end = '')
 
-with fileinput.FileInput(JSONfile, inplace=True, backup='.bak') as file:
+with fileinput.FileInput(JSONfile, inplace=True) as file:
 	for first in file:
 			print (first.replace (']',']\"}]}'), end = '')
 
