@@ -36,7 +36,10 @@ print("ELP time limit = ",elp_timelimit)
 print()
 
 output = subprocess.Popen(['mkdir','../P1','../P2'], stdout = subprocess.PIPE, stderr = subprocess.PIPE)
-outfile = open(JSONfile, 'w+')
+
+if not os.path.exists(os.path.dirname(JSONfile)):
+    os.makedirs(os.path.dirname(JSONfile))
+outfile = open(JSONfile, 'w')
 
 for files in tests:
 	passed = [None]*3
