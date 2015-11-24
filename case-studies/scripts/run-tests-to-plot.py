@@ -4,7 +4,9 @@
 # SCATTER PLOT DATA GENERATION SCRIPT
 
 # This file contains instructions to run a batch of tests located in directory P0. For each individual test, it generates P1 and P2 programs located in their
-# respective  directories. Then, it runs QARMC to solve each. To show results a JSON file is generated.
+# respective  directories. Then, it runs QARMC to solve each and P0 as well. A .yml file is generated with the results.
+
+# Output location: ../../plot-scripts/translator.yml
 
 import json,subprocess,os,time,re,sys,fileinput
 from subprocess import call
@@ -21,7 +23,7 @@ ks=[1,2,3,4,5]
 extraoptions = " -debug "
 qarmc_timelimit = "8" # sec.
 elp_timelimit = "15" # sec.
-JSONfile = '../../plot-scripts/translator.yml'
+JSONfile = '../../plot-scripts/running-times.yml'
 N=0 #number of tests in JSON output
 data = []
 
@@ -39,7 +41,7 @@ outfile = open(JSONfile, 'w+')
 for files in tests:
 	passed = [None]*3
 	qarmc_time = [None]*3
-	run_P0 = 0 # flag run_P0 is 1 if we have taken P0 runtime for every program in P0/ and 0 if not.
+	run_P0 = 0 # 1 if P0 runtime has been measured for P0 = files, 0 if not.
 
 	for k in ks:
 
@@ -74,12 +76,11 @@ for files in tests:
 			if run_P0 == 0:
 				programs = [p0_path,p1_path,p2_path]
 			else:
-				i = 1
-				programs = [p1_path,p2_path] #Once we have taken runtimes for every program in P0 we can remove from the list
+				i = 1 # passed[0] and qarmc_time[0] already have a value
+				programs = [p1_path,p2_path] # if P0 runtime has been measured, we do not include it in programs.
 		else:
 			print(f,"	Discarded")
 			continue
-			#programs = [] # If P2 is not generated, we discard  P1 as well
 
 		# Create JSON file with test results
 
@@ -129,7 +130,7 @@ for files in tests:
 				error=1
 				break
 			i+=1
-			run_P0 = 1 # At this point we have taken run times for every program in the directory P0/
+			run_P0 = 1 # P0 runtime has already been measured
 
 		if (error == 0) :
 			d = {
