@@ -17,11 +17,11 @@ else
 	PLOT="elp-scatterplot-P0-PK.html"
 fi
 
-TRANSLATOR="translator.yml"
+VIEW="running-times.yml"
 
 # Run mustache:
 
 echo "Running mustache..."
-mustache $TRANSLATOR $TEMPLATE > $PLOT
+mustache $VIEW $TEMPLATE > $PLOT
 
 echo "HTML file: $PLOT"
