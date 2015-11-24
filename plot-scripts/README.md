@@ -16,7 +16,7 @@ Directory | Contents															|
 ----------
 
 
-> - #Software Requirements:#
+> #Software Requirements:#
 > - Mustache tool needs to be installed to run `generate-scatterp.sh`. For this end, visit: https://github.com/janl/mustache.js/
 
 ----------

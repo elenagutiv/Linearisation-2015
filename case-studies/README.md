@@ -17,12 +17,12 @@ scripts			   | <ul><li>`run-tests-to-JSON.py`- It builds sets P1 and P2, runs QA
 ----------
 
 
-> - During `run-tests-to-JSON.py` directories `P1/`, `P2/` and `results/` are created containing sets of programs P1 and P2 and `run-tests-to-JSON.py` output file: running-times.json`.
+> - During `run-tests-to-JSON.py` directories `P1/`, `P2/` and `results/` are created containing sets of programs P1 and P2 and `run-tests-to-JSON.py` output file: `running-times.json`.
 
 ----------
 
 
-> - #Software Requirements:#
+> #Software Requirements:#
 
 > - QARMC (Abstraction Refinement Model Checker for Horn clauses, revision 123 or later)  in the same path as `run-tests-to-JSON.py` and `run-tests-to-plot.py` files. The executable file name is assumed to be `qarmc-latest.osx` but it can be changed by editing the script (see second section below).
 > - Pyhton 3.5.0 or greater to execute both python scripts.
