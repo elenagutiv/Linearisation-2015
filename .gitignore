@@ -2,8 +2,5 @@
 *.log
 P1/
 P2/
-*.sh
-!remove.sh
-!generate-scatterp.sh
-kdim.pl
+rename.sh
 *.bak
