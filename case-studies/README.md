@@ -13,7 +13,7 @@ Directory | Contents															|
 ---------------|--------------------------------------------------------------------|
 P0			   | A set of non-linear CLPs.	 															|
 scripts			   | <ul><li>`run-tests-to-YAML.py`- It builds sets P1 and P2, runs QARMC for P0, P1 and P2 and writes the results ( including QARMC answer and runnning times ) in 2 different formats: JSON format in  `results/running-times.json` ( directory `results/` is created during the execution ) and YAML format in `plot-scripts` folder.</li><li>`remove.sh`- It cleans the directory after each `run-tests-to-YAML.py` execution
-<li>`kdim.pl` Given *k*, it transforms a program from P0 into a program in P1 ( code provided by J.P. Gallagher)</li></ul>
+</li><li>`kdim.pl` Given *k*, it transforms a program from P0 into a program in P1 ( code provided by J.P. Gallagher)</li></ul>
 ----------
 
 
