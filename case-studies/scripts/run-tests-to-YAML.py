@@ -26,10 +26,15 @@ main="../../src/main.pl"
 # USER OPTIONS #
 
 tests = glob(join('../P0', '*.horn'))
+
 ks=[1,2,3,4,5]
+
+qarmc_filename = "./qarmc-latest.osx" # Change executable filename if needed.
 extraoptions = " -debug "
 qarmc_timelimit = "8" # sec.
+
 elp_timelimit = "15" # sec.
+
 YAMLformatfile = '../../plot-scripts/running-times.yml'
 JSONformatfile = '../results/running-times.json'
 
@@ -111,7 +116,7 @@ for files in tests:
 
 			# Run QARMC 
 			try:
-				output = subprocess.check_output(["time gtimeout "+qarmc_timelimit+" ./qarmc-latest.osx " + extraoptions + file + " > " + logfile], shell = True, stderr = subprocess.STDOUT)
+				output = subprocess.check_output(["time gtimeout "+qarmc_timelimit+" "+qarmc_filename+" " + extraoptions + file + " > " + logfile], shell = True, stderr = subprocess.STDOUT)
 			except subprocess.CalledProcessError as e:
 				if e.returncode == 124: #QARMC TIMEOUT
 					qarmc_timeout = 1

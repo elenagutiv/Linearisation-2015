@@ -52,7 +52,9 @@ To **customize** execution options, open and edit `run-tests-to-JSON.py` or `run
 
 `tests = glob(join('../P0', '<myfile.horn> ...')) # Specify set of programs in P0 to be tested`
 
-`k="[<d1,..>]" # Specify dimension values for which running-times will be measured.`
+`k="[<d1,..>]" # Specify dimension values for which running-times will be measured`
+
+`qarmc_filename = "./qarmc-latest.osx" # Specify QARCM executable name`
 
 `extraoptions = "<qarmc extraoptions>" # Specify QARMC extra options`
 
@@ -61,6 +63,7 @@ To **customize** execution options, open and edit `run-tests-to-JSON.py` or `run
 `elp_timelimit = "<s>" # Specify ELP time limit in seconds`
 
 `YAMLformatfile = '../../plot-scripts/<myYAMLfile>.yml' # Specify name of YAML file`
+
 `JSONformatfile = '../results/<myJSONfile.json>'  # Specify name of JSON file`
 
 ----------
