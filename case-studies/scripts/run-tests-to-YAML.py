@@ -5,11 +5,12 @@
 
 # This file contains instructions to run a batch of tests located in directory P0. For each individual test, it generates P1 and P2 programs located in their
 # respective  directories P1/ and P2/ (created during execution). Then, it runs QARMC to solve P0, P1 and P2 in order to collect the tool answer and running times for each.
-# Two files are generated as output with esentially the same content but in different formats:
+# Two files are generated as output with esentially the same content but different formats:
 
 # A .yml file in ../../plot-scripts/running-times.yml
 # A .json file in /results/running-times.json.
 
+# Check Python version > 3: 
 import sys
 if sys.hexversion < 0x03000000:
     sys.exit("Python 3 or newer is required to run this program.")
