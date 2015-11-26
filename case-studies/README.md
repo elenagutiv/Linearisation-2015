@@ -12,12 +12,12 @@ Once P1 and P2 are built, we will run QARMC (Model Checker for HC) on each progr
 Directory | Contents															|
 ---------------|--------------------------------------------------------------------|
 P0			   | A set of non-linear CLPs.	 															|
-scripts			   | <ul><li>`run-tests-to-JSON.py`- It builds sets P1 and P2, runs QARMC for P0, P1 and P2 and writes the results ( including QARMC answer and runnning times ) in JSON format in : `results/running-times.json` ( directory `results/` is created during the execution ).</li><li>`run-tests-to-plot.py`- Same as `run-tests-to-JSON.py` excepting it gives special format to JSON data in order to build the scatter plot. In this case, the output is located in `plot-scripts/running-times.yml`</li> <li>`remove.sh`- It cleans the directory after each `run-tests-to-JSON.py`
-
+scripts			   | <ul><li>`run-tests-to-YAML.py`- It builds sets P1 and P2, runs QARMC for P0, P1 and P2 and writes the results ( including QARMC answer and runnning times ) in 2 different formats: JSON format in  `results/running-times.json` ( directory `results/` is created during the execution ) and YAML format in `plot-scripts` folder.</li><li>`remove.sh`- It cleans the directory after each `run-tests-to-YAML.py` execution
+<li>`kdim.pl` Given *k*, it transforms a program from P0 into a program in P1 ( code provided by J.P. Gallagher)</li></ul>
 ----------
 
 
-> - During `run-tests-to-JSON.py` directories `P1/`, `P2/` and `results/` are created containing sets of programs P1 and P2 and `run-tests-to-JSON.py` output file: `running-times.json`.
+> - During `run-tests-to-JSON.py` directories `P1/`, `P2/` and `results/` are created containing sets of programs P1 and P2 and `run-tests-to-YAML.py` output file: `running-times.json`.
 
 ----------
 
@@ -59,7 +59,8 @@ To **customize** execution options, open and edit `run-tests-to-JSON.py` or `run
 
 `elp_timelimit = "<s>" # Specify ELP time limit in seconds`
 
-`JSONfile = '../results/<myJSONfile.json>' # Specify name of file`
+`YAMLformatfile = '../../plot-scripts/<myYAMLfile>.yml' # Specify name of YAML file`
+`JSONformatfile = '../results/<myJSONfile.json>'  # Specify name of JSON file`
 
 ----------
 

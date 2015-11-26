@@ -1,12 +1,18 @@
-#!/bin/python
+#!/usr/bin/env python3
 # Gutierrez Viedma, Elena
 
 # SCATTER PLOT DATA GENERATION SCRIPT
 
 # This file contains instructions to run a batch of tests located in directory P0. For each individual test, it generates P1 and P2 programs located in their
-# respective  directories. Then, it runs QARMC to solve each and P0 as well. A .yml file is generated with the results.
+# respective  directories P1/ and P2/ (created during execution). Then, it runs QARMC to solve P0, P1 and P2 in order to collect the tool answer and running times for each.
+# Two files are generated as output with esentially the same content but in different formats:
 
-# Output location: ../../plot-scripts/translator.yml
+# A .yml file in ../../plot-scripts/running-times.yml
+# A .json file in /results/running-times.json.
+
+import sys
+if sys.hexversion < 0x03000000:
+    sys.exit("Python 3 or newer is required to run this program.")
 
 import json,subprocess,os,time,re,sys,fileinput
 from subprocess import call
@@ -19,11 +25,13 @@ main="../../src/main.pl"
 # USER OPTIONS #
 
 tests = glob(join('../P0', '*.horn'))
-ks=["5"]
+ks=[1,2,3,4,5]
 extraoptions = " -debug "
 qarmc_timelimit = "8" # sec.
 elp_timelimit = "15" # sec.
-JSONfile = '../results/running-times.json'
+YAMLformatfile = '../../plot-scripts/running-times.yml'
+JSONformatfile = '../results/running-times.json'
+
 N=0 #number of tests in JSON output
 data = []
 
@@ -37,9 +45,11 @@ print()
 
 output = subprocess.Popen(['mkdir','../P1','../P2'], stdout = subprocess.PIPE, stderr = subprocess.PIPE)
 
-if not os.path.exists(os.path.dirname(JSONfile)):
-    os.makedirs(os.path.dirname(JSONfile))
-outfile = open(JSONfile, 'w')
+if not os.path.exists(os.path.dirname(JSONformatfile)):
+    os.makedirs(os.path.dirname(JSONformatfile))
+JSONoutfile = open(JSONformatfile, 'w')
+
+YAMLoutfile = open(YAMLformatfile, 'w+')
 
 for files in tests:
 	passed = [None]*3
@@ -154,5 +164,32 @@ for files in tests:
 			print(f,"	Discarded"	)
 
 	
-json.dump(data, outfile, sort_keys=True, indent = 2)
-outfile.close()
+json.dump(data, JSONoutfile, sort_keys=True, indent = 2)
+JSONoutfile.close()
+json.dump(data, YAMLoutfile, sort_keys=True, indent = 2)
+YAMLoutfile.close()
+
+#Formating YAMLformatfile to be processed by mustache:
+
+with fileinput.FileInput(YAMLformatfile, inplace=True) as file:
+	for line in file:
+		print (line.replace ('\n',""), end = '')
+
+with fileinput.FileInput(YAMLformatfile, inplace=True) as file:
+	for line in file:
+			print (line.replace ('\"',"\\\""), end = '')
+
+with fileinput.FileInput(YAMLformatfile, inplace=True) as file:
+	for first in file:
+			print (first.replace ('[','{\"translator\" :[{\"data\": \"['), end = '')
+
+with fileinput.FileInput(YAMLformatfile, inplace=True) as file:
+	for first in file:
+			print (first.replace (']',']\"}]}'), end = '')
+
+print()
+print("JSON format output in ",JSONformatfile)
+print()
+print("YAML format output in ",YAMLformatfile)
+
+
