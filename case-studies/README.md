@@ -29,6 +29,8 @@ scripts			   | <ul><li>`run-tests-to-YAML.py`- It builds sets P1 and P2, runs QA
 > - Pyhton 3.5.0 or greater to execute both python scripts.
 > - SWI-Prolog Version 7.2.3 or greater.
 >- To generate plots, Mustache will be needed (for further information see [README.md](https://github.com/elenagutiv/Linearisation-2015/blob/master/plot-scripts/README.md))
+> - GNU coreutils package is required. This provides `gtimeout` command, called in `run-tests-to-YAML.py`.
+>- #This project was tested under OS X 10.9.X and 10.10.X (other platforms were untested).#
 
 
 ----------
