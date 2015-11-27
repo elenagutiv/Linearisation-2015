@@ -6,9 +6,9 @@
     "passed0": 0,
     "passed1": 1,
     "passed2": 1,
-    "qarmctime0": 0.04,
-    "qarmctime1": 0.02,
-    "qarmctime2": 0.03
+    "qarmctime0": 0.09,
+    "qarmctime1": 0.06,
+    "qarmctime2": 0.08
   },
   {
     "N": 1,
@@ -17,9 +17,9 @@
     "passed0": 0,
     "passed1": 0,
     "passed2": 0,
-    "qarmctime0": 0.04,
-    "qarmctime1": 0.04,
-    "qarmctime2": 0.04
+    "qarmctime0": 0.09,
+    "qarmctime1": 0.1,
+    "qarmctime2": 0.11
   },
   {
     "N": 2,
@@ -28,9 +28,9 @@
     "passed0": 0,
     "passed1": 0,
     "passed2": 0,
-    "qarmctime0": 0.04,
-    "qarmctime1": 0.04,
-    "qarmctime2": 0.04
+    "qarmctime0": 0.09,
+    "qarmctime1": 0.11,
+    "qarmctime2": 0.12
   },
   {
     "N": 3,
@@ -39,9 +39,9 @@
     "passed0": 0,
     "passed1": 0,
     "passed2": 0,
-    "qarmctime0": 0.04,
-    "qarmctime1": 0.04,
-    "qarmctime2": 0.03
+    "qarmctime0": 0.09,
+    "qarmctime1": 0.11,
+    "qarmctime2": 0.1
   },
   {
     "N": 4,
@@ -50,9 +50,9 @@
     "passed0": 0,
     "passed1": 0,
     "passed2": 0,
-    "qarmctime0": 0.04,
-    "qarmctime1": 0.04,
-    "qarmctime2": 0.04
+    "qarmctime0": 0.09,
+    "qarmctime1": 0.11,
+    "qarmctime2": 0.11
   },
   {
     "N": 5,
@@ -61,9 +61,9 @@
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
-    "qarmctime0": 0.16,
-    "qarmctime1": 0.09,
-    "qarmctime2": 0.09
+    "qarmctime0": 0.58,
+    "qarmctime1": 0.25,
+    "qarmctime2": 0.15
   },
   {
     "N": 6,
@@ -72,9 +72,9 @@
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
-    "qarmctime0": 0.16,
-    "qarmctime1": 0.15,
-    "qarmctime2": 0.11
+    "qarmctime0": 0.58,
+    "qarmctime1": 0.48,
+    "qarmctime2": 0.28
   },
   {
     "N": 7,
@@ -83,9 +83,9 @@
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
-    "qarmctime0": 0.16,
-    "qarmctime1": 0.22,
-    "qarmctime2": 0.45
+    "qarmctime0": 0.58,
+    "qarmctime1": 0.61,
+    "qarmctime2": 1.21
   },
   {
     "N": 8,
@@ -95,8 +95,8 @@
     "passed1": 1,
     "passed2": 1,
     "qarmctime0": 8.1,
-    "qarmctime1": 0.12,
-    "qarmctime2": 0.11
+    "qarmctime1": 0.37,
+    "qarmctime2": 0.29
   },
   {
     "N": 9,
@@ -106,8 +106,8 @@
     "passed1": 1,
     "passed2": 1,
     "qarmctime0": 8.1,
-    "qarmctime1": 0.46,
-    "qarmctime2": 0.21
+    "qarmctime1": 1.61,
+    "qarmctime2": 0.79
   },
   {
     "N": 10,
@@ -117,8 +117,8 @@
     "passed1": 1,
     "passed2": 1,
     "qarmctime0": 8.1,
-    "qarmctime1": 1.76,
-    "qarmctime2": 1.78
+    "qarmctime1": 5.66,
+    "qarmctime2": 5.82
   },
   {
     "N": 11,
@@ -237,9 +237,9 @@
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
-    "qarmctime0": 0.12,
-    "qarmctime1": 0.06,
-    "qarmctime2": 0.08
+    "qarmctime0": 0.14,
+    "qarmctime1": 0.08,
+    "qarmctime2": 0.06
   },
   {
     "N": 22,
@@ -248,8 +248,8 @@
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
-    "qarmctime0": 0.12,
-    "qarmctime1": 0.11,
+    "qarmctime0": 0.14,
+    "qarmctime1": 0.13,
     "qarmctime2": 0.09
   },
   {
@@ -259,9 +259,9 @@
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
-    "qarmctime0": 0.12,
-    "qarmctime1": 0.13,
-    "qarmctime2": 0.14
+    "qarmctime0": 0.14,
+    "qarmctime1": 0.16,
+    "qarmctime2": 0.15
   },
   {
     "N": 24,
@@ -270,9 +270,9 @@
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
-    "qarmctime0": 0.12,
-    "qarmctime1": 0.13,
-    "qarmctime2": 0.82
+    "qarmctime0": 0.14,
+    "qarmctime1": 0.17,
+    "qarmctime2": 0.92
   },
   {
     "N": 25,
@@ -281,8 +281,8 @@
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
-    "qarmctime0": 0.11,
-    "qarmctime1": 0.12,
+    "qarmctime0": 0.13,
+    "qarmctime1": 0.14,
     "qarmctime2": 0.15
   },
   {
@@ -292,9 +292,9 @@
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
-    "qarmctime0": 0.11,
+    "qarmctime0": 0.13,
     "qarmctime1": 0.13,
-    "qarmctime2": 0.16
+    "qarmctime2": 0.15
   },
   {
     "N": 27,
@@ -303,9 +303,9 @@
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
-    "qarmctime0": 0.11,
-    "qarmctime1": 0.13,
-    "qarmctime2": 0.24
+    "qarmctime0": 0.13,
+    "qarmctime1": 0.17,
+    "qarmctime2": 0.23
   },
   {
     "N": 28,
@@ -315,8 +315,8 @@
     "passed1": 0,
     "passed2": 0,
     "qarmctime0": 0.07,
-    "qarmctime1": 0.07,
-    "qarmctime2": 0.08
+    "qarmctime1": 0.08,
+    "qarmctime2": 0.07
   },
   {
     "N": 29,
@@ -327,7 +327,7 @@
     "passed2": 0,
     "qarmctime0": 0.07,
     "qarmctime1": 0.07,
-    "qarmctime2": 0.05
+    "qarmctime2": 0.07
   },
   {
     "N": 30,
@@ -337,7 +337,7 @@
     "passed1": 0,
     "passed2": 0,
     "qarmctime0": 0.07,
-    "qarmctime1": 0.08,
+    "qarmctime1": 0.07,
     "qarmctime2": 0.08
   },
   {
@@ -348,8 +348,8 @@
     "passed1": 0,
     "passed2": 0,
     "qarmctime0": 0.07,
-    "qarmctime1": 0.08,
-    "qarmctime2": 0.08
+    "qarmctime1": 0.06,
+    "qarmctime2": 0.07
   },
   {
     "N": 32,
@@ -369,9 +369,9 @@
     "passed0": 0,
     "passed1": 1,
     "passed2": 1,
-    "qarmctime0": 0.09,
+    "qarmctime0": 0.12,
     "qarmctime1": 0.02,
-    "qarmctime2": 0.03
+    "qarmctime2": 0.02
   },
   {
     "N": 34,
@@ -380,9 +380,9 @@
     "passed0": 0,
     "passed1": 0,
     "passed2": 0,
-    "qarmctime0": 0.09,
-    "qarmctime1": 0.09,
-    "qarmctime2": 0.12
+    "qarmctime0": 0.12,
+    "qarmctime1": 0.1,
+    "qarmctime2": 0.14
   },
   {
     "N": 35,
@@ -391,9 +391,9 @@
     "passed0": 0,
     "passed1": 0,
     "passed2": 0,
-    "qarmctime0": 0.09,
-    "qarmctime1": 0.1,
-    "qarmctime2": 0.13
+    "qarmctime0": 0.12,
+    "qarmctime1": 0.11,
+    "qarmctime2": 0.15
   },
   {
     "N": 36,
@@ -402,9 +402,9 @@
     "passed0": 0,
     "passed1": 0,
     "passed2": 0,
-    "qarmctime0": 0.09,
-    "qarmctime1": 0.1,
-    "qarmctime2": 0.12
+    "qarmctime0": 0.12,
+    "qarmctime1": 0.12,
+    "qarmctime2": 0.14
   },
   {
     "N": 37,
@@ -413,9 +413,9 @@
     "passed0": 0,
     "passed1": 0,
     "passed2": 0,
-    "qarmctime0": 0.09,
-    "qarmctime1": 0.11,
-    "qarmctime2": 0.12
+    "qarmctime0": 0.12,
+    "qarmctime1": 0.13,
+    "qarmctime2": 0.14
   },
   {
     "N": 38,
@@ -424,9 +424,9 @@
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
-    "qarmctime0": 0.47,
-    "qarmctime1": 0.29,
-    "qarmctime2": 0.63
+    "qarmctime0": 0.45,
+    "qarmctime1": 0.32,
+    "qarmctime2": 0.67
   },
   {
     "N": 39,
@@ -436,8 +436,8 @@
     "passed1": 1,
     "passed2": 1,
     "qarmctime0": 0.06,
-    "qarmctime1": 0.05,
-    "qarmctime2": 0.03
+    "qarmctime1": 0.06,
+    "qarmctime2": 0.04
   },
   {
     "N": 40,
@@ -447,77 +447,22 @@
     "passed1": 1,
     "passed2": 1,
     "qarmctime0": 0.06,
-    "qarmctime1": 0.09,
-    "qarmctime2": 0.06
+    "qarmctime1": 0.07,
+    "qarmctime2": 0.09
   },
   {
     "N": 41,
-    "file": "summ_binsearch-inlined",
-    "k": 1,
-    "passed0": 1,
-    "passed1": 1,
-    "passed2": 1,
-    "qarmctime0": 0.19,
-    "qarmctime1": 0.15,
-    "qarmctime2": 0.17
-  },
-  {
-    "N": 42,
-    "file": "summ_binsearch-inlined",
-    "k": 2,
-    "passed0": 1,
-    "passed1": 1,
-    "passed2": 1,
-    "qarmctime0": 0.19,
-    "qarmctime1": 0.17,
-    "qarmctime2": 0.19
-  },
-  {
-    "N": 43,
-    "file": "summ_binsearch-inlined",
-    "k": 3,
-    "passed0": 1,
-    "passed1": 1,
-    "passed2": 1,
-    "qarmctime0": 0.19,
-    "qarmctime1": 0.16,
-    "qarmctime2": 0.19
-  },
-  {
-    "N": 44,
-    "file": "summ_binsearch-inlined",
-    "k": 4,
-    "passed0": 1,
-    "passed1": 1,
-    "passed2": 1,
-    "qarmctime0": 0.19,
-    "qarmctime1": 0.23,
-    "qarmctime2": 0.21
-  },
-  {
-    "N": 45,
-    "file": "summ_binsearch-inlined",
-    "k": 5,
-    "passed0": 1,
-    "passed1": 1,
-    "passed2": 1,
-    "qarmctime0": 0.19,
-    "qarmctime1": 0.23,
-    "qarmctime2": 0.25
-  },
-  {
-    "N": 46,
     "file": "summ_binsearch",
     "k": 1,
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
-    "qarmctime0": 0.34,
-    "qarmctime1": 0.14,
-    "qarmctime2": 0.14
+    "qarmctime0": 0.4,
+    "qarmctime1": 0.16,
+    "qarmctime2": 0.15
   },
   {
-    "N": 47,
+    "N": 42,
     "file": "summ_cil.casts",
     "k": 1,
     "passed0": 1,
@@ -528,7 +473,7 @@
     "qarmctime2": 0.03
   },
   {
-    "N": 48,
+    "N": 43,
     "file": "summ_cil.casts",
     "k": 2,
     "passed0": 1,
@@ -536,21 +481,21 @@
     "passed2": 1,
     "qarmctime0": 0.03,
     "qarmctime1": 0.03,
-    "qarmctime2": 0.03
+    "qarmctime2": 0.02
   },
   {
-    "N": 49,
+    "N": 44,
     "file": "summ_cil.casts",
     "k": 3,
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
     "qarmctime0": 0.03,
-    "qarmctime1": 0.03,
-    "qarmctime2": 0.03
+    "qarmctime1": 0.04,
+    "qarmctime2": 0.04
   },
   {
-    "N": 50,
+    "N": 45,
     "file": "summ_cil.casts",
     "k": 4,
     "passed0": 1,
@@ -561,7 +506,7 @@
     "qarmctime2": 0.03
   },
   {
-    "N": 51,
+    "N": 46,
     "file": "summ_cil.casts",
     "k": 5,
     "passed0": 1,
@@ -572,84 +517,84 @@
     "qarmctime2": 0.04
   },
   {
-    "N": 52,
+    "N": 47,
     "file": "summ_evenodd",
     "k": 1,
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
-    "qarmctime0": 4.64,
-    "qarmctime1": 0.22,
-    "qarmctime2": 0.14
+    "qarmctime0": 4.27,
+    "qarmctime1": 0.11,
+    "qarmctime2": 0.12
+  },
+  {
+    "N": 48,
+    "file": "summ_formals",
+    "k": 1,
+    "passed0": 1,
+    "passed1": 1,
+    "passed2": 1,
+    "qarmctime0": 0.02,
+    "qarmctime1": 0.03,
+    "qarmctime2": 0.03
+  },
+  {
+    "N": 49,
+    "file": "summ_formals",
+    "k": 2,
+    "passed0": 1,
+    "passed1": 1,
+    "passed2": 1,
+    "qarmctime0": 0.02,
+    "qarmctime1": 0.03,
+    "qarmctime2": 0.03
+  },
+  {
+    "N": 50,
+    "file": "summ_formals",
+    "k": 3,
+    "passed0": 1,
+    "passed1": 1,
+    "passed2": 1,
+    "qarmctime0": 0.02,
+    "qarmctime1": 0.03,
+    "qarmctime2": 0.03
+  },
+  {
+    "N": 51,
+    "file": "summ_formals",
+    "k": 4,
+    "passed0": 1,
+    "passed1": 1,
+    "passed2": 1,
+    "qarmctime0": 0.02,
+    "qarmctime1": 0.04,
+    "qarmctime2": 0.03
+  },
+  {
+    "N": 52,
+    "file": "summ_formals",
+    "k": 5,
+    "passed0": 1,
+    "passed1": 1,
+    "passed2": 1,
+    "qarmctime0": 0.02,
+    "qarmctime1": 0.04,
+    "qarmctime2": 0.04
   },
   {
     "N": 53,
-    "file": "summ_formals",
+    "file": "summ_g",
     "k": 1,
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
-    "qarmctime0": 0.03,
-    "qarmctime1": 0.03,
-    "qarmctime2": 0.03
-  },
-  {
-    "N": 54,
-    "file": "summ_formals",
-    "k": 2,
-    "passed0": 1,
-    "passed1": 1,
-    "passed2": 1,
-    "qarmctime0": 0.03,
-    "qarmctime1": 0.02,
+    "qarmctime0": 0.05,
+    "qarmctime1": 0.01,
     "qarmctime2": 0.02
   },
   {
-    "N": 55,
-    "file": "summ_formals",
-    "k": 3,
-    "passed0": 1,
-    "passed1": 1,
-    "passed2": 1,
-    "qarmctime0": 0.03,
-    "qarmctime1": 0.04,
-    "qarmctime2": 0.03
-  },
-  {
-    "N": 56,
-    "file": "summ_formals",
-    "k": 4,
-    "passed0": 1,
-    "passed1": 1,
-    "passed2": 1,
-    "qarmctime0": 0.03,
-    "qarmctime1": 0.04,
-    "qarmctime2": 0.04
-  },
-  {
-    "N": 57,
-    "file": "summ_formals",
-    "k": 5,
-    "passed0": 1,
-    "passed1": 1,
-    "passed2": 1,
-    "qarmctime0": 0.03,
-    "qarmctime1": 0.04,
-    "qarmctime2": 0.04
-  },
-  {
-    "N": 58,
-    "file": "summ_g",
-    "k": 1,
-    "passed0": 1,
-    "passed1": 1,
-    "passed2": 1,
-    "qarmctime0": 0.05,
-    "qarmctime1": 0.03,
-    "qarmctime2": 0.03
-  },
-  {
-    "N": 59,
+    "N": 54,
     "file": "summ_g",
     "k": 2,
     "passed0": 1,
@@ -657,32 +602,32 @@
     "passed2": 1,
     "qarmctime0": 0.05,
     "qarmctime1": 0.03,
-    "qarmctime2": 0.05
+    "qarmctime2": 0.06
   },
   {
-    "N": 60,
+    "N": 55,
     "file": "summ_g",
     "k": 3,
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
     "qarmctime0": 0.05,
-    "qarmctime1": 0.04,
-    "qarmctime2": 0.05
+    "qarmctime1": 0.03,
+    "qarmctime2": 0.06
   },
   {
-    "N": 61,
+    "N": 56,
     "file": "summ_g",
     "k": 4,
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
     "qarmctime0": 0.05,
-    "qarmctime1": 0.04,
-    "qarmctime2": 0.06
+    "qarmctime1": 0.03,
+    "qarmctime2": 0.05
   },
   {
-    "N": 62,
+    "N": 57,
     "file": "summ_g",
     "k": 5,
     "passed0": 1,
@@ -690,122 +635,243 @@
     "passed2": 1,
     "qarmctime0": 0.05,
     "qarmctime1": 0.04,
-    "qarmctime2": 0.07
+    "qarmctime2": 0.08
   },
   {
-    "N": 63,
+    "N": 58,
     "file": "summ_globals",
     "k": 1,
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
     "qarmctime0": 0.03,
+    "qarmctime1": 0.03,
+    "qarmctime2": 0.02
+  },
+  {
+    "N": 59,
+    "file": "summ_globals",
+    "k": 2,
+    "passed0": 1,
+    "passed1": 1,
+    "passed2": 1,
+    "qarmctime0": 0.03,
+    "qarmctime1": 0.03,
+    "qarmctime2": 0.03
+  },
+  {
+    "N": 60,
+    "file": "summ_globals",
+    "k": 3,
+    "passed0": 1,
+    "passed1": 1,
+    "passed2": 1,
+    "qarmctime0": 0.03,
+    "qarmctime1": 0.04,
+    "qarmctime2": 0.04
+  },
+  {
+    "N": 61,
+    "file": "summ_globals",
+    "k": 4,
+    "passed0": 1,
+    "passed1": 1,
+    "passed2": 1,
+    "qarmctime0": 0.03,
+    "qarmctime1": 0.04,
+    "qarmctime2": 0.04
+  },
+  {
+    "N": 62,
+    "file": "summ_globals",
+    "k": 5,
+    "passed0": 1,
+    "passed1": 1,
+    "passed2": 1,
+    "qarmctime0": 0.03,
+    "qarmctime1": 0.05,
+    "qarmctime2": 0.05
+  },
+  {
+    "N": 63,
+    "file": "summ_h",
+    "k": 1,
+    "passed0": 1,
+    "passed1": 1,
+    "passed2": 1,
+    "qarmctime0": 0.02,
     "qarmctime1": 0.03,
     "qarmctime2": 0.03
   },
   {
     "N": 64,
-    "file": "summ_globals",
+    "file": "summ_h",
     "k": 2,
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
-    "qarmctime0": 0.03,
+    "qarmctime0": 0.02,
     "qarmctime1": 0.03,
     "qarmctime2": 0.03
   },
   {
     "N": 65,
-    "file": "summ_globals",
+    "file": "summ_h",
     "k": 3,
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
-    "qarmctime0": 0.03,
+    "qarmctime0": 0.02,
     "qarmctime1": 0.04,
     "qarmctime2": 0.04
   },
   {
     "N": 66,
-    "file": "summ_globals",
+    "file": "summ_h",
     "k": 4,
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
-    "qarmctime0": 0.03,
-    "qarmctime1": 0.04,
-    "qarmctime2": 0.04
+    "qarmctime0": 0.02,
+    "qarmctime1": 0.05,
+    "qarmctime2": 0.05
   },
   {
     "N": 67,
-    "file": "summ_globals",
+    "file": "summ_h",
     "k": 5,
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
-    "qarmctime0": 0.03,
-    "qarmctime1": 0.04,
-    "qarmctime2": 0.04
+    "qarmctime0": 0.02,
+    "qarmctime1": 0.05,
+    "qarmctime2": 0.03
   },
   {
     "N": 68,
-    "file": "summ_h",
+    "file": "summ_local-ctx-call",
     "k": 1,
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
-    "qarmctime0": 0.02,
-    "qarmctime1": 0.02,
-    "qarmctime2": 0.03
+    "qarmctime0": 0.03,
+    "qarmctime1": 0.03,
+    "qarmctime2": 0.02
   },
   {
     "N": 69,
-    "file": "summ_h",
+    "file": "summ_local-ctx-call",
     "k": 2,
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
-    "qarmctime0": 0.02,
+    "qarmctime0": 0.03,
     "qarmctime1": 0.03,
     "qarmctime2": 0.03
   },
   {
     "N": 70,
-    "file": "summ_h",
+    "file": "summ_local-ctx-call",
     "k": 3,
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
-    "qarmctime0": 0.02,
+    "qarmctime0": 0.03,
     "qarmctime1": 0.03,
     "qarmctime2": 0.03
   },
   {
     "N": 71,
-    "file": "summ_h",
+    "file": "summ_local-ctx-call",
     "k": 4,
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
-    "qarmctime0": 0.02,
-    "qarmctime1": 0.04,
-    "qarmctime2": 0.04
+    "qarmctime0": 0.03,
+    "qarmctime1": 0.03,
+    "qarmctime2": 0.03
   },
   {
     "N": 72,
-    "file": "summ_h",
+    "file": "summ_local-ctx-call",
     "k": 5,
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
-    "qarmctime0": 0.02,
-    "qarmctime1": 0.03,
+    "qarmctime0": 0.03,
+    "qarmctime1": 0.04,
     "qarmctime2": 0.04
   },
   {
     "N": 73,
-    "file": "summ_local-ctx-call",
+    "file": "summ_locals",
     "k": 1,
+    "passed0": 1,
+    "passed1": 1,
+    "passed2": 1,
+    "qarmctime0": 0.06,
+    "qarmctime1": 0.07,
+    "qarmctime2": 0.03
+  },
+  {
+    "N": 74,
+    "file": "summ_locals",
+    "k": 2,
+    "passed0": 1,
+    "passed1": 1,
+    "passed2": 1,
+    "qarmctime0": 0.06,
+    "qarmctime1": 0.07,
+    "qarmctime2": 0.05
+  },
+  {
+    "N": 75,
+    "file": "summ_locals",
+    "k": 3,
+    "passed0": 1,
+    "passed1": 1,
+    "passed2": 1,
+    "qarmctime0": 0.06,
+    "qarmctime1": 0.08,
+    "qarmctime2": 0.06
+  },
+  {
+    "N": 76,
+    "file": "summ_locals",
+    "k": 4,
+    "passed0": 1,
+    "passed1": 1,
+    "passed2": 1,
+    "qarmctime0": 0.06,
+    "qarmctime1": 0.08,
+    "qarmctime2": 0.07
+  },
+  {
+    "N": 77,
+    "file": "summ_locals2",
+    "k": 1,
+    "passed0": 1,
+    "passed1": 1,
+    "passed2": 1,
+    "qarmctime0": 0.02,
+    "qarmctime1": 0.03,
+    "qarmctime2": 0.03
+  },
+  {
+    "N": 78,
+    "file": "summ_locals2",
+    "k": 2,
+    "passed0": 1,
+    "passed1": 1,
+    "passed2": 1,
+    "qarmctime0": 0.02,
+    "qarmctime1": 0.03,
+    "qarmctime2": 0.02
+  },
+  {
+    "N": 79,
+    "file": "summ_locals2",
+    "k": 3,
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
@@ -814,140 +880,74 @@
     "qarmctime2": 0.03
   },
   {
-    "N": 74,
-    "file": "summ_local-ctx-call",
-    "k": 2,
-    "passed0": 1,
-    "passed1": 1,
-    "passed2": 1,
-    "qarmctime0": 0.02,
-    "qarmctime1": 0.03,
-    "qarmctime2": 0.03
-  },
-  {
-    "N": 75,
-    "file": "summ_local-ctx-call",
-    "k": 3,
-    "passed0": 1,
-    "passed1": 1,
-    "passed2": 1,
-    "qarmctime0": 0.02,
-    "qarmctime1": 0.03,
-    "qarmctime2": 0.03
-  },
-  {
-    "N": 76,
-    "file": "summ_local-ctx-call",
+    "N": 80,
+    "file": "summ_locals2",
     "k": 4,
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
     "qarmctime0": 0.02,
-    "qarmctime1": 0.03,
-    "qarmctime2": 0.04
+    "qarmctime1": 0.04,
+    "qarmctime2": 0.03
   },
   {
-    "N": 77,
-    "file": "summ_local-ctx-call",
+    "N": 81,
+    "file": "summ_locals2",
     "k": 5,
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
     "qarmctime0": 0.02,
-    "qarmctime1": 0.03,
+    "qarmctime1": 0.04,
     "qarmctime2": 0.04
   },
   {
-    "N": 78,
-    "file": "summ_locals",
-    "k": 1,
-    "passed0": 1,
-    "passed1": 1,
-    "passed2": 1,
-    "qarmctime0": 0.07,
-    "qarmctime1": 0.05,
-    "qarmctime2": 0.02
-  },
-  {
-    "N": 79,
-    "file": "summ_locals",
-    "k": 2,
-    "passed0": 1,
-    "passed1": 1,
-    "passed2": 1,
-    "qarmctime0": 0.07,
-    "qarmctime1": 0.07,
-    "qarmctime2": 0.08
-  },
-  {
-    "N": 80,
-    "file": "summ_locals",
-    "k": 3,
-    "passed0": 1,
-    "passed1": 1,
-    "passed2": 1,
-    "qarmctime0": 0.07,
-    "qarmctime1": 0.07,
-    "qarmctime2": 0.07
-  },
-  {
-    "N": 81,
-    "file": "summ_locals",
-    "k": 4,
-    "passed0": 1,
-    "passed1": 1,
-    "passed2": 1,
-    "qarmctime0": 0.07,
-    "qarmctime1": 0.09,
-    "qarmctime2": 0.11
-  },
-  {
     "N": 82,
-    "file": "summ_locals2",
+    "file": "summ_locals3",
     "k": 1,
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
     "qarmctime0": 0.03,
     "qarmctime1": 0.03,
-    "qarmctime2": 0.02
+    "qarmctime2": 0.03
   },
   {
     "N": 83,
-    "file": "summ_locals2",
+    "file": "summ_locals3",
     "k": 2,
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
     "qarmctime0": 0.03,
-    "qarmctime1": 0.02,
+    "qarmctime1": 0.03,
     "qarmctime2": 0.03
   },
   {
     "N": 84,
-    "file": "summ_locals2",
+    "file": "summ_locals3",
     "k": 3,
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
     "qarmctime0": 0.03,
     "qarmctime1": 0.04,
-    "qarmctime2": 0.03
+    "qarmctime2": 0.04
   },
   {
     "N": 85,
-    "file": "summ_locals2",
+    "file": "summ_locals3",
     "k": 4,
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
     "qarmctime0": 0.03,
-    "qarmctime1": 0.05,
-    "qarmctime2": 0.03
+    "qarmctime1": 0.04,
+    "qarmctime2": 0.04
   },
   {
     "N": 86,
-    "file": "summ_locals2",
+    "file": "summ_locals3",
     "k": 5,
     "passed0": 1,
     "passed1": 1,
@@ -958,7 +958,161 @@
   },
   {
     "N": 87,
-    "file": "summ_locals3",
+    "file": "summ_locals4",
+    "k": 1,
+    "passed0": 1,
+    "passed1": 1,
+    "passed2": 1,
+    "qarmctime0": 0.07,
+    "qarmctime1": 0.05,
+    "qarmctime2": 0.02
+  },
+  {
+    "N": 88,
+    "file": "summ_locals4",
+    "k": 2,
+    "passed0": 1,
+    "passed1": 1,
+    "passed2": 1,
+    "qarmctime0": 0.07,
+    "qarmctime1": 0.05,
+    "qarmctime2": 0.05
+  },
+  {
+    "N": 89,
+    "file": "summ_locals4",
+    "k": 3,
+    "passed0": 1,
+    "passed1": 1,
+    "passed2": 1,
+    "qarmctime0": 0.07,
+    "qarmctime1": 0.07,
+    "qarmctime2": 0.06
+  },
+  {
+    "N": 90,
+    "file": "summ_mccarthy",
+    "k": 1,
+    "passed0": 1,
+    "passed1": 1,
+    "passed2": 1,
+    "qarmctime0": 0.44,
+    "qarmctime1": 0.09,
+    "qarmctime2": 0.03
+  },
+  {
+    "N": 91,
+    "file": "summ_mccarthy",
+    "k": 2,
+    "passed0": 1,
+    "passed1": 1,
+    "passed2": 1,
+    "qarmctime0": 0.44,
+    "qarmctime1": 0.21,
+    "qarmctime2": 0.37
+  },
+  {
+    "N": 92,
+    "file": "summ_mccarthy2",
+    "k": 1,
+    "passed0": 1,
+    "passed1": 1,
+    "passed2": 1,
+    "qarmctime0": 0.14,
+    "qarmctime1": 0.15,
+    "qarmctime2": 0.15
+  },
+  {
+    "N": 93,
+    "file": "summ_mccarthy2",
+    "k": 2,
+    "passed0": 1,
+    "passed1": 1,
+    "passed2": 1,
+    "qarmctime0": 0.14,
+    "qarmctime1": 0.27,
+    "qarmctime2": 2.54
+  },
+  {
+    "N": 94,
+    "file": "summ_mccarthy3",
+    "k": 1,
+    "passed0": 1,
+    "passed1": 1,
+    "passed2": 1,
+    "qarmctime0": 0.13,
+    "qarmctime1": 0.14,
+    "qarmctime2": 0.17
+  },
+  {
+    "N": 95,
+    "file": "summ_mccarthy3",
+    "k": 2,
+    "passed0": 1,
+    "passed1": 1,
+    "passed2": 1,
+    "qarmctime0": 0.13,
+    "qarmctime1": 0.21,
+    "qarmctime2": 5.5
+  },
+  {
+    "N": 96,
+    "file": "summ_multi-call",
+    "k": 1,
+    "passed0": 1,
+    "passed1": 1,
+    "passed2": 1,
+    "qarmctime0": 0.07,
+    "qarmctime1": 0.04,
+    "qarmctime2": 0.03
+  },
+  {
+    "N": 97,
+    "file": "summ_multi-call",
+    "k": 2,
+    "passed0": 1,
+    "passed1": 1,
+    "passed2": 1,
+    "qarmctime0": 0.07,
+    "qarmctime1": 0.05,
+    "qarmctime2": 0.03
+  },
+  {
+    "N": 98,
+    "file": "summ_multi-call",
+    "k": 3,
+    "passed0": 1,
+    "passed1": 1,
+    "passed2": 1,
+    "qarmctime0": 0.07,
+    "qarmctime1": 0.1,
+    "qarmctime2": 0.05
+  },
+  {
+    "N": 99,
+    "file": "summ_multi-call",
+    "k": 4,
+    "passed0": 1,
+    "passed1": 1,
+    "passed2": 1,
+    "qarmctime0": 0.07,
+    "qarmctime1": 0.07,
+    "qarmctime2": 0.06
+  },
+  {
+    "N": 100,
+    "file": "summ_multi-call",
+    "k": 5,
+    "passed0": 1,
+    "passed1": 1,
+    "passed2": 1,
+    "qarmctime0": 0.07,
+    "qarmctime1": 0.08,
+    "qarmctime2": 0.05
+  },
+  {
+    "N": 101,
+    "file": "summ_nested",
     "k": 1,
     "passed0": 1,
     "passed1": 1,
@@ -968,206 +1122,52 @@
     "qarmctime2": 0.03
   },
   {
-    "N": 88,
-    "file": "summ_locals3",
-    "k": 2,
-    "passed0": 1,
-    "passed1": 1,
-    "passed2": 1,
-    "qarmctime0": 0.03,
-    "qarmctime1": 0.04,
-    "qarmctime2": 0.03
-  },
-  {
-    "N": 89,
-    "file": "summ_locals3",
-    "k": 3,
-    "passed0": 1,
-    "passed1": 1,
-    "passed2": 1,
-    "qarmctime0": 0.03,
-    "qarmctime1": 0.04,
-    "qarmctime2": 0.04
-  },
-  {
-    "N": 90,
-    "file": "summ_locals3",
-    "k": 4,
-    "passed0": 1,
-    "passed1": 1,
-    "passed2": 1,
-    "qarmctime0": 0.03,
-    "qarmctime1": 0.04,
-    "qarmctime2": 0.04
-  },
-  {
-    "N": 91,
-    "file": "summ_locals3",
-    "k": 5,
-    "passed0": 1,
-    "passed1": 1,
-    "passed2": 1,
-    "qarmctime0": 0.03,
-    "qarmctime1": 0.05,
-    "qarmctime2": 0.04
-  },
-  {
-    "N": 92,
-    "file": "summ_locals4",
-    "k": 1,
-    "passed0": 1,
-    "passed1": 1,
-    "passed2": 1,
-    "qarmctime0": 0.07,
-    "qarmctime1": 0.06,
-    "qarmctime2": 0.03
-  },
-  {
-    "N": 93,
-    "file": "summ_locals4",
-    "k": 2,
-    "passed0": 1,
-    "passed1": 1,
-    "passed2": 1,
-    "qarmctime0": 0.07,
-    "qarmctime1": 0.05,
-    "qarmctime2": 0.05
-  },
-  {
-    "N": 94,
-    "file": "summ_locals4",
-    "k": 3,
-    "passed0": 1,
-    "passed1": 1,
-    "passed2": 1,
-    "qarmctime0": 0.07,
-    "qarmctime1": 0.06,
-    "qarmctime2": 0.06
-  },
-  {
-    "N": 95,
-    "file": "summ_mccarthy",
-    "k": 1,
-    "passed0": 1,
-    "passed1": 1,
-    "passed2": 1,
-    "qarmctime0": 0.41,
-    "qarmctime1": 0.08,
-    "qarmctime2": 0.03
-  },
-  {
-    "N": 96,
-    "file": "summ_mccarthy",
-    "k": 2,
-    "passed0": 1,
-    "passed1": 1,
-    "passed2": 1,
-    "qarmctime0": 0.41,
-    "qarmctime1": 0.17,
-    "qarmctime2": 0.34
-  },
-  {
-    "N": 97,
-    "file": "summ_mccarthy2",
-    "k": 1,
-    "passed0": 1,
-    "passed1": 1,
-    "passed2": 1,
-    "qarmctime0": 0.14,
-    "qarmctime1": 0.15,
-    "qarmctime2": 0.14
-  },
-  {
-    "N": 98,
-    "file": "summ_mccarthy2",
-    "k": 2,
-    "passed0": 1,
-    "passed1": 1,
-    "passed2": 1,
-    "qarmctime0": 0.14,
-    "qarmctime1": 0.28,
-    "qarmctime2": 2.69
-  },
-  {
-    "N": 99,
-    "file": "summ_mccarthy3",
-    "k": 1,
-    "passed0": 1,
-    "passed1": 1,
-    "passed2": 1,
-    "qarmctime0": 0.12,
-    "qarmctime1": 0.14,
-    "qarmctime2": 0.18
-  },
-  {
-    "N": 100,
-    "file": "summ_mccarthy3",
-    "k": 2,
-    "passed0": 1,
-    "passed1": 1,
-    "passed2": 1,
-    "qarmctime0": 0.12,
-    "qarmctime1": 0.22,
-    "qarmctime2": 5.63
-  },
-  {
-    "N": 101,
-    "file": "summ_multi-call",
-    "k": 1,
-    "passed0": 1,
-    "passed1": 1,
-    "passed2": 1,
-    "qarmctime0": 0.05,
-    "qarmctime1": 0.05,
-    "qarmctime2": 0.02
-  },
-  {
     "N": 102,
-    "file": "summ_multi-call",
+    "file": "summ_nested",
     "k": 2,
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
-    "qarmctime0": 0.05,
-    "qarmctime1": 0.06,
+    "qarmctime0": 0.03,
+    "qarmctime1": 0.03,
     "qarmctime2": 0.03
   },
   {
     "N": 103,
-    "file": "summ_multi-call",
+    "file": "summ_nested",
     "k": 3,
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
-    "qarmctime0": 0.05,
-    "qarmctime1": 0.07,
-    "qarmctime2": 0.04
+    "qarmctime0": 0.03,
+    "qarmctime1": 0.04,
+    "qarmctime2": 0.02
   },
   {
     "N": 104,
-    "file": "summ_multi-call",
+    "file": "summ_nested",
     "k": 4,
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
-    "qarmctime0": 0.05,
-    "qarmctime1": 0.08,
+    "qarmctime0": 0.03,
+    "qarmctime1": 0.04,
     "qarmctime2": 0.04
   },
   {
     "N": 105,
-    "file": "summ_multi-call",
+    "file": "summ_nested",
     "k": 5,
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
-    "qarmctime0": 0.05,
-    "qarmctime1": 0.09,
+    "qarmctime0": 0.03,
+    "qarmctime1": 0.05,
     "qarmctime2": 0.05
   },
   {
     "N": 106,
-    "file": "summ_nested",
+    "file": "summ_ptr_assign",
     "k": 1,
     "passed0": 1,
     "passed1": 1,
@@ -1178,18 +1178,18 @@
   },
   {
     "N": 107,
-    "file": "summ_nested",
+    "file": "summ_ptr_assign",
     "k": 2,
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
     "qarmctime0": 0.03,
     "qarmctime1": 0.04,
-    "qarmctime2": 0.03
+    "qarmctime2": 0.04
   },
   {
     "N": 108,
-    "file": "summ_nested",
+    "file": "summ_ptr_assign",
     "k": 3,
     "passed0": 1,
     "passed1": 1,
@@ -1200,7 +1200,7 @@
   },
   {
     "N": 109,
-    "file": "summ_nested",
+    "file": "summ_ptr_assign",
     "k": 4,
     "passed0": 1,
     "passed1": 1,
@@ -1211,95 +1211,95 @@
   },
   {
     "N": 110,
-    "file": "summ_nested",
+    "file": "summ_ptr_assign",
     "k": 5,
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
     "qarmctime0": 0.03,
-    "qarmctime1": 0.05,
+    "qarmctime1": 0.04,
     "qarmctime2": 0.04
   },
   {
     "N": 111,
-    "file": "summ_ptr_assign",
+    "file": "summ_recursive",
     "k": 1,
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
-    "qarmctime0": 0.02,
-    "qarmctime1": 0.03,
-    "qarmctime2": 0.03
+    "qarmctime0": 0.09,
+    "qarmctime1": 0.07,
+    "qarmctime2": 0.05
   },
   {
     "N": 112,
-    "file": "summ_ptr_assign",
+    "file": "summ_recursive",
     "k": 2,
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
-    "qarmctime0": 0.02,
-    "qarmctime1": 0.03,
-    "qarmctime2": 0.03
+    "qarmctime0": 0.09,
+    "qarmctime1": 0.09,
+    "qarmctime2": 0.09
   },
   {
     "N": 113,
-    "file": "summ_ptr_assign",
-    "k": 3,
+    "file": "summ_rholocal",
+    "k": 1,
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
-    "qarmctime0": 0.02,
+    "qarmctime0": 0.03,
     "qarmctime1": 0.03,
     "qarmctime2": 0.03
   },
   {
     "N": 114,
-    "file": "summ_ptr_assign",
-    "k": 4,
-    "passed0": 1,
-    "passed1": 1,
-    "passed2": 1,
-    "qarmctime0": 0.02,
-    "qarmctime1": 0.04,
-    "qarmctime2": 0.04
-  },
-  {
-    "N": 115,
-    "file": "summ_ptr_assign",
-    "k": 5,
-    "passed0": 1,
-    "passed1": 1,
-    "passed2": 1,
-    "qarmctime0": 0.02,
-    "qarmctime1": 0.05,
-    "qarmctime2": 0.05
-  },
-  {
-    "N": 116,
-    "file": "summ_recursive",
-    "k": 1,
-    "passed0": 1,
-    "passed1": 1,
-    "passed2": 1,
-    "qarmctime0": 0.12,
-    "qarmctime1": 0.07,
-    "qarmctime2": 0.07
-  },
-  {
-    "N": 117,
-    "file": "summ_recursive",
+    "file": "summ_rholocal",
     "k": 2,
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
-    "qarmctime0": 0.12,
-    "qarmctime1": 0.09,
-    "qarmctime2": 0.1
+    "qarmctime0": 0.03,
+    "qarmctime1": 0.03,
+    "qarmctime2": 0.03
+  },
+  {
+    "N": 115,
+    "file": "summ_rholocal",
+    "k": 3,
+    "passed0": 1,
+    "passed1": 1,
+    "passed2": 1,
+    "qarmctime0": 0.03,
+    "qarmctime1": 0.03,
+    "qarmctime2": 0.04
+  },
+  {
+    "N": 116,
+    "file": "summ_rholocal",
+    "k": 4,
+    "passed0": 1,
+    "passed1": 1,
+    "passed2": 1,
+    "qarmctime0": 0.03,
+    "qarmctime1": 0.03,
+    "qarmctime2": 0.04
+  },
+  {
+    "N": 117,
+    "file": "summ_rholocal",
+    "k": 5,
+    "passed0": 1,
+    "passed1": 1,
+    "passed2": 1,
+    "qarmctime0": 0.03,
+    "qarmctime1": 0.04,
+    "qarmctime2": 0.04
   },
   {
     "N": 118,
-    "file": "summ_rholocal",
+    "file": "summ_rholocal2",
     "k": 1,
     "passed0": 1,
     "passed1": 1,
@@ -1310,18 +1310,18 @@
   },
   {
     "N": 119,
-    "file": "summ_rholocal",
+    "file": "summ_rholocal2",
     "k": 2,
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
     "qarmctime0": 0.02,
-    "qarmctime1": 0.04,
-    "qarmctime2": 0.04
+    "qarmctime1": 0.03,
+    "qarmctime2": 0.03
   },
   {
     "N": 120,
-    "file": "summ_rholocal",
+    "file": "summ_rholocal2",
     "k": 3,
     "passed0": 1,
     "passed1": 1,
@@ -1332,18 +1332,18 @@
   },
   {
     "N": 121,
-    "file": "summ_rholocal",
+    "file": "summ_rholocal2",
     "k": 4,
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
     "qarmctime0": 0.02,
-    "qarmctime1": 0.05,
-    "qarmctime2": 0.04
+    "qarmctime1": 0.03,
+    "qarmctime2": 0.03
   },
   {
     "N": 122,
-    "file": "summ_rholocal",
+    "file": "summ_rholocal2",
     "k": 5,
     "passed0": 1,
     "passed1": 1,
@@ -1354,325 +1354,171 @@
   },
   {
     "N": 123,
-    "file": "summ_rholocal2",
+    "file": "summ_SG1.r",
     "k": 1,
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
-    "qarmctime0": 0.02,
-    "qarmctime1": 0.03,
-    "qarmctime2": 0.03
+    "qarmctime0": 8.1,
+    "qarmctime1": 8.1,
+    "qarmctime2": 8.1
   },
   {
     "N": 124,
-    "file": "summ_rholocal2",
+    "file": "summ_SG1.r",
     "k": 2,
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
-    "qarmctime0": 0.02,
-    "qarmctime1": 0.03,
-    "qarmctime2": 0.03
+    "qarmctime0": 8.1,
+    "qarmctime1": 8.1,
+    "qarmctime2": 8.1
   },
   {
     "N": 125,
-    "file": "summ_rholocal2",
+    "file": "summ_SG1.r",
     "k": 3,
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
-    "qarmctime0": 0.02,
-    "qarmctime1": 0.04,
-    "qarmctime2": 0.03
+    "qarmctime0": 8.1,
+    "qarmctime1": 8.1,
+    "qarmctime2": 8.1
   },
   {
     "N": 126,
-    "file": "summ_rholocal2",
+    "file": "summ_SG1.r",
     "k": 4,
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
-    "qarmctime0": 0.02,
-    "qarmctime1": 0.04,
-    "qarmctime2": 0.04
+    "qarmctime0": 8.1,
+    "qarmctime1": 8.1,
+    "qarmctime2": 8.1
   },
   {
     "N": 127,
-    "file": "summ_rholocal2",
-    "k": 5,
+    "file": "summ_SG2.r",
+    "k": 1,
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
-    "qarmctime0": 0.02,
-    "qarmctime1": 0.04,
-    "qarmctime2": 0.04
+    "qarmctime0": 8.1,
+    "qarmctime1": 8.1,
+    "qarmctime2": 8.1
   },
   {
     "N": 128,
-    "file": "summ_SG1",
-    "k": 1,
+    "file": "summ_SG2.r",
+    "k": 2,
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
-    "qarmctime0": 0.11,
-    "qarmctime1": 0.12,
-    "qarmctime2": 0.12
+    "qarmctime0": 8.1,
+    "qarmctime1": 8.1,
+    "qarmctime2": 8.1
   },
   {
     "N": 129,
-    "file": "summ_SG1",
-    "k": 2,
+    "file": "summ_SG2.r",
+    "k": 3,
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
-    "qarmctime0": 0.11,
-    "qarmctime1": 0.11,
-    "qarmctime2": 0.15
+    "qarmctime0": 8.1,
+    "qarmctime1": 8.1,
+    "qarmctime2": 8.1
   },
   {
     "N": 130,
-    "file": "summ_SG1",
-    "k": 3,
+    "file": "summ_SG3",
+    "k": 1,
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
-    "qarmctime0": 0.11,
-    "qarmctime1": 0.11,
-    "qarmctime2": 0.13
+    "qarmctime0": 0.13,
+    "qarmctime1": 0.2,
+    "qarmctime2": 0.12
   },
   {
     "N": 131,
-    "file": "summ_SG1",
-    "k": 4,
-    "passed0": 1,
-    "passed1": 1,
-    "passed2": 1,
-    "qarmctime0": 0.11,
-    "qarmctime1": 0.11,
-    "qarmctime2": 0.1
-  },
-  {
-    "N": 132,
-    "file": "summ_SG1",
-    "k": 5,
-    "passed0": 1,
-    "passed1": 1,
-    "passed2": 1,
-    "qarmctime0": 0.11,
-    "qarmctime1": 0.14,
-    "qarmctime2": 0.11
-  },
-  {
-    "N": 133,
-    "file": "summ_SG1.r",
-    "k": 1,
-    "passed0": 1,
-    "passed1": 1,
-    "passed2": 1,
-    "qarmctime0": 8.1,
-    "qarmctime1": 8.1,
-    "qarmctime2": 8.1
-  },
-  {
-    "N": 134,
-    "file": "summ_SG1.r",
-    "k": 2,
-    "passed0": 1,
-    "passed1": 1,
-    "passed2": 1,
-    "qarmctime0": 8.1,
-    "qarmctime1": 8.1,
-    "qarmctime2": 8.1
-  },
-  {
-    "N": 135,
-    "file": "summ_SG1.r",
-    "k": 3,
-    "passed0": 1,
-    "passed1": 1,
-    "passed2": 1,
-    "qarmctime0": 8.1,
-    "qarmctime1": 8.1,
-    "qarmctime2": 8.1
-  },
-  {
-    "N": 136,
-    "file": "summ_SG1.r",
-    "k": 4,
-    "passed0": 1,
-    "passed1": 1,
-    "passed2": 1,
-    "qarmctime0": 8.1,
-    "qarmctime1": 8.1,
-    "qarmctime2": 8.1
-  },
-  {
-    "N": 137,
-    "file": "summ_SG2",
-    "k": 1,
-    "passed0": 1,
-    "passed1": 1,
-    "passed2": 1,
-    "qarmctime0": 8.1,
-    "qarmctime1": 8.1,
-    "qarmctime2": 8.1
-  },
-  {
-    "N": 138,
-    "file": "summ_SG2",
-    "k": 2,
-    "passed0": 1,
-    "passed1": 1,
-    "passed2": 1,
-    "qarmctime0": 8.1,
-    "qarmctime1": 8.1,
-    "qarmctime2": 8.1
-  },
-  {
-    "N": 139,
-    "file": "summ_SG2",
-    "k": 3,
-    "passed0": 1,
-    "passed1": 1,
-    "passed2": 1,
-    "qarmctime0": 8.1,
-    "qarmctime1": 8.1,
-    "qarmctime2": 8.1
-  },
-  {
-    "N": 140,
-    "file": "summ_SG2",
-    "k": 4,
-    "passed0": 1,
-    "passed1": 1,
-    "passed2": 1,
-    "qarmctime0": 8.1,
-    "qarmctime1": 8.1,
-    "qarmctime2": 8.1
-  },
-  {
-    "N": 141,
-    "file": "summ_SG2",
-    "k": 5,
-    "passed0": 1,
-    "passed1": 1,
-    "passed2": 1,
-    "qarmctime0": 8.1,
-    "qarmctime1": 8.1,
-    "qarmctime2": 8.1
-  },
-  {
-    "N": 142,
-    "file": "summ_SG2.r",
-    "k": 1,
-    "passed0": 1,
-    "passed1": 1,
-    "passed2": 1,
-    "qarmctime0": 8.1,
-    "qarmctime1": 8.1,
-    "qarmctime2": 8.1
-  },
-  {
-    "N": 143,
-    "file": "summ_SG2.r",
-    "k": 2,
-    "passed0": 1,
-    "passed1": 1,
-    "passed2": 1,
-    "qarmctime0": 8.1,
-    "qarmctime1": 8.1,
-    "qarmctime2": 8.1
-  },
-  {
-    "N": 144,
-    "file": "summ_SG3",
-    "k": 1,
-    "passed0": 1,
-    "passed1": 1,
-    "passed2": 1,
-    "qarmctime0": 0.13,
-    "qarmctime1": 0.2,
-    "qarmctime2": 0.11
-  },
-  {
-    "N": 145,
     "file": "summ_SG3",
     "k": 2,
-    "passed0": 1,
-    "passed1": 1,
-    "passed2": 1,
-    "qarmctime0": 0.13,
-    "qarmctime1": 0.2,
-    "qarmctime2": 0.13
-  },
-  {
-    "N": 146,
-    "file": "summ_SG3",
-    "k": 3,
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
     "qarmctime0": 0.13,
     "qarmctime1": 0.19,
+    "qarmctime2": 0.11
+  },
+  {
+    "N": 132,
+    "file": "summ_SG3",
+    "k": 3,
+    "passed0": 1,
+    "passed1": 1,
+    "passed2": 1,
+    "qarmctime0": 0.13,
+    "qarmctime1": 0.21,
     "qarmctime2": 0.14
   },
   {
-    "N": 147,
+    "N": 133,
     "file": "summ_SG3",
     "k": 4,
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
     "qarmctime0": 0.13,
-    "qarmctime1": 0.2,
-    "qarmctime2": 0.21
+    "qarmctime1": 0.21,
+    "qarmctime2": 0.22
   },
   {
-    "N": 148,
+    "N": 134,
     "file": "summ_slicing",
     "k": 1,
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
-    "qarmctime0": 0.05,
+    "qarmctime0": 0.06,
     "qarmctime1": 0.03,
     "qarmctime2": 0.03
   },
   {
-    "N": 149,
+    "N": 135,
     "file": "summ_slicing",
     "k": 2,
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
-    "qarmctime0": 0.05,
-    "qarmctime1": 0.08,
+    "qarmctime0": 0.06,
+    "qarmctime1": 0.09,
     "qarmctime2": 0.06
   },
   {
-    "N": 150,
+    "N": 136,
     "file": "summ_summs",
     "k": 1,
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
     "qarmctime0": 0.05,
-    "qarmctime1": 0.04,
+    "qarmctime1": 0.05,
     "qarmctime2": 0.05
   },
   {
-    "N": 151,
+    "N": 137,
     "file": "summ_summs",
     "k": 2,
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
     "qarmctime0": 0.05,
-    "qarmctime1": 0.08,
-    "qarmctime2": 0.07
+    "qarmctime1": 0.07,
+    "qarmctime2": 0.05
   },
   {
-    "N": 152,
+    "N": 138,
     "file": "summ_summs",
     "k": 3,
     "passed0": 1,
@@ -1680,43 +1526,43 @@
     "passed2": 1,
     "qarmctime0": 0.05,
     "qarmctime1": 0.07,
-    "qarmctime2": 0.08
+    "qarmctime2": 0.07
   },
   {
-    "N": 153,
+    "N": 139,
     "file": "summ_summs",
     "k": 4,
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
     "qarmctime0": 0.05,
-    "qarmctime1": 0.07,
+    "qarmctime1": 0.06,
     "qarmctime2": 0.08
   },
   {
-    "N": 154,
+    "N": 140,
     "file": "summ_summs",
     "k": 5,
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
     "qarmctime0": 0.05,
-    "qarmctime1": 0.09,
+    "qarmctime1": 0.08,
     "qarmctime2": 0.11
   },
   {
-    "N": 155,
+    "N": 141,
     "file": "summ_typedef",
     "k": 1,
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
     "qarmctime0": 0.04,
-    "qarmctime1": 0.05,
+    "qarmctime1": 0.04,
     "qarmctime2": 0.04
   },
   {
-    "N": 156,
+    "N": 142,
     "file": "summ_typedef",
     "k": 2,
     "passed0": 1,
@@ -1727,7 +1573,7 @@
     "qarmctime2": 0.05
   },
   {
-    "N": 157,
+    "N": 143,
     "file": "summ_typedef",
     "k": 3,
     "passed0": 1,
@@ -1738,18 +1584,18 @@
     "qarmctime2": 0.06
   },
   {
-    "N": 158,
+    "N": 144,
     "file": "summ_typedef",
     "k": 4,
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
     "qarmctime0": 0.04,
-    "qarmctime1": 0.07,
+    "qarmctime1": 0.06,
     "qarmctime2": 0.06
   },
   {
-    "N": 159,
+    "N": 145,
     "file": "summ_typedef",
     "k": 5,
     "passed0": 1,
@@ -1760,58 +1606,58 @@
     "qarmctime2": 0.07
   },
   {
-    "N": 160,
+    "N": 146,
     "file": "summ_x",
     "k": 1,
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
-    "qarmctime0": 0.03,
-    "qarmctime1": 0.02,
-    "qarmctime2": 0.03
+    "qarmctime0": 0.02,
+    "qarmctime1": 0.03,
+    "qarmctime2": 0.02
   },
   {
-    "N": 161,
+    "N": 147,
     "file": "summ_x",
     "k": 2,
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
-    "qarmctime0": 0.03,
-    "qarmctime1": 0.04,
-    "qarmctime2": 0.04
+    "qarmctime0": 0.02,
+    "qarmctime1": 0.03,
+    "qarmctime2": 0.03
   },
   {
-    "N": 162,
+    "N": 148,
     "file": "summ_x",
     "k": 3,
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
-    "qarmctime0": 0.03,
+    "qarmctime0": 0.02,
     "qarmctime1": 0.04,
-    "qarmctime2": 0.05
+    "qarmctime2": 0.04
   },
   {
-    "N": 163,
+    "N": 149,
     "file": "summ_x",
     "k": 4,
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
-    "qarmctime0": 0.03,
-    "qarmctime1": 0.04,
+    "qarmctime0": 0.02,
+    "qarmctime1": 0.05,
     "qarmctime2": 0.04
   },
   {
-    "N": 164,
+    "N": 150,
     "file": "summ_x",
     "k": 5,
     "passed0": 1,
     "passed1": 1,
     "passed2": 1,
-    "qarmctime0": 0.03,
+    "qarmctime0": 0.02,
     "qarmctime1": 0.05,
-    "qarmctime2": 0.06
+    "qarmctime2": 0.05
   }
 ]

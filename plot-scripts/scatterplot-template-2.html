@@ -8,42 +8,40 @@
     
     <style>
         text {
-            font: 12px sans-serif;
+            font: 10px sans-serif;
         }
         svg {
             display: block;
         }
-        html, body, #test1,#body, svg {
+        html, body, #test1, svg {
             margin: 0px;
             padding: 0px;
             height: 93%;
             width: 93%;
-            font: 8px;
-
         }
         #title-text {
-            margin: 10px;
-            padding: 10px;
+            margin: 15px;
+            padding: 15px;
             float:center;
-            font: 15px "Trebuchet MS", Helvetica, sans-serif;
+            font: 18px "Trebuchet MS", Helvetica, sans-serif;
             font-weight: bold;
             text-align: center;
 
         }
         #key {
-            margin: 8px;
+            margin-left: 60px;
             padding: 8px;
-            float:right;
-            font: 12px "Trebuchet MS", Helvetica, sans-serif;
+            float:left;
+            font: 15px "Trebuchet MS", Helvetica, sans-serif;
             text-align: left;
-            padding: 8px;
-            border: 1px solid;
 
         }
     </style>
 </head>
-<body id = "body" class='with-3d-shadow with-transitions'>
-
+<body >
+<div id="test1" class='with-3d-shadow with-transitions'>
+    <svg></svg>
+</div>
 <div>
     <div id="key"><br style="clear:both;"/>
         <div id="timelimit">timelimit</div>
@@ -52,15 +50,11 @@
         <div>Different answer: <font size=2>&#9633;</font></div>
         
     </div>
-    <div id="title-text" class="chart-title"><center>Comparison of QARMC Solving time before (P0) and after under-approximating (min(P1,P2))</center></div>
-</div>
-
-<div id="test1" class="chartWrap">
-    <svg></svg>
+    <div id="title-text" class="chart-title"><center>Comparison of QARMC solving time before (P0) and after under-approximating (min(P1,P2)) </center></div>
 </div>
 
 <script>
-    var min = 0.01, timelimit = 8, tam = 165, ks = 5;
+    var min = 0.01, timelimit = 8, tam = 151, ks = 5;
     var element = document.getElementById("timelimit");
     element.innerHTML = "QARMC Timeout (s): "+timelimit;
 
@@ -76,6 +70,7 @@
         chart = nv.models.scatterChart()
             .showDistX(true)
             .showDistY(true)
+            .pointRange([60,60])
             .duration(350)
             .color(d3.scale.category10().range());
 
