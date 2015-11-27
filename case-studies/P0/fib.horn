@@ -1,4 +1,4 @@
-% Expected QARMC output: program is correct
+% Program provided by Elena Gutierrez
 fib(0,0).
 fib(1,1).
 fib(M,N):-L=M-1,P=M-2,fib(P,Q),fib(L,R),N=Q+R.

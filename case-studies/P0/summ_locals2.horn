@@ -1,3 +1,4 @@
+% Program provided by Andrey Rybalchenko
 h1(A,B,C,D,A,B,C,D) :- 1=1.
 h2(A,B,C,D,E,F,G,H) :- E=2, F=1, G=3, h1(A,B,C,D,I,J,K,H).
 h3(A,B,A,B) :- A=C, h2(D,E,F,G,H,I,C,J).

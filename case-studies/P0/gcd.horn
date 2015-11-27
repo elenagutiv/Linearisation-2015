@@ -1,3 +1,4 @@
+% Program provided by Elena Gutierrez
 gcd(X,Y,Z) :- X>=1, X=X1, X=<Y-1, Y1=Y-X, Z=Z1, gcd(X1,Y1,Z1).
 false :- gcd(X,Y,Z), X>=1, X=X1, X=<Y-1, Y1=Y-X, Z>=Z1+1, gcd(X1,Y1,Z1). 
 false :- gcd(X,Y,Z), X>=1, X=X1, X=<Y-1, Y1=Y-X, Z=<Z1-1, gcd(X1,Y1,Z1). 

@@ -1,3 +1,4 @@
+% Program provided by Andrey Rybalchenko
 h1(A,B,C,A,B,C) :- 1=1.
 h2(A,B,C,D,A,B,C,D) :- A=79, h1(E,F,G,H,I,J).
 h4(A,B,C,D,E,F) :- G=79, H=E, h1(A,B,C,D,I,F), h3(G,J,K,L,M,N,O,H).

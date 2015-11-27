@@ -1,3 +1,4 @@
+% Program provided by Andrey Rybalchenko
 h1(A,A) :- 1=1.
 h2(A,B) :- h1(A,B).
 h3(A,A) :- A=42, h2(B,C).

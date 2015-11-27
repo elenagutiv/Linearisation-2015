@@ -1,3 +1,4 @@
+% Program provided by Andrey Rybalchenko
 main_qf :- main_q2(A,B,C,D,E,F),(D =< (2 + ((E - F) / 2))).
 false :- main_q2(A,B,C,D,E,F),(D > (2 + ((E - F) / 2))).
 main_q1(A,B,C,D,E,F) :- main_q0(A,B,C,G,H,I),(F >= 0), (E >= 0), (E >= F).

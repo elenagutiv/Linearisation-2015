@@ -1,3 +1,4 @@
+% Program provided by Elena Gutierrez
   fib(N,F) :- N=0, F=1.
   false :- fib(N,F), N=0, F>=2. 
   false :- fib(N,F), N=0, F=<0. 
