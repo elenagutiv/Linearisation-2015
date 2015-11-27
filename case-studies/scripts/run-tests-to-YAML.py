@@ -193,7 +193,7 @@ with fileinput.FileInput(YAMLformatfile, inplace=True) as file:
 	for first in file:
 			print (first.replace (']',']\"}]}'), end = '')
 
-print("Sample size: "+ N)
+print("Sample size: ",N)
 print()
 print("JSON format output in ",JSONformatfile)
 print()
