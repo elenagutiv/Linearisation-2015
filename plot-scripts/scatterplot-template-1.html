@@ -14,12 +14,14 @@
             display: block;
         }
         html, body, #test1, svg {
-            margin: 10px;
-            padding: 10px;
+            margin: 0px;
+            padding: 0px;
             height: 93%;
             width: 93%;
         }
         #title-text {
+            margin: 10px;
+            padding: 10px;
             float:center;
             font: 15px "Trebuchet MS", Helvetica, sans-serif;
             font-weight: bold;
@@ -27,6 +29,8 @@
 
         }
         #key {
+            margin: 8px;
+            padding: 8px;
             float:right;
             font: 12px "Trebuchet MS", Helvetica, sans-serif;
             text-align: left;
@@ -52,7 +56,7 @@
 </div>
 
 <script>
-    var min = 0.01, timelimit = 8, tam = 166, ks = 5;
+    var min = 0.01, timelimit = 8, tam = 164, ks = 5;
     var element = document.getElementById("timelimit");
     element.innerHTML = "QARMC Timeout (s): "+timelimit;
 
@@ -68,23 +72,24 @@
         chart = nv.models.scatterChart()
             .showDistX(true)
             .showDistY(true)
-            .duration(300)
+            .duration(350)
             .color(d3.scale.category10().range());
         chart.dispatch.on('renderEnd', function(){
             console.log('render complete');
         });
         // Log scale settings for X axis
-        chart.forceX([min]);
+
         chart.xScale(d3.scale.log());
         chart.xDomain( [ min, timelimit+3 ] ).yDomain( [ min, timelimit+3] );
 
+        chart.xAxis.tickValues([0.01,0.1,1,10]);
         chart.xAxis.tickFormat(d3.format('.02f'));
         chart.xAxis.axisLabel('P1 Q\'ARMC Runtime (s)');
 
         // Log scale settings for Y axis
         chart.yScale(d3.scale.log());
-        chart.forceY([min]); 
 
+        chart.yAxis.tickValues([0.01,0.1,1,10]);
         chart.yAxis.tickFormat(d3.format('.02f'));
         chart.yAxis.axisLabel('P2 Q\'ARMC Runtime (s)');
 
