@@ -28,7 +28,7 @@ _workspace directory_. This directory is given by the value of the
 `CIAOPATH` environment variable (or `~/.ciao` if unspecified).
 
 Binaries are placed in the `$CIAOPATH/build/bin` directory (or
-`~/.ciao/build/bin`). To call `lhornsolver` without specifying its
+`~/.ciao/build/bin`). To call `linearise_HC_PE` without specifying its
 full path it is recommended to include this directory in your `PATH`:
 
 ```
@@ -50,13 +50,10 @@ notation: e.g. `h(X):- C, b1(X1),...,bn(Xn).`
 
 ## Generate a standalone binary distribution
 
-```sh
-mkdir dist; cd dist
-ciaoc_sdyn ../src/linearise_HC_PE
-```
+
 
 1. `mkdir dist; cd dist`
-2. `ciaoc_sdyn ../src/linearise_HC_PE`
+2. `ciaoc_sdyn ../src/pe/linearise_HC_PE`
 
 This creates a platform specific binary `linearise_HC_PE` at `dist/`
 directory, together with the collection of shared libraries for the
