@@ -37,17 +37,13 @@ scripts			   | <ul><li>`run-tests-to-YAML.py`- It builds sets P1 and P2, runs QA
 
 To **run** tests, type in `case-studies/scripts/`:
 
-`$ python3 run-tests-to-JSON.py`
+`$ python3 run-tests-to-YAML.py`
 
-JSON file will be generated in `results/`.
-
-Alternatively, to get JSON data in a suitable format to build the **scatter plot** (NVD3):
-
-`$ python3 run-tests-to-plot.py`
+Two files will be generated with esentially the same information but different formats. A JSON file in `/case-studies/results/` and a YAML file in '/plot-scripts'.
 
 ----------
 
-To **customize** execution options, open and edit `run-tests-to-JSON.py` or `run-tests-to-plot.py`:
+To **customize** execution options, open and edit `run-tests-to-YAML.py`:
 
 
 `# USER OPTIONS #`
