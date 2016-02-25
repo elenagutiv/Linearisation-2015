@@ -1,7 +1,5 @@
 ## Linearisation-2015##
 
-
-# Linearising Horn clauses
 Linearisation of an index bounded set of Horn clauses.
 
 
