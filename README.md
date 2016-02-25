@@ -54,7 +54,7 @@ export PATH=$CIAOPATH/build/bin:$PATH
 or export PATH=~/.ciao/build/bin:$PATH
 ```
 
-**For developing** LHornSolver it is recommended to define `CIAOPATH`
+**For developing** `Linearisation-2015` it is recommended to define `CIAOPATH`
 (E.g., `~/ciao`) and clone this repository in your workspace.
 
 ## Usage
