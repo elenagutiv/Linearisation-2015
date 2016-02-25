@@ -10,7 +10,7 @@ Linearisation of an index bounded set of Horn clauses.
 
 Directory | Contents															|
 ---------------|--------------------------------------------------------------------|
-case-studies			   | Set of tests, scripts and results. For further detail, [README.md](https://github.com/elenagutiv/Linearisation-2015/tree/master/case-studies)	 															|
+case-studies			   | Set of tests, scripts and results. 	 															|
 plot-scripts			   | It contains scatter-plot generation HTML files.	 															|
 src		   | `source files`
 
