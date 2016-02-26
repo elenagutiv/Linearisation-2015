@@ -25,10 +25,8 @@ The lineariser  is written in Ciao and  uses
 Logen as a PE.
 
 ## Requirements
-1. [Ciao](http://github.com/ciao-lang/ciao) with
-[Parma Polyhedra Library](http://bugseng.com/products/ppl/) support
-(installed with `./ciao-boot.sh local-install
---contrib:with_ppl=yes --contrib:auto_install_ppl=yes`)
+1. [Ciao](http://github.com/ciao-lang/ciao) 
+(installed with `./ciao-boot.sh local-install`)
 
 2. Partial evaluator [Logen](https://github.com/leuschel/logen)
 (install the Ciao port with `ciao get github.com/jfmc/logen`).
