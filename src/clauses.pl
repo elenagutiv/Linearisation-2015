@@ -1,6 +1,13 @@
-:- module(clauses,[cleanup/0,set_options/3,load_file/1,clause_ids/1,write_clauses/2,write_clauses_ids/2,my_clause/3,my_ed/3,index_of_atom/2,cls_id/1,eds_id/1,mindex/1,next_node_id/1, update_dependence_graph/1,create_dependence_graph/1,depends/3,remember_clause/1,set_indexes/0,set_cls_id/0,set_eds_id/0,set_mindex/0,set_mindex/2,select_list/3,dim_ed/3,tc_is_linear/2,is_linear/1,all_clauses_of_index_k/3,separate_constraints/3,set_of_vars/2,intersect_lists/3]).
+:- module(clauses,[cleanup/0,set_options/3,load_file/1,clause_ids/1,write_clauses/2,write_clauses_ids/2,my_clause/3,my_ed/3,index_of_atom/2,cls_id/1,eds_id/1,mindex/1,next_node_id/1, update_dependence_graph/1,create_dependence_graph/1,depends/3,remember_clause/1,set_indexes/0,set_cls_id/0,set_eds_id/0,set_mindex/0,set_mindex/2,select_list/3,dim_ed/3,tc_is_linear/2,is_linear/1,all_clauses_of_index_k/3,separate_constraints/3,intersect_lists/3, append/2]).
 
-:- use_module(library(ugraphs)).
+:- use_module(library(graphs/ugraphs)).
+
+:- use_module(library(strings)).
+:- use_module(library(lists)).
+
+
+:- use_module(setops).
+
 
 :- dynamic my_clause/3.
 :- dynamic my_ed/3.
@@ -164,6 +171,7 @@ write_body_atoms(S,[B1,B2|Bs]) :-
 
 % Dependence graph manipulation methods.
 
+
 update_dependence_graph(NDG):-
 	create_dependence_graph(NDG).
 
@@ -195,6 +203,7 @@ depends(DG,S,H):-
 
 create_node_list(E,L1s,Res):-
 	findall(E-L,(member(L,L1s)),Res).
+
 
 % Lists manipulation methods.
 
@@ -286,7 +295,8 @@ index_of_clause(Id,K):-
 % to predicate name ED.
 dim_ed(ED,CK,ED1) :-
 	ED =.. [P|Xs],
-	atom_concat(CK,')',EDK1),
+    atom_number(CK1,CK),
+	atom_concat(CK1,')',EDK1),
 	atom_concat('(',EDK1,Suff),
 	atom_concat(P,Suff,P1),
 	ED1 =.. [P1|Xs].
@@ -314,23 +324,54 @@ separate_constraints([B|Bs],Cs,[B|Ds]) :-
 	!.
 separate_constraints([],[],[]).
 
-% Succeeds if S is the set containing all variables appearing in elements (either constraints or predicates) of list Ls.
-set_of_vars(Ls,S):-
-	extract_vars(Ls,VLs),
-	list_to_set(VLs,S).
 
-extract_vars([L|Ls],Res):-
-	L=..FTs,
-	FTs=[_|Ts],
-	all_vars(Ts,Vs),
-	extract_vars(Ls,RVs),
-	append(Vs,RVs,Res).
-extract_vars([],[]).
+%predicates defined to cope with the difference with SWI prolog
 
-all_vars([T|Ts],[T|Vs]):-
-	var(T),
-	!,
-	all_vars(Ts,Vs).
-all_vars([_|Ts],Vs):-
-	all_vars(Ts,Vs).
-all_vars([],[]).
+% extra predicates
+%motivated from SWI Prolog
+
+%append(+ListOfLists, ?List)
+%Concatenate a list of lists.  List is the concatenation of these lists.
+append([], []).
+ append([L|Ls], As) :-
+ 	append(L, Ws, As),
+ 	append(Ls, Ws).
+
+is_list([]).
+is_list([_|R]):-
+    is_list(R).
+
+atom_to_chars(A, S):-
+    atom_codes(A,S).
+number_to_chars(N, S):-
+    number_codes(N,S).
+
+/*
+
+reachable(+Vertex, +Graph, -Vertices)
+Unify Vertices with the set of all vertices in Graph that are reachable from Vertex. Example:
+?- reachable(1,[1-[3,5],2-[4],3-[],4-[5],5-[]],V).
+V = [1, 3, 5]
+
+*/
+
+reachable(V, Graph, Vertices):-
+    reachable3([V], Graph, [], Vertices1),
+    (member(V, Vertices1) -> Vertices=Vertices1; Vertices=[V|Vertices1]).
+
+reachable3([], _, _, []).
+reachable3([V|R], Graph, Considered, Vertices):-
+    neighbors(V, Graph, Neighbors),
+    append(R, Neighbors, ReachableInOneStep),
+    difference(ReachableInOneStep, [V|Considered], NotConsideredSofar),
+    reachable3(NotConsideredSofar, Graph, [V|Considered], Vertices1),
+    append(Neighbors, Vertices1, Vertices).
+
+/*
+go :-
+    reachable(1,[1-[3,5],2-[4],3-[],4-[5],5-[]],V),
+    write(V).
+*/
+
+
+
