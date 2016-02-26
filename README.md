@@ -22,7 +22,7 @@ src		   | `source files`
 ## Programming 
 
 The lineariser  is written in Ciao and  uses
-Logen as a PE.
+Logen as a Partial Evaluator.
 
 ## Requirements
 1. [Ciao](http://github.com/ciao-lang/ciao) 
@@ -57,10 +57,28 @@ or export PATH=~/.ciao/build/bin:$PATH
 
 ## Usage
 
-**Usage**: `linearise` -prg <*input file containing a set of Horn clauses*\> -k <*dimension_for_linearisation*\> [-elp] -o <*output file containing a set of linear Horn clauses*\>
+**Usage**: `linearise [key value*]+` 
+
+**key list**:
+
+`-prg` : value that follows it denotes an input program  
+
+`-k`   : value that follows it denotes a dimension 
+
+`-o`   : value that follows it denotes  an output file
+
+`-elp` : denotes a linearisation procedure ELP (is not follwed by any value any value and is optional)
+
+
+
+**Example**:
+ 
+`linearise` -prg  `example.pl` -k 2  -o `example2lin.pl`
+
+For a program `example.pl`, `example2lin.pl` represents a linearised version of 2-dim `example.pl`.
 
 **Input**: `a set of (non)-linear Horn clauses` written using Prolog
-notation: e.g. `h(X):- C, b1(X1),...,bn(Xn).`
+notation: e.g. `h(X):- C, b1(X1),...,bn(Xn)` and `a value of dimension` 
 
 **Output**: ` set of linear Horn clauses`.
 
