@@ -1,9 +1,9 @@
 %:- module(lin_elp,[script/0,lineariseHornELP/4]).
-:- module(lin_elp,[lineariseHornELP/4]).
+:- module(lin_elp,[lineariseHornELP/4, go/0]).
 
 :- use_module(clauses).
 :- use_module(setops).
-:- use_module(kdim1).
+:- use_module(kdim).
 :- use_module(common).
 
 :- use_module(library(terms_check)).
@@ -89,13 +89,18 @@ main(ArgV) :-
 
 /*add by Bishoksan*/
 
+go:-
+    lineariseHornELP('/tmp','fib2.horn','output.txt',2).
+
+
+
 lineariseHornELP(ResultDir, File, OutFile, K):-
     retractall(db(_,_)),
 	cleanup,
     assert(script(false)),
 	set_indexes,
     kdim_out_file(ResultDir, K, File, F_KDIM),
-    kdim1:main(['-prg', File, '-k', K, '-o', F_KDIM]),
+    kdim:main(['-prg', File, '-k', K, '-o', F_KDIM]),
 	load_file(F_KDIM),
 	clause_ids(Ids),
 	create_dependence_graph(DG),
