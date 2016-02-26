@@ -1,4 +1,4 @@
-:- module(clauses,[cleanup/0,set_options/3,load_file/1,clause_ids/1,write_clauses/2,write_clauses_ids/2,my_clause/3,my_ed/3,index_of_atom/2,cls_id/1,eds_id/1,mindex/1,next_node_id/1, update_dependence_graph/1,create_dependence_graph/1,depends/3,remember_clause/1,set_indexes/0,set_cls_id/0,set_eds_id/0,set_mindex/0,set_mindex/2,select_list/3,dim_ed/3,tc_is_linear/2,is_linear/1,all_clauses_of_index_k/3,intersect_lists/3, append/2]).
+:- module(clauses,[cleanup/0,set_options/3,load_file/1,clause_ids/1,write_clauses/2,write_clauses_ids/2,my_clause/3,my_ed/3,index_of_atom/2,cls_id/1,eds_id/1,mindex/1,next_node_id/1, update_dependence_graph/1,create_dependence_graph/1,depends/3,remember_clause/1,set_indexes/0,set_cls_id/0,set_eds_id/0,set_mindex/0,set_mindex/2,select_list/3,select_list4/4,dim_ed/3,tc_is_linear/2,is_linear/1,all_clauses_of_index_k/3,intersect_lists/3, append/2]).
 
 :- use_module(library(graphs/ugraphs)).
 
@@ -217,7 +217,7 @@ select_list([],Ls,Ls).
 
 % Succeeds if list Res is the result of selecting elements between E1 and E2 (not including those)
 % from list Ls.
-select_list(E1,E2,Ls,Res):-
+select_list4(E1,E2,Ls,Res):-
 	append([_,[E1],Ls1],Ls),
 	append([Ls2,[E2],_],Ls),
 	intersect_lists(Ls1,Ls2,Res),
@@ -254,12 +254,12 @@ tuple_to_list(A,[A]).
 
 index_of_atom(A,I) :-
 	atom_to_chars(A,Ls),
-	select_list(40,41,Ls,Is),
+	select_list4(40,41,Ls,Is),
 	number_to_chars(I,Is),
 	!.
 index_of_atom(A,I) :-
 	atom_to_chars(A,Ls),
-	select_list(91,93,Ls,Is),
+	select_list4(91,93,Ls,Is),
 	number_to_chars(I,Is),
 	!.
 

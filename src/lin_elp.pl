@@ -216,7 +216,7 @@ all_non_linear([],[]).
 %	SId is the id of the non-linear clause.
 %	LCls is the resultant set of linear clauses.
 clp(SId,LCls):-
-	e_tree_cons(SId,LCls1,ECls,EDIds),
+	e_tree_cons4(SId,LCls1,ECls,EDIds),
 	f_tree_cons(ECls,FCls),
 	append([LCls1,FCls],LCls2),
 	linearise_eds(EDIds,LCls3),
@@ -240,7 +240,7 @@ is_duplicated((H1:-B1)):-
 
 % E-tree construction methods.
 
-e_tree_cons(RId,LCls,ECls,EDIds):-
+e_tree_cons4(RId,LCls,ECls,EDIds):-
 	my_clause(H,B,RId),
 	!,
 	recorda(0,my_node(H,B,1)),
