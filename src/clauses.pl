@@ -1,4 +1,4 @@
-:- module(clauses,[cleanup/0,set_options/3,load_file/1,clause_ids/1,write_clauses/2,write_clauses_ids/2,my_clause/3,my_ed/3,index_of_atom/2,cls_id/1,eds_id/1,mindex/1,next_node_id/1, update_dependence_graph/1,create_dependence_graph/1,depends/3,remember_clause/1,set_indexes/0,set_cls_id/0,set_eds_id/0,set_mindex/0,set_mindex/2,select_list/3,dim_ed/3,tc_is_linear/2,is_linear/1,all_clauses_of_index_k/3,separate_constraints/3,intersect_lists/3, append/2]).
+:- module(clauses,[cleanup/0,set_options/3,load_file/1,clause_ids/1,write_clauses/2,write_clauses_ids/2,my_clause/3,my_ed/3,index_of_atom/2,cls_id/1,eds_id/1,mindex/1,next_node_id/1, update_dependence_graph/1,create_dependence_graph/1,depends/3,remember_clause/1,set_indexes/0,set_cls_id/0,set_eds_id/0,set_mindex/0,set_mindex/2,select_list/3,dim_ed/3,tc_is_linear/2,is_linear/1,all_clauses_of_index_k/3,intersect_lists/3, append/2]).
 
 :- use_module(library(graphs/ugraphs)).
 
@@ -7,6 +7,7 @@
 
 
 :- use_module(setops).
+:- use_module(common).
 
 
 :- dynamic my_clause/3.
@@ -312,17 +313,7 @@ constraint(1=0).
 constraint(true).
 constraint(fail).
 
-% Provided by J.P. Gallagher.
-% Succeeds if list Ds is the result of eliminating all constraints ([B|Cs]) from list [B|Bs].
-%	[B|Bs] is the list containing all the elements (constraints and predicates) of the body of a clause.
-separate_constraints([B|Bs],[B|Cs],Ds) :-
-	constraint(B),
-	!,
-	separate_constraints(Bs,Cs,Ds).
-separate_constraints([B|Bs],Cs,[B|Ds]) :-
-	separate_constraints(Bs,Cs,Ds),
-	!.
-separate_constraints([],[],[]).
+
 
 
 %predicates defined to cope with the difference with SWI prolog

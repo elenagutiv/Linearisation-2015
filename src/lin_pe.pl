@@ -78,12 +78,10 @@ find_asset(Name, Path) :-
 
 % ---------------------------------------------------------------------------
 
-lineariseHornPE(File,OutFile,K) :-
-    mktempdir_in_tmp('linearisepe-XXXXXXXX', ResultDir),
+lineariseHornPE(ResultDir, File,OutFile,K) :-
     path_concat(ResultDir, 'linearSolveProg_k_perm.pl', Interpreter),
     find_asset('linearSolve_k_perm.pl.ann', Annotation),
-    linearise(File, Interpreter, Annotation, K,  OutFile),
-    rmtempdir(ResultDir).
+    linearise(File, Interpreter, Annotation, K,  OutFile).
 
 
 linearise(P, Interpreter, Annotation, Dim,  PLin):-

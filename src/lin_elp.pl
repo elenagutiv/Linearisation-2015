@@ -1,16 +1,18 @@
-:- module(main,[script/0,main/1,go/1,go/2]).
+%:- module(lin_elp,[script/0,lineariseHornELP/4]).
+:- module(lin_elp,[lineariseHornELP/4]).
+
 :- use_module(clauses).
 :- use_module(setops).
-
+:- use_module(kdim1).
+:- use_module(common).
 
 :- use_module(library(terms_check)).
+:- use_module(library(pathnames), [path_basename/2, path_concat/3, path_split/3]).
 :- use_module(library(terms_vars)).
 :- use_module(library(terms)).
 :- use_module(library(strings)).
 :- use_module(library(lists)).
 :- use_module(library(hiordlib)). % foldl is define there
-
-
 
 
 
@@ -44,6 +46,7 @@
 %command line usage (if compiled with SWI Prolog command):
 % swipl main.pl
 
+/*
 script :-
 	current_prolog_flag(argv,Args),
 	get_arguments(Args,F,OutFile),
@@ -68,6 +71,7 @@ go_s(FI,FO):-
 	assert(script(true)),
 	main(['-prg',FI,'-o',FO]).
 
+
 main(ArgV) :-
     retractall(db(_,_)),
 	cleanup,
@@ -81,6 +85,37 @@ main(ArgV) :-
 	elp(NLIds,DG),
 	show_output(OutS),
 	close(OutS).
+*/
+
+/*add by Bishoksan*/
+
+lineariseHornELP(ResultDir, File, OutFile, K):-
+    retractall(db(_,_)),
+	cleanup,
+    assert(script(false)),
+	set_indexes,
+    kdim_out_file(ResultDir, K, File, F_KDIM),
+    kdim1:main(['-prg', File, '-k', K, '-o', F_KDIM]),
+	load_file(F_KDIM),
+	clause_ids(Ids),
+	create_dependence_graph(DG),
+	all_non_linear(Ids,NLIds),
+	elp(NLIds,DG),
+    open(OutFile, write, OutS),
+	show_output(OutS),
+	close(OutS).
+
+
+kdim_out_file(ResultDir, K, File, F_KDIM) :-
+    path_basename(File, Orig_F),
+    number_atom(K, A),
+    atom_concat(Orig_F, A, F_KDIM_K),
+    atom_concat(F_KDIM_K, '.pl', F_KDIM_K_PL),
+    path_concat(ResultDir, F_KDIM_K_PL, F_KDIM).
+
+/*add by Bishoksan*/
+
+
 
 % Program linearisation procedure
 % Tranforms the set of non-linear clauses into a set of linear clauses.
@@ -113,7 +148,7 @@ unfold((H:-B),A,Clauses) :-
 
 % Provided by J.P. Gallagher.
 unfold_clause((H:-Body),A,(H:-Body5)) :-
-    main:split(Pre,A,Post,Body),
+    lin_elp:split(Pre,A,Post,Body),
     my_clause(A,Body2,_),
     append(Body2,Post,Body3),
     append(Pre,Body3,Body1),
