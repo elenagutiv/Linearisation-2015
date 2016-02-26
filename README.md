@@ -67,7 +67,7 @@ or export PATH=~/.ciao/build/bin:$PATH
 
 `-o`   : value that follows it denotes  an output file
 
-`-elp` : denotes a linearisation procedure ELP (is not follwed by any value any value and is optional)
+`-pe` : uses a linearisation procedure based on Partial Evaluation (is not follwed by any value and is optional, the default procedure is elp)
 
 
 
