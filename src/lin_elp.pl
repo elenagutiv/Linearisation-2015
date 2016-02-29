@@ -46,46 +46,6 @@
 %command line usage (if compiled with SWI Prolog command):
 % swipl main.pl
 
-/*
-script :-
-	current_prolog_flag(argv,Args),
-	get_arguments(Args,F,OutFile),
-	go_s(F,OutFile).
-
-get_arguments(Args,F,OutFile):-
-	Args = [F,OutFile].
-
-
-go:-
-    main(['-prg', 'mc911.pl']).
-
-go(F):-
-	%assert(script(false)),
-	main(['-prg',F]).
-
-go(FI,FO):-
-	%assert(script(false)),
-	main(['-prg',FI,'-o',FO]).
-
-go_s(FI,FO):-
-	assert(script(true)),
-	main(['-prg',FI,'-o',FO]).
-
-
-main(ArgV) :-
-    retractall(db(_,_)),
-	cleanup,
-    assert(script(false)),
-	set_indexes,
-	set_options(ArgV,File,OutS),
-	load_file(File),
-	clause_ids(Ids),
-	create_dependence_graph(DG),
-	all_non_linear(Ids,NLIds),
-	elp(NLIds,DG),
-	show_output(OutS),
-	close(OutS).
-*/
 
 /*add by Bishoksan*/
 
@@ -434,20 +394,6 @@ non_trivial_msg([]).
 % Output methods.
 
 show_output(OutS):-
-	script(T),
-	T=false,
-	!,
-	findall((EH:-EB),my_ed(EH,EB,_),EDs),
-	clauseVars(EDs),
-	write(OutS,'Eureka Definitions:'),nl(OutS),
-	write_clauses(EDs,OutS),
-	findall((H:-B),my_clause(H,B,_),LCls),
-	clauseVars(LCls),
-	write(OutS,'Linearised Program:'),nl(OutS),
-	write_clauses(LCls,OutS).
-show_output(OutS):-
-	script(T),
-	T=true,
 	findall((H:-B),my_clause(H,B,_),LCls),
 	clauseVars(LCls),
 	write_clauses(LCls,OutS).
