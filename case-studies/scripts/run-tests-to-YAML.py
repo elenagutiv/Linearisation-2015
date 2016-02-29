@@ -21,7 +21,7 @@ from glob import glob
 from os.path import join
 
 kdim="kdim.pl"
-main="../../src/main.pl"
+main="../../Attic/main.pl"
 
 # USER OPTIONS #
 
