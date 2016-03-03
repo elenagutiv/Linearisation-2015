@@ -52,7 +52,7 @@
 </div>
 
 <script>
-    var min = 0.01, timelimit = 8, tam = 37, ks = 5;
+    var min = 0.01, timelimit = 8, tam = 123, ks = 5;
     var element = document.getElementById("timelimit");
     element.innerHTML = "QARMC Timeout (s): "+timelimit;
 
@@ -107,10 +107,10 @@
 
         // Function that generates the tooltip content html
         chart.tooltip.contentGenerator (function (d){
-            var html = "<h3> P1 time = <b>"+d.value+"</b></h3>";
+            var html = "<h3> ELP time = <b>"+d.value+"</b></h3>";
 
             d.series.forEach(function(elem){
-            html += "<h3> P2 time = <b>"+ elem.value + "</b></h3><h3> filename = "+ elem.values[d.pointIndex].file + "</h3>";
+            html += "<h3> PE time = <b>"+ elem.value + "</b></h3><h3> filename = "+ elem.values[d.pointIndex].file + "</h3>";
             })
             return html;
 

@@ -25,7 +25,7 @@ from os.path import join
 
 tests = glob(join('../P0', '*.horn'))
 
-ks=[1]
+ks=[1,2,3,4,5]
 
 linearisation_file = "../../src/linearise.pl"
 linearisation_exe = os.path.splitext(linearisation_file)[0]
