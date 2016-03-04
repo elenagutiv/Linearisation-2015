@@ -1,7 +1,6 @@
 *.osx
 *.log
-P1/
-P2/
+linear-programs/
 rename.sh
 *.bak
 *.itf

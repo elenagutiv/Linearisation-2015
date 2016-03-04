@@ -10,7 +10,7 @@ Linearisation of an index bounded set of Horn clauses.
 
 Directory | Contents															|
 ---------------|--------------------------------------------------------------------|
-case-studies			   | Set of tests, scripts and results. 	 															|
+benchmarks			   | Set of tests, scripts and results. 	 															|
 plot-scripts			   | It contains scatter-plot generation HTML files.	 															|
 src		   | `source files`
 
@@ -67,7 +67,7 @@ or export PATH=~/.ciao/build/bin:$PATH
 
 `-o`   : value that follows it denotes  an output file
 
-`-pe` : uses a linearisation procedure based on Partial Evaluation (is not follwed by any value and is optional, the default procedure is elp)
+`-pe` : uses a linearisation procedure based on Partial Evaluation (is not followed by any value and is optional, the default procedure is elp)
 
 
 
