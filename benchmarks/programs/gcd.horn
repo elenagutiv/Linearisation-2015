@@ -1,0 +1,12 @@
+% Program provided by Elena Gutierrez
+gcd(X,Y,Z) :- X>=1, X=X1, X=<Y-1, Y1=Y-X, Z=Z1, gcd(X1,Y1,Z1).
+false :- gcd(X,Y,Z), X>=1, X=X1, X=<Y-1, Y1=Y-X, Z>=Z1+1, gcd(X1,Y1,Z1). 
+false :- gcd(X,Y,Z), X>=1, X=X1, X=<Y-1, Y1=Y-X, Z=<Z1-1, gcd(X1,Y1,Z1). 
+
+gcd(X,Y,Z) :- X>=1, X=Y, Z=X.
+false :- gcd(X,Y,Z), X>=1, X=Y, Z>=X+1.
+false :- gcd(X,Y,Z), X>=1, X=Y, Z=<X-1.
+
+gcd(X,Y,Z) :- Y>=1, Y=Y1, X>=Y+1, X1=X-Y, Z=Z1, gcd(X1,Y1,Z1). 
+false :- gcd(X,Y,Z), Y>=1, Y=Y1, X>=Y+1, X1=X-Y, Z>=Z1+1, gcd(X1,Y1,Z1). 
+false :- gcd(X,Y,Z), Y>=1, Y=Y1, X>=Y+1, X1=X-Y, Z=<Z1-1, gcd(X1,Y1,Z1). 
