@@ -3,8 +3,8 @@
 
 # SCATTER PLOT DATA GENERATION SCRIPT
 
-# This file contains instructions to run a batch of tests located in directory P0. For each individual test, it generates P1 and P2 programs located in their
-# respective  directories P1/ and P2/ (created during execution). Then, it runs QARMC to solve P0, P1 and P2 in order to collect the tool answer and running times for each.
+# This file contains instructions to run a batch of tests located in directory programs. For each individual test, it generates P1 and linear-programs programs located in their
+# respective  directories P1/ and linear-programs/ (created during execution). Then, it runs QARMC to solve programs, P1 and linear-programs in order to collect the tool answer and running times for each.
 # Two files are generated as output with esentially the same content but different formats:
 
 # A .yml file in ../../plot-scripts/running-times.yml
@@ -23,16 +23,16 @@ from os.path import join
 
 # USER OPTIONS #
 
-tests = glob(join('../P0', '*.horn'))
+tests = glob(join('../programs', '*.horn'))
 
-ks=[1]
+ks=[1,2,3,4,5]
 
 linearisation_file = "../../src/linearise.pl"
 linearisation_exe = os.path.splitext(linearisation_file)[0]
 
 qarmc_filename = "./qarmc-latest.osx" # Change executable filename if needed.
 extraoptions = " -debug "
-qarmc_timelimit = "8" # sec.
+qarmc_timelimit = "20" # sec.
 
 elp_timelimit = "15" # sec.
 pe_timelimit = "15" #sec.
@@ -52,11 +52,11 @@ print("ELP time limit = ",elp_timelimit)
 print("PE time limit = ",pe_timelimit)
 print()
 
-output = subprocess.Popen(['mkdir','../P2'], stdout = subprocess.PIPE, stderr = subprocess.PIPE)
+output = subprocess.Popen(['mkdir','../linear-programs'], stdout = subprocess.PIPE, stderr = subprocess.PIPE)
 
 if not os.path.exists(os.path.dirname(JSONformatfile)):
     os.makedirs(os.path.dirname(JSONformatfile))
-JSONoutfile = open(JSONformatfile, 'w')
+JSONoutfile = open(JSONformatfile, 'w+')
 
 YAMLoutfile = open(YAMLformatfile, 'w+')
 
@@ -75,7 +75,7 @@ for files in tests:
 		f = os.path.basename(files)
 		base = os.path.splitext(f)[0]
 
-		p0_path = "../P0/" + base + ".horn"; ELP_p2_path = "../P2/"+"ELP_"+ base + ".horn"; PE_p2_path = "../P2/" +"PE_"+ base + ".horn"
+		p0_path = "../programs/" + base + ".horn"; ELP_p2_path = "../linear-programs/"+"ELP_"+ base + ".horn"; PE_p2_path = "../linear-programs/" +"PE_"+ base + ".horn"
 
 		#begin_time_elp = int(round(time.time() * 1000))
 		try:
@@ -89,7 +89,7 @@ for files in tests:
 			#elp_time = float(end_time_elp - begin_time_elp)/1000
 
 			fp = open(ELP_p2_path,'a') 
-			print("false:-\'false["+k+"]\'.", file = fp)# Add false clause to P2
+			print("false:-\'false["+k+"]\'.", file = fp)# Add false clause to linear-programs
 			fp.close()
 
 			#begin_time_pe = int(round(time.time() * 1000))

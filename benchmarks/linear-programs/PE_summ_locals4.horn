@@ -1,0 +1,338 @@
+h1(A,B,C,D,A,B,C,D) :- 
+      1=1,
+      solve__23.
+h2(A,B,A,B) :- 
+      A= -1,
+      h1(C,D,E,F,G,H,I,J).
+h2(A,B,A,B) :- 
+      A= -2,
+      h6(C,D,E,F,G,H,I,J).
+h4(A,B,C,D,E,F,G,H) :- 
+      I= -1,
+      J=F,
+      solve__24(H,G,K,E,D,C,B,A,J,L,M,I).
+h4(A,B,C,D,E,F,G,H) :- 
+      I= -1,
+      J=F,
+      solve__25(J,K,L,I,H,G,M,E,D,C,B,A).
+h6(A,B,C,D,E,F,G,H) :- 
+      F=E,
+      h4(A,B,C,D,I,F,G,H).
+h7(A,B,C,D,E,F,G,H) :- 
+      I= -2,
+      J=H,
+      solve__26(K,G,F,E,D,C,B,A,J,L,M,I).
+h7(A,B,C,D,E,F,G,H) :- 
+      I= -2,
+      J=H,
+      solve__27(J,K,L,I,M,G,F,E,D,C,B,A).
+h9(A,B,C,D,E,F,G,H) :- 
+      H=G,
+      h7(A,B,C,D,E,F,I,H).
+h10(A,B,C,D,E,F,G,H) :- 
+      h9(A,B,C,D,E,F,G,H).
+h11(A,B,C,D,E,F,G,H) :- 
+      E+G=<2,
+      h10(A,B,C,D,E,F,G,H).
+false :- 
+      h11(A,B,C,D,E,F,G,H).
+false :- 
+      h12(A,B,C,D,E,F,G,H).
+h12(A,B,C,D,E,F,G,H) :- 
+      E+G>=4,
+      h10(A,B,C,D,E,F,G,H).
+h13(A,B,C,D,E,F,G,H) :- 
+      E=3-G,
+      h10(A,B,C,D,E,F,G,H).
+h14(A,B,C,D,E,F,G,H) :- 
+      h13(A,B,C,D,E,F,G,H).
+h15(A,B,C,D,E,F,G,H) :- 
+      h14(A,B,C,D,E,F,G,H).
+h16(A,B,C,D) :- 
+      E= -1+C,
+      h2(A,B,E,D).
+h17(A,B,C,D) :- 
+      h16(A,B,C,D).
+h18(A,B,C,D) :- 
+      C>=0,
+      h17(A,B,C,D).
+h19(A,B,C,D) :- 
+      D=1,
+      h18(A,B,C,E).
+h20(A,B,C,D) :- 
+      C=< -1,
+      h17(A,B,C,D).
+h21(A,B,C,D) :- 
+      D=2,
+      h20(A,B,C,E).
+h22(A,B,C,D) :- 
+      h19(A,B,C,D).
+h23(A,B,C,D) :- 
+      h22(A,B,C,D).
+h23(A,B,C,D) :- 
+      h21(A,B,C,D).
+h3(A,B,C,D) :- 
+      h23(A,B,C,D).
+solve__23 :- 
+      true.
+solve__24(A,B,C,D,A,B,C,D,E,F,G,H) :- 
+      1=1,
+      h3(H,G,F,E).
+solve__25(A,B,C,D,E,F,G,H,I,J,K,L) :- 
+      solve__28(A,B,C,D,E,F,G,H,I,J,K,L).
+solve__26(A,B,C,D,E,F,G,H,I,J,K,L) :- 
+      C=D,
+      solve__29(A,B,C,M,E,F,G,H,I,J,K,L).
+solve__27(A,B,C,D,E,F,G,H,I,J,K,L) :- 
+      solve__30(A,B,C,D,E,F,G,H,I,J,K,L).
+solve__28(A,B,C,D,E,F,G,H,I,J,K,L) :- 
+      solve__31(A,B,C,D,E,F,G,H,I,J,K,L).
+solve__28(A,B,C,D,E,F,G,H,I,J,K,L) :- 
+      solve__32(A,B,C,D,E,F,G,H,I,J,K,L).
+solve__29(A,B,C,D,E,F,G,H,I,J,K,L) :- 
+      M= -1,
+      N=C,
+      solve__33(L,K,J,I,M,O,P,N,H,G,F,E,D,Q,B,A).
+solve__29(A,B,C,D,E,F,G,H,I,J,K,L) :- 
+      M= -1,
+      N=C,
+      solve__34(L,K,J,I,H,G,F,E,D,O,B,A,M,P,Q,N).
+solve__30(A,B,C,D,E,F,G,H,I,J,K,L) :- 
+      solve__35(A,B,C,D,E,F,G,H,I,J,K,L).
+solve__30(A,B,C,D,E,F,G,H,I,J,K,L) :- 
+      solve__36(A,B,C,D,E,F,G,H,I,J,K,L).
+solve__31(A,B,C,D,E,F,G,H,I,J,K,L) :- 
+      solve__37(A,B,C,D,E,F,G,H,I,J,K,L).
+solve__32(A,B,C,D,E,F,G,H,I,J,K,L) :- 
+      A=2,
+      solve__38(M,B,C,D,E,F,G,H,I,J,K,L).
+solve__33(A,B,C,D,E,F,G,H,I,J,K,L,I,J,K,L) :- 
+      1=1,
+      solve__39(H,G,F,E,D,C,B,A).
+solve__34(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P) :- 
+      solve__40(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P).
+solve__35(A,B,C,D,E,F,G,H,I,J,K,L) :- 
+      solve__41(A,B,C,D,E,F,G,H,I,J,K,L).
+solve__36(A,B,C,D,E,F,G,H,I,J,K,L) :- 
+      A=2,
+      solve__42(M,B,C,D,E,F,G,H,I,J,K,L).
+solve__37(A,B,C,D,E,F,G,H,I,J,K,L) :- 
+      A=1,
+      solve__43(M,B,C,D,E,F,G,H,I,J,K,L).
+solve__38(A,B,C,D,E,F,G,H,I,J,K,L) :- 
+      B=< -1,
+      solve__44(A,B,C,D,E,F,G,H,I,J,K,L).
+solve__39(A,B,C,D,E,F,G,H) :- 
+      solve__45(A,B,C,D,E,F,G,H).
+solve__40(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P) :- 
+      solve__46(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P).
+solve__40(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P) :- 
+      solve__47(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P).
+solve__41(A,B,C,D,E,F,G,H,I,J,K,L) :- 
+      A=1,
+      solve__48(M,B,C,D,E,F,G,H,I,J,K,L).
+solve__42(A,B,C,D,E,F,G,H,I,J,K,L) :- 
+      B=< -1,
+      solve__49(A,B,C,D,E,F,G,H,I,J,K,L).
+solve__43(A,B,C,D,E,F,G,H,I,J,K,L) :- 
+      B>=0,
+      solve__44(A,B,C,D,E,F,G,H,I,J,K,L).
+solve__44(A,B,C,D,E,F,G,H,I,J,K,L) :- 
+      solve__50(A,B,C,D,E,F,G,H,I,J,K,L).
+solve__45(A,B,C,D,E,F,G,H) :- 
+      solve__51(A,B,C,D,E,F,G,H).
+solve__45(A,B,C,D,E,F,G,H) :- 
+      solve__52(A,B,C,D,E,F,G,H).
+solve__46(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P) :- 
+      solve__53(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P).
+solve__47(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P) :- 
+      P=2,
+      solve__54(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,Q).
+solve__48(A,B,C,D,E,F,G,H,I,J,K,L) :- 
+      B>=0,
+      solve__49(A,B,C,D,E,F,G,H,I,J,K,L).
+solve__49(A,B,C,D,E,F,G,H,I,J,K,L) :- 
+      solve__55(A,B,C,D,E,F,G,H,I,J,K,L).
+solve__50(A,B,C,D,E,F,G,H,I,J,K,L) :- 
+      M= -1+B,
+      solve__56(A,M,C,D,E,F,G,H,I,J,K,L).
+solve__51(A,B,C,D,E,F,G,H) :- 
+      solve__57(A,B,C,D,E,F,G,H).
+solve__52(A,B,C,D,E,F,G,H) :- 
+      A=2,
+      solve__58(I,B,C,D,E,F,G,H).
+solve__53(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P) :- 
+      P=1,
+      solve__59(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,Q).
+solve__54(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P) :- 
+      O=< -1,
+      solve__60(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P).
+solve__55(A,B,C,D,E,F,G,H,I,J,K,L) :- 
+      M= -1+B,
+      solve__61(A,M,C,D,E,F,G,H,I,J,K,L).
+solve__56(A,B,A,B,C,D,E,F,G,H,I,J) :- 
+      B= -1,
+      solve__62(K,L,M,N,O,P,Q,R,C,D,E,F,G,H,I,J).
+solve__56(A,B,A,B,C,D,E,F,G,H,I,J) :- 
+      B= -2,
+      solve__63(K,L,M,N,O,P,Q,R,C,D,E,F,G,H,I,J).
+solve__57(A,B,C,D,E,F,G,H) :- 
+      A=1,
+      solve__64(I,B,C,D,E,F,G,H).
+solve__58(A,B,C,D,E,F,G,H) :- 
+      B=< -1,
+      solve__65(A,B,C,D,E,F,G,H).
+solve__59(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P) :- 
+      O>=0,
+      solve__60(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P).
+solve__60(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P) :- 
+      solve__66(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P).
+solve__61(A,B,A,B,C,D,E,F,G,H,I,J) :- 
+      B= -1,
+      solve__67(K,L,M,N,O,P,Q,R,C,D,E,F,G,H,I,J).
+solve__61(A,B,A,B,C,D,E,F,G,H,I,J) :- 
+      B= -2,
+      solve__68(K,L,M,N,O,P,Q,R,C,D,E,F,G,H,I,J).
+solve__62(A,B,C,D,A,B,C,D,E,F,G,H,I,J,K,L) :- 
+      1=1,
+      h1(L,K,J,I,H,G,F,E).
+solve__63(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P) :- 
+      C=D,
+      solve__69(A,B,C,Q,E,F,G,H,I,J,K,L,M,N,O,P).
+solve__64(A,B,C,D,E,F,G,H) :- 
+      B>=0,
+      solve__65(A,B,C,D,E,F,G,H).
+solve__65(A,B,C,D,E,F,G,H) :- 
+      solve__70(A,B,C,D,E,F,G,H).
+solve__66(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P) :- 
+      Q= -1+O,
+      solve__71(A,B,C,D,E,F,G,H,I,J,K,L,M,N,Q,P).
+solve__67(A,B,C,D,A,B,C,D,E,F,G,H,I,J,K,L) :- 
+      1=1,
+      h6(L,K,J,I,H,G,F,E).
+solve__68(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P) :- 
+      C=D,
+      solve__72(A,B,C,Q,E,F,G,H,I,J,K,L,M,N,O,P).
+solve__69(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P) :- 
+      Q= -1,
+      R=C,
+      solve__73(P,O,N,M,L,K,J,I,Q,S,T,R,H,G,F,E,D,U,B,A).
+solve__69(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P) :- 
+      Q= -1,
+      R=C,
+      solve__74(P,O,N,M,L,K,J,I,H,G,F,E,D,S,B,A,Q,T,U,R).
+solve__70(A,B,C,D,E,F,G,H) :- 
+      I= -1+B,
+      solve__75(A,I,C,D,E,F,G,H).
+solve__71(A,B,C,D,E,F,G,H,I,J,K,L,M,N,M,N) :- 
+      M= -1,
+      solve__76(A,B,C,D,E,F,G,H,I,J,K,L,O,P,Q,R,S,T,U,V).
+solve__71(A,B,C,D,E,F,G,H,I,J,K,L,M,N,M,N) :- 
+      M= -2,
+      solve__77(A,B,C,D,E,F,G,H,I,J,K,L,O,P,Q,R,S,T,U,V).
+solve__72(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P) :- 
+      Q= -1,
+      R=C,
+      solve__78(P,O,N,M,L,K,J,I,Q,S,T,R,H,G,F,E,D,U,B,A).
+solve__72(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P) :- 
+      Q= -1,
+      R=C,
+      solve__79(P,O,N,M,L,K,J,I,H,G,F,E,D,S,B,A,Q,T,U,R).
+solve__73(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,M,N,O,P) :- 
+      1=1,
+      solve__25(L,K,J,I,H,G,F,E,D,C,B,A).
+solve__74(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T) :- 
+      solve__80(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T).
+solve__75(A,B,A,B,C,D,E,F) :- 
+      B= -1,
+      solve__24(G,H,I,J,K,L,M,N,C,D,E,F).
+solve__75(A,B,A,B,C,D,E,F) :- 
+      B= -2,
+      solve__26(G,H,I,J,K,L,M,N,C,D,E,F).
+solve__76(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,M,N,O,P) :- 
+      1=1,
+      solve__24(L,K,J,I,H,G,F,E,D,C,B,A).
+solve__77(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T) :- 
+      R=Q,
+      solve__81(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,U,R,S,T).
+solve__78(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,M,N,O,P) :- 
+      1=1,
+      solve__27(L,K,J,I,H,G,F,E,D,C,B,A).
+solve__79(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T) :- 
+      solve__82(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T).
+solve__80(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T) :- 
+      solve__83(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T).
+solve__80(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T) :- 
+      solve__84(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T).
+solve__81(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T) :- 
+      1=0.
+solve__82(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T) :- 
+      solve__85(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T).
+solve__82(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T) :- 
+      solve__86(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T).
+solve__83(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T) :- 
+      solve__87(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T).
+solve__84(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T) :- 
+      T=2,
+      solve__88(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,U).
+solve__85(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T) :- 
+      solve__89(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T).
+solve__86(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T) :- 
+      T=2,
+      solve__90(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,U).
+solve__87(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T) :- 
+      T=1,
+      solve__91(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,U).
+solve__88(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T) :- 
+      S=< -1,
+      solve__92(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T).
+solve__89(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T) :- 
+      T=1,
+      solve__93(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,U).
+solve__90(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T) :- 
+      S=< -1,
+      solve__94(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T).
+solve__91(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T) :- 
+      S>=0,
+      solve__92(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T).
+solve__92(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T) :- 
+      solve__95(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T).
+solve__93(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T) :- 
+      S>=0,
+      solve__94(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T).
+solve__94(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T) :- 
+      solve__96(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T).
+solve__95(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T) :- 
+      U= -1+S,
+      solve__97(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,U,T).
+solve__96(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T) :- 
+      U= -1+S,
+      solve__98(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,U,T).
+solve__97(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,Q,R) :- 
+      Q= -1,
+      solve__99(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,S,T,U,V,W,X,Y,Z).
+solve__97(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,Q,R) :- 
+      Q= -2,
+      solve__100(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,S,T,U,V,W,X,Y,Z).
+solve__98(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,Q,R) :- 
+      Q= -1,
+      solve__101(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,S,T,U,V,W,X,Y,Z).
+solve__98(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,Q,R) :- 
+      Q= -2,
+      solve__102(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,S,T,U,V,W,X,Y,Z).
+solve__99(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,Q,R,S,T) :- 
+      1=1,
+      solve__62(P,O,N,M,L,K,J,I,H,G,F,E,D,C,B,A).
+solve__100(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X) :- 
+      V=U,
+      solve__103(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,Y,V,W,X).
+solve__101(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,Q,R,S,T) :- 
+      1=1,
+      solve__67(P,O,N,M,L,K,J,I,H,G,F,E,D,C,B,A).
+solve__102(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X) :- 
+      V=U,
+      solve__104(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,Y,V,W,X).
+solve__103(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X) :- 
+      1=0.
+solve__104(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X) :- 
+      1=0.

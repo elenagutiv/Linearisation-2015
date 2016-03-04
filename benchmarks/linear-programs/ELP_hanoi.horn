@@ -1,0 +1,165 @@
+'hanoi(0)'(A,B) :- A=1, B=1.
+'false(5)' :- A=1, B>=2, 'hanoi(5)'(A,B).
+'false(4)' :- A=1, B>=2, 'hanoi(4)'(A,B).
+'false(3)' :- A=1, B>=2, 'hanoi(3)'(A,B).
+'false(2)' :- A=1, B>=2, 'hanoi(2)'(A,B).
+'false(1)' :- A=1, B>=2, 'hanoi(1)'(A,B).
+'false(0)' :- A=1, B>=2, 'hanoi(0)'(A,B).
+'false(5)' :- A=1, B=<0, 'hanoi(5)'(A,B).
+'false(4)' :- A=1, B=<0, 'hanoi(4)'(A,B).
+'false(3)' :- A=1, B=<0, 'hanoi(3)'(A,B).
+'false(2)' :- A=1, B=<0, 'hanoi(2)'(A,B).
+'false(1)' :- A=1, B=<0, 'hanoi(1)'(A,B).
+'false(0)' :- A=1, B=<0, 'hanoi(0)'(A,B).
+'hanoi(5)'(A,B) :- B=2*C+1, D=A-1, A>=2, 'hanoi(5)'(D,C).
+'hanoi(4)'(A,B) :- B=2*C+1, D=A-1, A>=2, 'hanoi(4)'(D,C).
+'hanoi(3)'(A,B) :- B=2*C+1, D=A-1, A>=2, 'hanoi(3)'(D,C).
+'hanoi(2)'(A,B) :- B=2*C+1, D=A-1, A>=2, 'hanoi(2)'(D,C).
+'hanoi(1)'(A,B) :- B=2*C+1, D=A-1, A>=2, 'hanoi(1)'(D,C).
+'hanoi(0)'(A,B) :- B=2*C+1, D=A-1, A>=2, 'hanoi(0)'(D,C).
+'false[5]' :- 'false(5)'.
+'false[5]' :- 'false(4)'.
+'false[5]' :- 'false(3)'.
+'false[5]' :- 'false(2)'.
+'false[5]' :- 'false(1)'.
+'false[5]' :- 'false(0)'.
+'false[4]' :- 'false(4)'.
+'false[4]' :- 'false(3)'.
+'false[4]' :- 'false(2)'.
+'false[4]' :- 'false(1)'.
+'false[4]' :- 'false(0)'.
+'false[3]' :- 'false(3)'.
+'false[3]' :- 'false(2)'.
+'false[3]' :- 'false(1)'.
+'false[3]' :- 'false(0)'.
+'false[2]' :- 'false(2)'.
+'false[2]' :- 'false(1)'.
+'false[2]' :- 'false(0)'.
+'false[1]' :- 'false(1)'.
+'false[1]' :- 'false(0)'.
+'false[0]' :- 'false(0)'.
+'hanoi[5]'(A,B) :- 'hanoi(5)'(A,B).
+'hanoi[5]'(A,B) :- 'hanoi(4)'(A,B).
+'hanoi[5]'(A,B) :- 'hanoi(3)'(A,B).
+'hanoi[5]'(A,B) :- 'hanoi(2)'(A,B).
+'hanoi[5]'(A,B) :- 'hanoi(1)'(A,B).
+'hanoi[5]'(A,B) :- 'hanoi(0)'(A,B).
+'hanoi[4]'(A,B) :- 'hanoi(4)'(A,B).
+'hanoi[4]'(A,B) :- 'hanoi(3)'(A,B).
+'hanoi[4]'(A,B) :- 'hanoi(2)'(A,B).
+'hanoi[4]'(A,B) :- 'hanoi(1)'(A,B).
+'hanoi[4]'(A,B) :- 'hanoi(0)'(A,B).
+'hanoi[3]'(A,B) :- 'hanoi(3)'(A,B).
+'hanoi[3]'(A,B) :- 'hanoi(2)'(A,B).
+'hanoi[3]'(A,B) :- 'hanoi(1)'(A,B).
+'hanoi[3]'(A,B) :- 'hanoi(0)'(A,B).
+'hanoi[2]'(A,B) :- 'hanoi(2)'(A,B).
+'hanoi[2]'(A,B) :- 'hanoi(1)'(A,B).
+'hanoi[2]'(A,B) :- 'hanoi(0)'(A,B).
+'hanoi[1]'(A,B) :- 'hanoi(1)'(A,B).
+'hanoi[1]'(A,B) :- 'hanoi(0)'(A,B).
+'hanoi[0]'(A,B) :- 'hanoi(0)'(A,B).
+'false(1)' :- A=1, B=1, B=C-1, C>=2, D>=2*A+2, 'hanoi(1)'(C,D).
+'false(1)' :- A>=2, B=A-1, C=2*D+1, A=E-1, E>=2, F>=2*C+2, 'new1(1)'(B,D,E,F).
+'new1(1)'(A,B,C,D) :- B=1, A=1, 'hanoi(1)'(C,D).
+'new1(1)'(A,B,C,D) :- A>=2, E=A-1, B=2*F+1, 'new1(1)'(E,F,C,D).
+'false(1)' :- A>=2*B+2, C>=2, D=C-1, 'new1(1)'(C,A,D,B).
+'false(1)' :- A=1, B=1, A>=2*C+2, B>=2, D=B-1, 'hanoi(0)'(D,C).
+'false(1)' :- A=B-1, C=2*D+1, C>=2*E+2, B>=2, F=B-1, 'new2(1)'(A,D,F,E).
+'new2(1)'(A,B,C,D) :- B=1, A=1, 'hanoi(0)'(C,D).
+'new2(1)'(A,B,C,D) :- A>=2, E=A-1, B=2*F+1, 'new2(1)'(E,F,C,D).
+'false(1)' :- A>=2, B=<2*C, D=A-1, 'new1(1)'(D,C,A,B).
+'false(1)' :- A>=2, B=<2*C, D=A-1, 'new1(1)'(A,B,D,C).
+'false(1)' :- A=1, B=1, B>=2, A=<2*C, D=B-1, 'hanoi(0)'(D,C).
+'false(1)' :- A=B-1, C=2*D+1, B>=2, C=<2*E, F=B-1, 'new2(1)'(A,D,F,E).
+'false(2)' :- A=1, B=1, B=C-1, C>=2, D>=2*A+2, 'hanoi(2)'(C,D).
+'false(2)' :- A>=2, B=A-1, C=2*D+1, A=E-1, E>=2, F>=2*C+2, 'new3(2)'(B,D,E,F).
+'false(2)' :- A>=2, B=A-1, C=2*D+1, A=E-1, E>=2, F>=2*C+2, 'new4(2)'(B,D,E,F).
+'new3(2)'(A,B,C,D) :- A>=2, E=A-1, B=2*F+1, 'new3(2)'(E,F,C,D).
+'new4(2)'(A,B,C,D) :- B=1, A=1, 'hanoi(2)'(C,D).
+'new4(2)'(A,B,C,D) :- A>=2, E=A-1, B=2*F+1, 'new4(2)'(E,F,C,D).
+'false(2)' :- A>=2*B+2, C>=2, D=C-1, 'new3(2)'(C,A,D,B).
+'false(2)' :- A>=2*B+2, C>=2, D=C-1, 'new4(2)'(C,A,D,B).
+'false(2)' :- A=B-1, C=2*D+1, C>=2*E+2, B>=2, F=B-1, 'new5(2)'(A,D,F,E).
+'new5(2)'(A,B,C,D) :- A>=2, E=A-1, B=2*F+1, 'new5(2)'(E,F,C,D).
+'false(2)' :- A>=2, B=<2*C, D=A-1, 'new3(2)'(D,C,A,B).
+'false(2)' :- A>=2, B=<2*C, D=A-1, 'new4(2)'(D,C,A,B).
+'false(2)' :- A>=2, B=<2*C, D=A-1, 'new3(2)'(A,B,D,C).
+'false(2)' :- A>=2, B=<2*C, D=A-1, 'new4(2)'(A,B,D,C).
+'false(2)' :- A=B-1, C=2*D+1, B>=2, C=<2*E, F=B-1, 'new5(2)'(A,D,F,E).
+'false(3)' :- A=1, B=1, B=C-1, C>=2, D>=2*A+2, 'hanoi(3)'(C,D).
+'false(3)' :- A>=2, B=A-1, C=2*D+1, A=E-1, E>=2, F>=2*C+2, 'new6(3)'(B,D,E,F).
+'false(3)' :- A>=2, B=A-1, C=2*D+1, A=E-1, E>=2, F>=2*C+2, 'new7(3)'(B,D,E,F).
+'false(3)' :- A>=2, B=A-1, C=2*D+1, A=E-1, E>=2, F>=2*C+2, 'new8(3)'(B,D,E,F).
+'new6(3)'(A,B,C,D) :- A>=2, E=A-1, B=2*F+1, 'new6(3)'(E,F,C,D).
+'new7(3)'(A,B,C,D) :- A>=2, E=A-1, B=2*F+1, 'new7(3)'(E,F,C,D).
+'new8(3)'(A,B,C,D) :- B=1, A=1, 'hanoi(3)'(C,D).
+'new8(3)'(A,B,C,D) :- A>=2, E=A-1, B=2*F+1, 'new8(3)'(E,F,C,D).
+'false(3)' :- A>=2*B+2, C>=2, D=C-1, 'new6(3)'(C,A,D,B).
+'false(3)' :- A>=2*B+2, C>=2, D=C-1, 'new7(3)'(C,A,D,B).
+'false(3)' :- A>=2*B+2, C>=2, D=C-1, 'new8(3)'(C,A,D,B).
+'false(3)' :- A=B-1, C=2*D+1, C>=2*E+2, B>=2, F=B-1, 'new9(3)'(A,D,F,E).
+'new9(3)'(A,B,C,D) :- A>=2, E=A-1, B=2*F+1, 'new9(3)'(E,F,C,D).
+'false(3)' :- A>=2, B=<2*C, D=A-1, 'new6(3)'(D,C,A,B).
+'false(3)' :- A>=2, B=<2*C, D=A-1, 'new7(3)'(D,C,A,B).
+'false(3)' :- A>=2, B=<2*C, D=A-1, 'new8(3)'(D,C,A,B).
+'false(3)' :- A>=2, B=<2*C, D=A-1, 'new6(3)'(A,B,D,C).
+'false(3)' :- A>=2, B=<2*C, D=A-1, 'new7(3)'(A,B,D,C).
+'false(3)' :- A>=2, B=<2*C, D=A-1, 'new8(3)'(A,B,D,C).
+'false(3)' :- A=B-1, C=2*D+1, B>=2, C=<2*E, F=B-1, 'new9(3)'(A,D,F,E).
+'false(4)' :- A=1, B=1, B=C-1, C>=2, D>=2*A+2, 'hanoi(4)'(C,D).
+'false(4)' :- A>=2, B=A-1, C=2*D+1, A=E-1, E>=2, F>=2*C+2, 'new10(4)'(B,D,E,F).
+'false(4)' :- A>=2, B=A-1, C=2*D+1, A=E-1, E>=2, F>=2*C+2, 'new11(4)'(B,D,E,F).
+'false(4)' :- A>=2, B=A-1, C=2*D+1, A=E-1, E>=2, F>=2*C+2, 'new12(4)'(B,D,E,F).
+'false(4)' :- A>=2, B=A-1, C=2*D+1, A=E-1, E>=2, F>=2*C+2, 'new13(4)'(B,D,E,F).
+'new10(4)'(A,B,C,D) :- A>=2, E=A-1, B=2*F+1, 'new10(4)'(E,F,C,D).
+'new11(4)'(A,B,C,D) :- A>=2, E=A-1, B=2*F+1, 'new11(4)'(E,F,C,D).
+'new12(4)'(A,B,C,D) :- A>=2, E=A-1, B=2*F+1, 'new12(4)'(E,F,C,D).
+'new13(4)'(A,B,C,D) :- B=1, A=1, 'hanoi(4)'(C,D).
+'new13(4)'(A,B,C,D) :- A>=2, E=A-1, B=2*F+1, 'new13(4)'(E,F,C,D).
+'false(4)' :- A>=2*B+2, C>=2, D=C-1, 'new10(4)'(C,A,D,B).
+'false(4)' :- A>=2*B+2, C>=2, D=C-1, 'new11(4)'(C,A,D,B).
+'false(4)' :- A>=2*B+2, C>=2, D=C-1, 'new12(4)'(C,A,D,B).
+'false(4)' :- A>=2*B+2, C>=2, D=C-1, 'new13(4)'(C,A,D,B).
+'false(4)' :- A=B-1, C=2*D+1, C>=2*E+2, B>=2, F=B-1, 'new14(4)'(A,D,F,E).
+'new14(4)'(A,B,C,D) :- A>=2, E=A-1, B=2*F+1, 'new14(4)'(E,F,C,D).
+'false(4)' :- A>=2, B=<2*C, D=A-1, 'new10(4)'(D,C,A,B).
+'false(4)' :- A>=2, B=<2*C, D=A-1, 'new11(4)'(D,C,A,B).
+'false(4)' :- A>=2, B=<2*C, D=A-1, 'new12(4)'(D,C,A,B).
+'false(4)' :- A>=2, B=<2*C, D=A-1, 'new13(4)'(D,C,A,B).
+'false(4)' :- A>=2, B=<2*C, D=A-1, 'new10(4)'(A,B,D,C).
+'false(4)' :- A>=2, B=<2*C, D=A-1, 'new11(4)'(A,B,D,C).
+'false(4)' :- A>=2, B=<2*C, D=A-1, 'new12(4)'(A,B,D,C).
+'false(4)' :- A>=2, B=<2*C, D=A-1, 'new13(4)'(A,B,D,C).
+'false(4)' :- A=B-1, C=2*D+1, B>=2, C=<2*E, F=B-1, 'new14(4)'(A,D,F,E).
+'false(5)' :- A=1, B=1, B=C-1, C>=2, D>=2*A+2, 'hanoi(5)'(C,D).
+'false(5)' :- A>=2, B=A-1, C=2*D+1, A=E-1, E>=2, F>=2*C+2, 'new15(5)'(B,D,E,F).
+'false(5)' :- A>=2, B=A-1, C=2*D+1, A=E-1, E>=2, F>=2*C+2, 'new16(5)'(B,D,E,F).
+'false(5)' :- A>=2, B=A-1, C=2*D+1, A=E-1, E>=2, F>=2*C+2, 'new17(5)'(B,D,E,F).
+'false(5)' :- A>=2, B=A-1, C=2*D+1, A=E-1, E>=2, F>=2*C+2, 'new18(5)'(B,D,E,F).
+'false(5)' :- A>=2, B=A-1, C=2*D+1, A=E-1, E>=2, F>=2*C+2, 'new19(5)'(B,D,E,F).
+'new15(5)'(A,B,C,D) :- A>=2, E=A-1, B=2*F+1, 'new15(5)'(E,F,C,D).
+'new16(5)'(A,B,C,D) :- A>=2, E=A-1, B=2*F+1, 'new16(5)'(E,F,C,D).
+'new17(5)'(A,B,C,D) :- A>=2, E=A-1, B=2*F+1, 'new17(5)'(E,F,C,D).
+'new18(5)'(A,B,C,D) :- A>=2, E=A-1, B=2*F+1, 'new18(5)'(E,F,C,D).
+'new19(5)'(A,B,C,D) :- B=1, A=1, 'hanoi(5)'(C,D).
+'new19(5)'(A,B,C,D) :- A>=2, E=A-1, B=2*F+1, 'new19(5)'(E,F,C,D).
+'false(5)' :- A>=2*B+2, C>=2, D=C-1, 'new15(5)'(C,A,D,B).
+'false(5)' :- A>=2*B+2, C>=2, D=C-1, 'new16(5)'(C,A,D,B).
+'false(5)' :- A>=2*B+2, C>=2, D=C-1, 'new17(5)'(C,A,D,B).
+'false(5)' :- A>=2*B+2, C>=2, D=C-1, 'new18(5)'(C,A,D,B).
+'false(5)' :- A>=2*B+2, C>=2, D=C-1, 'new19(5)'(C,A,D,B).
+'false(5)' :- A=B-1, C=2*D+1, C>=2*E+2, B>=2, F=B-1, 'new20(5)'(A,D,F,E).
+'new20(5)'(A,B,C,D) :- A>=2, E=A-1, B=2*F+1, 'new20(5)'(E,F,C,D).
+'false(5)' :- A>=2, B=<2*C, D=A-1, 'new15(5)'(D,C,A,B).
+'false(5)' :- A>=2, B=<2*C, D=A-1, 'new16(5)'(D,C,A,B).
+'false(5)' :- A>=2, B=<2*C, D=A-1, 'new17(5)'(D,C,A,B).
+'false(5)' :- A>=2, B=<2*C, D=A-1, 'new18(5)'(D,C,A,B).
+'false(5)' :- A>=2, B=<2*C, D=A-1, 'new19(5)'(D,C,A,B).
+'false(5)' :- A>=2, B=<2*C, D=A-1, 'new15(5)'(A,B,D,C).
+'false(5)' :- A>=2, B=<2*C, D=A-1, 'new16(5)'(A,B,D,C).
+'false(5)' :- A>=2, B=<2*C, D=A-1, 'new17(5)'(A,B,D,C).
+'false(5)' :- A>=2, B=<2*C, D=A-1, 'new18(5)'(A,B,D,C).
+'false(5)' :- A>=2, B=<2*C, D=A-1, 'new19(5)'(A,B,D,C).
+'false(5)' :- A=B-1, C=2*D+1, B>=2, C=<2*E, F=B-1, 'new20(5)'(A,D,F,E).
+false:-'false[5]'.
