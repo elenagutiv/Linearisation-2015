@@ -1,6 +1,6 @@
 go(K) :-
-	getAtom(A),
-	solve([A],K,1).
+	%getAtom(A),
+	solve([false],K,1).
 solve([G|Gs],K,L) :-
 	hornClause(G,Cs,B),
 	solveConstraints(Cs),
@@ -35,10 +35,12 @@ perm(Xs,[Y|Ys]) :-
 	select(Y,Xs,Xs1),
 	perm(Xs1,Ys).
 
+/*
 getAtom(A) :-
     hornClause(A1,Cs,B),
     functor(A1,P,N),
     functor(A,P,N).
+*/
 
     
 
