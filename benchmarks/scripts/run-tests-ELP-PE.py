@@ -25,14 +25,14 @@ from os.path import join
 
 tests = glob(join('../programs', '*.horn'))
 
-ks=[1,2,3,4,5]
+ks=[1,2,3,4,5,6,7,8]
 
 linearisation_file = "../../src/linearise.pl"
 linearisation_exe = os.path.splitext(linearisation_file)[0]
 
 qarmc_filename = "./qarmc-latest.osx" # Change executable filename if needed.
 extraoptions = " -debug "
-qarmc_timelimit = "20" # sec.
+qarmc_timelimit = "15" # sec.
 
 elp_timelimit = "15" # sec.
 pe_timelimit = "15" #sec.
@@ -41,6 +41,8 @@ YAMLformatfile = '../../plot-scripts/running-times.yml'
 JSONformatfile = '../results/running-times.json'
 
 N=0 #number of tests in JSON output
+n_elp_timeouts = 0
+n_pe_timeouts = 0
 data = []
 
 ################
@@ -77,39 +79,31 @@ for files in tests:
 
 		p0_path = "../programs/" + base + ".horn"; ELP_p2_path = "../linear-programs/"+"ELP_"+ base + ".horn"; PE_p2_path = "../linear-programs/" +"PE_"+ base + ".horn"
 
-		#begin_time_elp = int(round(time.time() * 1000))
+		# Run ELP
 		try:
 			output = subprocess.call('time gtimeout ' + elp_timelimit + ' ./' + linearisation_exe + ' -prg ' + p0_path + ' -k ' + k + ' -o ' + ELP_p2_path, timeout = float(elp_timelimit), shell = True )
 		except subprocess.TimeoutExpired:
 			elp_timeout = 1
-			print("ELP_TIMEOUT")
-
-		if elp_timeout == 0:
-			#end_time_elp = int(round(time.time()*1000))
-			#elp_time = float(end_time_elp - begin_time_elp)/1000
-
+		if elp_timeout == 1:
+			n_elp_timeouts+=1
+			print("[ELP_TIMEOUT,",f,",k=",k,"]","	Discarded")
+		else:
 			fp = open(ELP_p2_path,'a') 
 			print("false:-\'false["+k+"]\'.", file = fp)# Add false clause to linear-programs
 			fp.close()
 
-			#begin_time_pe = int(round(time.time() * 1000))
-			try:
-				output = subprocess.call('time gtimeout ' + pe_timelimit + ' ./' + linearisation_exe + ' -prg ' + p0_path + ' -k ' + k + ' -o ' + PE_p2_path + ' -pe', timeout = float(pe_timelimit), shell = True )
-			except subprocess.TimeoutExpired:
-				pe_timeout = 1
-				print("PE_TIMEOUT")
+		# Run PE
+		try:
+			output = subprocess.call('time gtimeout ' + pe_timelimit + ' ./' + linearisation_exe + ' -prg ' + p0_path + ' -k ' + k + ' -o ' + PE_p2_path + ' -pe', timeout = float(pe_timelimit), shell = True )
+		except subprocess.TimeoutExpired:
+			pe_timeout = 1
+		if pe_timeout==1:
+			n_pe_timeouts+=1
+			print("[PE_TIMEOUT,",f,",k=",k,"]","	Discarded")
 
-			if pe_timeout == 0:
-				#end_time_pe = int(round(time.time()*1000))
-				#pe_time = float(end_time_pe - begin_time_pe)/1000
-				programs = [ELP_p2_path, PE_p2_path]
-
-			else:
-				print(f,"	Discarded")
-				continue
-
+		if (pe_timeout==0 and elp_timeout==0):
+			programs = [ELP_p2_path,PE_p2_path]
 		else:
-			print(f,"	Discarded")
 			continue
 
 		for file in programs:
@@ -166,6 +160,15 @@ for files in tests:
 		else:
 			print(f,"	Discarded"	)
 
+d = {
+	    'ks' : len(ks),
+	    'qarmctimelimit' : int(qarmc_timelimit),
+	    'n_elp_timeouts' : n_elp_timeouts,
+	    'n_pe_timeouts' : n_pe_timeouts
+	}
+data.append(d)
+
+
 json.dump(data, JSONoutfile, sort_keys=True, indent = 2)
 JSONoutfile.close()
 json.dump(data, YAMLoutfile, sort_keys=True, indent = 2)
@@ -190,6 +193,10 @@ with fileinput.FileInput(YAMLformatfile, inplace=True) as file:
 			print (first.replace (']',']\"}]}'), end = '')
 
 print("Sample size: ",N)
+print()
+print("ELP timeouts: ",n_elp_timeouts)
+print()
+print("PE timeouts: ",n_pe_timeouts)
 print()
 print("JSON format output in ",JSONformatfile)
 print()

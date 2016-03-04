@@ -46,22 +46,38 @@
     <div id="key"><br style="clear:both;"/>
         <div id="timelimit">timelimit</div>
         <div id="samplesize">samplesize</div>
+        <div id="n_elp_timeouts">n_elp_timeouts</div>
+        <div id="n_pe_timeouts">n_pe_timeouts</div>
         
     </div>
     <div id="title-text" class="chart-title"><center>QARMC solving time for ELP-Linear vs. PE-Linear </center></div>
 </div>
 
 <script>
-    var min = 0.01, timelimit = 20, tam = 122, ks = 5;
+    var min = 0.01;
+
+    {{#translator}}
+    var testdata = {{{data}}};
+    {{/translator}}
+
+    len = testdata.length;
+    tam = len-1;
+    n_elp_timeouts = testdata[tam].n_elp_timeouts;
+    n_pe_timeouts = testdata[tam].n_pe_timeouts;
+    timelimit = testdata[tam].qarmctimelimit;
+    ks = testdata[tam].ks;
+
     var element = document.getElementById("timelimit");
     element.innerHTML = "QARMC Timeout (s): "+timelimit;
 
     element = document.getElementById("samplesize");
     element.innerHTML = "Sample size: "+ tam;
 
-    {{#translator}}
-    var testdata = {{{data}}};
-    {{/translator}}
+    element = document.getElementById("n_elp_timeouts");
+    element.innerHTML = "ELP timeouts: "+ n_elp_timeouts;
+
+    element = document.getElementById("n_pe_timeouts");
+    element.innerHTML = "PE timeouts: "+ n_pe_timeouts;
 
     var chart;
     nv.addGraph(function() {
@@ -121,6 +137,8 @@
     });
 
 
+
+
     function inputData(inputData, ngroups, points) { //# groups,# points per group
         var outputData = [],
             group, shape,n,
@@ -149,6 +167,7 @@
                 shape: shapes[1] //circle
             });
         };
+
         return outputData;
     };
 

@@ -1,0 +1,37 @@
+logen(hornClause/2,hornClause(h1(A,B,C,A,B,C),[1=1],[])).
+logen(hornClause/2,hornClause(h2(A,B,A,B),[A=2],[h1(C,D,E,F,G,H)])).
+logen(hornClause/2,hornClause(h4(A,B,C,D,E,F),[G=2,H=D],[h1(A,B,C,I,E,F),h3(G,J,K,H)])).
+logen(hornClause/2,hornClause(h6(A,B,C,D,E,F),[],[h4(A,B,C,D,E,F)])).
+logen(hornClause/2,hornClause(h7(A,B,C,D,E,F),[D=< -1],[h6(A,B,C,D,E,F)])).
+logen(hornClause/2,hornClause(false,[],[h7(A,B,C,D,E,F)])).
+logen(hornClause/2,hornClause(h8(A,B,C,D,E,F),[D>=1],[h6(A,B,C,D,E,F)])).
+logen(hornClause/2,hornClause(false,[],[h8(A,B,C,D,E,F)])).
+logen(hornClause/2,hornClause(h9(A,B,C,D,E,F),[D=0],[h6(A,B,C,D,E,F)])).
+logen(hornClause/2,hornClause(h2(A,B,A,B),[A=50],[h9(C,D,E,F,G,H)])).
+logen(hornClause/2,hornClause(h10(A,B,C,D,E,F),[G=50,H=E],[h9(A,B,C,D,I,F),h3(G,J,K,H)])).
+logen(hornClause/2,hornClause(h12(A,B,C,D,E,F),[],[h10(A,B,C,D,E,F)])).
+logen(hornClause/2,hornClause(h13(A,B,C,D,E,F),[E=< -1],[h12(A,B,C,D,E,F)])).
+logen(hornClause/2,hornClause(false,[],[h13(A,B,C,D,E,F)])).
+logen(hornClause/2,hornClause(h14(A,B,C,D,E,F),[E>=1],[h12(A,B,C,D,E,F)])).
+logen(hornClause/2,hornClause(false,[],[h14(A,B,C,D,E,F)])).
+logen(hornClause/2,hornClause(h15(A,B,C,D,E,F),[E=0],[h12(A,B,C,D,E,F)])).
+logen(hornClause/2,hornClause(h2(A,B,A,B),[A= -5],[h15(C,D,E,F,G,H)])).
+logen(hornClause/2,hornClause(h16(A,B,C,D,E,F),[G= -5,H=F],[h15(A,B,C,D,E,I),h3(G,J,K,H)])).
+logen(hornClause/2,hornClause(h18(A,B,C,D,E,F),[],[h16(A,B,C,D,E,F)])).
+logen(hornClause/2,hornClause(h19(A,B,C,D,E,F),[F=< -6],[h18(A,B,C,D,E,F)])).
+logen(hornClause/2,hornClause(false,[],[h19(A,B,C,D,E,F)])).
+logen(hornClause/2,hornClause(h20(A,B,C,D,E,F),[F>= -4],[h18(A,B,C,D,E,F)])).
+logen(hornClause/2,hornClause(false,[],[h20(A,B,C,D,E,F)])).
+logen(hornClause/2,hornClause(h21(A,B,C,D,E,F),[F= -5],[h18(A,B,C,D,E,F)])).
+logen(hornClause/2,hornClause(h22(A,B,C,D,E,F),[],[h21(A,B,C,D,E,F)])).
+logen(hornClause/2,hornClause(h23(A,B,C,D,E,F),[],[h22(A,B,C,D,E,F)])).
+logen(hornClause/2,hornClause(h24(A,B,C,D),[],[h2(A,B,C,D)])).
+logen(hornClause/2,hornClause(h25(A,B,C,D),[C=<0],[h24(A,B,C,D)])).
+logen(hornClause/2,hornClause(h26(A,B,C,D),[C=D],[h25(A,B,C,E)])).
+logen(hornClause/2,hornClause(h27(A,B,C,D),[C>=1],[h24(A,B,C,D)])).
+logen(hornClause/2,hornClause(h28(A,B,C,D),[D=0],[h27(A,B,C,E)])).
+logen(hornClause/2,hornClause(h29(A,B,C,D),[],[h26(A,B,C,D)])).
+logen(hornClause/2,hornClause(h30(A,B,C,D),[],[h29(A,B,C,D)])).
+logen(hornClause/2,hornClause(h31(A,B,C,D),[],[h28(A,B,C,D)])).
+logen(hornClause/2,hornClause(h30(A,B,C,D),[],[h31(A,B,C,D)])).
+logen(hornClause/2,hornClause(h3(A,B,C,D),[],[h30(A,B,C,D)])).
