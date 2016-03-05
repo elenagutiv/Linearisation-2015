@@ -1,12 +1,12 @@
 
 ## **benchmarks** ##
 
-Given a *non-linear* Constrained Logic Program (CLP) and a positive integer *k*, we build a *linear* k-index bounded CLP. To build the linear version of each CLP, we have implemented 2 linearisers. Firstly, ELP is a linearisation procedure that relies on the syntactic structure of index-bounded CLPs to perform a set of transformations such as folding/unfolding, introduction of new definition clauses and removal of useless clauses (for further information, read: [ELP](https://drive.google.com/open?id=0B9cK-R3AAviCN0VoVldyR2VmWWc)). The second one is a procedure based on Partial Evaluation.
+Given a *non-linear* Constrained Logic Program (CLP) and a positive integer *k*, we build a *linear* k-index bounded CLP. To build the linear version of each CLP, we have implemented 2 linearisers. <ul><li>**ELP** is a linearisation procedure that relies on the syntactic structure of index-bounded CLPs to perform a set of transformations such as folding/unfolding, introduction of new definition clauses and removal of useless clauses (for further information, read: [ELP](https://drive.google.com/open?id=0B9cK-R3AAviCN0VoVldyR2VmWWc)).</li> <li>**Linearisation Procedure based on Partial Evaluation**</li></ul>
 
 ----------
 
 
-> - *A k-index bounded* CLP is a program containing Horn clauses that generate derivation trees of bounded dimension. Thus, given a non-linear program and a k index value, we give as a result a linear program which is an under-approximation of the original, in the sense that, some sets of program traces have been posibly eliminated and the result is a linear program which generates derivation trees of dimension not greater than k.
+> - *A k-index bounded* CLP is a program containing Horn clauses that generate derivation trees of bounded dimension. Thus, given a non-linear program and a k index value, we return a linear program which is an under-approximation of the original, in the sense that, some sets of program traces have been possibly eliminated (specifically, those of dimension greater than k). The result is a linear program that generates derivation trees of dimension not greater or equal to k.
 
 ----------
 
@@ -16,7 +16,7 @@ Given a *non-linear* Constrained Logic Program (CLP) and a positive integer *k*,
 Directory | Contents															|
 ---------------|--------------------------------------------------------------------|
 programs			   | A set of non-linear CLPs.	 															|
-scripts			   | <ul><li>`run-tests-ELP-PE.py`- For each program in ´programs/´ and for each value of k specified in the script, it builds the corresponding linear index-bounded CLP using both linearisation procedures: ELP and PE-based procedure (each linear program is located in a new directory ´linear-programs/´). Then, it runs QARMC for each linear program and measures the runtime needed to solve it. All the results are saved in 2 different formats: JSON format in  `results/running-times.json` ( directory `results/` is created during the execution ) and YAML format in `plot-scripts` folder. These results can be visualized in a plot (see [README.md](https://github.com/elenagutiv/Linearisation-2015/blob/master/plot-scripts/README.md))</li><li>`remove.sh`- It cleans the directory after each `run-tests-to-ELP-PE.py` execution</li></ul>
+scripts			   | <ul><li>`run-tests-ELP-PE.py`- For each program in ´programs/´ and for each value of k specified in the script, it builds the corresponding linear index-bounded CLP using both linearisation procedures: ELP and PE-based procedure (each linear program is located in a new directory ´linear-programs/´). Then, it runs QARMC for each linear program and measures the runtime needed to solve it. All the results are saved in 2 different formats: JSON format in  `results/running-times.json` ( directory `results/` is created during the execution ) and YAML format in `plot-scripts` folder. These results can be visualized in a plot (see [README.md](https://github.com/elenagutiv/Linearisation-2015/blob/master/plot-scripts/README.md)).</li><li>`remove.sh`- It cleans the directory after each `run-tests-to-ELP-PE.py` execution</li></ul>
 
 ----------
 
@@ -25,7 +25,7 @@ scripts			   | <ul><li>`run-tests-ELP-PE.py`- For each program in ´programs/´ 
 
 > - **QARMC** revision 123 or later. It needs to be located in the same path as `run-tests-ELP-PE.py`. The executable file name is assumed to be `qarmc-latest.osx` but it can be changed by editing the script (see second section below).
 > - **Pyhton 3.5.0** or greater to execute both python scripts.
-> - **Ciao (see [README.md](https://github.com/elenagutiv/Linearisation-2015/blob/master/README.md)).
+> - **Ciao** (see [README.md](https://github.com/elenagutiv/Linearisation-2015/blob/master/README.md)).
 > - **Mustache** (for further information see [README.md](https://github.com/elenagutiv/Linearisation-2015/blob/master/plot-scripts/README.md))
 > - **GNU coreutils package**. This provides `gtimeout` command, called in `run-tests-to-YAML.py`.
 > - This project was tested under **OS X 10.9.X** and **10.10.X** ( other platforms were untested ).
