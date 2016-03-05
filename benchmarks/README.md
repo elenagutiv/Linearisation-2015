@@ -10,7 +10,6 @@ Directory | Contents															|
 programs			   | A set of non-linear CLPs.	 															|
 scripts			   | <ul><li>`run-tests-ELP-PE.py`- For each program in ´programs/´ and for each value of k specified in the script, it builds the corresponding linear index-bounded CLP using both linearisation procedures: ELP and PE-based procedure (each linear program is located in a new directory ´linear-programs/´). Then, it runs QARMC for each linear program and measures the runtime needed to solve it. All the results are saved in 2 different formats: JSON format in  `results/running-times.json` ( directory `results/` is created during the execution ) and YAML format in `plot-scripts` folder. These results can be visualized in a plot (see [README.md](https://github.com/elenagutiv/Linearisation-2015/blob/master/plot-scripts/README.md)).</li><li>`remove.sh`- It cleans the directory after each `run-tests-to-ELP-PE.py` execution</li></ul>
 
-----------
 ##Requirements:
 
 1. **QARMC** revision 123 or later. It needs to be located in the same path as `run-tests-ELP-PE.py`. The executable file name is assumed to be `qarmc-latest.osx` but it can be changed by editing the script (see second section below).
