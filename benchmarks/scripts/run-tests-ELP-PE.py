@@ -162,7 +162,9 @@ for files in tests:
 
 d = {
 	    'ks' : len(ks),
-	    'qarmctimelimit' : int(qarmc_timelimit),
+	    'qarmc_timelimit' : int(qarmc_timelimit),
+	    'elp_timelimit': int(elp_timelimit),
+	    'pe_timelimit': int(pe_timelimit),
 	    'n_elp_timeouts' : n_elp_timeouts,
 	    'n_pe_timeouts' : n_pe_timeouts
 	}

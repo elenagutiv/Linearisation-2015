@@ -30,10 +30,19 @@
         }
         #key {
             margin-left: 60px;
-            padding: 8px;
+            padding: 5px;
+            font: 13px "Trebuchet MS", Helvetica, sans-serif;
+
+        }
+        #key-left{
             float:left;
-            font: 15px "Trebuchet MS", Helvetica, sans-serif;
-            text-align: left;
+            
+
+        }
+        #key-right{
+            float:left;
+            margin-left: 20px;
+            
 
         }
     </style>
@@ -43,11 +52,21 @@
     <svg></svg>
 </div>
 <div>
-    <div id="key"><br style="clear:both;"/>
-        <div id="timelimit">timelimit</div>
-        <div id="samplesize">samplesize</div>
-        <div id="n_elp_timeouts">n_elp_timeouts</div>
-        <div id="n_pe_timeouts">n_pe_timeouts</div>
+    <div id="key">
+        <div id="key-left">
+            <div id="qarmc_timelimit">qarmc_timelimit</div>
+            <div id="elp_timelimit">elp_timelimit</div>
+            <div id="pe_timelimit">pe_timelimit</div>
+        
+        </div>
+         <div id="key-right">
+            <div id="samplesize">samplesize</div>
+            <div id="n_elp_timeouts">n_elp_timeouts</div>
+            <div id="n_pe_timeouts">n_pe_timeouts</div>
+        
+        </div>
+
+        
         
     </div>
     <div id="title-text" class="chart-title"><center>QARMC solving time for ELP-Linear vs. PE-Linear </center></div>
@@ -62,20 +81,28 @@
     tam = len-1;
     n_elp_timeouts = testdata[tam].n_elp_timeouts;
     n_pe_timeouts = testdata[tam].n_pe_timeouts;
-    timelimit = testdata[tam].qarmctimelimit;
+    qarmc_timelimit = testdata[tam].qarmctimelimit;
+    elp_timelimit = 15;
+    pe_timelimit = 15;
     ks = testdata[tam].ks;
 
-    var element = document.getElementById("timelimit");
-    element.innerHTML = "QARMC Timeout (s): "+timelimit;
+    var element = document.getElementById("qarmc_timelimit");
+    element.innerHTML = "QARMC Time Limit (s): "+qarmc_timelimit;
+
+    element = document.getElementById("elp_timelimit");
+    element.innerHTML = "ELP Time Limit (s): "+ elp_timelimit;
+
+    element = document.getElementById("pe_timelimit");
+    element.innerHTML = "PE Time Limit (s): "+ pe_timelimit;
 
     element = document.getElementById("samplesize");
     element.innerHTML = "Sample size: "+ tam;
 
     element = document.getElementById("n_elp_timeouts");
-    element.innerHTML = "ELP timeouts: "+ n_elp_timeouts;
+    element.innerHTML = "# ELP Timeouts: "+ n_elp_timeouts;
 
     element = document.getElementById("n_pe_timeouts");
-    element.innerHTML = "PE timeouts: "+ n_pe_timeouts;
+    element.innerHTML = "# PE Timeouts: "+ n_pe_timeouts;
 
     var chart;
     nv.addGraph(function() {
@@ -91,7 +118,7 @@
         // Log scale settings for X axis
 
         chart.xScale(d3.scale.log());
-        chart.xDomain( [ min, timelimit+3 ] ).yDomain( [ min, timelimit+3] );
+        chart.xDomain( [ min, qarmc_timelimit+3 ] ).yDomain( [ min, qarmc_timelimit+3] );
 
         chart.xAxis.tickValues([0.01,0.1,1,10]);
         chart.xAxis.tickFormat(d3.format('.02f'));
@@ -111,8 +138,8 @@
             .attr({
                 x1: 75 + chart.xAxis.scale()(min),
                 y1: 30 + chart.yAxis.scale()(min),
-                x2: 75 + chart.xAxis.scale()(timelimit+3),
-                y2: 30 + chart.yAxis.scale()(timelimit+3)
+                x2: 75 + chart.xAxis.scale()(qarmc_timelimit+3),
+                y2: 30 + chart.yAxis.scale()(qarmc_timelimit+3)
             })
             .style("stroke-dasharray", ("3,3"))
             .style("stroke","black");
