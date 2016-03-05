@@ -1,4 +1,4 @@
-## Linearisation Procedure for index bounded sets of Horn clauses##
+## Linearisation Procedure for index-bounded sets of Horn clauses##
 
 Given a *non-linear* Constrained Logic Program (CLP) and a positive integer *k*, we build a *linear* k-index bounded CLP. To build the linear version of each CLP, we have implemented 2 linearisers. <ul><li>**ELP** is a linearisation procedure that relies on the syntactic structure of index-bounded CLPs to perform a set of transformations such as folding/unfolding, introduction of new definition clauses and removal of useless clauses (for further information, read: [ELP](https://drive.google.com/open?id=0B9cK-R3AAviCN0VoVldyR2VmWWc)).</li> <li>**Linearisation Procedure based on Partial Evaluation** (PE-based procedure)</li></ul>
 
