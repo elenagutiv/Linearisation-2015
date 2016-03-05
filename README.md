@@ -1,10 +1,13 @@
 ## Linearisation-2015##
 
-Linearisation of an index bounded set of Horn clauses.
+Given a *non-linear* Constrained Logic Program (CLP) and a positive integer *k*, we build a *linear* k-index bounded CLP. To build the linear version of each CLP, we have implemented 2 linearisers. <ul><li>**ELP** is a linearisation procedure that relies on the syntactic structure of index-bounded CLPs to perform a set of transformations such as folding/unfolding, introduction of new definition clauses and removal of useless clauses (for further information, read: [ELP](https://drive.google.com/open?id=0B9cK-R3AAviCN0VoVldyR2VmWWc)).</li> <li>**Linearisation Procedure based on Partial Evaluation** (PE-based procedure)</li></ul>
+
+----------
 
 
+> - *A k-index bounded* CLP is a program containing Horn clauses that generate derivation trees of bounded dimension. Thus, given a non-linear program and a k index value, we return a linear program which is an under-approximation of the original, in the sense that, some sets of program traces have been possibly eliminated (specifically, those of dimension greater than k). The result is a linear program that generates derivation trees of dimension not greater or equal to k.
 
-
+----------
 
 #Contents#
 
@@ -16,13 +19,9 @@ src		   | `source files`
 
 
 
-
-
-
 ## Programming 
 
-The lineariser  is written in Ciao and  uses
-Logen as a Partial Evaluator.
+The linearisers are written in Ciao. PE-based procedure uses Logen as Partial Evaluator.
 
 ## Requirements
 1. [Ciao](http://github.com/ciao-lang/ciao) 
