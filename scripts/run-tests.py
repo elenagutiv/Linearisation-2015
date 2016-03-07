@@ -23,21 +23,21 @@ from os.path import join
 
 # USER OPTIONS #
 
-tests = glob(join('../programs', '*.horn'))
+tests = glob(join('../benchmarks/programs', '*.horn'))
 
 ks=[1,2,3,4,5,6,7,8]
 
-linearisation_file = "../../src/linearise.pl"
+linearisation_file = "../src/linearise.pl"
 linearisation_exe = os.path.splitext(linearisation_file)[0]
 
-qarmc_filename = "./qarmc-latest.osx" # Change executable filename if needed.
+qarmc_filename = "./qarmc.osx" # Change executable filename if needed.
 extraoptions = " -debug "
 qarmc_timelimit = "15" # sec.
 
 elp_timelimit = "15" # sec.
 pe_timelimit = "15" #sec.
 
-YAMLformatfile = '../../plot-scripts/running-times.yml'
+YAMLformatfile = '../plot-scripts/running-times.yml'
 JSONformatfile = '../results/running-times.json'
 
 N=0 #number of tests in JSON output
@@ -54,7 +54,7 @@ print("ELP time limit = ",elp_timelimit)
 print("PE time limit = ",pe_timelimit)
 print()
 
-output = subprocess.Popen(['mkdir','../linear-programs'], stdout = subprocess.PIPE, stderr = subprocess.PIPE)
+output = subprocess.Popen(['mkdir','../benchmarks/linear-programs'], stdout = subprocess.PIPE, stderr = subprocess.PIPE)
 
 if not os.path.exists(os.path.dirname(JSONformatfile)):
     os.makedirs(os.path.dirname(JSONformatfile))
@@ -77,7 +77,7 @@ for files in tests:
 		f = os.path.basename(files)
 		base = os.path.splitext(f)[0]
 
-		p0_path = "../programs/" + base + ".horn"; ELP_p2_path = "../linear-programs/"+"ELP_"+ base + ".horn"; PE_p2_path = "../linear-programs/" +"PE_"+ base + ".horn"
+		p0_path = "../benchmarks/programs/" + base + ".horn"; ELP_p2_path = "../benchmarks/linear-programs/"+"ELP_"+ base + ".horn"; PE_p2_path = "../benchmarks/linear-programs/" +"PE_"+ base + ".horn"
 
 		# Run ELP
 		try:
