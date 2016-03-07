@@ -13,9 +13,11 @@ Given a *non-linear* Constrained Logic Program (CLP) and a positive integer *k*,
 
 Directory | Contents															|
 ---------------|--------------------------------------------------------------------|
-benchmarks			   | Set of tests, scripts and results. 	 															|
-plot-scripts			   | It contains scatter-plot generation HTML files.	 															|
-src		   | `source files`
+benchmarks			   | set of non-linear CLPs.	 															|
+plot-scripts			   | scatter-plot generation HTML files.	 															|
+results		   | result files generated after running the set of tests described in `scripts/` in readable format.
+scripts		   | scripts to run tests and clean the project directory after each execution.
+src		   | source files of both linearisers
 
 
 

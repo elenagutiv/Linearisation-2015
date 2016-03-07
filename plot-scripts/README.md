@@ -6,7 +6,7 @@
 
 Directory | Contents															|
 ---------------|--------------------------------------------------------------------|
-`scatterplot-ELP-PE.html`			   | A scatterplot comparing the time for ELP-linear program vs PE/linear program using QARMC.	 															|
+`scatterplot-ELP-PE.html`			   | A scatterplot comparing the time for ELP-linear program vs PE-linear program using QARMC.	 															|
 `scatterplot-template-1`		   | Mustache template to inline JSON data in `scatterplot-ELP-PE.html`
 `generate-scatterp.sh`		   | Script that runs Mustache using one of the templates above and produces an HTML file containing JSON data hard-coded. 
 `running-times.yml`		   | Data used to plot both graphs in a format specified by Mustache. 
