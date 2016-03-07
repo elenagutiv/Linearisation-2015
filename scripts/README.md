@@ -4,8 +4,8 @@
 
 Directory | Contents															|
 ---------------|--------------------------------------------------------------------|
-remove.sh			   | Cleans `benchmarks/` directory after the execution of `run-tests.py`.	 															|
-run-tests.py			   | For each program in ´programs/´ and for each value of k specified in the script, it builds the corresponding linear index-bounded CLP using both linearisation procedures: ELP and PE-based procedure (each linear program is located in a new directory ´benchmarks/linear-programs/´). Then, it runs QARMC for each linear program and measures the runtime needed to solve it. All the results are saved in 2 different formats: JSON format in  `results/running-times.json` and YAML format in `plot-scripts` folder. These results can be visualized in a plot (see [README.md](https://github.com/elenagutiv/Linearisation-2015/blob/master/plot-scripts/README.md)).
+`remove.sh`			   | Cleans `benchmarks/` directory after the execution of `run-tests.py`.	 															|
+`run-tests.py`			   | For each program in `benchmarks/programs/` and for each value of k specified in the script, it builds the corresponding linear index-bounded CLP using both linearisation procedures: ELP and PE-based procedure (each linear program is located in a new directory `benchmarks/linear-programs/`). Then, it runs QARMC for each linear program and measures the runtime needed to solve it. All the results are saved in 2 different formats: JSON format in  `results/running-times.json` and YAML format in `plot-scripts` folder. These results can be visualized in a plot (see [README.md](https://github.com/elenagutiv/Linearisation-2015/blob/master/plot-scripts/README.md)).
 
 ##Requirements:
 
