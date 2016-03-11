@@ -11,17 +11,37 @@
             font: 10px sans-serif;
         }
         svg {
-            display: block;
         }
-        html, body, #test1, svg {
+        #tests-scheme{
+            float:left;
+            
+            width:100%;
+        }
+        html, body, svg {
             margin: 0px;
             padding: 0px;
-            height: 93%;
-            width: 93%;
+            height: 100%;
+            width: 100%;
+        }
+        #test1 {
+            float:left;
+            width:40%;
+            height: 60%;
+            display:inline-block;
+            margin-left: 60px;
+            margin-right: 80px;           
+        }
+         #test2 {
+            float:left;
+            width:40%;
+            height: 60%;
+            display:inline-block;
+            margin-left: 80px;
+            margin-right: 15px;           
         }
         #title-text {
-            margin: 8px;
-            padding: 8px;
+            margin: 50px;
+            padding: 50px;
             float:center;
             font: 18px "Trebuchet MS", Helvetica, sans-serif;
             font-weight: bold;
@@ -34,56 +54,55 @@
             font: 13px "Trebuchet MS", Helvetica, sans-serif;
 
         }
-        #key-left{
-            float:left;
-            
-
-        }
         #key-right{
-            float:left;
+            float:right;
             margin-left: 20px;
-            
-
         }
     </style>
 </head>
-<body >
-<div id="test1" class='with-3d-shadow with-transitions'>
-    <svg></svg>
-</div>
-<div>
-    <div id="key">
-        <div id="key-left">
-            <div id="qarmc_timelimit">qarmc_timelimit</div>
-            <div id="elp_timelimit">elp_timelimit</div>
-            <div id="pe_timelimit">pe_timelimit</div>
-        
-        </div>
-         <div id="key-right">
-            <div id="samplesize">samplesize</div>
-            <div id="n_elp_timeouts">n_elp_timeouts</div>
-            <div id="n_pe_timeouts">n_pe_timeouts</div>
-        
-        </div>
+<body>
 
-        
-        
-    </div>
-    <div id="title-text" class="chart-title"><center>QARMC solving time for ELP-Linear vs. PE-Linear </center></div>
-</div>
+        <div id="test1" class='with-3d-shadow with-transitions'>
+            <svg></svg>
+            <div id="key">
+                <div id="key-right">
+                    <div id="qarmc_timelimit">qarmc_timelimit</div> 
+                </div>
+                 <div id="key-right">
+                    <div id="samplesize">samplesize</div>
+                </div>              
+            </div>
+            <div id="title-text" class="chart-title"><center>QARMC solving time of ELP-Linear vs. PE-Linear </center></div>
+        </div>
+    
+        <div id="test2" class='with-3d-shadow with-transitions'>
+            <svg></svg>
+            <div id="key">
+                <div id="key-right">
+                    <div id="elp_timelimit">elp_timelimit</div>
+                    <div id="pe_timelimit">pe_timelimit</div>
+                </div>
+                 <div id="key-right">
+                    <div id="n_elp_timeouts">n_elp_timeouts</div>
+                    <div id="n_pe_timeouts">n_pe_timeouts</div>
+                
+                </div>
+            </div>
+            <div id="title-text" class="chart-title"><center>Translating time of ELP vs. PE </center></div>
+        </div>
 
 <script>
     var min = 0.01;
 
-    var testdata = [  {    "N": 0,    "file": "eq",    "k": 1,    "qarmctime_elp": 0.02,    "qarmctime_pe": 0.02  },  {    "N": 1,    "file": "eq",    "k": 2,    "qarmctime_elp": 0.04,    "qarmctime_pe": 0.07  },  {    "N": 2,    "file": "eq",    "k": 3,    "qarmctime_elp": 0.04,    "qarmctime_pe": 0.07  },  {    "N": 3,    "file": "eq",    "k": 4,    "qarmctime_elp": 0.03,    "qarmctime_pe": 0.06  },  {    "N": 4,    "file": "eq",    "k": 5,    "qarmctime_elp": 0.04,    "qarmctime_pe": 0.07  },  {    "N": 5,    "file": "eq",    "k": 6,    "qarmctime_elp": 0.04,    "qarmctime_pe": 0.07  },  {    "N": 6,    "file": "eq",    "k": 7,    "qarmctime_elp": 0.04,    "qarmctime_pe": 0.05  },  {    "N": 7,    "file": "fib",    "k": 1,    "qarmctime_elp": 0.06,    "qarmctime_pe": 0.1  },  {    "N": 8,    "file": "fib",    "k": 2,    "qarmctime_elp": 0.1,    "qarmctime_pe": 0.13  },  {    "N": 9,    "file": "fib",    "k": 3,    "qarmctime_elp": 0.22,    "qarmctime_pe": 0.85  },  {    "N": 10,    "file": "fib2",    "k": 1,    "qarmctime_elp": 0.12,    "qarmctime_pe": 0.43  },  {    "N": 11,    "file": "fib2",    "k": 2,    "qarmctime_elp": 0.28,    "qarmctime_pe": 15.1  },  {    "N": 12,    "file": "gcd",    "k": 1,    "qarmctime_elp": 15.1,    "qarmctime_pe": 15.1  },  {    "N": 13,    "file": "gcd",    "k": 2,    "qarmctime_elp": 15.1,    "qarmctime_pe": 15.1  },  {    "N": 14,    "file": "gcd",    "k": 3,    "qarmctime_elp": 15.1,    "qarmctime_pe": 15.1  },  {    "N": 15,    "file": "gcd",    "k": 4,    "qarmctime_elp": 15.1,    "qarmctime_pe": 15.1  },  {    "N": 16,    "file": "hanoi",    "k": 1,    "qarmctime_elp": 15.1,    "qarmctime_pe": 15.1  },  {    "N": 17,    "file": "hanoi",    "k": 2,    "qarmctime_elp": 15.1,    "qarmctime_pe": 15.1  },  {    "N": 18,    "file": "hanoi",    "k": 3,    "qarmctime_elp": 15.1,    "qarmctime_pe": 15.1  },  {    "N": 19,    "file": "hanoi",    "k": 4,    "qarmctime_elp": 15.1,    "qarmctime_pe": 15.1  },  {    "N": 20,    "file": "hanoi",    "k": 5,    "qarmctime_elp": 15.1,    "qarmctime_pe": 15.1  },  {    "N": 21,    "file": "hanoi",    "k": 6,    "qarmctime_elp": 15.1,    "qarmctime_pe": 15.1  },  {    "N": 22,    "file": "hanoi",    "k": 7,    "qarmctime_elp": 15.1,    "qarmctime_pe": 15.1  },  {    "N": 23,    "file": "mccarthy91",    "k": 1,    "qarmctime_elp": 0.07,    "qarmctime_pe": 0.15  },  {    "N": 24,    "file": "mccarthy91",    "k": 2,    "qarmctime_elp": 0.09,    "qarmctime_pe": 0.15  },  {    "N": 25,    "file": "mccarthy91",    "k": 3,    "qarmctime_elp": 0.18,    "qarmctime_pe": 2.68  },  {    "N": 26,    "file": "mccarthy91",    "k": 4,    "qarmctime_elp": 0.92,    "qarmctime_pe": 15.1  },  {    "N": 27,    "file": "palindrome.nts",    "k": 1,    "qarmctime_elp": 0.16,    "qarmctime_pe": 0.18  },  {    "N": 28,    "file": "palindrome.nts",    "k": 2,    "qarmctime_elp": 0.19,    "qarmctime_pe": 0.28  },  {    "N": 29,    "file": "suma1",    "k": 1,    "qarmctime_elp": 0.1,    "qarmctime_pe": 0.08  },  {    "N": 30,    "file": "suma1",    "k": 2,    "qarmctime_elp": 0.1,    "qarmctime_pe": 0.09  },  {    "N": 31,    "file": "suma1",    "k": 3,    "qarmctime_elp": 0.09,    "qarmctime_pe": 0.07  },  {    "N": 32,    "file": "suma1",    "k": 4,    "qarmctime_elp": 0.09,    "qarmctime_pe": 0.11  },  {    "N": 33,    "file": "suma1",    "k": 5,    "qarmctime_elp": 0.08,    "qarmctime_pe": 0.1  },  {    "N": 34,    "file": "suma1",    "k": 6,    "qarmctime_elp": 0.09,    "qarmctime_pe": 0.08  },  {    "N": 35,    "file": "suma1",    "k": 7,    "qarmctime_elp": 0.09,    "qarmctime_pe": 0.07  },  {    "N": 36,    "file": "suma1",    "k": 8,    "qarmctime_elp": 0.09,    "qarmctime_pe": 0.09  },  {    "N": 37,    "file": "suma2",    "k": 1,    "qarmctime_elp": 0.03,    "qarmctime_pe": 0.03  },  {    "N": 38,    "file": "suma2",    "k": 2,    "qarmctime_elp": 0.14,    "qarmctime_pe": 0.13  },  {    "N": 39,    "file": "suma2",    "k": 3,    "qarmctime_elp": 0.16,    "qarmctime_pe": 0.12  },  {    "N": 40,    "file": "suma2",    "k": 4,    "qarmctime_elp": 0.18,    "qarmctime_pe": 0.13  },  {    "N": 41,    "file": "summ_b",    "k": 1,    "qarmctime_elp": 0.03,    "qarmctime_pe": 0.07  },  {    "N": 42,    "file": "summ_binsearch",    "k": 1,    "qarmctime_elp": 0.17,    "qarmctime_pe": 0.15  },  {    "N": 43,    "file": "summ_cil.casts",    "k": 1,    "qarmctime_elp": 0.03,    "qarmctime_pe": 0.05  },  {    "N": 44,    "file": "summ_cil.casts",    "k": 2,    "qarmctime_elp": 0.04,    "qarmctime_pe": 0.04  },  {    "N": 45,    "file": "summ_cil.casts",    "k": 3,    "qarmctime_elp": 0.04,    "qarmctime_pe": 0.04  },  {    "N": 46,    "file": "summ_cil.casts",    "k": 4,    "qarmctime_elp": 0.03,    "qarmctime_pe": 0.04  },  {    "N": 47,    "file": "summ_cil.casts",    "k": 5,    "qarmctime_elp": 0.05,    "qarmctime_pe": 0.04  },  {    "N": 48,    "file": "summ_cil.casts",    "k": 6,    "qarmctime_elp": 0.05,    "qarmctime_pe": 0.04  },  {    "N": 49,    "file": "summ_formals",    "k": 1,    "qarmctime_elp": 0.03,    "qarmctime_pe": 0.02  },  {    "N": 50,    "file": "summ_formals",    "k": 2,    "qarmctime_elp": 0.03,    "qarmctime_pe": 0.02  },  {    "N": 51,    "file": "summ_formals",    "k": 3,    "qarmctime_elp": 0.03,    "qarmctime_pe": 0.03  },  {    "N": 52,    "file": "summ_formals",    "k": 4,    "qarmctime_elp": 0.04,    "qarmctime_pe": 0.03  },  {    "N": 53,    "file": "summ_g",    "k": 1,    "qarmctime_elp": 0.03,    "qarmctime_pe": 0.04  },  {    "N": 54,    "file": "summ_g",    "k": 2,    "qarmctime_elp": 0.07,    "qarmctime_pe": 0.08  },  {    "N": 55,    "file": "summ_g",    "k": 3,    "qarmctime_elp": 0.06,    "qarmctime_pe": 0.13  },  {    "N": 56,    "file": "summ_globals",    "k": 1,    "qarmctime_elp": 0.03,    "qarmctime_pe": 0.04  },  {    "N": 57,    "file": "summ_globals",    "k": 2,    "qarmctime_elp": 0.03,    "qarmctime_pe": 0.04  },  {    "N": 58,    "file": "summ_globals",    "k": 3,    "qarmctime_elp": 0.04,    "qarmctime_pe": 0.04  },  {    "N": 59,    "file": "summ_globals",    "k": 4,    "qarmctime_elp": 0.05,    "qarmctime_pe": 0.04  },  {    "N": 60,    "file": "summ_globals",    "k": 5,    "qarmctime_elp": 0.04,    "qarmctime_pe": 0.04  },  {    "N": 61,    "file": "summ_h",    "k": 1,    "qarmctime_elp": 0.03,    "qarmctime_pe": 0.04  },  {    "N": 62,    "file": "summ_h",    "k": 2,    "qarmctime_elp": 0.03,    "qarmctime_pe": 0.05  },  {    "N": 63,    "file": "summ_h",    "k": 3,    "qarmctime_elp": 0.04,    "qarmctime_pe": 0.04  },  {    "N": 64,    "file": "summ_h",    "k": 4,    "qarmctime_elp": 0.04,    "qarmctime_pe": 0.05  },  {    "N": 65,    "file": "summ_h",    "k": 5,    "qarmctime_elp": 0.05,    "qarmctime_pe": 0.05  },  {    "N": 66,    "file": "summ_h",    "k": 6,    "qarmctime_elp": 0.05,    "qarmctime_pe": 0.05  },  {    "N": 67,    "file": "summ_local-ctx-call",    "k": 1,    "qarmctime_elp": 0.02,    "qarmctime_pe": 0.05  },  {    "N": 68,    "file": "summ_local-ctx-call",    "k": 2,    "qarmctime_elp": 0.03,    "qarmctime_pe": 0.04  },  {    "N": 69,    "file": "summ_local-ctx-call",    "k": 3,    "qarmctime_elp": 0.03,    "qarmctime_pe": 0.04  },  {    "N": 70,    "file": "summ_local-ctx-call",    "k": 4,    "qarmctime_elp": 0.04,    "qarmctime_pe": 0.05  },  {    "N": 71,    "file": "summ_local-ctx-call",    "k": 5,    "qarmctime_elp": 0.05,    "qarmctime_pe": 0.06  },  {    "N": 72,    "file": "summ_local-ctx-call",    "k": 6,    "qarmctime_elp": 0.05,    "qarmctime_pe": 0.05  },  {    "N": 73,    "file": "summ_locals",    "k": 1,    "qarmctime_elp": 0.03,    "qarmctime_pe": 0.03  },  {    "N": 74,    "file": "summ_locals",    "k": 2,    "qarmctime_elp": 0.08,    "qarmctime_pe": 0.07  },  {    "N": 75,    "file": "summ_locals2",    "k": 1,    "qarmctime_elp": 0.02,    "qarmctime_pe": 0.02  },  {    "N": 76,    "file": "summ_locals2",    "k": 2,    "qarmctime_elp": 0.02,    "qarmctime_pe": 0.03  },  {    "N": 77,    "file": "summ_locals2",    "k": 3,    "qarmctime_elp": 0.03,    "qarmctime_pe": 0.02  },  {    "N": 78,    "file": "summ_locals2",    "k": 4,    "qarmctime_elp": 0.03,    "qarmctime_pe": 0.03  },  {    "N": 79,    "file": "summ_locals2",    "k": 5,    "qarmctime_elp": 0.04,    "qarmctime_pe": 0.03  },  {    "N": 80,    "file": "summ_locals2",    "k": 6,    "qarmctime_elp": 0.05,    "qarmctime_pe": 0.02  },  {    "N": 81,    "file": "summ_locals3",    "k": 1,    "qarmctime_elp": 0.03,    "qarmctime_pe": 0.05  },  {    "N": 82,    "file": "summ_locals3",    "k": 2,    "qarmctime_elp": 0.03,    "qarmctime_pe": 0.05  },  {    "N": 83,    "file": "summ_locals3",    "k": 3,    "qarmctime_elp": 0.03,    "qarmctime_pe": 0.05  },  {    "N": 84,    "file": "summ_locals3",    "k": 4,    "qarmctime_elp": 0.04,    "qarmctime_pe": 0.05  },  {    "N": 85,    "file": "summ_locals3",    "k": 5,    "qarmctime_elp": 0.04,    "qarmctime_pe": 0.04  },  {    "N": 86,    "file": "summ_locals3",    "k": 6,    "qarmctime_elp": 0.05,    "qarmctime_pe": 0.04  },  {    "N": 87,    "file": "summ_locals4",    "k": 1,    "qarmctime_elp": 0.03,    "qarmctime_pe": 0.03  },  {    "N": 88,    "file": "summ_locals4",    "k": 2,    "qarmctime_elp": 0.06,    "qarmctime_pe": 0.1  },  {    "N": 89,    "file": "summ_mccarthy",    "k": 1,    "qarmctime_elp": 0.04,    "qarmctime_pe": 0.09  },  {    "N": 90,    "file": "summ_mccarthy2",    "k": 1,    "qarmctime_elp": 0.18,    "qarmctime_pe": 0.21  },  {    "N": 91,    "file": "summ_mccarthy3",    "k": 1,    "qarmctime_elp": 0.2,    "qarmctime_pe": 0.21  },  {    "N": 92,    "file": "summ_multi-call",    "k": 1,    "qarmctime_elp": 0.03,    "qarmctime_pe": 0.06  },  {    "N": 93,    "file": "summ_multi-call",    "k": 2,    "qarmctime_elp": 0.03,    "qarmctime_pe": 0.07  },  {    "N": 94,    "file": "summ_multi-call",    "k": 3,    "qarmctime_elp": 0.04,    "qarmctime_pe": 0.06  },  {    "N": 95,    "file": "summ_nested",    "k": 1,    "qarmctime_elp": 0.03,    "qarmctime_pe": 0.04  },  {    "N": 96,    "file": "summ_nested",    "k": 2,    "qarmctime_elp": 0.03,    "qarmctime_pe": 0.05  },  {    "N": 97,    "file": "summ_nested",    "k": 3,    "qarmctime_elp": 0.04,    "qarmctime_pe": 0.05  },  {    "N": 98,    "file": "summ_nested",    "k": 4,    "qarmctime_elp": 0.04,    "qarmctime_pe": 0.05  },  {    "N": 99,    "file": "summ_ptr_assign",    "k": 1,    "qarmctime_elp": 0.03,    "qarmctime_pe": 0.04  },  {    "N": 100,    "file": "summ_ptr_assign",    "k": 2,    "qarmctime_elp": 0.04,    "qarmctime_pe": 0.05  },  {    "N": 101,    "file": "summ_ptr_assign",    "k": 3,    "qarmctime_elp": 0.04,    "qarmctime_pe": 0.04  },  {    "N": 102,    "file": "summ_ptr_assign",    "k": 4,    "qarmctime_elp": 0.04,    "qarmctime_pe": 0.05  },  {    "N": 103,    "file": "summ_ptr_assign",    "k": 5,    "qarmctime_elp": 0.04,    "qarmctime_pe": 0.05  },  {    "N": 104,    "file": "summ_ptr_assign",    "k": 6,    "qarmctime_elp": 0.06,    "qarmctime_pe": 0.04  },  {    "N": 105,    "file": "summ_recursive",    "k": 1,    "qarmctime_elp": 0.07,    "qarmctime_pe": 0.08  },  {    "N": 106,    "file": "summ_recursive",    "k": 2,    "qarmctime_elp": 0.1,    "qarmctime_pe": 0.15  },  {    "N": 107,    "file": "summ_rholocal",    "k": 1,    "qarmctime_elp": 0.03,    "qarmctime_pe": 0.04  },  {    "N": 108,    "file": "summ_rholocal",    "k": 2,    "qarmctime_elp": 0.03,    "qarmctime_pe": 0.03  },  {    "N": 109,    "file": "summ_rholocal",    "k": 3,    "qarmctime_elp": 0.03,    "qarmctime_pe": 0.03  },  {    "N": 110,    "file": "summ_rholocal",    "k": 4,    "qarmctime_elp": 0.04,    "qarmctime_pe": 0.03  },  {    "N": 111,    "file": "summ_rholocal",    "k": 5,    "qarmctime_elp": 0.05,    "qarmctime_pe": 0.04  },  {    "N": 112,    "file": "summ_rholocal2",    "k": 1,    "qarmctime_elp": 0.03,    "qarmctime_pe": 0.03  },  {    "N": 113,    "file": "summ_rholocal2",    "k": 2,    "qarmctime_elp": 0.03,    "qarmctime_pe": 0.03  },  {    "N": 114,    "file": "summ_rholocal2",    "k": 3,    "qarmctime_elp": 0.03,    "qarmctime_pe": 0.02  },  {    "N": 115,    "file": "summ_rholocal2",    "k": 4,    "qarmctime_elp": 0.04,    "qarmctime_pe": 0.02  },  {    "N": 116,    "file": "summ_rholocal2",    "k": 5,    "qarmctime_elp": 0.04,    "qarmctime_pe": 0.02  },  {    "N": 117,    "file": "summ_rholocal2",    "k": 6,    "qarmctime_elp": 0.04,    "qarmctime_pe": 0.02  },  {    "N": 118,    "file": "summ_SG1.r",    "k": 1,    "qarmctime_elp": 15.1,    "qarmctime_pe": 0.15  },  {    "N": 119,    "file": "summ_SG1.r",    "k": 2,    "qarmctime_elp": 15.1,    "qarmctime_pe": 15.1  },  {    "N": 120,    "file": "summ_SG2.r",    "k": 1,    "qarmctime_elp": 15.1,    "qarmctime_pe": 15.1  },  {    "N": 121,    "file": "summ_SG2.r",    "k": 2,    "qarmctime_elp": 15.1,    "qarmctime_pe": 15.1  },  {    "N": 122,    "file": "summ_SG3",    "k": 1,    "qarmctime_elp": 0.13,    "qarmctime_pe": 0.13  },  {    "N": 123,    "file": "summ_SG3",    "k": 2,    "qarmctime_elp": 0.13,    "qarmctime_pe": 0.17  },  {    "N": 124,    "file": "summ_slicing",    "k": 1,    "qarmctime_elp": 0.03,    "qarmctime_pe": 0.04  },  {    "N": 125,    "file": "summ_summs",    "k": 1,    "qarmctime_elp": 0.05,    "qarmctime_pe": 0.05  },  {    "N": 126,    "file": "summ_summs",    "k": 2,    "qarmctime_elp": 0.07,    "qarmctime_pe": 0.15  },  {    "N": 127,    "file": "summ_summs",    "k": 3,    "qarmctime_elp": 0.08,    "qarmctime_pe": 0.15  },  {    "N": 128,    "file": "summ_typedef",    "k": 1,    "qarmctime_elp": 0.05,    "qarmctime_pe": 0.04  },  {    "N": 129,    "file": "summ_typedef",    "k": 2,    "qarmctime_elp": 0.06,    "qarmctime_pe": 0.05  },  {    "N": 130,    "file": "summ_typedef",    "k": 3,    "qarmctime_elp": 0.07,    "qarmctime_pe": 0.05  },  {    "N": 131,    "file": "summ_typedef",    "k": 4,    "qarmctime_elp": 0.07,    "qarmctime_pe": 0.05  },  {    "N": 132,    "file": "summ_x",    "k": 1,    "qarmctime_elp": 0.03,    "qarmctime_pe": 0.02  },  {    "N": 133,    "file": "summ_x",    "k": 2,    "qarmctime_elp": 0.03,    "qarmctime_pe": 0.07  },  {    "N": 134,    "file": "summ_x",    "k": 3,    "qarmctime_elp": 0.04,    "qarmctime_pe": 0.07  },  {    "ks": 8,    "n_elp_timeouts": 177,    "n_pe_timeouts": 41,    "qarmctimelimit": 15  }];
+    var testdata = [  {    "N": 0,    "elp_time": 0.283,    "file": "fib",    "k": 2,    "pe_time": 1.822,    "qarmctime_elp": 0.11,    "qarmctime_pe": 0.13  },  {    "N": 1,    "elp_time": 0.907,    "file": "fib",    "k": 3,    "pe_time": 1.88,    "qarmctime_elp": 0.21,    "qarmctime_pe": 0.93  },  {    "N": 2,    "elp_time": 0.332,    "file": "fib2",    "k": 1,    "pe_time": 1.664,    "qarmctime_elp": 0.12,    "qarmctime_pe": 0.43  },  {    "N": 3,    "elp_time": 2.208,    "file": "fib2",    "k": 2,    "pe_time": 1.665,    "qarmctime_elp": 0.28,    "qarmctime_pe": 30.1  },  {    "N": 4,    "elp_time": 35.653,    "file": "fib2",    "k": 3,    "pe_time": 1.954,    "qarmctime_elp": 1.1,    "qarmctime_pe": 30.1  },  {    "N": 5,    "elp_time": 0.278,    "file": "gcd",    "k": 1,    "pe_time": 1.716,    "qarmctime_elp": 30.1,    "qarmctime_pe": 30.1  },  {    "N": 6,    "elp_time": 0.71,    "file": "gcd",    "k": 2,    "pe_time": 1.596,    "qarmctime_elp": 30.1,    "qarmctime_pe": 30.1  },  {    "N": 7,    "elp_time": 2.403,    "file": "gcd",    "k": 3,    "pe_time": 1.665,    "qarmctime_elp": 30.1,    "qarmctime_pe": 30.1  },  {    "N": 8,    "elp_time": 8.202,    "file": "gcd",    "k": 4,    "pe_time": 1.846,    "qarmctime_elp": 30.1,    "qarmctime_pe": 30.1  },  {    "N": 9,    "elp_time": 20.003,    "file": "gcd",    "k": 5,    "pe_time": 1.821,    "qarmctime_elp": 30.1,    "qarmctime_pe": 30.1  },  {    "N": 10,    "elp_time": 49.633,    "file": "gcd",    "k": 6,    "pe_time": 1.95,    "qarmctime_elp": 30.1,    "qarmctime_pe": 30.1  },  {    "N": 11,    "elp_time": 0.233,    "file": "hanoi",    "k": 1,    "pe_time": 1.717,    "qarmctime_elp": 30.1,    "qarmctime_pe": 30.1  },  {    "N": 12,    "elp_time": 0.498,    "file": "hanoi",    "k": 2,    "pe_time": 1.87,    "qarmctime_elp": 30.1,    "qarmctime_pe": 30.1  },  {    "N": 13,    "elp_time": 0.555,    "file": "hanoi",    "k": 3,    "pe_time": 1.888,    "qarmctime_elp": 30.1,    "qarmctime_pe": 30.1  },  {    "N": 14,    "elp_time": 1.022,    "file": "hanoi",    "k": 4,    "pe_time": 1.83,    "qarmctime_elp": 30.1,    "qarmctime_pe": 30.1  },  {    "N": 15,    "elp_time": 2.259,    "file": "hanoi",    "k": 5,    "pe_time": 2.39,    "qarmctime_elp": 30.1,    "qarmctime_pe": 30.1  },  {    "N": 16,    "elp_time": 4.594,    "file": "hanoi",    "k": 6,    "pe_time": 1.818,    "qarmctime_elp": 30.1,    "qarmctime_pe": 30.1  },  {    "N": 17,    "elp_time": 8.142,    "file": "hanoi",    "k": 7,    "pe_time": 1.723,    "qarmctime_elp": 30.1,    "qarmctime_pe": 30.1  },  {    "N": 18,    "elp_time": 15.033,    "file": "hanoi",    "k": 8,    "pe_time": 1.774,    "qarmctime_elp": 30.1,    "qarmctime_pe": 30.1  },  {    "N": 19,    "elp_time": 28.138,    "file": "hanoi",    "k": 9,    "pe_time": 1.973,    "qarmctime_elp": 30.1,    "qarmctime_pe": 30.1  },  {    "N": 20,    "elp_time": 48.25,    "file": "hanoi",    "k": 10,    "pe_time": 1.921,    "qarmctime_elp": 30.1,    "qarmctime_pe": 30.1  },  {    "N": 21,    "elp_time": 0.39,    "file": "mccarthy91",    "k": 1,    "pe_time": 1.966,    "qarmctime_elp": 0.09,    "qarmctime_pe": 0.14  },  {    "N": 22,    "elp_time": 0.282,    "file": "mccarthy91",    "k": 2,    "pe_time": 1.768,    "qarmctime_elp": 0.1,    "qarmctime_pe": 0.16  },  {    "N": 23,    "elp_time": 0.387,    "file": "mccarthy91",    "k": 3,    "pe_time": 1.824,    "qarmctime_elp": 0.16,    "qarmctime_pe": 2.7  },  {    "N": 24,    "elp_time": 8.654,    "file": "mccarthy91",    "k": 4,    "pe_time": 1.824,    "qarmctime_elp": 0.84,    "qarmctime_pe": 30.1  },  {    "N": 25,    "elp_time": 0.387,    "file": "palindrome.nts",    "k": 1,    "pe_time": 1.757,    "qarmctime_elp": 0.18,    "qarmctime_pe": 0.18  },  {    "N": 26,    "elp_time": 1.561,    "file": "palindrome.nts",    "k": 2,    "pe_time": 1.816,    "qarmctime_elp": 0.2,    "qarmctime_pe": 0.3  },  {    "N": 27,    "elp_time": 21.127,    "file": "palindrome.nts",    "k": 3,    "pe_time": 2.224,    "qarmctime_elp": 0.28,    "qarmctime_pe": 0.44  },  {    "N": 28,    "elp_time": 4.411,    "file": "suma1",    "k": 8,    "pe_time": 1.768,    "qarmctime_elp": 0.11,    "qarmctime_pe": 0.08  },  {    "N": 29,    "elp_time": 13.549,    "file": "suma1",    "k": 10,    "pe_time": 1.872,    "qarmctime_elp": 0.11,    "qarmctime_pe": 0.08  },  {    "N": 30,    "elp_time": 0.446,    "file": "suma2",    "k": 2,    "pe_time": 1.703,    "qarmctime_elp": 0.12,    "qarmctime_pe": 0.12  },  {    "N": 31,    "elp_time": 1.247,    "file": "suma2",    "k": 3,    "pe_time": 1.881,    "qarmctime_elp": 0.14,    "qarmctime_pe": 0.15  },  {    "N": 32,    "elp_time": 4.989,    "file": "suma2",    "k": 4,    "pe_time": 1.761,    "qarmctime_elp": 0.15,    "qarmctime_pe": 0.14  },  {    "N": 33,    "elp_time": 17.582,    "file": "suma2",    "k": 5,    "pe_time": 1.76,    "qarmctime_elp": 0.18,    "qarmctime_pe": 0.14  },  {    "N": 34,    "elp_time": 56.27,    "file": "suma2",    "k": 6,    "pe_time": 1.759,    "qarmctime_elp": 0.16,    "qarmctime_pe": 0.13  },  {    "N": 35,    "elp_time": 29.369,    "file": "summ_ackermann",    "k": 1,    "pe_time": 2.246,    "qarmctime_elp": 0.75,    "qarmctime_pe": 0.71  },  {    "N": 36,    "elp_time": 34.419,    "file": "summ_b",    "k": 2,    "pe_time": 1.935,    "qarmctime_elp": 0.08,    "qarmctime_pe": 0.12  },  {    "N": 37,    "elp_time": 1.825,    "file": "summ_binsearch",    "k": 1,    "pe_time": 1.985,    "qarmctime_elp": 0.16,    "qarmctime_pe": 0.16  },  {    "N": 38,    "elp_time": 4.994,    "file": "summ_g",    "k": 3,    "pe_time": 1.907,    "qarmctime_elp": 0.06,    "qarmctime_pe": 0.14  },  {    "N": 39,    "elp_time": 27.566,    "file": "summ_g",    "k": 4,    "pe_time": 1.915,    "qarmctime_elp": 0.07,    "qarmctime_pe": 0.2  },  {    "N": 40,    "elp_time": 33.595,    "file": "summ_locals4",    "k": 3,    "pe_time": 1.93,    "qarmctime_elp": 0.07,    "qarmctime_pe": 0.12  },  {    "N": 41,    "elp_time": 1.477,    "file": "summ_mccarthy2",    "k": 1,    "pe_time": 2.066,    "qarmctime_elp": 0.15,    "qarmctime_pe": 0.17  },  {    "N": 42,    "elp_time": 1.544,    "file": "summ_mccarthy3",    "k": 1,    "pe_time": 1.86,    "qarmctime_elp": 0.3,    "qarmctime_pe": 0.2  },  {    "N": 43,    "elp_time": 8.742,    "file": "summ_recursive",    "k": 2,    "pe_time": 1.822,    "qarmctime_elp": 0.1,    "qarmctime_pe": 0.14  },  {    "N": 44,    "elp_time": 0.333,    "file": "summ_SG1.r",    "k": 1,    "pe_time": 1.871,    "qarmctime_elp": 30.1,    "qarmctime_pe": 0.14  },  {    "N": 45,    "elp_time": 2.358,    "file": "summ_SG1.r",    "k": 2,    "pe_time": 1.716,    "qarmctime_elp": 30.1,    "qarmctime_pe": 30.1  },  {    "N": 46,    "elp_time": 20.23,    "file": "summ_SG1.r",    "k": 3,    "pe_time": 1.97,    "qarmctime_elp": 30.1,    "qarmctime_pe": 30.1  },  {    "N": 47,    "elp_time": 0.656,    "file": "summ_SG2.r",    "k": 1,    "pe_time": 1.865,    "qarmctime_elp": 30.1,    "qarmctime_pe": 30.1  },  {    "N": 48,    "elp_time": 9.583,    "file": "summ_SG2.r",    "k": 2,    "pe_time": 2.13,    "qarmctime_elp": 30.1,    "qarmctime_pe": 30.1  },  {    "N": 49,    "elp_time": 0.395,    "file": "summ_SG3",    "k": 1,    "pe_time": 1.754,    "qarmctime_elp": 0.14,    "qarmctime_pe": 0.12  },  {    "N": 50,    "elp_time": 2.453,    "file": "summ_SG3",    "k": 2,    "pe_time": 1.712,    "qarmctime_elp": 0.14,    "qarmctime_pe": 0.15  },  {    "N": 51,    "elp_time": 19.398,    "file": "summ_SG3",    "k": 3,    "pe_time": 1.721,    "qarmctime_elp": 0.16,    "qarmctime_pe": 0.24  },  {    "N": 52,    "elp_time": 21.982,    "file": "summ_slicing",    "k": 2,    "pe_time": 2.126,    "qarmctime_elp": 0.07,    "qarmctime_pe": 0.11  },  {    "N": 53,    "elp_time": 1.121,    "file": "summ_summs",    "k": 2,    "pe_time": 1.759,    "qarmctime_elp": 0.07,    "qarmctime_pe": 0.15  },  {    "N": 54,    "elp_time": 6.999,    "file": "summ_summs",    "k": 3,    "pe_time": 1.869,    "qarmctime_elp": 0.07,    "qarmctime_pe": 0.13  },  {    "N": 55,    "elp_time": 40.737,    "file": "summ_summs",    "k": 4,    "pe_time": 1.915,    "qarmctime_elp": 0.08,    "qarmctime_pe": 0.18  },  {    "elp_timelimit": 60,    "ks": 10,    "n_elp_timeouts": 208,    "n_pe_timeouts": 51,    "pe_timelimit": 60,    "qarmc_timelimit": 30  }];
 
     len = testdata.length;
     tam = len-1;
     n_elp_timeouts = testdata[tam].n_elp_timeouts;
     n_pe_timeouts = testdata[tam].n_pe_timeouts;
-    qarmc_timelimit = testdata[tam].qarmctimelimit;
-    elp_timelimit = 15;
-    pe_timelimit = 15;
+    qarmc_timelimit = testdata[tam].qarmc_timelimit;
+    elp_timelimit = testdata[tam].elp_timelimit;
+    pe_timelimit = testdata[tam].pe_timelimit;
     ks = testdata[tam].ks;
 
     var element = document.getElementById("qarmc_timelimit");
@@ -105,7 +124,14 @@
     element.innerHTML = "# PE Timeouts: "+ n_pe_timeouts;
 
     var chart;
-    nv.addGraph(function() {
+
+    nv.addGraph(newGraph('#test1 svg'));
+    nv.addGraph(newGraph('#test2 svg'));
+
+
+    function newGraph(graph_id) {
+        var n_test = parseInt(graph_id.substring(5, 6)); //Identify graph to be plotted
+
         chart = nv.models.scatterChart()
             .showDistX(true)
             .showDistY(true)
@@ -115,56 +141,99 @@
         chart.dispatch.on('renderEnd', function(){
             console.log('render complete');
         });
-        // Log scale settings for X axis
 
-        chart.xScale(d3.scale.log());
-        chart.xDomain( [ min, qarmc_timelimit+3 ] ).yDomain( [ min, qarmc_timelimit+3] );
+        if(n_test==1){
+            // Log scale settings for X axis
 
-        chart.xAxis.tickValues([0.01,0.1,1,10]);
-        chart.xAxis.tickFormat(d3.format('.02f'));
-        chart.xAxis.axisLabel('ELP-Linear Program Q\'ARMC Runtime (s)');
+            chart.xScale(d3.scale.log());
+            chart.xDomain( [ min, qarmc_timelimit+3 ] ).yDomain( [ min, qarmc_timelimit+3] );
 
-        // Log scale settings for Y axis
-        chart.yScale(d3.scale.log());
+            chart.xAxis.tickValues([0.01,0.1,1,qarmc_timelimit+3]);
+            chart.xAxis.tickFormat(d3.format('.02f'));
+            chart.xAxis.axisLabel('ELP-Linear Program Q\'ARMC Runtime (s)');
 
-        chart.yAxis.tickValues([0.01,0.1,1,10]);
-        chart.yAxis.tickFormat(d3.format('.02f'));
-        chart.yAxis.axisLabel('PE-Linear Program Q\'ARMC Runtime (s)');
+            // Log scale settings for Y axis
+            chart.yScale(d3.scale.log());
 
-        d3.select('#test1 svg')
-            .datum(nv.log(inputData(testdata,ks,tam)))
-            .call(chart)
-            .append('line')
-            .attr({
-                x1: 75 + chart.xAxis.scale()(min),
-                y1: 30 + chart.yAxis.scale()(min),
-                x2: 75 + chart.xAxis.scale()(qarmc_timelimit+3),
-                y2: 30 + chart.yAxis.scale()(qarmc_timelimit+3)
-            })
-            .style("stroke-dasharray", ("3,3"))
-            .style("stroke","black");
+            chart.yAxis.tickValues([0.01,0.1,1,qarmc_timelimit+3]);
+            chart.yAxis.tickFormat(d3.format('.02f'));
+            chart.yAxis.axisLabel('PE-Linear Program Q\'ARMC Runtime (s)');
 
-        chart.dispatch.on('stateChange', function(e) { nv.log('New State:', JSON.stringify(e)); });
+            d3.select(graph_id)
+                .datum(nv.log(inputData(testdata,ks,tam,n_test)))
+                .call(chart)
+                .append('line')
+                .attr({
+                    x1: 75 + chart.xAxis.scale()(min),
+                    y1: 30 + chart.yAxis.scale()(min),
+                    x2: 75 + chart.xAxis.scale()(qarmc_timelimit+3),
+                    y2: 30 + chart.yAxis.scale()(qarmc_timelimit+3)
+                })
+                .style("stroke-dasharray", ("3,3"))
+                .style("stroke","black");
 
-        // Function that generates the tooltip content html
-        chart.tooltip.contentGenerator (function (d){
-            var html = "<h3> ELP time = <b>"+d.value+"</b></h3>";
+            chart.dispatch.on('stateChange', function(e) { nv.log('New State:', JSON.stringify(e)); });
 
-            d.series.forEach(function(elem){
-            html += "<h3> PE time = <b>"+ elem.value + "</b></h3><h3> filename = "+ elem.values[d.pointIndex].file + "</h3>";
-            })
-            return html;
+            // Function that generates the tooltip content html
+            chart.tooltip.contentGenerator (function (d){
+                var html = "<h3> ELP time = <b>"+d.value+"</b></h3>";
 
-        });
+                d.series.forEach(function(elem){
+                html += "<h3> PE time = <b>"+ elem.value + "</b></h3><h3> filename = "+ elem.values[d.pointIndex].file + "</h3>";
+                })
+                return html;
+
+            });
+        }else{
+
+            // Log scale settings for X axis
+
+            //chart.xScale(d3.scale.log());
+            chart.xDomain( [ min, elp_timelimit+3 ] ).yDomain( [ min, pe_timelimit+3] );
+
+            chart.xAxis.tickValues(d3.range(0,elp_timelimit+20,10));
+            chart.xAxis.tickFormat(d3.format('.02f'));
+            chart.xAxis.axisLabel('ELP Runtime (s)');
+
+            // Log scale settings for Y axis
+            
+            //chart.yScale(d3.scale.log());
+            chart.yAxis.tickValues(d3.range(0,pe_timelimit+20,10));
+            chart.yAxis.tickFormat(d3.format('.02f'));
+            chart.yAxis.axisLabel('PE Runtime (s)');
+
+            d3.select(graph_id)
+                .datum(nv.log(inputData(testdata,ks,tam,n_test)))
+                .call(chart)
+                .append('line')
+                .attr({
+                    x1: 75 + chart.xAxis.scale()(min),
+                    y1: 30 + chart.yAxis.scale()(min),
+                    x2: 75 + chart.xAxis.scale()(elp_timelimit+3),
+                    y2: 30 + chart.yAxis.scale()(pe_timelimit+3)
+                })
+                .style("stroke-dasharray", ("3,3"))
+                .style("stroke","black");
+
+            chart.dispatch.on('stateChange', function(e) { nv.log('New State:', JSON.stringify(e)); });
+
+            // Function that generates the tooltip content html
+            chart.tooltip.contentGenerator (function (d){
+                var html = "<h3> ELP time = <b>"+d.value+"</b></h3>";
+
+                d.series.forEach(function(elem){
+                html += "<h3> PE time = <b>"+ elem.value + "</b></h3><h3> filename = "+ elem.values[d.pointIndex].file + "</h3>";
+                })
+                return html;
+
+            });
+        }
         nv.utils.windowResize(chart.update);
         
         return chart;
-    });
+    }
 
-
-
-
-    function inputData(inputData, ngroups, points) { //# groups,# points per group
+    function inputData(inputData, ngroups, points,n_test) { //# groups,# points per group
         var outputData = [],
             group, shape,n,
             shapes = ['square','circle'],
@@ -184,13 +253,24 @@
                     break;
                 }
             };
-            outputData[group].values.push({
-                x: inputData[j].qarmctime_elp,
-                y: inputData[j].qarmctime_pe,
-                file: inputData[j].file,
-                size: 10,
-                shape: shapes[1] //circle
-            });
+            if(n_test==1){
+                outputData[group].values.push({
+                    x: inputData[j].qarmctime_elp,
+                    y: inputData[j].qarmctime_pe,
+                    file: inputData[j].file,
+                    size: 10,
+                    shape: shapes[1] //circle
+                });
+            }else{
+                outputData[group].values.push({
+                    x: inputData[j].elp_time,
+                    y: inputData[j].pe_time,
+                    file: inputData[j].file,
+                    size: 10,
+                    shape: shapes[1] //circle
+                });
+
+            }
         };
 
         return outputData;

@@ -25,17 +25,17 @@ from os.path import join
 
 tests = glob(join('../benchmarks/programs', '*.horn'))
 
-ks=[1,2,3,4,5,6,7,8]
+ks=[1,2,3,4,5,6,7,8,9,10]
 
 linearisation_file = "../src/linearise.pl"
 linearisation_exe = os.path.splitext(linearisation_file)[0]
 
 qarmc_filename = "./qarmc.osx" # Change executable filename if needed.
 extraoptions = " -debug "
-qarmc_timelimit = "15" # sec.
+qarmc_timelimit = "30" # sec.
 
-elp_timelimit = "15" # sec.
-pe_timelimit = "15" #sec.
+elp_timelimit = "60" # sec.
+pe_timelimit = "60" #sec.
 
 YAMLformatfile = '../plot-scripts/running-times.yml'
 JSONformatfile = '../results/running-times.json'
@@ -80,8 +80,11 @@ for files in tests:
 		p0_path = "../benchmarks/programs/" + base + ".horn"; ELP_p2_path = "../benchmarks/linear-programs/"+"ELP_"+ base + ".horn"; PE_p2_path = "../benchmarks/linear-programs/" +"PE_"+ base + ".horn"
 
 		# Run ELP
+		begin_time_elp = int(round(time.time() * 1000))
 		try:
 			output = subprocess.call('time gtimeout ' + elp_timelimit + ' ./' + linearisation_exe + ' -prg ' + p0_path + ' -k ' + k + ' -o ' + ELP_p2_path, timeout = float(elp_timelimit), shell = True )
+			end_time_elp = int(round(time.time() * 1000))
+			elp_time = float(end_time_elp - begin_time_elp)/1000
 		except subprocess.TimeoutExpired:
 			elp_timeout = 1
 		if elp_timeout == 1:
@@ -93,8 +96,11 @@ for files in tests:
 			fp.close()
 
 		# Run PE
+		begin_time_pe = int(round(time.time() * 1000))
 		try:
 			output = subprocess.call('time gtimeout ' + pe_timelimit + ' ./' + linearisation_exe + ' -prg ' + p0_path + ' -k ' + k + ' -o ' + PE_p2_path + ' -pe', timeout = float(pe_timelimit), shell = True )
+			end_time_pe = int(round(time.time() * 1000))
+			pe_time = float(end_time_pe - begin_time_pe)/1000
 		except subprocess.TimeoutExpired:
 			pe_timeout = 1
 		if pe_timeout==1:
@@ -115,8 +121,6 @@ for files in tests:
 			log_sufix = time.strftime(".%Y.%m.%d.%H.%M")
 			logfile = file+log_sufix+".log"
 
-			print(file)
-
 			try:
 				output = subprocess.check_output(["time gtimeout "+qarmc_timelimit+" "+qarmc_filename+" " + extraoptions + file + " > " + logfile], shell = True, stderr = subprocess.STDOUT)
 			except subprocess.CalledProcessError as e:
@@ -135,9 +139,9 @@ for files in tests:
 
 				if qarmc_grep_error == 0: # Extract QARMC time
 					try:
-						 qarmc_time[i] = float(re.search('((\d+)\.(\d+))}}', str(o_time)).group(1))
+						qarmc_time[i] = float(re.search('((\d+)\.(\d+))}}', str(o_time)).group(1))
 					except AttributeError:
-						 qarmc_time_regex_error = 1
+						qarmc_time_regex_error = 1
 			else:
 				qarmc_time[i]=int(qarmc_timelimit)+0.1
 
@@ -146,13 +150,15 @@ for files in tests:
 				break
 			i+=1
 
-		if (error == 0) :
+		if (error == 0 and (qarmc_time[0]>0.1 or qarmc_time[1]>0.1)) :
 			d = {
 				'N' : N,
 			    'k' : int(k),
 			    'file' : base,
 			    'qarmctime_elp' : qarmc_time[0],
-			    'qarmctime_pe' : qarmc_time[1]
+			    'qarmctime_pe' : qarmc_time[1],
+			    'elp_time': elp_time,
+			    'pe_time': pe_time
 			    }
 			data.append(d)
 			N+=1

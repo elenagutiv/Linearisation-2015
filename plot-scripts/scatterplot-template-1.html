@@ -11,17 +11,37 @@
             font: 10px sans-serif;
         }
         svg {
-            display: block;
         }
-        html, body, #test1, svg {
+        #tests-scheme{
+            float:left;
+            
+            width:100%;
+        }
+        html, body, svg {
             margin: 0px;
             padding: 0px;
-            height: 93%;
-            width: 93%;
+            height: 100%;
+            width: 100%;
+        }
+        #test1 {
+            float:left;
+            width:40%;
+            height: 60%;
+            display:inline-block;
+            margin-left: 60px;
+            margin-right: 80px;           
+        }
+         #test2 {
+            float:left;
+            width:40%;
+            height: 60%;
+            display:inline-block;
+            margin-left: 80px;
+            margin-right: 15px;           
         }
         #title-text {
-            margin: 8px;
-            padding: 8px;
+            margin: 50px;
+            padding: 50px;
             float:center;
             font: 18px "Trebuchet MS", Helvetica, sans-serif;
             font-weight: bold;
@@ -34,43 +54,42 @@
             font: 13px "Trebuchet MS", Helvetica, sans-serif;
 
         }
-        #key-left{
-            float:left;
-            
-
-        }
         #key-right{
-            float:left;
+            float:right;
             margin-left: 20px;
-            
-
         }
     </style>
 </head>
-<body >
-<div id="test1" class='with-3d-shadow with-transitions'>
-    <svg></svg>
-</div>
-<div>
-    <div id="key">
-        <div id="key-left">
-            <div id="qarmc_timelimit">qarmc_timelimit</div>
-            <div id="elp_timelimit">elp_timelimit</div>
-            <div id="pe_timelimit">pe_timelimit</div>
-        
-        </div>
-         <div id="key-right">
-            <div id="samplesize">samplesize</div>
-            <div id="n_elp_timeouts">n_elp_timeouts</div>
-            <div id="n_pe_timeouts">n_pe_timeouts</div>
-        
-        </div>
+<body>
 
-        
-        
-    </div>
-    <div id="title-text" class="chart-title"><center>QARMC solving time for ELP-Linear vs. PE-Linear </center></div>
-</div>
+        <div id="test1" class='with-3d-shadow with-transitions'>
+            <svg></svg>
+            <div id="key">
+                <div id="key-right">
+                    <div id="qarmc_timelimit">qarmc_timelimit</div> 
+                </div>
+                 <div id="key-right">
+                    <div id="samplesize">samplesize</div>
+                </div>              
+            </div>
+            <div id="title-text" class="chart-title"><center>QARMC solving time of ELP-Linear vs. PE-Linear </center></div>
+        </div>
+    
+        <div id="test2" class='with-3d-shadow with-transitions'>
+            <svg></svg>
+            <div id="key">
+                <div id="key-right">
+                    <div id="elp_timelimit">elp_timelimit</div>
+                    <div id="pe_timelimit">pe_timelimit</div>
+                </div>
+                 <div id="key-right">
+                    <div id="n_elp_timeouts">n_elp_timeouts</div>
+                    <div id="n_pe_timeouts">n_pe_timeouts</div>
+                
+                </div>
+            </div>
+            <div id="title-text" class="chart-title"><center>Translating time of ELP vs. PE </center></div>
+        </div>
 
 <script>
     var min = 0.01;
@@ -107,7 +126,14 @@
     element.innerHTML = "# PE Timeouts: "+ n_pe_timeouts;
 
     var chart;
-    nv.addGraph(function() {
+
+    nv.addGraph(newGraph('#test1 svg'));
+    nv.addGraph(newGraph('#test2 svg'));
+
+
+    function newGraph(graph_id) {
+        var n_test = parseInt(graph_id.substring(5, 6)); //Identify graph to be plotted
+
         chart = nv.models.scatterChart()
             .showDistX(true)
             .showDistY(true)
@@ -117,56 +143,99 @@
         chart.dispatch.on('renderEnd', function(){
             console.log('render complete');
         });
-        // Log scale settings for X axis
 
-        chart.xScale(d3.scale.log());
-        chart.xDomain( [ min, qarmc_timelimit+3 ] ).yDomain( [ min, qarmc_timelimit+3] );
+        if(n_test==1){
+            // Log scale settings for X axis
 
-        chart.xAxis.tickValues([0.01,0.1,1,10]);
-        chart.xAxis.tickFormat(d3.format('.02f'));
-        chart.xAxis.axisLabel('ELP-Linear Program Q\'ARMC Runtime (s)');
+            chart.xScale(d3.scale.log());
+            chart.xDomain( [ min, qarmc_timelimit+3 ] ).yDomain( [ min, qarmc_timelimit+3] );
 
-        // Log scale settings for Y axis
-        chart.yScale(d3.scale.log());
+            chart.xAxis.tickValues([0.01,0.1,1,qarmc_timelimit+3]);
+            chart.xAxis.tickFormat(d3.format('.02f'));
+            chart.xAxis.axisLabel('ELP-Linear Program Q\'ARMC Runtime (s)');
 
-        chart.yAxis.tickValues([0.01,0.1,1,10]);
-        chart.yAxis.tickFormat(d3.format('.02f'));
-        chart.yAxis.axisLabel('PE-Linear Program Q\'ARMC Runtime (s)');
+            // Log scale settings for Y axis
+            chart.yScale(d3.scale.log());
 
-        d3.select('#test1 svg')
-            .datum(nv.log(inputData(testdata,ks,tam)))
-            .call(chart)
-            .append('line')
-            .attr({
-                x1: 75 + chart.xAxis.scale()(min),
-                y1: 30 + chart.yAxis.scale()(min),
-                x2: 75 + chart.xAxis.scale()(qarmc_timelimit+3),
-                y2: 30 + chart.yAxis.scale()(qarmc_timelimit+3)
-            })
-            .style("stroke-dasharray", ("3,3"))
-            .style("stroke","black");
+            chart.yAxis.tickValues([0.01,0.1,1,qarmc_timelimit+3]);
+            chart.yAxis.tickFormat(d3.format('.02f'));
+            chart.yAxis.axisLabel('PE-Linear Program Q\'ARMC Runtime (s)');
 
-        chart.dispatch.on('stateChange', function(e) { nv.log('New State:', JSON.stringify(e)); });
+            d3.select(graph_id)
+                .datum(nv.log(inputData(testdata,ks,tam,n_test)))
+                .call(chart)
+                .append('line')
+                .attr({
+                    x1: 75 + chart.xAxis.scale()(min),
+                    y1: 30 + chart.yAxis.scale()(min),
+                    x2: 75 + chart.xAxis.scale()(qarmc_timelimit+3),
+                    y2: 30 + chart.yAxis.scale()(qarmc_timelimit+3)
+                })
+                .style("stroke-dasharray", ("3,3"))
+                .style("stroke","black");
 
-        // Function that generates the tooltip content html
-        chart.tooltip.contentGenerator (function (d){
-            var html = "<h3> ELP time = <b>"+d.value+"</b></h3>";
+            chart.dispatch.on('stateChange', function(e) { nv.log('New State:', JSON.stringify(e)); });
 
-            d.series.forEach(function(elem){
-            html += "<h3> PE time = <b>"+ elem.value + "</b></h3><h3> filename = "+ elem.values[d.pointIndex].file + "</h3>";
-            })
-            return html;
+            // Function that generates the tooltip content html
+            chart.tooltip.contentGenerator (function (d){
+                var html = "<h3> ELP time = <b>"+d.value+"</b></h3>";
 
-        });
+                d.series.forEach(function(elem){
+                html += "<h3> PE time = <b>"+ elem.value + "</b></h3><h3> filename = "+ elem.values[d.pointIndex].file + "</h3>";
+                })
+                return html;
+
+            });
+        }else{
+
+            // Log scale settings for X axis
+
+            //chart.xScale(d3.scale.log());
+            chart.xDomain( [ min, elp_timelimit+3 ] ).yDomain( [ min, pe_timelimit+3] );
+
+            chart.xAxis.tickValues(d3.range(0,elp_timelimit+20,10));
+            chart.xAxis.tickFormat(d3.format('.02f'));
+            chart.xAxis.axisLabel('ELP Runtime (s)');
+
+            // Log scale settings for Y axis
+            
+            //chart.yScale(d3.scale.log());
+            chart.yAxis.tickValues(d3.range(0,pe_timelimit+20,10));
+            chart.yAxis.tickFormat(d3.format('.02f'));
+            chart.yAxis.axisLabel('PE Runtime (s)');
+
+            d3.select(graph_id)
+                .datum(nv.log(inputData(testdata,ks,tam,n_test)))
+                .call(chart)
+                .append('line')
+                .attr({
+                    x1: 75 + chart.xAxis.scale()(min),
+                    y1: 30 + chart.yAxis.scale()(min),
+                    x2: 75 + chart.xAxis.scale()(elp_timelimit+3),
+                    y2: 30 + chart.yAxis.scale()(pe_timelimit+3)
+                })
+                .style("stroke-dasharray", ("3,3"))
+                .style("stroke","black");
+
+            chart.dispatch.on('stateChange', function(e) { nv.log('New State:', JSON.stringify(e)); });
+
+            // Function that generates the tooltip content html
+            chart.tooltip.contentGenerator (function (d){
+                var html = "<h3> ELP time = <b>"+d.value+"</b></h3>";
+
+                d.series.forEach(function(elem){
+                html += "<h3> PE time = <b>"+ elem.value + "</b></h3><h3> filename = "+ elem.values[d.pointIndex].file + "</h3>";
+                })
+                return html;
+
+            });
+        }
         nv.utils.windowResize(chart.update);
         
         return chart;
-    });
+    }
 
-
-
-
-    function inputData(inputData, ngroups, points) { //# groups,# points per group
+    function inputData(inputData, ngroups, points,n_test) { //# groups,# points per group
         var outputData = [],
             group, shape,n,
             shapes = ['square','circle'],
@@ -186,13 +255,24 @@
                     break;
                 }
             };
-            outputData[group].values.push({
-                x: inputData[j].qarmctime_elp,
-                y: inputData[j].qarmctime_pe,
-                file: inputData[j].file,
-                size: 10,
-                shape: shapes[1] //circle
-            });
+            if(n_test==1){
+                outputData[group].values.push({
+                    x: inputData[j].qarmctime_elp,
+                    y: inputData[j].qarmctime_pe,
+                    file: inputData[j].file,
+                    size: 10,
+                    shape: shapes[1] //circle
+                });
+            }else{
+                outputData[group].values.push({
+                    x: inputData[j].elp_time,
+                    y: inputData[j].pe_time,
+                    file: inputData[j].file,
+                    size: 10,
+                    shape: shapes[1] //circle
+                });
+
+            }
         };
 
         return outputData;
