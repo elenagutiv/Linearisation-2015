@@ -58,6 +58,9 @@
             float:right;
             margin-left: 20px;
         }
+        .hidden-point{
+            visibility:hidden;
+        }
     </style>
 </head>
 <body>
@@ -141,7 +144,6 @@
         chart.dispatch.on('renderEnd', function(){
             console.log('render complete');
         });
-
         if(n_test==1){
             // Log scale settings for X axis
 
@@ -160,17 +162,9 @@
             chart.yAxis.axisLabel('PE-Linear Program Q\'ARMC Runtime (s)');
 
             d3.select(graph_id)
-                .datum(nv.log(inputData(testdata,ks,tam,n_test)))
+                .datum(nv.log(inputData(testdata,ks,tam,n_test,qarmc_timelimit+3,qarmc_timelimit+3)))
                 .call(chart)
-                .append('line')
-                .attr({
-                    x1: 75 + chart.xAxis.scale()(min),
-                    y1: 30 + chart.yAxis.scale()(min),
-                    x2: 75 + chart.xAxis.scale()(qarmc_timelimit+3),
-                    y2: 30 + chart.yAxis.scale()(qarmc_timelimit+3)
-                })
-                .style("stroke-dasharray", ("3,3"))
-                .style("stroke","black");
+                .append('line');
 
             chart.dispatch.on('stateChange', function(e) { nv.log('New State:', JSON.stringify(e)); });
 
@@ -203,17 +197,8 @@
             chart.yAxis.axisLabel('PE Runtime (s)');
 
             d3.select(graph_id)
-                .datum(nv.log(inputData(testdata,ks,tam,n_test)))
-                .call(chart)
-                .append('line')
-                .attr({
-                    x1: 75 + chart.xAxis.scale()(min),
-                    y1: 30 + chart.yAxis.scale()(min),
-                    x2: 75 + chart.xAxis.scale()(elp_timelimit+3),
-                    y2: 30 + chart.yAxis.scale()(pe_timelimit+3)
-                })
-                .style("stroke-dasharray", ("3,3"))
-                .style("stroke","black");
+                .datum(nv.log(inputData(testdata,ks,tam,n_test,elp_timelimit,pe_timelimit)))
+                .call(chart);
 
             chart.dispatch.on('stateChange', function(e) { nv.log('New State:', JSON.stringify(e)); });
 
@@ -228,16 +213,19 @@
 
             });
         }
+        d3.selectAll('.nv-point').style("visibility",function(d){return d[0].file == 'line' ? "hidden":"visible";});
+        d3.selectAll('.nv-line').style("fill","black");
         nv.utils.windowResize(chart.update);
         
         return chart;
     }
 
-    function inputData(inputData, ngroups, points,n_test) { //# groups,# points per group
+    function inputData(inputData, ngroups, points,n_test,max1,max2) { //# groups,# points per group
         var outputData = [],
             group, shape,n,
             shapes = ['square','circle'],
             groups = [];
+        min = 0.000001;
 
         for (i = 0; i < ngroups; i++) {
             groups[i] = 'k = ' + (i+1).toString();
@@ -246,6 +234,24 @@
               values: []
             });
         }
+        if(n_test==1){
+            outputData.push({
+              key: 'line',
+              color: "black",
+              values: [{x:max1,y:max2,shape:shapes[0],file:'line',size:0},{x:max1,y:max2,shape:shapes[0],file:'line',size:0}],
+              slope: 1,
+              intercept: min,
+            });
+        }else{
+            outputData.push({
+              key: 'line',
+              color: "black",
+              values: [{x:min,y:min,shape:shapes[0],file:'line'},{x:min,y:min,shape:shapes[0],file:'line'}],
+              slope: 1,
+              intercept: min
+            });
+        }
+
         for (j = 0; j < points; j++) {
             for (i = 0; i < ngroups; i++) {
                 if (inputData[j].k == (i+1)){
