@@ -40,8 +40,8 @@
             margin-right: 15px;           
         }
         #title-text {
-            margin: 50px;
-            padding: 50px;
+            margin: 30px;
+            padding: 30px;
             float:center;
             font: 18px "Trebuchet MS", Helvetica, sans-serif;
             font-weight: bold;
@@ -187,14 +187,14 @@
             //chart.xScale(d3.scale.log());
             chart.xDomain( [ min, elp_timelimit+3 ] ).yDomain( [ min, pe_timelimit+3] );
 
-            chart.xAxis.tickValues(d3.range(0,elp_timelimit+20,10));
+            chart.xAxis.tickValues(d3.range(0,elp_timelimit+10,10));
             chart.xAxis.tickFormat(d3.format('.02f'));
             chart.xAxis.axisLabel('ELP Runtime (s)');
 
             // Log scale settings for Y axis
             
             //chart.yScale(d3.scale.log());
-            chart.yAxis.tickValues(d3.range(0,pe_timelimit+20,10));
+            chart.yAxis.tickValues(d3.range(0,pe_timelimit+10,10));
             chart.yAxis.tickFormat(d3.format('.02f'));
             chart.yAxis.axisLabel('PE Runtime (s)');
 
