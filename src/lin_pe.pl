@@ -13,7 +13,7 @@ the input is a set of Horn clauses and a stack bound and output is a set of line
 :- use_module(library(process), [process_call/3]).
 :- use_module(library(terms), [atom_concat/2]).
 :- use_module(library(pathnames), [path_basename/2, path_concat/3, path_split/3]).
-:- use_module(library(bundle/paths_extra), [fsR/2]).
+:- use_module(library(bundle/bundle_paths), [bundle_path/3]).
 :- use_module(library(system_extra), [mktempdir_in_tmp/2, rmtempdir/1,mkpath/1]).
 
 :- use_module(load_simple).
@@ -68,7 +68,7 @@ find_bundle_cmd(Cmd, Path) :-
 find_asset(Name, Path) :-
 	( current_executable(ExecPath),
 	  path_split(ExecPath, Dir, _)
-	; fsR(bundle_src('Linearisation-2015')/src, Dir)
+	; bundle_path('Linearisation-2015', 'src', Dir)
 	),
 	path_concat(Dir, Name, Path0),
     %display(looking_for_asset(Path0)), nl,
