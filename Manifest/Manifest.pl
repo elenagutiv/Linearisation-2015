@@ -2,7 +2,7 @@
 version('1.0').
 depends([
     core,
-    logen
+    'github.com/jfmc/logen'
 ]).
 alias_paths([
     linearise = 'src'
