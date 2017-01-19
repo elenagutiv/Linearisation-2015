@@ -1,7 +1,7 @@
 :- bundle('Linearisation-2015').
 version('1.0').
 depends([
-    core,
+    core-[version>='1.16']
     'github.com/jfmc/logen'
 ]).
 alias_paths([
