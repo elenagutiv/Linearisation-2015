@@ -74,8 +74,6 @@
 
 % go3('Tests/mc91.pl',2 'output.txt'). 	(use size argument as lower bound and use named output file)
 
-
-
 % tested in Ciao Prolog and SWI Prolog
 
 script :-
