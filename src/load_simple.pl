@@ -1,9 +1,9 @@
-:- module(load_simple, [load_file/1,my_clause/3], []).
+:- module(load_simple, [load_file/1,my_clause/3], [dynamic]).
 
 :- dynamic my_clause/3.
 
 :- use_module(library(lists)).
-:- use_module(library(dynamic)).
+:- use_module(library(streams)).
 :- use_module(library(read)).
 
 load_file(F) :-

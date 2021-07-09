@@ -36,25 +36,19 @@ The linearisers are written in Ciao. PE-based procedure uses Logen as Partial Ev
 
 You can automatically fetch, build, and install `linearise` using:
 
-```
-ciao get https://github.com/elenagutiv/Linearisation-2015
-```
-
-This command stores the source and generates the binaries in the Ciao
-_workspace directory_. This directory is given by the value of the
-`CIAOPATH` environment variable (or `~/.ciao` if unspecified).
-
-Binaries are placed in the `$CIAOPATH/build/bin` directory (or
-`~/.ciao/build/bin`). To call `linearise` without specifying its
-full path it is recommended to include this directory in your `PATH`:
-
-```
-export PATH=$CIAOPATH/build/bin:$PATH
-or export PATH=~/.ciao/build/bin:$PATH
+```sh
+ciao get github.com/elenagutiv/Linearisation-2015
 ```
 
-**For developing** `Linearisation-2015` it is recommended to define `CIAOPATH`
-(E.g., `~/ciao`) and clone this repository in your workspace.
+All code will be downloaded and built under the first directory
+specified in the `CIAOPATH` environment variable or `~/.ciao` by
+default.
+
+**For developing** it is recommended to define your own
+_workspace directory_ and clone this repository. E.g., `export
+CIAOPATH=~/ciao` and update your `PATH` with `eval "$(ciao-env)"`.
+The dependencies can be cloned manually or fetched automatically by
+calling `ciao fetch` at the source directory.
 
 ## Usage
 

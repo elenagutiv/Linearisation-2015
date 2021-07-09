@@ -348,7 +348,7 @@ ms_ed(EBs,(H:-B)):-
 
 % Succeeds if M is the most specific conjunction of atoms in [L|Ls].
 ms([L|Ls],M):-
-	foldl(Ls,L,most_specific_generalization,M).
+	foldl(most_specific_generalization,Ls,L,M).
 
 % Eureka Definition methods.
 
